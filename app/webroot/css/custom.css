@@ -629,7 +629,7 @@ footer .options {
 
 footer .options h5 {
   display: inline-block;
-  padding: 0.35rem 0.75rem;
+  padding: 0.25rem 0.75rem;
   text-align: center;
   margin-bottom: 2.25rem;
   /*color: #ff8399;*/
@@ -1431,6 +1431,7 @@ ul#ul-moreviews li.dontResize img {
 
 #headhelp .wrapper {
 	background-color: #f4f4f6;
+	padding-top: 2rem;	
 }
 
 #headhelp .row > div {
@@ -1528,8 +1529,7 @@ ul#ul-moreviews li.dontResize img {
     /*padding-top: 6rem!important;*/
   }
   #headhelp {
-  	padding-top: 4rem; 
-    padding-bottom: 0.5rem; 
+  	padding-top: 4.65rem; 
 	  min-height: calc(100dvh - 265px);
   }
 }
@@ -2362,6 +2362,13 @@ select {
   transform: scale(1.6) translateY(-0.75rem) translateX(0.75rem);  
 }
 
+.article-tools {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	grid-gap: 0.75rem;
+}
 .article-related-title {
   text-align:center;
   font-weight: 600;

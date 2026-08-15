@@ -44,7 +44,7 @@
 
   #optionsHelp > a { 
     display: inline-block; 
-    padding: 0.35rem 0.75rem;
+    padding: 0.25rem 0.75rem;
     font-weight: 300;
     text-transform: uppercase;
     transition: all 1s ease-in-out;

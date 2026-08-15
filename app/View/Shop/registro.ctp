@@ -63,7 +63,7 @@ $userData = array(
 				<div class="d-flex flex-column justify-content-start align-items-center gap-1 content">
 					<div class="row w-100">
 						<div class="col-md-12">
-							<h3 class="text-uppercase mt-0">
+							<h3 class="mt-0">
 								<i class="gi gi-woman"></i> <?php echo $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme' ?>
 							</h3>
 							<p>
@@ -102,7 +102,6 @@ $userData = array(
 							<label class="text-muted" for="password">Confirme Email</label>
 							<div class="form-group position-relative">
 								<input type="email" placeholder="patriciarodriguez@gmail.com" class="form-control" id="email2" name="data[User][email2]" autocomplete="off" />
-								<i class="form-pass-icon fa fa-eye-slash is-clickable" data-target="#email2"  ></i>
 							</div>
 							<span class="validation-password"></span>
 						</div>
@@ -289,28 +288,30 @@ $userData = array(
 				<?php echo $this->Form->end(); ?>
 			</div>
 			<div class="flex-col desktop">
-				<div class="card-is-rounded bg-salmon">
+				<div class="card">
 					<div class="card-body bg-transparent">
-						<blockquote class="m-0">
-							<h3 class="mt-0"><i class="gi gi-magic"></i>
-								<?php if ($loggedIn) : ?>
-									Tus datos en Châtelet
-								<?php else :?>
-									Accede a más beneficios
-								<?php endif ?>
-							</h3>
+						<h3 class="mt-0"><i class="gi gi-magic"></i>
 							<?php if ($loggedIn) : ?>
-								Tu cuenta fue registrada <?php echo date('d M Y', strtotime($userData['created'])) ?>
+								Tus datos en Châtelet
 							<?php else :?>
-								Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
+								Accede a más beneficios
 							<?php endif ?>
-						</blockquote>
+						</h3>
+						<?php if ($loggedIn) : ?>
+							Tu cuenta fue registrada <?php echo date('d M Y', strtotime($userData['created'])) ?>
+						<?php else :?>
+							Crea hoy tu cuenta en <i>Châtelet</i> y accede a mas beneficios.
+						<?php endif ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<footer>
+	<?php echo $this->element('signature') ?>
+</footer>
 
 <script type="text/javascript">
 $(function(){

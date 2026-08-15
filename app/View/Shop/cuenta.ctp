@@ -40,6 +40,7 @@ echo $this->Session->flash();
 		</div>
 	</div>
 </section>
+
 <footer>
 	<?php echo $this->element('signature') ?>
 </footer>

@@ -136,3 +136,7 @@ foreach($results as $row):
     </div>
   </div>
 </section>
+
+<footer>
+	<?php echo $this->element('signature') ?>
+</footer>

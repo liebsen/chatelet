@@ -833,9 +833,7 @@ body > section {
 
 .btn {
 	text-transform: uppercase;
-	height: 50px;
-	font-size: 0.8rem;
-	line-height: 2.75;
+	padding: 1rem 1.25rem;
 	border-radius: 3rem;
 	font-weight: 800;
 	transition: all 200ms ease-in-out;
@@ -1468,6 +1466,9 @@ select.form-control{
   background-clip: border-box;
   border-radius: 0.75rem;
 }
+.card p {
+  color: white!important;
+}
 
 .card-body {
   /*flex: 1 1 auto;
@@ -1576,7 +1577,6 @@ select.form-control{
 
 .btn-light {
 	border-color: #c5c5c5;
-	line-height: 2.85;
 }
 
 .btn-chatelet {
@@ -1584,7 +1584,6 @@ select.form-control{
   background-color: white;
   border-color: deeppink;
   color: deeppink;
-	line-height: 2.85;
 	box-shadow: 0 2px 2px #00000008;
 }
 

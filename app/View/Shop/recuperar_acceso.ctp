@@ -49,6 +49,10 @@ echo $this->Session->flash();
 	</div>
 </section>
 
+<footer>
+	<?php echo $this->element('signature') ?>
+</footer>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 	    $('#password_form').on('submit', function(event) {
