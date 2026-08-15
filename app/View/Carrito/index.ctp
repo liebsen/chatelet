@@ -1,4 +1,9 @@
 <?php
+
+	$this->set('short_header', 'Cuenta');
+	$this->set('short_header_text', '<i class="gi gi-dress mr-1"></i> Seguir comprando');
+	$this->set('short_header_link', '/shop');
+
 	echo $this->Session->flash();
 	echo $this->Html->css('carrito.css?v=' . $version['ver'], array('inline' => false));
 	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));
@@ -254,6 +259,10 @@
 		</div>
 	</div>
 </section>
+
+<footer>
+	<?php echo $this->element('signature') ?>
+</footer>
 
 <?php if (isset($cart) && !empty($cart)) :?>
 <!--div id="carritoItem" class="burst is-fullheight has-item-counter animated">

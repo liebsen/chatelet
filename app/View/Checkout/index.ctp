@@ -36,7 +36,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 					</div>
 				</div>
 			<?php else : ?>
-				<div class="card max-25">
+				<div class="card light max-25">
 					<div class="card-body p-md-5 is-bordered">
 						<h4 class="text-uppercase text-center">Ya soy clienta</h4>
 						<p>Ingresa con tu cuenta Châtelet, si no recordás la clave presiona Olvidé contraseña.</p>
@@ -64,7 +64,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 			      <?php echo $this->Form->end(); ?>
 					</div>
 				</div>
-				<div class="card max-25 bg-light-desktop">
+				<div class="card light max-25">
 					<div class="card-body p-md-5">
 						<h4 class="text-uppercase text-center">Soy nueva</h4>
 						<p>Ingresá tu email para continuar con tu compra, lo usaremos para notificarte de la compra.</p>

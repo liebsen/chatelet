@@ -1309,9 +1309,20 @@ select.form-control{
   background-clip: border-box;
   border-radius: 0.75rem;
 }
+
 .card p {
-  color: white!important;
+  color: white;
 }
+
+.card.light {
+	background-color: #f4f4f6;
+	color: #0A0A0A;
+}
+
+.card.light p {
+	color: #0A0A0A;
+}
+
 
 .card-body {
   padding: 1.5rem;
@@ -1704,9 +1715,6 @@ span.validation-password {
   .pr-2-d {
     padding: 1rem;
   }	
-  .bg-light-desktop {
-    background-color: whitesmoke;
-  }
 	.p-md-5 {
 		padding: 1.5rem!important;
 	}
