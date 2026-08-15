@@ -165,8 +165,13 @@
     $(document).ready(function() {
       const subscription_release = localStorage.subscription_release || 'undefined'
       
-      if(!subscription_release || subscription_release == 'undefined') {
-        $('.subscribe-box').removeClass('d-none-i')
+      if(
+      	!subscription_release || 
+      	subscription_release == 'undefined'
+      ) {
+      	if(!window.location.pathname.includes('carrito') && !window.location.pathname.includes('checkout')) {
+        	$('.subscribe-box').removeClass('d-none-i')
+        }
       } else {
         $('.btn-subscribe').removeClass('d-none-i')
       }

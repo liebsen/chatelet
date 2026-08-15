@@ -2,8 +2,6 @@
   --box-shadow: rgba(40, 40, 40, 0.15) 0 0 8px;
 }
 
-/* Base color: #e10c76 */
-
 body.loading {
   overflow: hidden;
 }
@@ -172,15 +170,10 @@ body > section {
 	background-color: #e7e7e7;
 	color: #999;
 	cursor: pointer;
-	/*background-image: url(../images/chevron_right_gray.svg);
-	background-position: right 0.75rem center;
-	background-repeat: no-repeat;
-	background-size: 30px;*/
 	margin-bottom: 0.5rem;
 	transition: all 0.25s ease;
 	min-height: 50px;
   opacity: 0;
-  /*flex: 1;*/
   animation-name: fadeIn;
   animation-duration: 0.5s;
   animation-fill-mode: both;
@@ -210,7 +203,6 @@ body > section {
 .generic-select li.selected {
 	background-color: #333;
 	border-color: #333;
-	/*background-image: url(../images/check-pink.png);*/
 }
 
 .generic-select li.selected span {
@@ -275,50 +267,39 @@ body > section {
   border-radius: 5px;
 }
 
-/*.modal-body label {
-	color: #383A3F;
-}
-
-.modal-body input {
-	border: 1px solid #bebebe;
-}*/
-
 .toggle-checkbox {
-    display: none; /* Hide the default checkbox */
+    display: none; 
 }
 
 .toggle-label {
-    /* Style the track */
-    display: block;
-    width: 60px;
-    height: 34px;
-    background-color: #ccc;
-    border-radius: 34px;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.4s; /* Smooth color transition */
+  display: block;
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.4s;
 }
 
 .toggle-label:after {
-    /* Style the thumb (sliding circle) */
-    content: '';
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background-color: #fff;
-    top: 4px;
-    left: 4px;
-    transition: transform 0.4s; /* Smooth sliding animation */
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #fff;
+  top: 4px;
+  left: 4px;
+  transition: transform 0.4s;
 }
 
-/* Change background color and slide the thumb when checked */
 .toggle-checkbox:checked + .toggle-label {
-    background-color: #2196F3; /* Blue when "on" */
+    background-color: #2196F3; 
 }
 
 .toggle-checkbox:checked + .toggle-label:after {
-    transform: translateX(26px); /* Slide thumb to the right */
+    transform: translateX(26px);
 }
 
 .disable-scroll {
@@ -424,8 +405,6 @@ body > section {
 	outline: 2px solid deeppink;
 	color: deeppink;
 }
-
-/* say hello to my little dwarfs - Hello */
 
 .m-w-auto {
 	margin-left: auto;
@@ -655,7 +634,6 @@ body > section {
 	padding: 1rem 0;
 	padding-bottom: 1rem;
 	line-height: 1.25;
-	/*border-bottom: 1px solid #efefef;*/
 }
 
 .bronco-select {
@@ -670,15 +648,7 @@ body > section {
 	transition: all 0.25s ease-in;
 }
 
-
-/*.bronco-select.is-secondary:not(.is-selected) {
-	opacity: 0.5;
-}*/
-
 .bronco-select.is-selected {
-	/*border-color: #3c763d;
-	color: #3c763d;
-	background-color: #dff0d8;*/
 	border-color: deeppink;
 	color: white;
 	background-color: deeppink;	
@@ -720,24 +690,15 @@ body > section {
 	text-align: center;
 	white-space: nowrap;
 	text-shadow: 0 0 2px #0009;
-  /*background-color: #363733;
-  background-color: white;*/
   text-transform: uppercase;
 	color: white;
 	font-weight: 1000;
-  /*border-radius: 5px;
-	border: 1px solid white;
-	background-color: #fff3;*/
 	transition: all 0.1s ease-in;
-  /*box-shadow: rgb(0 0 0 / 16%) 3px 3px 4px;
-  box-shadow: 0 0 0.5rem #fff3;*/
 }
 
 .tap-to-continue > .fa:before {
 	font-size: 1.25rem;
 }
-
-/* special icons */
 
 [class^="ico-"], [class*=" ico-"] {
   font: normal 1.5em/1 Arial, sans-serif;
@@ -763,7 +724,6 @@ body > section {
 	padding: 0.75rem;
 	padding-top: 1rem;
 	background-color: #f8f8f8;
-  /*background: linear-gradient(hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.7) 15%, hsla(0, 0%, 100%, 0.9) 30%, white);*/
   box-shadow: none;	
 }
 .icon-huge .fa {
@@ -792,7 +752,6 @@ body > section {
   display: flex;
   flex-direction: column;
   padding: 0 !important;
-  /* grid-gap: 1rem; */
 }
 
 .card-variant {
@@ -833,7 +792,7 @@ body > section {
 
 .btn {
 	text-transform: uppercase;
-	padding: 1rem 1.25rem;
+	padding: 0.9rem 1.25rem;
 	border-radius: 3rem;
 	font-weight: 800;
 	transition: all 200ms ease-in-out;
@@ -847,17 +806,9 @@ body > section {
 	opacity: 0.9;
 }
 
-/*a.btn {
-	color: #333;
-}*/
-
 .is-transparent {
 	background-color: transparent;
 }
-
-/*.btn:not(.bg-transparent):not(.btn-link):not(.btn-light):hover {
-	color:white!important;
-}*/
 
 .font-system {
 	font-family: -apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',sans-serif;
@@ -942,20 +893,13 @@ body > section {
 .instructions {
 	padding: 0.75rem 1rem;
 	border-radius: 0.5rem;
-	/* background-color: #fdb5db; */
 	background-color: whitesmoke;
-	color: #777; /* theme secondary #fdb5db; */
-	/* border: 2px solid #fdb5db; */
-	/* color: #f50081; */ /* theme secondary #fdb5db; */
+	color: #777;
 	white-space: pre;
 	font-size: 1.25rem;
 	font-weight: 300;
 	line-height: 1.5;
 }
-
-/*.form-control {
-	border-radius: 0.5rem!important;	
-}*/
 
 .form-control {
 	padding: 0 16px;
@@ -1047,12 +991,9 @@ select.form-control{
 }
 
 .input-group-addon.input-lg {
-	/*background-color: white;
 	border: 2px solid deeppink;
-  border-radius: 0.5rem;*/
   border: none;
   background: transparent;
-  /*color: deeppink!important;*/
 }
 
 .input-group-append {
@@ -1071,8 +1012,6 @@ select.form-control{
 }
 
 #main {
-	/*padding-bottom: 8rem;
-	background: linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);*/
 	padding-bottom: 2rem;
 	position: relative;
   z-index: 3;	
@@ -1112,10 +1051,6 @@ select.form-control{
 	padding: 0.5rem;
 }
 
-/* #bs-example-navbar-collapse-1 > .navbar-nav > li > a {
-	line-height: 30px;	
-}*/
-
 .dropdown-menu ol {
 	color: #b4b4b4;
 	padding-left: 25px;
@@ -1133,26 +1068,6 @@ select.form-control{
 	min-height: 3.25rem;
 }
 
-/* .dropdown-menu .bottom > .right {
-	background-color: #e10c76;
-	color: #FFFFFF;
-	border-radius: 0.5rem;
-	padding: 0.25rem 1rem;
-	font-size: 1rem;
-	font-weight: 800;
-} */
-
-/*#login-email,
-#login-password {
-	padding: 6px 12px;
-	border-radius: 0.5rem;
-	margin-bottom: 10px;
-	min-height: 34px;
-	background-color: #dbd9da;
-	border: 0;
-	width: 100%;
-}*/
-
 #login {
 	display: inline-block;
 	background-color: #363633;
@@ -1166,33 +1081,6 @@ select.form-control{
 	min-height: 50px;
 	border: 0;
 }
-
-/*#forgot-password {
-	display: inline-block;
-	color: #e10c76;
-	text-align: center;
-	font-size: 1rem;
-	width: 100%;
-	margin-top: 10px;
-}
-
-#login-panel {
-	width: auto;
-	min-width: 215px;
-	padding-bottom: 15px;
-}
-
-.register-container {
-	margin-top: 10px;
-	border-top: 1px solid black;
-}
-
-#register {
-	display: inline-block;
-	margin-top: 5px;
-	color: black;
-	font-size: 1rem;
-}*/
 
 #items {
 	height: 100px;
@@ -1323,7 +1211,6 @@ select.form-control{
 	float: left;
 }
 
-/* mobile first */
 .modal-dialog {
   margin:0!important;
 }
@@ -1331,31 +1218,6 @@ select.form-control{
 .modal-title {
 	font-size: 1.15rem;
 }
-
-/*.modal-content {
-  min-height: 100vh;
-  border: 2px solid rgba(0, 0, 0, .2);
-}
-
-.modal-header {
-	min-height: 50px;
-	color: #e10c76;
-}
-
-@media(min-width: 768px) {
-	.modal-header {
-		border-top-left-radius: 0.25rem;
-		border-top-right-radius: 0.25rem;
-	}
-	.modal-content {
-		border-radius: 0.25rem;
-	}
-	.modal-body {
-  	border-bottom-left-radius: 0.25rem;
-  	border-bottom-right-radius: 0.25rem;
-  }
-}
-*/
 
 .modal-header .close {
 	color: #888;
@@ -1378,7 +1240,7 @@ select.form-control{
 }
 
 .text-green {
-	color: lightgreen; /*#14c408;*/
+	color: lightgreen; 
 }
 
 .text-shadow {
@@ -1409,34 +1271,17 @@ select.form-control{
 	opacity: 0.9;
 }
 
-/* #enviar-registro {
-	width: 100%;
-	background-color: black;
-	color: white;
-	min-height: 50px;
-	text-align: center;
-	border: 0;
-	border-radius: 5px;
-	font-weight: 700;
-	padding: 0.75rem 1rem;
-	margin-top: 10px;
-}*/
-
 .form-group {
 	margin-bottom: 0;
 }
 
 #mayorista-modal {
 	font-size: 13px;
-	/*position: absolute;
-	overflow: visible;*/
 }
 #particular-modal .modal-content, 
 #mayorista-modal .modal-content,
 #particular-login .modal-content,
 #particular-password .modal-content{
-	/*max-width: 25rem;
-	position: absolute; */
 }
 
 #particular-modal .form-control,
@@ -1446,8 +1291,6 @@ select.form-control{
 	display: inline-block;
 	padding: 5px 10px;
 	border-radius: 0;
-	/*height: 25px;*/
-	/*	width: 190px !important; */
 }
 
 #particular-modal .bootstrap-select,
@@ -1471,8 +1314,6 @@ select.form-control{
 }
 
 .card-body {
-  /*flex: 1 1 auto;
-  background-color: #ffd3db;*/
   padding: 1.5rem;
   border-radius: 0.75rem;
 }
@@ -1526,12 +1367,6 @@ select.form-control{
 	font-size: 0.75rem;
 	margin-top: 0.5rem;
 	white-space: nowrap;
-	/*width: 100%;
-	border-radius: 0.25rem;
-	background-color: #e398c1;
-	margin-right: 0.25rem;
-	margin-top: 0.5rem;
-	margin-bottom: 0;*/
 	transition: all 0.25s ease;
 }
 .card-link:hover {
@@ -1649,7 +1484,6 @@ select.form-control{
 .registro-heading {
 	color: #e10c76;
 	font-style: italic;
-	/*font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
 .btn-input-lg {
@@ -1720,8 +1554,6 @@ a.pay{
 .mp-link {
 	background-color: #e398c1;
 }
-
-/*Rodolfo*/
 
 a.table:hover {
 	color: #f50081;
@@ -1828,7 +1660,6 @@ span.validation-password {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* background-color: #5cb85c; */
 	background-color: lightgreen;
 	box-shadow: rgba(0, 0, 0, 0.16) -3px 3px 3px;
 	color: darkolivegreen;
@@ -1888,10 +1719,6 @@ span.validation-password {
     box-shadow: 0 0 40px 0 rgba(255, 255, 255, .2);
   }
 
-	/*.navbar-chatelet.top-fixed {
-		background: linear-gradient(white,hsla(0,0%,100%,0.9) 50%, hsla(0,0%,100%,0.7) 70%, hsla(0,0%,100%,0));
-		box-shadow: none;
-	}*/
 	.modal-dialog {
 		margin: auto!important;
 		min-height: 100vh;
@@ -1927,12 +1754,6 @@ span.validation-password {
 	#opts .mod-item { min-height: 220px;} 
 }
 
-/*@media screen and (max-width: 512px) {
-	.whatsapp-block {
-		bottom: 0;
-	}
-}*/
-
 @media screen and (max-width: 768px) {
 	.navbar-container {
 		min-height: 112px;
@@ -1947,9 +1768,6 @@ span.validation-password {
 		align-items: center;
 		min-height: 50px;
 	}
-	/*.whatsapp-block .whatsapp-text {
-		display: none;
-	}*/
 	.marginTop {
   	margin-top: 2rem;
 	}
