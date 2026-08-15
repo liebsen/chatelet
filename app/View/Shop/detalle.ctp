@@ -224,10 +224,10 @@ echo $this->Session->flash();
                     </div>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                    <a href="#" id="comprar" class="btn btn-chatelet buy agregar-carro min-w-20">Comprar</a>
-                    <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro min-w-20">Agregar al carrito</a>
+                    <a href="#" id="comprar" class="btn btn-chatelet dark buy agregar-carro min-w-20">Comprar</a>
+                    <a href="#" id="agregar-carro" class="btn btn-chatelet dark add agregar-carro min-w-20">Agregar al carrito</a>
                     <?php if(!empty($cart)):?>
-                    <a href="/carrito" class="btn btn-chatelet dark w-100">Ir al carrito</a>
+                    <a href="/carrito" class="btn btn-chatelet min-w-20">Ir al carrito</a>
                     <?php endif ?>
                   </div>                        
                 </div>
