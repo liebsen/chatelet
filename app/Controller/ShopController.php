@@ -239,7 +239,7 @@ class ShopController extends AppController {
     
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
-    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
+    $xmlObject->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
     $xmlString = $xmlObject->asXML();
     
@@ -283,7 +283,7 @@ class ShopController extends AppController {
 
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
-    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
+    $xmlObject->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
     $xmlString = $xmlObject->asXML();
     
     // Set content type header to application/xml
@@ -338,7 +338,7 @@ class ShopController extends AppController {
 
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
-    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
+    $xmlObject->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
     $xmlObject->addAttribute('xmlns-image', 'http://google.com');
     $xmlString = $xmlObject->asXML();
     
