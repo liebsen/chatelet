@@ -224,6 +224,12 @@ class AppController extends Controller
     $this->settings = $settings;
     $this->set('settings', $settings);
 
+    $site_title = $this->settings['site_title'];
+    $site_description = $this->settings['site_description'];
+
+    $this->set('site_title', $site_title);
+    $this->set('site_description', $site_description);
+    
     $keys = ["upload_url", "upload_local", "site_url"];
 
     foreach($keys as $key)

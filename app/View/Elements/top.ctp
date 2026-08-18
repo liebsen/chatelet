@@ -8,8 +8,8 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <title><?=@$settings['site_title'] ?? 'Châtelet'?></title>
-    <meta name="description" content="<?=@$settings['site_description']?>">
+    <title><?=$site_title?></title>
+    <meta name="description" content="<?=$site_description?>">
     <link rel="manifest" href="/manifest.json" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="facebook-domain-verification" content="mz62jgu2bv7lu4new0t9pno88ekmxx" />
