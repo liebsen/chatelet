@@ -419,9 +419,9 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   .navbar-chatelet { 
     min-height: 74px;
   }
-	.navbar-nav > li > a {
+	/*.navbar-nav > li > a {
 		display: inline;
-	}
+	}*/
 	.add-no-stock {
     min-height: 30rem!important;
   }
@@ -2372,12 +2372,12 @@ span.count {
   width: 1rem;
   height: 1rem;
   background-color: deeppink;
-  outline: 4px solid white;
+  outline: 3px solid white;
   border-radius: 100%;
-  line-height: 1.666;  
+  line-height: 1.6;  
   text-align: center;
   min-width: 1rem;
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   color: #fff;
   margin: auto;
   font-weight: 1000;

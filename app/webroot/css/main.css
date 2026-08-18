@@ -631,12 +631,12 @@ background-color: #e8ffa8!important;
   /*.block .tab-content {
       border-bottom-left-radius: 1.5rem;
   }*/
-  .side-scrollable {
+  /*.side-scrollable {
     position: absolute;
     top: 0;
     max-height: calc(100dvh - 74px);
     overflow-y: auto;
-  }
+  }*/
   .sub-header {
     margin: 0;
     margin-bottom: 10px;
@@ -644,13 +644,15 @@ background-color: #e8ffa8!important;
   }
   #page-sidebar {
     width: 220px;
+    height: auto!important;
     display: block;
     position: absolute;
     z-index: 10;
     left: 0;
-    transition: 0.25s all 0.25s ease-in;
+    transition: 0.5s all 0.15s ease-in;
   }
   #page-content {
+  	transition: 0.5s all 0.15s ease-in;
     /* border-left: 1px solid #333;*/
     margin: 0 0 0 220px;
   }
@@ -3699,8 +3701,8 @@ a.thumbnail-borderless,
 
   /* Hide Side Content */
   .hide-side-content #page-sidebar {
-      /*display: none !important;*/
-      left: -30rem;
+    /*display: none !important;*/
+    left: -30rem;
   }
 
   .hide-side-content #pre-page-content,
@@ -3709,31 +3711,23 @@ a.thumbnail-borderless,
       margin: 0;
       border-left: none;
   }
-
-  .hide-side-content .affix {
-      margin-left: 0 !important;
-  }
-  .is-rounded-md {
-    border-radius: 1rem!important;
-  }  
 }
 
-
 .layer {
-position: fixed;
-top: 0;
-left: 0;
-z-index: 1000;  
-width: 100vw;
-height: 100vh;
-background-color: whitesmoke;
-display: flex;
-justify-content:  center;
-align-items: center;
-pointer-events: none;
-opacity: 0;
-padding: 2rem;
-transition: all 0.25s ease;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;  
+	width: 100vw;
+	height: 100vh;
+	background-color: whitesmoke;
+	display: flex;
+	justify-content:  center;
+	align-items: center;
+	pointer-events: none;
+	opacity: 0;
+	padding: 2rem;
+	transition: all 0.25s ease;
 }
 
 .layer .close {
@@ -3820,7 +3814,7 @@ transition: all 0.25s ease;
       border: 1px solid #e7e7e7;
       border-radius: 0.75rem;
   }    
-  #page-sidebar.navbar-collapse.collapse {
+  /*#page-sidebar.navbar-collapse.collapse {
       display: none !important;
       height: 0 !important;
       overflow-y: hidden !important;
@@ -3828,7 +3822,7 @@ transition: all 0.25s ease;
   #page-sidebar.navbar-collapse.collapse.in {
       display: block !important;
       height: auto !important;
-  }    
+  } */   
   #login-container {
       padding: 205px 0 10px 0;
   }

@@ -114,6 +114,13 @@
                     <!-- Sidebar Toggle Buttons (Desktop & Tablet) -->
                     <div class="col-sm-12 is-flex-center">
                         <ul class="navbar-nav-custom pull-left">
+                            <li class="section-toggle">
+                                <a href="javascript:void(0)" id="toggle-side-content" class="collapsed text-white" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                            </li>
+                            <li class="divider-vertical"></li>                                
+
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="mini-profile">
                                 <!-- Mini Profile -->
@@ -148,12 +155,7 @@
                                 </a>
                             </li>
                                 <?php endif ?>
-                            <li class="divider-vertical"></li>                                
-                            <li class="section-toggle">
-                                <a href="javascript:void(0)" id="toggle-side-content" class="collapsed text-white" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
-                                    <i class="fa fa-bars"></i>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                     <!-- END Sidebar Toggle Buttons -->
