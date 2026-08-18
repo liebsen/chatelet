@@ -35,7 +35,7 @@
     <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= $settings['site_url'] . @$settings['opengraph_image'] ?>" />
     <?php endif ?>
     
-    <link rel="canonical" href="<?=@$settings['site_url']?>">    
+    <link rel="canonical" href="<?=@$settings['site_url'].$_SERVER['REQUEST_URI']?>">    
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
 
     <?php echo $this->element('css_root') ?>
