@@ -339,7 +339,7 @@ class ShopController extends AppController {
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
     $xmlObject->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
-    $xmlObject->addAttribute('xmlns-image', 'http://google.com');
+    $xmlObject->addAttribute('xmlns-image', 'http://www.google.com/schemas/sitemap-image/1.1');
     $xmlString = $xmlObject->asXML();
     
     // Set content type header to application/xml
