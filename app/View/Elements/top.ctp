@@ -8,15 +8,15 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <title><?=@$settings['site_title'] ?? 'Châtelet'?></title>
-    <meta name="description" content="<?=@$settings['site_description']?>">
+    <title><?=$site_title?></title>
+    <meta name="description" content="<?=$site_description?>">
     <link rel="manifest" href="/manifest.json" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="facebook-domain-verification" content="mz62jgu2bv7lu4new0t9pno88ekmxx" />
     <?php if(isset($product) && isset($product['name'])):?>
     <!-- FB OpenGraph -->
     <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">
-    <meta property="og:description" content="<?= ucwords(strtolower($product['name'])) ?>">
+    <meta property="og:description" content="<?= ucwords(strtolower($product['desc'])) ?>">
     <meta property="og:url" content="<?= $this->Html->url(['controller' => 'shop', 'action' => 'detalle', $product['id'], $product['category_id'], strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))], true) ?>">
     <meta property="og:image" content="<?= $settings['site_url'] . $settings['upload_url'] . $product['img_url'] ?>">
     <meta property="product:brand" content="Châtelet">

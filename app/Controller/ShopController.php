@@ -596,21 +596,27 @@ class ShopController extends AppController {
 				}
 
 				if(!empty($product['Product']['article'])){
-
 					$product['Product']['stock'] = 1;
-
-
 				}
 			}
+
+
+	    if(!empty($category['name'])) {
+	    	$site_title = $category['name'];
+	    	$site_description = $category['name'];
+
+				$this->set('site_title', $site_title);		
+				$this->set('site_description', $site_description);		
+	    }
 
 			//rsort($products);
       $this->set('category',$category);
 			$this->set('products', $products);
-			// $this->set('schema', $this->categorySchema($category,$products));
-
 		} else {
-			/******** JSONSD ********/
-			//$this->set('schema', $this->categorySchema($categories));
+	    if(!empty($product['name'])) {
+	    	$site_title = $product['name'];
+	    	$site_description = $product['desc'];
+	    }
 		}
 
 		if(empty($category)) {
@@ -839,48 +845,13 @@ class ShopController extends AppController {
 			$this->set('img_url', $product['Product']['img_url']);
 		}
 
-		/***** json sd ******/
+    if(!empty($product['Product']['name'])) {
+    	$site_title = $product['Product']['name'];
+    	$site_description = str_replace("\n", "", $product['Product']['desc']);
 
-		// 3. Construct the Structured Data Array
-		$schema = [
-	    '@context' => 'https://schema.org',
-	    '@type' => 'Product',
-	    '@id' => $mainProduct['url'] . '#product',
-	    'name' => $mainProduct['name'],
-	    'image' => $mainProduct['image'],
-	    'description' => $mainProduct['description'],
-	    'sku' => $mainProduct['sku'],
-	    'mpn' => $mainProduct['id'],
-	    'brand' => [
-        '@type' => 'Brand',
-        'name' => $mainProduct['brand']
-	    ],
-	    'offers' => [
-        '@type' => 'Offer',
-        'url' => $mainProduct['url'],
-        'priceCurrency' => $mainProduct['currency'],
-        'price' => $mainProduct['price'],
-        'availability' => $mainProduct['availability'],
-        'priceValidUntil' => date('Y-12-31', strtotime('+1 year')) // Keeps expiration valid
-	    ],
-	    'isRelatedTo' => [] // Initialize array for related products
-		];
-
-		// 4. Map related products using schema loops
-		foreach ($all_but_me as $related) {
-	    $schema['isRelatedTo'][] = [
-        '@type' => 'Product',
-        '@id' => $related['url'] . '#product',
-        'name' => $related['name'],
-        'image' => $related['image'],
-        'url' => $related['url'],
-        'offers' => [
-          '@type' => 'Offer',
-          'price' => $related['price'],
-          'priceCurrency' => $related['currency']
-        ]
-	    ];
-		}
+			$this->set('site_title', $site_title);		
+			$this->set('site_description', $site_description);		
+    }
 
 		//$this->set('schema', $schema);
 		$this->set('legends', $legends);
