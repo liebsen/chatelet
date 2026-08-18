@@ -231,8 +231,9 @@ class ShopController extends AppController {
     $data = array(
         'sitemapindex' => array(
             'sitemap' => array(
-                'loc' => $this->settings['site_url']
-            )
+                'loc' => $this->settings['site_url'],
+                'lastmod' => date('Y-m-d'),
+            ),
         )
     );
     

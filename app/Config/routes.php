@@ -26,7 +26,7 @@
  */
 	Router::connect('/', array('controller' => 'home', 'action' => 'index'));
 	Router::connect('/tienda', array('controller' => 'shop', 'action' => 'index'));
-	Router::connect('/sitemap-index.xml', array('controller' => 'shop', 'action' => 'sitemap_index'));
+	Router::connect('/sitemap.xml', array('controller' => 'shop', 'action' => 'sitemap_index'));
 	Router::connect('/sitemap-categories.xml', array('controller' => 'shop', 'action' => 'sitemap_categories'));
 	Router::connect('/sitemap-products.xml', array('controller' => 'shop', 'action' => 'sitemap_products'));
   Router::connect('/catalogo', array('controller' => 'catalogo', 'action' => 'index'));
