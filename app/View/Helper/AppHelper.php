@@ -164,6 +164,10 @@ class AppHelper extends Helper {
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
 
+    /*if($item['colors'] > 1) {
+    	$content.= '<div class="ribbon bottom-left small"><span'.$ribbon_style.'>'.$item['colors'].' colores</span></div>';
+    }*/
+
     /*if (empty($item['with_thumb'])){
       $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . $item['img_url'] .'" />';
     }else{
@@ -238,6 +242,7 @@ class AppHelper extends Helper {
           array('escape' => false)
         );
     }
+ 
     return $str;
   }
 
@@ -322,6 +327,7 @@ class AppHelper extends Helper {
 			}
 			$str.= '</div>';
     }
+
     $dues_options = [];
       // dues
     for ($i=0; $i<count($legends ?? []); $i++) {
@@ -362,6 +368,10 @@ class AppHelper extends Helper {
       $str2 = '';
     }
     $str.= $str2;
+    if($item['colors'] > 1) {
+    	$str.= '<span class="text-legend justify-content-start">'.$item['colors'].' colores</span>';
+    }   
+
 
     return $str;
   }

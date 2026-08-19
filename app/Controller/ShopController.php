@@ -596,11 +596,17 @@ class ShopController extends AppController {
 				}
 
 				if(!empty($product['Product']['article'])){
-
 					$product['Product']['stock'] = 1;
-
-
 				}
+
+				$colors = $this->ProductProperty->find('count', array(
+					'conditions' => array(
+						'type' => 'color',
+						'product_id' => $product['Product']['id']
+					)
+				));
+
+				$product['Product']['colors'] = $colors;
 			}
 
 			//rsort($products);
@@ -822,6 +828,14 @@ class ShopController extends AppController {
 			if(!empty($item['Product']['article'])){
 				$item['Product']['stock'] = 1;
 			}
+			$colors = $this->ProductProperty->find('count', array(
+				'conditions' => array(
+					'type' => 'color',
+					'product_id' => $item['Product']['id']
+				)
+			));
+
+			$item['Product']['colors'] = $colors;			
 		}
 
 		if (isset($product['Product']['discount']) && $product['Product']['discount']) {

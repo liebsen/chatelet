@@ -423,7 +423,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
 		display: inline;
 	}*/
 	.add-no-stock {
-    min-height: 30rem!important;
+    min-height: 33rem!important;
   }
   .navbar-nav { 
     flex-direction: row;
@@ -948,6 +948,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   grid-gap: 0.25rem;
   font-size: 0.75rem;
   min-height: 1.25rem;
+	margin-bottom: 0.25rem;  
   align-items: center;  
   flex-direction: row;
 }
@@ -1071,7 +1072,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 	justify-content: flex-start;
 	align-items: flex-start;
   padding-top: 0.5rem;
-  min-height: 30px;
 }
 
 .product-badge {
@@ -2257,8 +2257,10 @@ select {
 }
 
 .ribbon.bottom-left.small {
-  top: 0.25rem;
-  right: 0.25rem;
+	top: auto;
+	right: auto;
+  bottom: 0.25rem;
+  left: 0.25rem;
 }
 
 .ribbon.large {
