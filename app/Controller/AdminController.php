@@ -2856,7 +2856,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		);
     	} else {
 				if(count($data['userIds'])) {
-	    		$model->delete($data['userIds']);
+	    		$model->deleteAll(
+	    			array(
+		    			$data['source'] . '_id' => $data['parentId'],
+		    			$data['type'] . '_id' => $data['userIds'],
+	    			),
+	    			false,
+	    			false
+					);					
 	    	}
 		  }
       return json_encode(['success' => true]);
