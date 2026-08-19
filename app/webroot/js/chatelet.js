@@ -280,7 +280,7 @@ function onSuccessAlert(title, text, duration, group){
     return groupAlerts(title, text)
   }  
   $.growl.notice({
-    title: title || 'OK',
+    title: title || 'Hecho',
     message: text && text !== 'undefined' ? text : '',
     queue: true,
     duration: duration || 15000
@@ -293,7 +293,7 @@ function onWarningAlert(title, text, duration, group){
   }
   // $('#growls').remove();
   $.growl.warning({
-    title: title || 'OK',
+    title: title || 'Hecho',
     message: text && text !== 'undefined' ? text : '',
     queue: true,
     duration: duration || 15000

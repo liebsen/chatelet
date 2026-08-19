@@ -50,7 +50,7 @@ $(document).ready(function() {
             contentType: false,  // Mandatory: let browser set the correct multipart/form-data boundary
             success: function(res) {
               $.growl.notice({
-                title: 'OK',
+                title: 'Hecho',
                 message: res.message || 'La tarea fue ejecutada exitosamente'
               });
             },
@@ -90,7 +90,7 @@ $(document).ready(function() {
           }, 100)
         } else {
           $.growl.notice({
-            title: 'OK',
+            title: 'Hecho',
             message: res.message
           });
           if(res.lastid) {

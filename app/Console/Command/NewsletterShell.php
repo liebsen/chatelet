@@ -59,7 +59,7 @@ class NewsletterShell extends AppShell {
     $limit = 0;
 
     #echo "\nStarting: " . $date . " " . implode(':',array($hour,$min)) . "\n";
-    echo implode(':',array($hour,$min)) . " ";
+    echo " \n" . implode(':',array($hour,$min)) . " ";
 
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
@@ -155,6 +155,8 @@ class NewsletterShell extends AppShell {
       )
     );
 
+    #echo "\n[tasks] " . count($schedules);
+
     foreach($schedules as $schedule) {
     	if(
     		$schedule['NewsletterSchedule']['schedule_date'] == $date && 
@@ -162,6 +164,8 @@ class NewsletterShell extends AppShell {
     	) {
     		continue;
     	}
+
+    	echo "\n[task] " . $schedule['NewsletterScheduleItem']['id'];
 
       $products = array();
       $products_ids = array();

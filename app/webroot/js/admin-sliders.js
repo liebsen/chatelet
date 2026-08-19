@@ -2,7 +2,7 @@ $(function(){
 	// drawImages( $("[name='data[slider]']").val().split(';') );
 	$('#display_form').on('submit', function(e){
 		$.growl.notice({
-			title: 'OK',
+			title: 'Hecho',
 			message: 'Tu presentación se actualizó',
 		});	
 
