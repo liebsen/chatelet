@@ -197,7 +197,7 @@ echo $this->Session->flash();
                   <p class="pt-3 stock-block">
                     <span class="text-muted">Stock</span>
                     <span id="stock_container">
-                      <span class="text-warning">(Elegí color y talle)</span>
+                      <span class="text-theme text-bolder">(Elegí color y talle)</span>
                     </span>
                   </p>
                   <div>

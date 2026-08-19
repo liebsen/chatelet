@@ -380,6 +380,10 @@ body > section {
 	color: #0ba900;
 }
 
+.text-warning {
+	color: orange;
+}
+
 .text-muted {
   color: #c5c5c5;
 }

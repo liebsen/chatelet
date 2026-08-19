@@ -2238,7 +2238,7 @@ select {
 }
 
 .ribbon.small span {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 1000;
 }
 
