@@ -326,9 +326,9 @@ class NewsletterShell extends AppShell {
           }
         }
 
-        if(empty($pushes)) {
-          echo "\n[push] unsubscribed";
-        }
+        #if(empty($pushes)) {
+          #echo "\n[push] unsubscribed";
+        #}
       }
 
       $items_sent+= count($products);

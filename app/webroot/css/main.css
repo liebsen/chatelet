@@ -2395,11 +2395,14 @@ small, .small {
 }
 
 .badge.is-large {
-  font-size: 18px;
-  line-height: 1.85;
-  font-weight: 800;
   min-width: 3rem;
   height: 3rem;
+}
+
+.indicator {
+	font-size: 18px;
+  line-height: 1.75;
+  font-weight: 800;
 }
 
 .badge-coupon {
