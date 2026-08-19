@@ -59,7 +59,7 @@ class NewsletterShell extends AppShell {
     $limit = 0;
 
     #echo "\nStarting: " . $date . " " . implode(':',array($hour,$min)) . "\n";
-    echo implode(':',array($hour,$min)) . " ";
+    echo " \n" . implode(':',array($hour,$min)) . " ";
 
     // FIND QUOTA
     $quota = $this->NewsletterScheduleItem->find('count', array(
