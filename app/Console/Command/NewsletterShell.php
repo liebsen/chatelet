@@ -155,7 +155,7 @@ class NewsletterShell extends AppShell {
       )
     );
 
-    echo "\n[tasks] " . count($schedules);
+    #echo "\n[tasks] " . count($schedules);
 
     foreach($schedules as $schedule) {
     	if(
@@ -164,6 +164,8 @@ class NewsletterShell extends AppShell {
     	) {
     		continue;
     	}
+
+    	echo "\n[task] " . $schedule['NewsletterScheduleItem']['id'];
 
       $products = array();
       $products_ids = array();
