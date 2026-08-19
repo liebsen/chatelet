@@ -155,6 +155,8 @@ class NewsletterShell extends AppShell {
       )
     );
 
+    echo "\n[tasks] " . count($schedules);
+
     foreach($schedules as $schedule) {
     	if(
     		$schedule['NewsletterSchedule']['schedule_date'] == $date && 
@@ -326,9 +328,9 @@ class NewsletterShell extends AppShell {
           }
         }
 
-        if(empty($pushes)) {
-          echo "\n[push] unsubscribed";
-        }
+        #if(empty($pushes)) {
+          #echo "\n[push] unsubscribed";
+        #}
       }
 
       $items_sent+= count($products);
