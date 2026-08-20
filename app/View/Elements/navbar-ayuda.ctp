@@ -83,7 +83,7 @@
   </style>
 
   <script type="text/javascript">
-    $(function () {
+    document.addEventListener("DOMContentLoaded", function() {
       document.querySelectorAll("#optionsHelp a").forEach((e) => {
         e.classList.remove('active')
       })

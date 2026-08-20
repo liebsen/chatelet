@@ -76,7 +76,7 @@ if(!empty($home['display_popup_form_in_last'])):?>
       }
     }, 10)
   }
-  $(document).ready(function() {
+  document.addEventListener("DOMContentLoaded", function() {
     if(document.querySelector("#myModal")) {
       checkModal()  
     } else {

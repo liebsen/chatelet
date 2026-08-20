@@ -314,7 +314,7 @@ $userData = array(
 </footer>
 
 <script type="text/javascript">
-$(function(){
+document.addEventListener("DOMContentLoaded", function() {
 	var timeout = 0
 	$('input[type="submit"]').prop('disabled', false)
     $('#registro_form').submit(function(e) {

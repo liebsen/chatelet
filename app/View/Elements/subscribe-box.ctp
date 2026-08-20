@@ -161,7 +161,7 @@
       $('.btn-subscribe').removeClass('d-none-i')    	
     }
 
-    $(document).ready(function() {
+    document.addEventListener("DOMContentLoaded", function() {
       const subscription_release = localStorage.subscription_release || 'undefined'
       
       if(

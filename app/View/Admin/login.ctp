@@ -349,7 +349,7 @@ body.login .form-group {
         </style>
         <!-- Javascript code only for this page -->
         <script>
-            $(function(){
+            document.addEventListener("DOMContentLoaded", function() {
                 if ( ! $('body').hasClass('no-animation') ) {
                     var timeout = 0;
 
@@ -374,7 +374,7 @@ body.login .form-group {
         </script>
 
         <script type="text/javascript">
-            $(function(){
+            document.addEventListener("DOMContentLoaded", function() {
                 $('button[type="submit"]').prop('disabled', false)
                 var timeout = 0
             $('#login_form').submit(function(e) {

@@ -1,12 +1,13 @@
 <?php
 
-echo $this->Html->script('product.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('detalle.js?v=' . $version['ver'], array('inline' => false));
-
+$this->Html->script('vendor/jquery.touchSwipe.min', array('block' => 'script'));
+$this->Html->script('product', array('block' => 'script'));
+$this->Html->script('detalle', array('block' => 'script'));
+$this->Html->script('carousel-swipe.js?v='.$version['ver'], array('block' => 'script'));
 if($cloudzoom) {
-  echo $this->Html->script('wow.min');
-  echo $this->Html->script('cloudzoom.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->Html->css('cloudzoom.css?v=' . $version['ver'], array('inline' => false));
+  $this->Html->script('wow.min', array('block' => 'script'));
+  $this->Html->script('cloudzoom', array('block' => 'script'));
+  $this->Html->css('cloudzoom', array('block' => 'css'));
 }
 
 /*
@@ -342,22 +343,6 @@ gtag('event', 'view_item', {
 <script>
 window.baseUrl = "<?=Router::url('/',true)?>";
 
-$(function(){
-	var carouselInterval = 0
-	var carouselTimeout = 2000
-	$('#productOptions .carousel').each(function(i,e){
-		$(e).hover(function(){
-			const that = $(this)
-			carouselInterval = setInterval(function(){
-				that.carousel('next');	
-			}, carouselTimeout)
-		  $(this).carousel('next');
-		},function(){
-			clearInterval(carouselInterval)
-		});
-	})
-})
-
 // check stock
 function checkStock(i){
     var item = $(product_list[i]);
@@ -382,7 +367,7 @@ function checkStock(i){
    });
 }
 window.product_list = new Array();
-$(function(){
+document.addEventListener("DOMContentLoaded", function() {
   /*
     $('.add-no-stock').each(function(i,item){
         product_list[i] = item;

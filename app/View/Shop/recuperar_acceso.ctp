@@ -54,7 +54,7 @@ echo $this->Session->flash();
 </footer>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 	    $('#password_form').on('submit', function(event) {
 	        event.preventDefault();
 	        const formData = $(this).serialize();

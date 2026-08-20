@@ -76,7 +76,7 @@ echo $this->Html->script('particular-validation', array('inline' => false));
 </footer>
 
 <script type="text/javascript">
-	$(function(){
+	document.addEventListener("DOMContentLoaded", function() {
 		$('input[type="submit"]').prop('disabled', false)
 		var timeout = 0
     $('#login_form').submit(function(e) {

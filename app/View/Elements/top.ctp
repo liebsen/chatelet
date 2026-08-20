@@ -43,38 +43,18 @@
     <?php
       // echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
-      echo $this->Html->css('bootstrap.css?v=' . $version['ver']);
+      echo $this->Html->css('bootstrap');
       // echo $this->Html->css('bootstrapValidator.min');
-      echo $this->Html->css('jquery.growl.css?v=' . $version['ver']);
+      echo $this->Html->css('jquery.growl');
       echo $this->Html->css('chatelet.css?v=' . $version['ver']);
       echo $this->Html->css('custom.css?v=' . $version['ver']);
       // echo $this->Html->css('animate.css?v=' . $version['ver']);
       echo $this->Html->css('plugins.css?v=' . $version['ver']);
-      echo $this->Html->script('jquery-1.11.1.min');
-      echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
-      echo $this->Html->script('bootstrap');
-      echo $this->Html->script('jquery.growl');
-      echo $this->Html->script('bootstrap-select.min');
-      echo $this->Html->script('bootstrapValidator.min');
-      echo $this->Html->script('plugins');
-      echo $this->Html->script('chatelet.js?v=' . $version['ver'], array('inline' => false));
 
-      if(!empty($user['id']) && $_SERVER['REQUEST_SCHEME'] === 'https' ) { 
-        echo $this->Html->script('webpush.js?v=' . $version['ver'], array('inline' => false));
-      }
 
       echo $this->fetch('meta');
       echo $this->fetch('css');
     ?>
-    <script>
-      $.ajaxSetup({
-        cache:false,
-        dataType: "json",
-        xhrFields: {
-          withCredentials: true
-        },
-      });
-    </script>
   </head>
   <body class="noscroll p-0">
     <?php if($settings['env_staging']) : ?>

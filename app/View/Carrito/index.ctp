@@ -290,7 +290,7 @@
 <input type="hidden" id="total" value="<?= $total ?>">
 <?php endif;?>
 <script>
-	$(function(){
+	document.addEventListener("DOMContentLoaded", function() {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const restore_origin = urlParams.get('restore_origin') || null

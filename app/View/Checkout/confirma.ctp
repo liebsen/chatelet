@@ -59,7 +59,7 @@ echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => fal
 
 <script type="text/javascript">
 
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 
 		<?php if($settings['env_staging']):?>
 

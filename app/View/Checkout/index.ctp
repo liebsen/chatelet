@@ -98,7 +98,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 	<?php echo $this->element('checkout-footer') ?>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 			localStorage.setItem('continue_shopping_url', window.location.pathname)
 
 	    $('.btn-register').on('click', function(event) {

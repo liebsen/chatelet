@@ -340,7 +340,7 @@
 <input type="hidden" id="total" value="<?= $total ?>">
 <?php endif;?>
 <script>
-	$(function(){
+	document.addEventListener("DOMContentLoaded", function() {
 	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 			setTimeout(() => {
 				onWarningAlert('<i class="fa fa-magic"></i> Más beneficios','<?= $text_shipping_min_price ?>', 15000)

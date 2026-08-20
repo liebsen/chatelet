@@ -119,7 +119,7 @@
     }  	
   }
 
-  $(function () {
+  document.addEventListener("DOMContentLoaded", function() {
     $('#carousel').on('slide.bs.carousel', (e) => {
     	stopAllVideo()
     	manageCarouselVideo(e)
@@ -127,22 +127,21 @@
     $('#carousel').on('slid.bs.carousel', (e) => {
     	manageCarouselVideo(e)
     });
-  })
+	  $(window).scroll(function(e) {
 
-  $(window).scroll(function(e) {
+	    if(carousel_timeout) {
+	      clearInterval(carousel_timeout)
+	    }
 
-    if(carousel_timeout) {
-      clearInterval(carousel_timeout)
-    }
-
-    carousel_timeout = setTimeout(() => {
-      const scrolltop = $(window).scrollTop()
-      if (scrolltop > $('#carousel').height()) {
-        stopAllVideo()
-      } else {
-        restartCarouselVideo()
-      }
-    }, 1000)
+	    carousel_timeout = setTimeout(() => {
+	      const scrolltop = $(window).scrollTop()
+	      if (scrolltop > $('#carousel').height()) {
+	        stopAllVideo()
+	      } else {
+	        restartCarouselVideo()
+	      }
+	    }, 1000)
+	  })
   })
 
   preloadImages(images)

@@ -305,7 +305,7 @@
 </div>
 <script>
 
-$(function(){
+document.addEventListener("DOMContentLoaded", function() {
 	<?php if(!$loggedIn):?>	
 	setTimeout(() => {
 		$('#particular-login').modal('show')

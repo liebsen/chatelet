@@ -11,7 +11,7 @@
 <?php endif ?>
 
 <script>
-  $(function () {
+  document.addEventListener("DOMContentLoaded", function() {
     $('#myModal').on('hidden.bs.modal', () => {
       $('body, html').removeClass('noscroll')
       var video = $("#carousel .item.active").find("video")

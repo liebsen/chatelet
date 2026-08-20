@@ -106,7 +106,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 
 <script type="text/javascript">
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
   $('#pago_form').on('submit', function(event) {
     event.preventDefault();
     const formData = $(this).serialize();

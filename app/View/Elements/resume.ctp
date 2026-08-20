@@ -126,7 +126,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 	</style>
 
 	<script type="text/javascript">
-		$(function(){
+		document.addEventListener("DOMContentLoaded", function() {
 			$('.btn-list-showall').click(function(e){
 				e.preventDefault()
 				if($(this).text() != 'Esconder') {
