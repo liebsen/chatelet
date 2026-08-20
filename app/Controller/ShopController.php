@@ -577,7 +577,8 @@ class ShopController extends AppController {
 					'category_id' => $category_id,
 					'visible' => 1,
 				],
-				'order' => ['Product.ordernum ASC']
+				'order' => ['Product.ordernum ASC'],
+				'limit' => 10 // *******
 			]);
 
 			if (empty($products)){ 
@@ -586,6 +587,8 @@ class ShopController extends AppController {
 
 			foreach ($products as &$product) {
 				$product['Product']['stock'] = 0;
+				$all_colors = array();
+
 				if (
 					isset($product['Product']['discount']) && 
 					$product['Product']['discount'] !== $product['Product']['price'] && 
@@ -599,14 +602,31 @@ class ShopController extends AppController {
 					$product['Product']['stock'] = 1;
 				}
 
-				$colors = $this->ProductProperty->find('count', array(
-					'conditions' => array(
-						'type' => 'color',
-						'product_id' => $product['Product']['id']
+				$find_colors = $this->ProductProperty->find('all', 
+					array(
+						'conditions' => array(
+							'type' => 'color',
+							'product_id' => $product['Product']['id']
+						),
 					)
-				));
+				);
 
-				$product['Product']['colors'] = $colors;
+				foreach($find_colors as $data_color) {
+					$colors = array_filter(
+						array_values(
+							explode(';', $data_color['ProductProperty']['images'])
+						)
+					);
+
+					foreach($colors as $color) {
+						array_push($all_colors, $color);
+					}
+
+					if(!empty($final_color)) {
+						array_push($all_colors, $final_color);
+					}
+				}
+				$product['Product']['colors'] = $all_colors;
 			}
 
 			//rsort($products);
@@ -816,8 +836,9 @@ class ShopController extends AppController {
 				'Product.stock_total > ' => 0
       ],     
 			'order' => ['Product.ordernum ASC'],
-      'limit' => 1000
+      'limit' => 100
     ]);
+		$all_colors = array();
 
 		foreach ($all_but_me as &$item) {
 			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
@@ -828,14 +849,29 @@ class ShopController extends AppController {
 			if(!empty($item['Product']['article'])){
 				$item['Product']['stock'] = 1;
 			}
-			$colors = $this->ProductProperty->find('count', array(
-				'conditions' => array(
-					'type' => 'color',
-					'product_id' => $item['Product']['id']
-				)
-			));
 
-			$item['Product']['colors'] = $colors;			
+			$find_colors = $this->ProductProperty->find('all', 
+				array(
+					'conditions' => array(
+						'type' => 'color',
+						'product_id' => $item['Product']['id']
+					),
+				)
+			);
+
+			foreach($find_colors as $data_color) {
+				$colors = array_filter(
+					array_values(
+						explode(';', $data_color['ProductProperty']['images'])
+					)
+				);
+
+				foreach($colors as $color) {
+					array_push($all_colors, $color);
+				}
+			}
+
+			$item['Product']['colors'] = $all_colors;
 		}
 
 		if (isset($product['Product']['discount']) && $product['Product']['discount']) {

@@ -156,7 +156,6 @@
     }
 
     function subscribe_hide(){
-    	console.log('subscribe_hide')
       $('.subscribe-box').removeClass('delay3')
       $('.subscribe-box').fadeOut(500)
       $('.btn-subscribe').removeClass('d-none-i')    	

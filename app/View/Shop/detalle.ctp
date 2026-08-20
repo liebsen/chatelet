@@ -263,98 +263,10 @@ echo $this->Session->flash();
         <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
           <div class="row">
               <?php
-              foreach($all_but_me as $alt_product):
-                  $alt_product = $alt_product['Product'];
-                  $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
-                  $alt_product_name =$alt_product['name'];
-                  $url = $this->Html->url(array(
-                          'controller' => 'shop',
-                          'action' => 'detalle',
-                          $alt_product['id'],
-                          $alt_product['category_id'],
-                          strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $alt_product['name']))),
-
-                      )
-                  );
-
-          $number_ribbon = 0;
-				  if (!empty($alt_product['old_price']) && round($alt_product['old_price']) != round($alt_product['price'])){
-				    $number_ribbon = round((1 - $alt_product['price'] / $alt_product['old_price']) * 100);
-				  }          
-        	if (!empty($alt_product['discount_label_show'])){
-        		$number_ribbon = (int)@$alt_product['discount_label_show'];
-        	}
-          if (!empty($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
-            $number_ribbon = (int) @$alt_product['mp_discount'];
-          }
-          if (!empty($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
-            $number_ribbon = (int) @$alt_product['bank_discount'];
-          }
-          $discount_flag = (@$alt_product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag">'.$number_ribbon.'% OFF</div>':'';
-          $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
-
-
-              if(!$stock){ ?>
-               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">
-                  <a href="<?php echo $url ?>">
-                      <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
-                          <div class="ribbon small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
-                      <?php endif ?>
-                      <?php if ($alt_product['promo'] !== '') :?>
-                          <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
-                      <?php endif ?>
-                      <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
-                      <div class="product-image" style="background-image: url('<?php echo $settings['upload_url'] . $alt_product['img_url'] ?>')" alt=""></div>
-                      <div class="product-info">
-                          <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                          <div class="name" origin="3"><?= $alt_product_name ?></div>
-                          <?php if($stock): ?>
-                          <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
-                        <?php endif ?>
-                      </div>
-                  </a>
-              </div>
-              <?php }else{ ?>
-
-                <div data-id="<?=$alt_product['id']?>" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">
-                  <a href="<?php echo $url ?>">
-                      <div class="ribbon-container">
-<?php 
-$number_ribbon = 0;
-    $ribbon_style = '';
-
-    if(!empty($alt_product['ribbon_color'])) {
-      $ribbon_style = ' style="background-color:'.$alt_product['ribbon_color'].'"';
-    }
-if (!empty($alt_product['old_price']) && round($alt_product['old_price']) != round($alt_product['price'])){
-  $number_ribbon = round((1 - $alt_product['price'] / $alt_product['old_price']) * 100);
-}	 
-if (!empty($alt_product['discount_label_show'])){
-	$number_ribbon = (int) @$alt_product['discount_label_show'];
-}
-if (!empty($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
-	$number_ribbon = (int) @$alt_product['mp_discount'];
-}
-if (!empty($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
-	$number_ribbon = (int) @$alt_product['bank_discount'];
-}
-?><?php 
-                      if (!empty($number_ribbon)) :?>
-                          <div class="ribbon top-left small sp1"><span<?=$ribbon_style?>><?= $number_ribbon ?>% OFF</span></div>
-                      <?php endif ?>
-                      <?php if ($alt_product['promo'] !== '') :?>
-                          <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
-                      <?php endif ?>
-                      <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo $settings['upload_url'] . $alt_product['img_url'] ?>')" alt=""></div>
-                      </div>
-                      <div class="product-info">
-                          <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                          <div class="name" origin="4"><?= $alt_product_name ?></div>
-                          <?= $this->App->show_prices_dues($legends, $settings, $alt_product, $alt_product) ?>
-                      </div>
-                  </a>
-              </div>
-             <?php }endforeach; ?>
+				      foreach ($all_but_me as $product) {
+				        echo $this->App->tile($product['Product'], $settings, 1, $legends, $category);
+				      } 
+				      ?>
           </div>
         </div>
       </div>
@@ -429,6 +341,23 @@ gtag('event', 'view_item', {
 
 <script>
 window.baseUrl = "<?=Router::url('/',true)?>";
+
+$(function(){
+	var carouselInterval = 0
+	var carouselTimeout = 2000
+	$('#productOptions .carousel').each(function(i,e){
+		$(e).hover(function(){
+			const that = $(this)
+			carouselInterval = setInterval(function(){
+				that.carousel('next');	
+			}, carouselTimeout)
+		  $(this).carousel('next');
+		},function(){
+			clearInterval(carouselInterval)
+		});
+	})
+})
+
 // check stock
 function checkStock(i){
     var item = $(product_list[i]);

@@ -153,6 +153,22 @@ function updateSrcTo(obj){
 </section>
 <script>
 window.baseUrl = "<?=Router::url('/',true)?>";
+
+$(function(){
+	var carouselInterval = 0
+	var carouselTimeout = 2000
+	$('#productOptions .carousel').each(function(i,e){
+		$(e).hover(function(){
+			const that = $(this)
+			carouselInterval = setInterval(function(){
+				that.carousel('next');	
+			}, carouselTimeout)
+		  $(this).carousel('next');
+		},function(){
+			clearInterval(carouselInterval)
+		});
+	})
+})
 // check stock
 function checkStock(i){
   var item = $(product_list[i]);

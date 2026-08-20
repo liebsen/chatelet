@@ -1685,7 +1685,7 @@ span.validation-password {
 }
 
 .navbar-container {
-	min-height: 74px;
+	min-height: 80px;
 }
 
 @media screen and (min-width: 992px) {	

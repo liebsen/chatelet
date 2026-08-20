@@ -95,7 +95,7 @@ class AppHelper extends Helper {
   /**
   * @param string $query, This is the search query you will pass from the view
   */
-  function tile($item, $settings, $isProduct = false, $legends, $category = null) {
+  function tile($item, $settings, $isProduct = false, $legends = array(), $category = null) {
     $str = '';
     //['posnum']
     $stock = (!empty($item['stock_total']))?(int)$item['stock_total']:0;
@@ -103,6 +103,16 @@ class AppHelper extends Helper {
     $mp_discount = 0;
     $bank_discount = 0;
     $ribbon_style = '';
+    $url_parts = array(
+      'tienda',
+      $isProduct ? 'producto' : 'productos',
+      intval($item['id']),
+      intval($item['category_id']),
+      strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['name'])))
+    );
+
+    $url = '/'.implode('/',$url_parts);
+
     if(!empty($item['ribbon_color'])) {
       $ribbon_style = ' style="background-color:'.$item['ribbon_color'].'"';
     }
@@ -168,34 +178,36 @@ class AppHelper extends Helper {
     	$content.= '<div class="ribbon bottom-left small"><span'.$ribbon_style.'>'.$item['colors'].' colores</span></div>';
     }*/
 
+		#\d("show_colors",['id' => $item['id'], 'colors' => $item['colors']]);
+
     /*if (empty($item['with_thumb'])){
       $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . $item['img_url'] .'" />';
     }else{
       $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . 'thumb_'.$item['img_url'] .'" url-copy="'.$settings['upload_url'] . $item['img_url'].'" onError=updateSrcTo(this) />';
     }*/
 
-    $content.= '<div class="product-image numpos-'.@$category['posnum'].'" style="background-image: url(\''. $settings['upload_url'] . $item['img_url'] .'\')"></div>';
+    #\d("count colors", count($item['colors']));
+
+    if(count($item['colors'])) {
+    	$content.= '<div id="carousel-'.$item['id'].'" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
+    	$content.= '<div class="carousel-inner" role="listbox">';
+    	$content.= '<a class="item active" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
+    	foreach($item['colors'] as $i => $img) {
+    		$active = $i ? '' : 'active';
+    		$content.= '<a class="item" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
+    	}
+    	$content.= '</div>';
+    	$content.= '</div>';
+    } else {
+    	$content.= '<a href="'.$url.'" class="product-image numpos-'.$category['posnum'].'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
+    }
+    
     $content.= '</div>';
 
     if ($isProduct){
       $content.='<span class="hide">'. '<small>'. $item['desc'] .'</small>'. '</span>';
     }
 
-    $url = array(
-      'controller' => 'tienda',
-      intval($item['id'])
-    );
-
-    if (!empty($item['category_id'])) {
-      $url[] = ($item['category_id']);
-      $url[] = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $item['name'])));
-    }
-
-    if ($isProduct) {
-      $url['action'] = 'producto';
-    } else {
-      $url['action'] = 'productos';
-    } 
 
     $item_name = $item['name'];
     $priceStr = '';
@@ -209,13 +221,7 @@ class AppHelper extends Helper {
         '<div class="product-info"><div class="name" origin="1">'.$item_name.'</div></div>
         </div>
       </div>';
-      $str = '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">'.
-        '<img src="'.Router::url('/').'images/agotado3.png" class="out_stock" />'.
-        $this->Html->link(
-        $content,
-        $url,
-        array('escape' => false)
-      );
+      $str = '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">'.'<img src="'.Router::url('/').'images/agotado3.png"class="out_stock" />'.$content;
     } else {
     // list of products.
      
@@ -235,12 +241,7 @@ class AppHelper extends Helper {
       }
       */
 
-      $str = '<div data-id="'.$item["id"].'" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">'. 
-         $this->Html->link(
-          $content. '<div class="product-info"><div class="name" origin="2">'.$item_name.'</div>'.$priceStr.'<span style="display:none">'.@$item['article'].'</span></div></div>',
-          $url,
-          array('escape' => false)
-        );
+      $str = '<div data-id="'.$item["id"].'" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">'.$content.'<div class="product-info"><div class="name" origin="2">'.$item_name.'</div>'.$priceStr.'<span style="display:none">'.$item['article'].'</span></div></div>';
     }
  
     return $str;
@@ -368,9 +369,10 @@ class AppHelper extends Helper {
       $str2 = '';
     }
     $str.= $str2;
-    if($item['colors'] > 1) {
-    	$str.= '<span class="text-legend justify-content-start">'.$item['colors'].' colores</span>';
-    }   
+    
+    #if(count($item['colors']) > 1) {
+    	#$str.= '<span class="text-legend justify-content-start">'.$item['colors'].' colores</span>';
+    #}   
 
 
     return $str;

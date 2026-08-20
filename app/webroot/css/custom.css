@@ -417,7 +417,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
 
 @media (min-width: 768px) {
   .navbar-chatelet { 
-    min-height: 74px;
+    min-height: 80px;
   }
 	/*.navbar-nav > li > a {
 		display: inline;
@@ -953,10 +953,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   flex-direction: row;
 }
 
-.price-list span {
-	line-height: 1.5;
-}
-
 .pay_method {
 	font-size: 10px;
 	font-weight: 1000;
@@ -1053,7 +1049,16 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; border-radius: 1rem; }
 #productOptions a.btBig span { font-size: 27px; }
 #productOptions a.btBig span { font-size: 27px; }
-#productOptions .product-list a {  
+
+#productOptions .carousel-inner  {
+	height: 100%;
+}
+#productOptions .carousel-inner > .item {
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+/*#productOptions .product-list a {  
   width: 100%; 
   background-color: transparent; overflow: hidden; position: relative;height: auto; }
 #productOptions .product-list a img { 
@@ -1061,7 +1066,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   object-fit: cover;
   object-position: center center;
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
-
+*/
 .product-info {
   padding-bottom: 0.25rem;
   min-height: 7rem;
