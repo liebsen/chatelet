@@ -639,7 +639,7 @@ class ShopController extends AppController {
 			foreach ($products as &$product) {
 				$product['Product']['stock'] = 0;
 				$all_colors = array();
-				$max_colors = 5;
+				$max_colors = 8;
 				if (
 					isset($product['Product']['discount']) && 
 					$product['Product']['discount'] !== $product['Product']['price'] && 
@@ -897,10 +897,10 @@ class ShopController extends AppController {
 				'Product.stock_total > ' => 0
       ],     
 			'order' => ['Product.ordernum ASC'],
-      'limit' => 1
+      'limit' => 100
     ]);
 		$all_colors = array();
-		$max_colors = 5;
+		$max_colors = 8;
 		foreach ($all_but_me as &$item) {
 			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
 				$item['Product']['old_price'] = $item['Product']['price'];
