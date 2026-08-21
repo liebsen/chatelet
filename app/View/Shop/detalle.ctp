@@ -172,7 +172,7 @@ echo $this->Session->flash();
                                           break;
                                       }
                                   }
-                                  echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].(strlen($image[0])?$image[0]:'default.jpg').')"></div>';
+                                  echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].$image[0].')"></div>';
                               } else {
                                 // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
                               }

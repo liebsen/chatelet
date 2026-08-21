@@ -618,16 +618,8 @@ class ShopController extends AppController {
 						)
 					);
 
-					foreach($colors as $color) {
-						if(count($all_colors) >= $max_colors) {
-							break;
-						}
-
-						array_push($all_colors, $color);
-					}
-
-					if(!empty($final_color)) {
-						array_push($all_colors, $final_color);
+					if(current($colors)) {
+						array_push($all_colors, current($colors));
 					}
 				}
 				$product['Product']['colors'] = $all_colors;
@@ -840,7 +832,7 @@ class ShopController extends AppController {
 				'Product.stock_total > ' => 0
       ],     
 			'order' => ['Product.ordernum ASC'],
-      'limit' => 100
+      'limit' => 1
     ]);
 		$all_colors = array();
 		$max_colors = 5;
@@ -869,16 +861,11 @@ class ShopController extends AppController {
 						explode(';', $data_color['ProductProperty']['images'])
 					)
 				);
-
-				foreach($colors as $color) {
-					if(count($all_colors) >= $max_colors) {
-						break;
-					}
-					array_push($all_colors, $color);
+				if(current($colors)) {
+					array_push($all_colors, current($colors));
 				}
 			}
 			$item['Product']['colors'] = $all_colors;
-
 		}
 
 		if (isset($product['Product']['discount']) && $product['Product']['discount']) {
