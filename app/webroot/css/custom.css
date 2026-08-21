@@ -358,7 +358,6 @@ label input[type=checkbox]:disabled + .label-text:before {
 .navbar-nav > li > a {
   border-bottom: 2px solid transparent;
   font-weight: 300;
-  line-height: 25px;
   padding: 0.25rem 0.75rem;
   text-transform: uppercase;
   transition: all .3s ease-in-out; 
