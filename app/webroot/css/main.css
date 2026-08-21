@@ -488,9 +488,9 @@ background-color: #e8ffa8!important;
 
 
 #page-sidebar.navbar-collapse {
-  max-height: none !important;
   padding: 0 !important;
   border-top: none;
+  overflow-y: scroll!important;
 }
 
 #primary-nav > ul {
@@ -643,13 +643,21 @@ background-color: #e8ffa8!important;
     padding: 5px 0 5px!important;
   }
   #page-sidebar {
-    width: 220px;
-    height: auto!important;
-    display: block;
+  	background-color: var(--theme-color);
+    height: calc(100dvh - 83px)!important;
+    display: block!important;
+    padding-bottom: 2rem;
     position: absolute;
     z-index: 10;
     left: 0;
+    top: 83px;
     transition: 0.5s all 0.15s ease-in;
+  }
+
+  .side-scrollable {
+  	flex: 1;
+    overflow-y: auto;
+    min-height: 0;
   }
   #page-content {
   	transition: 0.5s all 0.15s ease-in;
@@ -943,7 +951,6 @@ background-color: #e8ffa8!important;
 
 .sidebar-tabs-con .tab-content {
   background-color: var(--theme-color);
-  padding-top: 1rem;
   margin: 0;
   border: none;
 }
@@ -2693,6 +2700,7 @@ header.navbar .navbar-brand {
 .navbar-nav-custom {
   list-style: none;
   padding: 1rem;
+	padding-left: 0;
   margin: 0;
   min-height: 74px;
   display: flex;
