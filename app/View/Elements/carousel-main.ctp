@@ -13,13 +13,14 @@
   </div>
 <?php endforeach ?>
 </div>
-<?php if(count($images) > 1):?>
 <ol class="carousel-indicators">
   <?php foreach ($images as $key => $value): ?>
     <li data-target="#carousel" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? 'active' : '' ?>"></li>
   <?php endforeach ?>
 </ol>
 <!-- Controls -->
+<?php if(count($images) > 1):?>
+
 <a class="left carousel-control is-transparent" href="#carousel" role="button" data-slide="prev">
   <span class="arrow arrow-left" aria-hidden="true"><i class="hi hi-chevron-left"></i></span>
   <span class="sr-only">Previous</span>

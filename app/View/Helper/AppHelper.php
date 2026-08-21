@@ -196,8 +196,16 @@ class AppHelper extends Helper {
     		$active = $i ? '' : 'active';
     		$content.= '<a class="item" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
     	}
+
     	$content.= '</div>';
-    	$content.= '</div>';
+			$content.= '<ol class="carousel-indicators">';
+
+		  foreach($item['colors'] as $i => $img) {
+		    $content.= '<li data-target="#carousel" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
+		  }
+
+			$content.= '</ol>'; 			
+			$content.= '</div>';
     } else {
     	$content.= '<a href="'.$url.'" class="product-image numpos-'.$category['posnum'].'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
     }

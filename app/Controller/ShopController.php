@@ -626,7 +626,7 @@ class ShopController extends AppController {
 						array_push($all_colors, $final_color);
 					}
 				}
-				$product['Product']['colors'] = $all_colors;
+				$product['Product']['colors'] = array_splice($all_colors, 5);
 			}
 
 			//rsort($products);
@@ -871,7 +871,7 @@ class ShopController extends AppController {
 				}
 			}
 
-			$item['Product']['colors'] = $all_colors;
+			$item['Product']['colors'] = array_splice($all_colors, 5);
 		}
 
 		if (isset($product['Product']['discount']) && $product['Product']['discount']) {

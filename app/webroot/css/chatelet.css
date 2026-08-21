@@ -52,6 +52,12 @@ body > section {
 	animation-delay: 0.5s;
 }
 
+
+.carousel-indicators {
+	bottom: 0!important;
+	margin-bottom: 0!important;
+}
+
 .carousel-video {
   object-fit: cover;
   object-position: center top;
