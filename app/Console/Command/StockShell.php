@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 require __DIR__ . '/../../functions.php';
 
-class DatabaseShell extends AppShell {
+class StockShell extends AppShell {
   public $uses = array(
     'Setting', 
     'User', 
@@ -31,9 +31,6 @@ class DatabaseShell extends AppShell {
         if (!empty($existArticle)){
           // CakeLog::write('debug',"exists article_id: ".json_encode($article_id));
           if ($row['cod_articulo'] === $article_id.'.0000'){
-            $toUpdate = array(
-              'Product.stock_total' => (int)$row['cantidad']
-            );
             $replaceNames = false;
             // update article name
             if ($replaceNames){
@@ -86,48 +83,6 @@ class DatabaseShell extends AppShell {
     }else{
       echo "\r\nGeneral stock response is empty.";
     }
-  }
-
-  public function sendEmail($user) {
-    $email = new CakeEmail();
-    // $email->transport('Debug');
-    $email->from(array(
-      'info@chatelet.com' => 'Châtelet'
-    ));
-
-    $settings = $this->load_settings();
-
-    echo "sending email to: " . $user['User']['email'];
-
-    $email->to($user['User']['email']);
-    $email->subject('Reporte de venta diario');
-    $email->template('report_daily', 'default');
-    $email->emailFormat('html');
-    $email->config('default');
-    $email->viewVars(array(
-      'user' => $user['User'],
-      'total' => $this->total,
-      'items' => $this->items,
-      'reports_link' => Router::url('/admin/reportes', true),
-      'socials' => \parsed_socials($settings)
-    ));
-
-    if ($_SERVER['REMOTE_ADDR'] === '127.0.0.1' || empty($sale['Sale']['email'])){
-      CakeLog::write('debug', 'unfinished error: empty email or localhost');
-      return true;
-    }
-
-    $sent = false;
-    // $sent = $email->send();
-
-    if($sent) {
-      $this->Sale->save(array(
-        'id' => $sale['Sale']['id'],
-        'def_reminder_sent' => 1
-      ));
-    }
-
-    return $sent;
   }
 
   public function load_settings(){

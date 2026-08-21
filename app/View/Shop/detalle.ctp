@@ -1,4 +1,5 @@
 <?php
+echo $this->Session->flash();
 
 $this->Html->script('vendor/jquery.touchSwipe.min', array('block' => 'script'));
 $this->Html->script('product', array('block' => 'script'));
@@ -24,11 +25,11 @@ disableOnScreenWidth:0,
 touchStartDelay:0,
 */
 
-echo $this->Session->flash();
 ?>
 <script>
   var itemData = <?=json_encode($product, JSON_PRETTY_PRINT)?>;
   var colorImages = <?=json_encode($colorImages, JSON_PRETTY_PRINT)?>;
+  var stockCount = <?=json_encode($stock_count, JSON_PRETTY_PRINT)?>;
   window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
 <section id="main">
@@ -121,7 +122,7 @@ echo $this->Session->flash();
                     'action' => 'add'
                 ),
                 'id' => 'productForm',
-                'data-url' => Router::url(array( 'action' => 'stock' )),
+                'data-url' => Router::url(array( 'action' => 'product_stock' )),
                 'data-article' => $product['article']
             ));
         ?>

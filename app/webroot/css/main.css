@@ -164,7 +164,7 @@ body {
 }
 
 .primary-search {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
 }
 
 #page-container {
@@ -3764,6 +3764,9 @@ a.thumbnail-borderless,
   align-items: center;  
 }
 
+.section-indicator {
+	padding-right: 1rem;
+}
 .section-indicator > a {
   display: flex!important;
   justify-content: center;
@@ -3790,7 +3793,7 @@ a.thumbnail-borderless,
   #primary-nav > ul > li {
       display: flex;
       flex: 1;
-      border: 1px solid #c5c5c5;
+      border: 2px solid #fff;
       border-radius: 0.75rem;
       min-width: 8rem;
       min-height: 8rem;

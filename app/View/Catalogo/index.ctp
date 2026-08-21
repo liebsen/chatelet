@@ -79,7 +79,7 @@
                                   'action' => 'add'
                               ),
                               'id' => 'productForm',
-                              'data-url' => Router::url(array( 'controller' => 'shop','action' => 'stock' )),
+                              'data-url' => Router::url(array( 'controller' => 'shop','action' => 'product_stock' )),
                               'data-article' => $v['Product']['article']
                           ));
                       ?>

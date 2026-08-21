@@ -119,7 +119,7 @@
                                     <i class="fa fa-bars"></i>
                                 </a>
                             </li>
-                            <li class="divider-vertical"></li>                                
+                            <li class="divider-vertical"></li>
 
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="mini-profile">
