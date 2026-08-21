@@ -138,6 +138,12 @@ class AppController extends Controller
     $this->loadModel('Setting');
     $this->loadModel('Stat');
 
+
+		if(!empty($this->request->query('schedule_item') || !empty($this->request->query('uid')))) {
+			$uid = $this->request->query('schedule_item') ?? $this->request->query('uid');
+			$this->addClick($uid, $this->request->query('click_origin'));
+		}
+
     //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
     $this->Auth->allow();
     $this->set('loggedIn', $this->Auth->loggedIn());

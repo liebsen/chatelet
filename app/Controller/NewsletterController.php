@@ -175,8 +175,7 @@ class NewsletterController extends AppController {
 	    	header('Location: ' . $location);
 	    	return false;
 	    }
-  	}
-    elseif($newsletter['Newsletter']['show_cta'] == '1' && strlen($newsletter['Newsletter']['cta_url'])) {
+  	} else if($newsletter['Newsletter']['show_cta'] == '1' && strlen($newsletter['Newsletter']['cta_url'])) {
 			$newsletter['Newsletter']['clicks'] = $newsletter['Newsletter']['clicks'] + 1;
 			$this->NewsletterScheduleItem->save($newsletter);
     	header('Location: ' . $newsletter['Newsletter']['cta_url']);
@@ -211,7 +210,12 @@ class NewsletterController extends AppController {
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_email(
         $newsletter['Newsletter']['body'], 
-        (object) array_merge((array) $newsletter['User'], (array) $newsletter['Coupon'])
+        (object) array_merge(
+        	(array) $newsletter['User'], 
+        	(array) $newsletter['Coupon']
+        ),
+        $id,
+        'schedule'
       );
     }
 
@@ -227,7 +231,7 @@ class NewsletterController extends AppController {
         'detalle',
         $product['Product']['id'],
         $product['Category']['id'],
-        strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name'])))
+        strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['Product']['name']))) . '?schedule_item='.$newsletter['NewsletterScheduleItem']['id'].'&click_origin=schedule'
       ));
     }
 
@@ -309,7 +313,6 @@ class NewsletterController extends AppController {
 	    )
     );
 
-
     $products = $this->NewsletterProduct->find('all', array(
       'joins' => array(
         array(
@@ -338,7 +341,10 @@ class NewsletterController extends AppController {
     if(!empty($newsletter['Newsletter']['body'])) { 
       $parsed_body = \parse_email(
         $newsletter['Newsletter']['body'], 
-        (object) array_merge((array) $newsletter['User'], (array) $newsletter['Coupon']),
+        (object) array_merge(
+        	(array) $newsletter['User'], 
+        	(array) $newsletter['Coupon']
+        ),
       );
     }
 

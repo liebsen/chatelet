@@ -466,44 +466,36 @@ function parse_medal($i) {
 	return (string) $medal. ' ('.$i.')';
 }
 
-function email_fix_images($html){
-	// 1. Create a DOM Document and load the HTML
+function email_fix_style_links($html, $click_id, $click_origin){
 	$dom = new DOMDocument();
-	// Use LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD to prevent adding html/body wrappers
 	@$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
-	// 2. Find all <img> tags
 	$images = $dom->getElementsByTagName('img');
+	$links = $dom->getElementsByTagName('a');
 
-	// 3. Loop through each image and update the style attribute
 	foreach ($images as $img) {
-	    // Get existing styles if they exist
-	    $existingStyle = $img->getAttribute('style');
-	    
-	    // Define the new style you want to add
-	    //$newStyle = 'width: 100%; max-width: 100%; height: auto;';
-	    $newStyle = 'max-width: 100%; height: auto;';
-	    
-	    // Combine existing and new styles cleanly
-	    if (!empty($existingStyle)) {
-	        // Ensure the existing style ends with a semicolon
-	        $combinedStyle = rtrim($existingStyle, '; ') . '; ' . $newStyle;
-	    } else {
-	        $combinedStyle = $newStyle;
-	    }
-	    
-	    // Apply the updated style back to the element
-	    $img->setAttribute('style', $combinedStyle);
+    $existingStyle = $img->getAttribute('style');
+    $newStyle = 'max-width: 100%; height: auto;';
+    if (!empty($existingStyle)) {
+      $combinedStyle = rtrim($existingStyle, '; ') . '; ' . $newStyle;
+    } else {
+      $combinedStyle = $newStyle;
+    }
+    $img->setAttribute('style', $combinedStyle);
 	}
 
-	// 4. Output the updated HTML
+	foreach ($links as $a) {
+    $existingHref = $a->getAttribute('href');
+    $img->setAttribute('a', $existingHref . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin);
+	}
+
 	$updatedHtml = $dom->saveHTML();
 	return $updatedHtml;
 }
 
-function parse_email($html, $data) {
+function parse_email($html, $data, $click_id = 0, $click_origin = 'generic') {
 	$str = \parse_template(
-		\email_fix_images($html), 
+		\email_fix_style_links($html, $click_id, $click_origin), 
 		$data
 	);
 	return $str;

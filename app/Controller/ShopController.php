@@ -745,11 +745,6 @@ class ShopController extends AppController {
 			throw new NotFoundException();
 		}
 
-		if(!empty($this->request->query('schedule_item') || !empty($this->request->query('uid')))) {
-			$uid = $this->request->query('schedule_item') ?? $this->request->query('uid');
-			$this->addClick($uid, $this->request->query('click_origin'));
-		}
-
 		$this->loadModel('Legend');
     $legends = $this->Legend->find('all', [
       'conditions' => ['enabled' => 1, 'title <>' => ''],

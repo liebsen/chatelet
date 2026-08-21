@@ -266,7 +266,9 @@ class NewsletterShell extends AppShell {
           (object) array_merge(
           	(array) $schedule['User'], 
           	(array) $schedule['Coupon']
-          )
+          ),
+          $schedule['NewsletterScheduleItem']['id'],
+          'email'
         );
       }
 
@@ -516,7 +518,7 @@ class NewsletterShell extends AppShell {
 
       return array(
         'sent' => $this->update,
-        'message' => \email_fix_images($message),
+        'message' => \email_fix_style_links($message),
       );
     }
 

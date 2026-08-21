@@ -36,7 +36,7 @@
     <td valign="top" width="50%">
       <div style="width: 100%; height: 100%; background-color: #ffffff; overflow: hidden;">
         <a href="<?=$product['Product']['link']?>" style="text-decoration: none;">
-           <div style="background-repeat: no-repeat;background-position: center center; background-size: cover; background-image: url('<?=$cdn_url?><?=$product['Product']['img_url']?>'); width: 100%; height: 350px; display: block;" alt="<?= $product['Product']['name'] ?>"></div>
+           <div style="background-repeat: no-repeat;background-position: center center; background-size: cover; background-image: url('<?=$cdn_url?><?=$product['Product']['img_url']?>'); width: 100%; aspect-ratio: 0.75; display: block;" alt="<?= $product['Product']['name'] ?>"></div>
         </a>
         <div style="padding: 16px; text-align: center;">
           <h3 style="margin: 0 0 10px 0; font-size: 15px; color: #333333;"><?= $product['Product']['name'] ?></h3>
