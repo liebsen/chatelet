@@ -588,7 +588,7 @@ class ShopController extends AppController {
 			foreach ($products as &$product) {
 				$product['Product']['stock'] = 0;
 				$all_colors = array();
-
+				$max_colors = 5;
 				if (
 					isset($product['Product']['discount']) && 
 					$product['Product']['discount'] !== $product['Product']['price'] && 
@@ -619,6 +619,10 @@ class ShopController extends AppController {
 					);
 
 					foreach($colors as $color) {
+						if(count($all_colors) >= $max_colors) {
+							break;
+						}
+
 						array_push($all_colors, $color);
 					}
 
@@ -626,7 +630,7 @@ class ShopController extends AppController {
 						array_push($all_colors, $final_color);
 					}
 				}
-				$product['Product']['colors'] = array_splice($all_colors, 5);
+				$product['Product']['colors'] = $all_colors;
 			}
 
 			//rsort($products);
@@ -839,7 +843,7 @@ class ShopController extends AppController {
       'limit' => 100
     ]);
 		$all_colors = array();
-
+		$max_colors = 5;
 		foreach ($all_but_me as &$item) {
 			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
 				$item['Product']['old_price'] = $item['Product']['price'];
@@ -867,11 +871,14 @@ class ShopController extends AppController {
 				);
 
 				foreach($colors as $color) {
+					if(count($all_colors) >= $max_colors) {
+						break;
+					}
 					array_push($all_colors, $color);
 				}
 			}
+			$item['Product']['colors'] = $all_colors;
 
-			$item['Product']['colors'] = array_splice($all_colors, 5);
 		}
 
 		if (isset($product['Product']['discount']) && $product['Product']['discount']) {
