@@ -639,7 +639,6 @@ class ShopController extends AppController {
 			foreach ($products as &$product) {
 				$product['Product']['stock'] = 0;
 				$all_colors = array();
-				$max_colors = 8;
 				if (
 					isset($product['Product']['discount']) && 
 					$product['Product']['discount'] !== $product['Product']['price'] && 
@@ -659,7 +658,8 @@ class ShopController extends AppController {
 							'type' => 'color',
 							'product_id' => $product['Product']['id']
 						),
-					)
+						'limit' => 5
+					)					
 				);
 
 				foreach($find_colors as $data_color) {
@@ -669,8 +669,9 @@ class ShopController extends AppController {
 						)
 					);
 
-					if(current($colors)) {
-						array_push($all_colors, current($colors));
+					$current = current($colors);
+					if(!empty($current)) {
+						array_push($all_colors, $current);
 					}
 				}
 				$product['Product']['colors'] = $all_colors;
@@ -897,16 +898,16 @@ class ShopController extends AppController {
 				'Product.stock_total > ' => 0
       ],     
 			'order' => ['Product.ordernum ASC'],
-      'limit' => 100
+      'limit' => 10
     ]);
-		$all_colors = array();
-		$max_colors = 8;
 		foreach ($all_but_me as &$item) {
 			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
 				$item['Product']['old_price'] = $item['Product']['price'];
 				$item['Product']['price'] = $item['Product']['discount'];
 			}
+
 			$item['Product']['stock'] = 0;
+
 			if(!empty($item['Product']['article'])){
 				$item['Product']['stock'] = 1;
 			}
@@ -917,8 +918,10 @@ class ShopController extends AppController {
 						'type' => 'color',
 						'product_id' => $item['Product']['id']
 					),
+					'limit' => 5
 				)
 			);
+			$all_colors = array();
 
 			foreach($find_colors as $data_color) {
 				$colors = array_filter(
@@ -926,8 +929,9 @@ class ShopController extends AppController {
 						explode(';', $data_color['ProductProperty']['images'])
 					)
 				);
-				if(current($colors)) {
-					array_push($all_colors, current($colors));
+				$current = current($colors);
+				if(!empty($current)) {
+					array_push($all_colors, $current);
 				}
 			}
 			$item['Product']['colors'] = $all_colors;
