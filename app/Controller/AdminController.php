@@ -3460,10 +3460,18 @@ ORDER BY u.id DESC;';
     	case 'config': 
 
     		if ($this->request->is('POST')){
+					$this->RequestHandler->respondAs('application/json');
+					$this->autoRender = false;
+    			
 					$data = $this->request->data;
 
 					foreach($data as $id => $value) {
-						$this->Setting->save(array('id' => $id, 'value' => $value));
+						$this->Setting->save(
+							array(
+								'id' => $id, 
+								'value' => $value
+							)
+						);
 					}
 
 			    $this->Session->setFlash(
@@ -3475,13 +3483,14 @@ ORDER BY u.id DESC;';
 			    return json_encode(
 			    	array(
 			    		'success' => true,
-			    		'redirect' => '/admin/banners'
+			    		'message' => 'Módulo Banners actualizado'
 			    	)
 			    );
 				}
 				
 				return $this->render('banners-config');
     		break;
+
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
@@ -3507,7 +3516,7 @@ ORDER BY u.id DESC;';
 				    return json_encode(
 				    	array(
 				    		'success' => true,
-				    		'redirect' => '/admin/banners'
+				    		'message' => 'Módulo Banners actualizado'
 				    	)
 				    );
 
