@@ -3427,7 +3427,7 @@ ORDER BY u.id DESC;';
     ) {
       $response = array(
         'success' => false,
-        'errors' => 'Solo los administradores generales puede realizar esta acción'
+        'errors' => 'Solo los administradores pueden realizar esta acción'
       );
 
       return json_encode($response);    
@@ -3437,6 +3437,10 @@ ORDER BY u.id DESC;';
 			'Banners' => array(
 				'icon' 		=> 'fa fa-shirtsinbulk',
 				'url'		=> '/admin/banners',
+			),
+			'Configuración' => array(
+				'icon' 		=> 'gi gi-cogwheel',
+				'url'		=> '/admin/banners/config',
 			),
 			'Nuevo Banner' => array(
 				'icon' 		=> 'gi gi-circle_plus',
@@ -3452,6 +3456,32 @@ ORDER BY u.id DESC;';
 		$this->set('h1', $h1);
     $this->loadModel('Banner');
     switch ($action) {
+
+    	case 'config': 
+
+    		if ($this->request->is('POST')){
+					$data = $this->request->data;
+
+					foreach($data as $id => $value) {
+						$this->Setting->save(array('id' => $id, 'value' => $value));
+					}
+
+			    $this->Session->setFlash(
+			      'Módulo Banners actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'redirect' => '/admin/banners'
+			    	)
+			    );
+				}
+				
+				return $this->render('banners-config');
+    		break;
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
@@ -3481,6 +3511,7 @@ ORDER BY u.id DESC;';
 				    	)
 				    );
 
+
 		        // return $this->redirect(array('action'=>'banners'));
   			} else {
     			return $this->render('banners-detail');
@@ -3490,7 +3521,6 @@ ORDER BY u.id DESC;';
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 					$this->RequestHandler->respondAs('application/json');
-
 	    		$this->Banner->delete($this->request->data['id']);
 			    $this->Session->setFlash(
 			      'Módulo Banners actualizado',

@@ -53,11 +53,21 @@ body > section {
 }
 
 
+.carousel-inner {
+	height: 100%;
+}
+
 .carousel-indicators li {
 	margin: 4px;
 	border: none;
 	background-color: #6663;
 	transition: all 0.5s ease-in;
+}
+
+.carousel-inner .item { 
+  background-position: center top; 
+  background-size: cover; 
+  height: 100%;
 }
 
 .carousel-indicators .active {

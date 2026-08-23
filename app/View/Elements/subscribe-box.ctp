@@ -116,7 +116,7 @@
         height: 4px;
         width: 5rem;
         margin: auto;
-        background-color: lightcoral;
+        background-color: #f4f4f6;
         border-radius: 4px;
       }
     }

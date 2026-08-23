@@ -72,7 +72,7 @@ touchStartDelay:0,
             ?>
 
             <?php if ($number_ribbon) :?>
-                <div class="ribbon large top-left small"><span<?php echo $ribbon_style ?>><?= $number_ribbon ?>% OFF</span></div>
+                <div class="ribbon large top-left small animation-fadeIn delay2"><span<?php echo $ribbon_style ?>><?= $number_ribbon ?>% OFF</span></div>
             <?php endif ?>
             <?php if ($product['promo'] !== '') :?>
                 <div class="ribbon large"><span><?= $product['promo'] ?></span></div>

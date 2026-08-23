@@ -68,7 +68,7 @@
 
            <?php if(!empty($product)): ?>
            <div class="col-md-7">
-            <h3>Elegí tu look para vivir tu momento.</h3>
+            <h3>Elegí tu mejor look para vivir el momento.</h3>
               <ul>
                  <?php foreach ($product as $k => $v) : ?>
                     <?php if (!empty($v)): ?>

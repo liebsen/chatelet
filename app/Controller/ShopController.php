@@ -659,7 +659,7 @@ class ShopController extends AppController {
 							'product_id' => $product['Product']['id']
 						),
 						'limit' => 5
-					)					
+					)
 				);
 
 				foreach($find_colors as $data_color) {

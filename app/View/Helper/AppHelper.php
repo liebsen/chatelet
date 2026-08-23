@@ -169,7 +169,7 @@ class AppHelper extends Helper {
       $number_ribbon = (int) @$bank_discount;
     }
 
-    $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon top-left small"><span'.$ribbon_style.'>'.$number_ribbon.'% OFF</span></div>':'';
+    $discount_flag = (@$item['category_id']!='134' && !empty($number_ribbon))?'<div class="ribbon top-left small animation-fadeIn delay2"><span'.$ribbon_style.'>'.$number_ribbon.'% OFF</span></div>':'';
     $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
@@ -189,12 +189,13 @@ class AppHelper extends Helper {
     #\d("count colors", count($item['colors']));
 
     if(count($item['colors'])) {
-    	$content.= '<div id="carousel-'.$item['id'].'" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
+    	$content.= '<div id="carousel" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
     	$content.= '<div class="carousel-inner" role="listbox">';
     	#$content.= '<a class="item active" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
     	foreach($item['colors'] as $i => $img) {
-    		$active = $i ? '' : 'active';
-    		$content.= '<a class="item '.$active.'" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
+    		$active = $i ? '' : ' active';
+    		#$content.= '<a class="item '.$active.'" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
+    		$content.= '<a href="'.$url.'" class="item'.$active.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
     	}
     	$content.= '</div>';
     	if(count($item['colors'])>1){
@@ -208,6 +209,7 @@ class AppHelper extends Helper {
 			}
 			$content.= '</div>';
     } else {
+    	#$content.= '<a href="'.$url.'" class="product-image numpos-'.$category['posnum'].'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
     	$content.= '<a href="'.$url.'" class="product-image numpos-'.$category['posnum'].'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
     }
     
@@ -250,7 +252,7 @@ class AppHelper extends Helper {
       }
       */
 
-      $str = '<div data-id="'.$item["id"].'" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">'.$content.'<div class="product-info"><div class="name" origin="2">'.$item_name.'</div>'.$priceStr.'<span style="display:none">'.$item['article'].'</span></div></div>';
+      $str = '<div data-id="'.$item["id"].'" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock"><div class="class="product-info">'.$content.'<div class="name" origin="2">'.$item_name.'</div>'.$priceStr.'<span style="display:none">'.$item['article'].'</span></div></div>';
     }
  
     return $str;

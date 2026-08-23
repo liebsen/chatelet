@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		    if (direction == 'left') $(this).carousel('next');
 		    if (direction == 'right') $(this).carousel('prev');
 		  },
+		  tap: function(e, target) {
+		    window.location = e.target.href
+		  },
+		  threshold: 50,
 		  allowPageScroll: "vertical",
 		  excludedElements: "label, button, input, select, textarea, .noSwipe"		  
 		});

@@ -77,10 +77,6 @@ label input[type=checkbox]:disabled + .label-text:before {
 #carousel .carousel-caption p { color: #464444; font-size: 20px; line-height: 1.6; margin-bottom: 70px; }
 #carousel .carousel-caption a {border: 2px solid #f7f7f7;color: #f7f7f7; display: inline-block; font-size: 20px; padding: 15px 70px; transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 #carousel .carousel-caption a:hover { background: #363633; border-color: #363633; color: #FFF; }
-#carousel .carousel-inner .item { 
-  background-position: center top; 
-  background-size: cover; 
-}
 #carousel .carousel-control { 
   color: #e44522; 
   opacity: 1; 
@@ -320,8 +316,7 @@ label input[type=checkbox]:disabled + .label-text:before {
   position: relative; 
   transition: none!important;
   z-index: 10;
-  
-  border-bottom: 1px solid pink;
+	outline: 1px solid pink;  
   transition: background 0.25s ease-in-out;
 }
 
@@ -422,7 +417,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
 		display: inline;
 	}*/
 	.add-no-stock {
-    min-height: 33rem!important;
+    min-height: 30rem!important;
   }
   .navbar-nav { 
     flex-direction: row;
@@ -1049,14 +1044,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #productOptions a.btBig span { font-size: 27px; }
 #productOptions a.btBig span { font-size: 27px; }
 
-#productOptions .carousel-inner  {
-	height: 100%;
-}
-#productOptions .carousel-inner > .item {
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100%;
-}
+
 /*#productOptions .product-list a {  
   width: 100%; 
   background-color: transparent; overflow: hidden; position: relative;height: auto; }
@@ -1068,6 +1056,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 */
 .product-info {
   padding-bottom: 0.25rem;
+  height: 100%;
   min-height: 7rem;
 }
 
@@ -1087,6 +1076,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .product-image {
 	display: block;
+	background-color: #f4f4f6;
 	min-height: 20rem;
   width: 100%;
   background-repeat: no-repeat;
@@ -1749,6 +1739,7 @@ ul#ul-moreviews li.dontResize img {
 
     #surround {
         width:100%;
+        min-height: calc(100dvh - 11rem);
     }
     #surround img {
         width: 100%;
