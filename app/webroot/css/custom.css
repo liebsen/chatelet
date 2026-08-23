@@ -588,9 +588,6 @@ footer a {
 	color: #888;
 } 
 
-footer > .wrapper { 
-  padding: 0.75rem; 
-}
 footer .options {
   display: flex;
   justify-content: center;
@@ -602,7 +599,7 @@ footer .options h5 {
   display: inline-block;
   padding: 0.45rem 0.75rem;
   text-align: center;
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
   border-bottom: 4px solid #888;
   border-radius: 10px;
   color: #888;
@@ -1055,9 +1052,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   transition: all .3s ease-in-out; -moz-transition: all .3s ease-in-out; -ms-transition: all .3s ease-in-out; -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out; }
 */
 .product-info {
-  padding-bottom: 0.25rem;
   height: 100%;
   min-height: 7rem;
+	padding-bottom: 3rem;
 }
 
 .product-info .name {
@@ -1939,8 +1936,6 @@ span.out{
 
 .add-no-stock {
   position: relative;
-  padding: 0.25rem;
-  padding-top: 0;
 }
 
 .prod-tags {

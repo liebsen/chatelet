@@ -1424,9 +1424,6 @@ select.form-control{
 	color: white;
 }
 @media(max-width: 550px) {
-	.carrito-selector {
-		transform: scale(0.75);
-	}
 	.card-link i {
 		display: none;
 	}
@@ -1826,9 +1823,6 @@ span.validation-password {
     padding-right: 35px;
     padding-top: 5px;
     background-size: 1.75rem;
-	}
-	.carrito-selector {
-		margin-top: 1rem;
 	}
 	.col-mm-6 {
     width: 50%;
