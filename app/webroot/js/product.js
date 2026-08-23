@@ -1,7 +1,7 @@
 var max_count = 5
 var itemData = itemData || {}	
 var timeout = 0
-
+var min_stock = 3
 function addCount() {
 	var value = parseInt($('.has-item-counter.active .product-count').val()) + 1
 	if (value > max_count) max_count = 5
@@ -54,10 +54,10 @@ function pideStock(obj){
 			// onWarningAlert('Consultando stock','Un momento por favor...')
 	    stock_cont.html(stock_v);
 	    const count = window.stockCount[size_number+color_code] || 0
-			if(count != 0){
-				stock_cont.html(stock);
-			} else {
+			if(count < min_stock){
 				stock_cont.html( stock_0 );
+			} else {
+				stock_cont.html(stock);				
 			}
 
 			window.stock = count;
@@ -86,23 +86,20 @@ function updatePrefs(obj){
 }
 
 function updateSizes(obj){
-		let code = $(obj).find('input[type="radio"]').attr('code')
-		//console.log('code',code)
-		$('.size-options label').each(function(i,e){
-			let size = $(e).find('input[type="radio"]').val()
-			//console.log('size',size)
-			const stock = window.stockCount[size+code] || 0
-			if(stock < 3) {
-				$(e).addClass('disabled')
-			} else {
-				$(e).removeClass('disabled')
-			}
-		})
+	const code = $(obj).find('input[type="radio"]').attr('code')
+	$('.size-options label').each(function(i,e){
+		const size = $(e).find('input[type="radio"]').val()
+		const stock = window.stockCount[size+code] || 0
+		if(stock < min_stock) {
+			$(e).addClass('disabled')
+		} else {
+			$(e).removeClass('disabled')
+		}
+	})
 }
 
 $(document).ready(function() {
 	//Stock
-
 	$('.color-options .btn').click(function(event) {
 		updateSizes(this)
 		updatePrefs(this)

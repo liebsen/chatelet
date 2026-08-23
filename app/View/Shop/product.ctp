@@ -1,8 +1,7 @@
 <?php 
 echo $this->Session->flash();
 $this->Html->script('vendor/jquery.touchSwipe.min', array('block' => 'script'));
-$this->Html->script('carousel-swipe', array('block' => 'script'));
-?>
+$this->Html->script('carousel-swipe.js?v='.$version['ver'], array('block' => 'script'));?>
 <script>
 function updateSrcTo(obj){
   obj.src = $(obj).attr('url-copy');

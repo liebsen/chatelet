@@ -38,7 +38,7 @@ touchStartDelay:0,
       <div class="row">
       <?php if(!empty($colorImages)):?>
         <div class="col-md-6 p-0 d-flex flex-md-column flex-md-center justify-content-end align-items-start bg-light">
-          <div class="p-0">
+          <div class="product-thumblist p-0">
             <ul id="ul-moreviews" class="m-0">
             <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
             <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
@@ -226,10 +226,10 @@ touchStartDelay:0,
                     </div>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                    <a href="#" id="comprar" class="btn btn-chatelet dark buy agregar-carro min-w-20">Comprar</a>
-                    <a href="#" id="agregar-carro" class="btn btn-chatelet dark add agregar-carro min-w-20">Agregar al carrito</a>
+                    <a href="#" id="comprar" class="btn btn-chatelet dark buy agregar-carro min-w-18">Comprar</a>
+                    <a href="#" id="agregar-carro" class="btn btn-chatelet dark add agregar-carro min-w-18">Agregar al carrito</a>
                     <?php if(!empty($cart)):?>
-                    <a href="/carrito" class="btn btn-chatelet min-w-20">Ir al carrito</a>
+                    <a href="/carrito" class="btn btn-chatelet min-w-18">Ir al carrito</a>
                     <?php endif ?>
                   </div>                        
                 </div>
