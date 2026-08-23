@@ -71,15 +71,20 @@ body > section {
 }
 
 .carousel-indicators .active {
-	transform: scale(1.5);
   width: 10px;
   height: 10px;	
 	margin: 4px;
 	background-color: deeppink;
 }
 .carousel-indicators {
-	bottom: 0!important;
-	margin-bottom: 0!important;
+	bottom: 30px!important;
+	display: flex;
+	left: auto;
+	background-color: #e7e7e7;
+	border-radius: 1rem;
+  margin: auto;
+  position: relative;
+  width: fit-content;
 }
 
 .carousel-video {

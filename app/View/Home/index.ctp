@@ -10,7 +10,7 @@ foreach ($images_aux as $key => $value) {
 ?>
 <div class="wrapper content animation-fadeIn animation-both delay1">
 <?php if(!empty($images)):?>
-  <div id="carousel" class="carousel slide animation-fadeIn delay" data-type="slider" data-interval="<?= $settings['slideshow_timeout'] * 1000 ?? 3000 ?>" data-ride="carousel">
+  <div id="maincarousel" class="carousel slide animation-fadeIn delay" data-type="slider" data-interval="<?= $settings['slideshow_timeout'] * 1000 ?? 3000 ?>" data-ride="carousel">
     <?php echo $this->element('carousel-main', array(
       'images' => $images
     ))?>

@@ -67,8 +67,8 @@ label input[type=checkbox]:disabled + .label-text:before {
   }
 }
 
-#carousel {
-  height: calc(100dvh - 155px);
+#maincarousel {
+  height: calc(100dvh - 168px);
 }
 
 #carousel .carousel-caption { left: 25%; line-height: .8; padding-top: 125px; text-align: left; text-shadow: none; width: 50%;display: none }
