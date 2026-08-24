@@ -3102,7 +3102,7 @@ form .control-label:not(.switch-scale > span > label) {
   margin-top: 1px;
   margin-bottom: 1px;
   min-height: 40px;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   transition: none;
   text-shadow: none;
 	box-shadow: 0 2px 2px #00000008;
@@ -3232,7 +3232,7 @@ textarea.form-control {
 }
 input[type="file"].form-control {
   border: none;
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
   margin: 1rem 0;
 }
 input[type="radio"].form-control,

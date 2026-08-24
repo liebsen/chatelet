@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		    if (direction == 'right') $(this).carousel('prev');
 		  },
 		  tap: function(e, target) {
-		    window.location = e.target.href
+		  	if(e.target.href) {
+		    	window.location = e.target.href
+		    }
 		  },
 		  threshold: 50,
 		  allowPageScroll: "vertical",
