@@ -184,7 +184,7 @@ $(function () {
     flash.remove();
   });
   // Toggle Side content
-  /*body.toggleClass('hide-side-content');*/
+  /*body.toggleClass('show-sidebar');*/
 
   if (typeof $.fn.datepicker != 'undefined'){ 
     $('.datepicker').each(function(i,e){
@@ -221,7 +221,6 @@ $(function () {
   })
 
   $(document).on('click','.toggle-click', function(e){
-  //$('.toggle-click').click(function(e){
     const func = $(this).data('func')
     if(window[func]) {
     	console.log('func',func)
@@ -281,20 +280,26 @@ $(function () {
     $(this).parent().find($(this).data('target')).toggleClass('d-none')
   })
 
-  $('#toggle-side-content').click(function(){ 
-    if($('body').hasClass('hide-side-content')){
-      $('#page-sidebar.collapse').collapse('hide');
-      localStorage.sidebar = 0
-    } else {
-      $('#page-sidebar.collapse').collapse('show');
-      localStorage.sidebar = 1
-    }
-    $('body').toggleClass('hide-side-content');
+  $('#toggle-sidebar-button').mousedown(function(){ 
+  	$('#toggle-sidebar.collapse').toggleClass('in');
+    $('body').toggleClass('show-sidebar');
+    localStorage.sidebar = $('#toggle-sidebar.collapse').hasClass('in')
   });
 
-  if(localStorage.sidebar == 1 && $(window).width() > 991) {
-    $('#toggle-side-content').trigger('click')
+  if($(window).width() < 992) {
+    $('#toggle-sidebar').removeClass('in')
+    $('body').removeClass('show-sidebar');
+  } else {
+  	if(localStorage.sidebar == 'false') {
+	    $('#toggle-sidebar').removeClass('in')
+	    $('body').removeClass('show-sidebar');
+  	}
   }
+
+  /*if(localStorage.sidebar == 'true') {
+    $('#toggle-sidebar').addClass('in')
+    $('body').addClass('show-sidebar');
+  }*/
 
   $('.form-box').each(function(i,e){
     $(e).append(`<span class="form-box-handle"><i class="gi gi-more_windows"></i></span>`)
