@@ -12,11 +12,11 @@ echo $this->element('admin/menu');
         <h4 class="sub-header">Configuración de Banners</h4>
 				<p>Establece coniguración para Banners.</p>
         <div class="control-group">
-          <label class="control-label" for="columns-text"><?php echo __('Tiempo de intevalo'); ?></label>
+          <label class="control-label" for="columns-text"><?php echo __('Intervalo entre fotogramas'); ?></label>
           <div class="controls">
             <input type="number" max="100" min="0" name="data[banners_interval]" class="form-control" placeholder="10" value="<?= @$settings['banners_interval'] ?? 10 ?>"/>
           </div>
-          <small class="text-muted">Tiempo de intervalo en segundos.</small>
+          <small class="text-muted">Tiempo de espera hasta el siguiente fotograma (en segundos).</small>
         </div>
       </div>
 		</div>
