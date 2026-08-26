@@ -466,7 +466,8 @@ function parse_medal($i) {
 	return (string) $medal. ' ('.$i.')';
 }
 
-function email_fix_style_links($html, $click_id = 0, $click_origin = ''){
+/* fix img width styles and register clicks */
+function email_fix_style_links($html, $click_id = 0, $click_origin = '', $site_url = ''){
 	$dom = new DOMDocument();
 	@$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -486,16 +487,26 @@ function email_fix_style_links($html, $click_id = 0, $click_origin = ''){
 
 	foreach ($links as $a) {
     $existingHref = $a->getAttribute('href');
-    $a->setAttribute('href', $existingHref . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin);
+    $parsedUrl = parse_url($existingHref);
+    $settingsUrl = parse_url($click_url);
+    \d("parsedUrl",$parsedUrl);
+    $newHref = $existingHref . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin;
+    if(strstr($parsedUrl->host, $settingsUrl->host) === false) {
+    	$newHref = $site_url . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin . '&redirect=' . $existingHref;
+    }
+    $a->setAttribute('href', $newHref);
 	}
 
 	$updatedHtml = $dom->saveHTML();
 	return $updatedHtml;
 }
 
-function parse_email($html, $data, $click_id = 0, $click_origin = 'generic') {
+function parse_email($html, $data, $click_id = 0, $click_origin = 'none', $site_url = '') {
+	$parsedHtml = !empty($click_id) ? 
+		\email_fix_style_links($html, $click_id, $click_origin, $site_url) : 
+		$html;
 	$str = \parse_template(
-		\email_fix_style_links($html, $click_id, $click_origin), 
+		$parsedHtml,
 		$data
 	);
 	return $str;

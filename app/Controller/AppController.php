@@ -138,11 +138,14 @@ class AppController extends Controller
     $this->loadModel('Setting');
     $this->loadModel('Stat');
 
-
 		if(!empty($this->request->query('schedule_item') || !empty($this->request->query('uid')))) {
 			$uid = $this->request->query('schedule_item') ?? $this->request->query('uid');
 			$this->addClick($uid, $this->request->query('click_origin'));
 		}
+
+    if(!empty($this->request->query('redirect'))) {
+    	return $this->redirect($this->request->query('redirect'));
+    }
 
     //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
     $this->Auth->allow();

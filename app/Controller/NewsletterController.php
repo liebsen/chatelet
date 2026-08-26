@@ -215,7 +215,8 @@ class NewsletterController extends AppController {
         	(array) $newsletter['Coupon']
         ),
         $id,
-        'schedule'
+        'schedule',
+        $this->settings['site_url']
       );
     }
 

@@ -268,7 +268,8 @@ class NewsletterShell extends AppShell {
           	(array) $schedule['Coupon']
           ),
           $schedule['NewsletterScheduleItem']['id'],
-          'email'
+          'email',
+	        $this->settings['site_url']
         );
       }
 
