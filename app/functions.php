@@ -466,7 +466,7 @@ function parse_medal($i) {
 	return (string) $medal. ' ('.$i.')';
 }
 
-function email_fix_style_links($html, $click_id, $click_origin){
+function email_fix_style_links($html, $click_id = 0, $click_origin = ''){
 	$dom = new DOMDocument();
 	@$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -486,7 +486,7 @@ function email_fix_style_links($html, $click_id, $click_origin){
 
 	foreach ($links as $a) {
     $existingHref = $a->getAttribute('href');
-    $img->setAttribute('a', $existingHref . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin);
+    $a->setAttribute('href', $existingHref . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin);
 	}
 
 	$updatedHtml = $dom->saveHTML();

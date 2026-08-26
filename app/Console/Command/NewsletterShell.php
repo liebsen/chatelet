@@ -272,6 +272,7 @@ class NewsletterShell extends AppShell {
         );
       }
 
+      var_dump($parsed_body);
       $schedule['Newsletter']['parsed_body'] = $parsed_body;
       $schedule['NewsletterList']['filter_type'] = $filter_type;
 
@@ -474,7 +475,7 @@ class NewsletterShell extends AppShell {
     }
 
     if($log) {
-    	var_dump(array('config(1)'=>$config));
+    	var_dump(array('config'=>$config));
     }
 
     $email->config($config);
@@ -505,20 +506,21 @@ class NewsletterShell extends AppShell {
     );
 
     if($this->simulate) {
-      $message = $email->template('newsletter', 'default')
+      $parts = $email->template('newsletter', 'default')
         ->emailFormat('html')
         ->viewVars($viewVars)
         ->send(null, true);
 
+      $message = implode('',$parts);
       echo "\n[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')';
 
       if($this->showmail) {
-        var_dump(array('message(1)'=>$message));
+        var_dump(array('email'=>$message));
       }
 
       return array(
         'sent' => $this->update,
-        'message' => \email_fix_style_links($message),
+        'message' => $message,
       );
     }
 
