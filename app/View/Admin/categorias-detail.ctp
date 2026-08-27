@@ -37,13 +37,12 @@
                 <label for="toggle2" class="toggle-label"></label>
               </div>
             </div>
-
             <div class="form-box bg-info-outline texts-block<?= $cat['Category']['alternate_toggle'] == '1' ? '' : ' d-none' ?>">
               <h4 class="sub-header"><?=__('Textos')?></h4>            
 	            <div class="control-group">
 	              <label class="control-label" for="columns-text"><?php echo __('Nombre Principal'); ?></label>
 	              <div class="controls">
-	                <input class="form-control w-100" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
+	                <input class="form-control w-100" type="text" id="" name="data[name]" value="<?=$cat['Category']['name'] ?? ''; ?>" required>
 	              </div>
 	            </div>
 	            <div class="control-group">
@@ -53,34 +52,40 @@
 	              </div>
 	              <small class="text-muted">Descripción de categoría</small>
 	            </div>
+						</div>
+
+            <div class="shop-preview posnum-<?=$cat['Category']['posnum'] ?? 'auto' ?> ci-<?=$cat['Category']['alignnum'] ?? '0' ?>" style="background-image: url(<?= $settings['upload_url'].$cat['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
+            	<?php if($cat['Category']['alternate_toggle'] == '1'):?>
+	            	<span style="color: <?=$cat['Category']['text_color'] ?? 'white'?>">
+	            		<span class="name-catalog text-uppercase <?=$category['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$cat['Category']['name']?></span>
+	            		<span class="p-catalog" style="font-size: <?=$cat['Category']['text_size'] ?? '12'?>px; font-weight: <?=$cat['Category']['text_weight'] ?? '300'?>"><?=$cat['Category']['text']?></span>
+	            	</span>
+	           <?php endif ?>
+            </div>
+
+            <div class="form-box bg-info-outline">
+              <h4 class="sub-header"><?=__('Propiedades')?></h4>
+              <p><?=__('Selecciona como deseas ver tu categoría')?></p>  
+	            <div class="control-group">
+	              <label class="control-label" for="show_name"><?php echo __('Mostrar Título'); ?></label>
+	              <div class="form-group">
+	                <input type="checkbox" name="data[show_name]" value="1" id="show_name" class="toggle-checkbox toggle-block" data-block=".name-catalog" data-class="d-none"<?= $cat['Category']['show_name'] == '1' ? ' checked' : '' ?>>
+	                <label for="show_name" class="toggle-label"></label>
+	              </div>
+	            </div>
               <div class="control-group">
-                <label class="control-label" for="text_size"><?php echo __('Tamaño texto descripción (px)'); ?></label>
+                <label class="control-label" for="text_size">Tamaño texto descripción (<i class="preview-text_size"><?=$cat['Category']['text_size']??'9'?></i> px)</label>
                 <div class="controls">
-                  <select class="form-control" id="text_size" name="data[text_size]">
-                  	<option value="">Selecciona un tamaño para el texto</option>
-                  	<?php for($n = 9; $n < 31; $n++):?>
-                    <option value="<?=$n?>"<?= @$cat['Category']['text_size'] == $n ? ' selected' : '' ?>><?=$n?>px</option>
-                  	<?php endfor ?>
-                  </select>              
+            			<input type="range" class="form-control" name="data[text_size]" step="1" min="9" max="50" value="<?=$cat['Category']['text_size']?>">
                 </div>
-                <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
+                <small class="text-muted">Selecciona tamaño de descripción de categoría</small>
               </div>
               <div class="control-group">
-                <label class="control-label" for="text_weight"><?php echo __('Peso de texto descripción'); ?></label>
+                <label class="control-label" for="text_weight">Peso de texto descripción (<i class="preview-text_weight"><?=$cat['Category']['text_weight']??'300'?></i>)</label>
                 <div class="controls">
-                  <select class="form-control" id="text_weight" name="data[text_weight]">
-                  	<option value="">Selecciona un peso para el texto</option>
-                    <option value="300"<?= @$cat['Category']['text_weight'] == '300' ? ' selected' : '' ?>>300</option>
-                    <option value="400"<?= @$cat['Category']['text_weight'] == '400' ? ' selected' : '' ?>>400</option>
-                    <option value="500"<?= @$cat['Category']['text_weight'] == '500' ? ' selected' : '' ?>>500</option>
-                    <option value="600"<?= @$cat['Category']['text_weight'] == '600' ? ' selected' : '' ?>>600</option>
-                    <option value="700"<?= @$cat['Category']['text_weight'] == '700' ? ' selected' : '' ?>>700</option>
-                    <option value="800"<?= @$cat['Category']['text_weight'] == '800' ? ' selected' : '' ?>>800</option>
-                    <option value="900"<?= @$cat['Category']['text_weight'] == '900' ? ' selected' : '' ?>>900</option>
-                    <option value="1000"<?= @$cat['Category']['text_weight'] == '1000' ? ' selected' : '' ?>>1000</option>
-                  </select>              
+                	<input type="range" class="form-control" name="data[text_weight]" step="100" min="300" max="1000" value="<?=$cat['Category']['text_weight']?>">           
                 </div>
-                <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
+                <small class="text-muted">Selecciona un peso para el texto</small>
               </div>
 							<div class="control-group">
 							  <label class="control-label" for="text_color"><?php echo __('Color Texto'); ?></label>
@@ -89,24 +94,6 @@
 							  </div>
 	              <small class="text-muted">Seleccioná color de texto para esta categoría. <span class="text-info is-clickable" onclick="$('#text_color').val('')">Resetear</span></small>
 							</div>
-						</div>
-
-            <div class="form-box bg-info-outline">
-              <h4 class="sub-header"><?=__('Propiedades')?></h4>
-              <p><?=__('Selecciona como deseas ver tu categoría')?></p>            
-              <!--div class="control-group">
-                <label class="control-label" for="alternatename"><?php echo __('Activar Nombre Alternativo'); ?></label>
-                <div class="form-group">
-                  <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".show-alternate" data-class="d-none" <?= $cat['Category']['alternate_toggle'] == '1' ? ' checked' : '' ?>>
-                  <label for="alternatename" class="toggle-label"></label>
-                </div>
-                <div class="control-group show-alternate<?= $cat['Category']['alternate_toggle'] == '1' ? '' : ' d-none' ?>">
-	                <label class="control-label" for="alternatename"><?php echo __('Nombre Alternativo'); ?></label>
-                  <div class="controls alternate_name_block">
-                    <input class="form-control w-100" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
-                  </div>
-                </div>
-              </div-->
               
               <div class="control-group">
                 <label class="control-label" for="columns-text"><?php echo __('Ancho de columna'); ?></label>
@@ -242,7 +229,18 @@
               <h4 class="sub-header"><?=__('Imágenes')?></h4>
               <p><?=__('Carga tus imágenes para esta categoría')?></p>
               <div class="control-group">
-                <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>
+                <label class="control-label" for=""><?=__('Imagen principal')?></label>
+                <?php if(!empty($cat['Category']['img_url'])):?>
+                  
+                  <img src="<?php echo $settings['upload_url'].$cat['Category']['img_url']?>" width="300">
+                <?php endif ?>
+                <div class="controls">
+                  <input  class="form-control" type="file" class="attached" name="image">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for=""><?=__('Banner')?></label>
                 <?php if(!empty($cat['Category']['banner_url'])):?>
                   
                   <img src="<?php echo $settings['upload_url'].$cat['Category']['banner_url']?>" width="300">
@@ -252,16 +250,6 @@
                 </div>
               </div>
 
-              <div class="control-group">
-                <label class="control-label" for=""><?=__('Seleccione una imagen de listado para esta categoría')?></label>
-                <?php if(!empty($cat['Category']['img_url'])):?>
-                  
-                  <img src="<?php echo $settings['upload_url'].$cat['Category']['img_url']?>" width="300">
-                <?php endif ?>
-                <div class="controls">
-                  <input  class="form-control" type="file" class="attached" name="image">
-                </div>
-              </div>
               <div class="control-group">
                 <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
                 <?php if(!empty($cat['Category']['size'])):?>

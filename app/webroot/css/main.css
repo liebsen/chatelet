@@ -3095,7 +3095,7 @@ form .control-label:not(.switch-scale > span > label) {
   font-weight: 1000;
   margin-bottom: auto;
   display: flex;
-  flex-direction: column;
+  /*flex-direction: column;*/
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 0.5rem;
@@ -3362,6 +3362,119 @@ background-color: #45a049; /* Darker green on hover */
 
 .form-pass-icon.active {
   color: #333!important;
+}
+
+
+.posnum-0 {
+  background-position: center center;
+}
+.posnum-1 {
+  background-position: left center;
+}
+.posnum-2 {
+  background-position: right center;
+}
+.posnum-3 {
+  background-position: center top;
+}
+.posnum-4 {
+  background-position: center bottom;
+}
+.posnum-5 {
+  background-position: left top;
+}
+.posnum-6 {
+  background-position: right top;
+}
+.posnum-7 {
+  background-position: left bottom;
+}
+.posnum-8 {
+  background-position: right bottom;
+}
+.ci-0 {
+  justify-content: center;
+  align-items: center;
+}
+.ci-0 span {
+  text-align: center;
+}
+.ci-1 {
+  justify-content: start;
+  align-items: center;
+}
+.ci-1 span {
+  text-align: left;
+} 
+.ci-2 {
+  justify-content: end;
+  align-items: center;
+}
+.ci-2 span {
+  text-align: right;
+} 
+.ci-3 {
+  justify-content: center;
+  align-items: start;
+}
+.ci-3 span {
+  text-align: center;
+} 
+.ci-4 {
+  justify-content: center;
+  align-items: end;
+}
+.ci-4 span {
+  text-align: center;
+} 
+.ci-5 {
+  justify-content: start;
+  align-items: start;
+}
+.ci-5 span {
+  text-align: left;
+} 
+.ci-6 {
+  justify-content: end;
+  align-items: start;
+}
+.ci-6 span {
+  text-align: right;
+} 
+.ci-7 {
+  justify-content: start;
+  align-items: end;
+}
+.ci-7 span {
+  text-align: left;
+}
+.ci-8 {
+  justify-content: end;
+  align-items: end;
+}
+.ci-8 span {
+  text-align: right;
+} 
+.shop-preview {
+	background-color: #f8f8f8;
+	border-radius: 1rem;
+	margin-bottom: 1rem;
+	min-height: 20rem;
+	display: flex;
+	transition: all 1s ease-in-out;
+	padding: 1rem;
+}
+
+.name-catalog {
+  text-shadow: 0 0 3px #00000008;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: -0.025rem;
+}
+
+.p-catalog {
+	display: block!important;
+	white-space: break-spaces;
 }
 
 .position-relative {

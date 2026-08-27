@@ -26,13 +26,18 @@ $(document).on('click','.btn-delete-size',function(e){
 })
 
 $(document).ready(function() {
-
-	//$('#form_app button[type="submit"]').click(function(e){
-	//$('#form_app').submit(function(e){
-
-	//})
-
-
+  $('input[name="data[text_size]"]').click(function(){
+  	$('.preview-text_size').text($(this).val())
+  	$('.p-catalog').css({fontSize: $(this).val()+'px'})
+  })
+  $('input[name="data[text_weight]"]').click(function(){
+  	$('.preview-text_weight').text($(this).val())
+  	$('.p-catalog').css({fontWeight: $(this).val()})
+  })
+  $('input[name="data[text_color]"]').click(function(){
+  	console.log('color',$(this).val())
+  	$('.p-catalog, .name-catalog').css({color: $(this).val()})
+  })
   $('.btn-create-size').click(function(e){
 		e.preventDefault()
 		var element = $('.sizes-create-area').append($('.size-create-item').html())
