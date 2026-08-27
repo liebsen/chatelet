@@ -26,17 +26,38 @@ $(document).on('click','.btn-delete-size',function(e){
 })
 
 $(document).ready(function() {
-  $('input[name="data[text_size]"]').click(function(){
+  $('input[name="data[text_size]"]').change(function(){
   	$('.preview-text_size').text($(this).val())
   	$('.p-catalog').css({fontSize: $(this).val()+'px'})
   })
-  $('input[name="data[text_weight]"]').click(function(){
+  $('input[name="data[text_weight]"]').change(function(){
   	$('.preview-text_weight').text($(this).val())
   	$('.p-catalog').css({fontWeight: $(this).val()})
   })
-  $('input[name="data[text_color]"]').click(function(){
-  	console.log('color',$(this).val())
+  $('input[name="data[text_color]"]').change(function(){
   	$('.p-catalog, .name-catalog').css({color: $(this).val()})
+  })
+  $('textarea[name="data[text]"]').change(function(e){
+  	$('.p-catalog').text($(this).val())
+  })
+  $('input[name="data[name]"]').change(function(e){
+  	$('.name-catalog').text($(this).val())
+  })
+  $('.btn-preview').click(function(e){
+  	$('.cat-preview').toggleClass('fs')
+  	$('.shop-preview').toggleClass('d-none')
+  })
+  $('select[name="data[posnum]"]').change(function(e){
+		$('.shop-preview').removeClass(function(index, className) {
+		  return (className.match(/\posnum-\S+/g) || []).join(' ');
+		})
+		$('.shop-preview').addClass('posnum-'+$(this).val())
+  })
+  $('select[name="data[alignnum]"]').change(function(e){
+		$('.shop-preview').removeClass(function(index, className) {
+		  return (className.match(/\alignnum-\S+/g) || []).join(' ');
+		})
+		$('.shop-preview').addClass('alignnum-'+$(this).val())
   })
   $('.btn-create-size').click(function(e){
 		e.preventDefault()

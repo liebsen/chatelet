@@ -5,7 +5,7 @@
           <?php foreach($categories as $category): ?>
             <div class="category-item col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?> <?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>" data-id="<?=@$category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
               <span class="category-content posnum-<?=@$category['Category']['posnum'] ?>" style="background-image: url('<?php echo $settings['upload_url'].$category['Category']['img_url']?>')">
-                <span class="category-image ci-<?= !empty($category['Category']['alignnum']) ? $category['Category']['alignnum'] : '0' ?> p-3 w-100">  
+                <span class="category-image alignnum-<?= !empty($category['Category']['alignnum']) ? $category['Category']['alignnum'] : '0' ?> p-3 w-100">  
                   <span class="p-1 text-catalog text-uppercase">
                     <?php echo 
                       $this->App->cat_title(
