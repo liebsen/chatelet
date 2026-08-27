@@ -837,6 +837,10 @@ body > section {
 	transition: all 200ms ease-in-out;
 }
 
+.btn > i {
+  margin: auto;
+}
+
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
 	opacity: 0.25;
 }

@@ -919,11 +919,16 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .text-catalog {
-  text-shadow: 0 0 3px #555;
+  text-shadow: 0 0 3px #00000008;
   font-size: 1.5rem;
   line-height: 1;
   letter-spacing: -0.025rem;
   color: white;
+}
+
+.p-catalog {
+	display: block!important;
+	white-space: break-spaces;
 }
 
 .price {

@@ -7,7 +7,6 @@ function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
     var e = form[i]
-    //console.log(e.name)
     if(
       e.type == 'hidden' || 
       ($(e).data('change') || $(e).data('force')) && 
