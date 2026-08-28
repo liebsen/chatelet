@@ -69,24 +69,24 @@
 			              <small class="text-muted">Descripción de categoría</small>
 			            </div>
 		              <div class="control-group">
-		                <label class="control-label" for="text_size">Tamaño texto descripción (<i class="preview-text_size"><?=$cat['Category']['text_style']->font_size??'9'?></i> px)</label>
+		                <label class="control-label" for="font_size">Tamaño texto descripción (<i class="preview-font_size"><?=$cat['Category']['text_style']->font_size??'9'?></i> px)</label>
 		                <div class="controls">
-		            			<input type="range" class="form-control" name="data[text_style][font_size]" step="1" min="9" max="50" value="<?=$cat['Category']['text_style']->font_size??'9'?>">
+		            			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" step="1" min="9" max="50" value="<?=$cat['Category']['text_style']->font_size??'9'?>">
 		                </div>
 		                <small class="text-muted">Selecciona tamaño de descripción de categoría</small>
 		              </div>
 		              <div class="control-group">
-		                <label class="control-label" for="text_weight">Peso de texto descripción (<i class="preview-text_weight"><?=$cat['Category']['text_style']->font_weight??'300'?></i>)</label>
+		                <label class="control-label" for="font_weight">Peso de texto descripción (<i class="preview-font_weight"><?=$cat['Category']['text_style']->font_weight??'300'?></i>)</label>
 		                <div class="controls">
-		                	<input type="range" class="form-control" name="data[text_style][font_weight]" step="100" min="300" max="1000" value="<?=$cat['Category']['text_style']->font_weight?>">
+		                	<input type="range" class="form-control" id="font_weight" name="data[text_style][font_weight]" step="100" min="300" max="1000" value="<?=$cat['Category']['text_style']->font_weight?>">
 		                </div>
 		                <small class="text-muted">Selecciona un peso para el texto</small>
 		              </div>
 
 		              <div class="control-group">
-		                <label class="control-label" for="columns-text"><?php echo __('Tipografía del texto'); ?></label>
+		                <label class="control-label" for="font_family"><?php echo __('Tipografía del texto'); ?></label>
 		                <div class="controls">
-		                  <select class="form-control" name="data[text_style][font_family]">
+		                  <select class="form-control" id="font_family" name="data[text_style][font_family]">
 		                  	<option value="">Selecciona una fuente</option>
 		                  <?php foreach($families as $font):?>
 		                  	<option value="<?=$font?>"<?= @$cat['Category']['text_style']->font_family == $font ? ' selected' : '' ?>><?=$font?></option>	
@@ -96,11 +96,11 @@
 		                <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
 		              </div>
 									<div class="control-group">
-									  <label class="control-label" for="text_color"><?php echo __('Color Texto'); ?></label>
+									  <label class="control-label" for="font_color"><?php echo __('Color Texto'); ?></label>
 									  <div class="controls">
-									  	<input type="color" id="text_color" name="data[text_style][color]" value="<?= @$cat['Category']['text_style']->color ?>">
+									  	<input type="color" id="font_color" name="data[text_style][color]" value="<?= @$cat['Category']['text_style']->color ?>">
 									  </div>
-			              <small class="text-muted">Seleccioná color de texto para esta categoría. <span class="text-info is-clickable" onclick="$('#text_color').val('')">Resetear</span></small>
+			              <small class="text-muted">Seleccioná color de texto para esta categoría. <span class="text-info is-clickable" onclick="$('#font_color').val('')">Resetear</span></small>
 									</div>
 								</div>
 

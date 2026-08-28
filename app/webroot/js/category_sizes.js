@@ -23,6 +23,15 @@ $(document).on('click','.btn-delete-size',function(e){
 	$(target).parent().remove()
 })
 
+function loadGoogleWebfont(font){
+	const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
+	var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = filename;
+  document.getElementsByTagName('head')[0].appendChild(link);
+}
+
 $(document).ready(function() {
   $('input[name="data[name]"]').keyup(function(e){
   	$('.name-catalog').text($(this).val())
@@ -38,11 +47,12 @@ $(document).ready(function() {
   	$('.preview-font_weight').text($(this).val())
   	$('.p-catalog').css({fontWeight: $(this).val()})
   })
-  $('input[name="data[text_style][font_weight]"]').change(function(){
+  $('select[name="data[text_style][font_family]"]').change(function(){
+  	loadGoogleWebfont($(this).val())
   	$('.preview-font_family').text($(this).val())
-  	$('.p-catalog').css({fontFamily: $(this).val()})
+  	$('.p-catalog').css({fontFamily: encodeURIComponent($(this).val())})
   })
-  $('input[name="data[text_style][font_color]"]').change(function(){
+  $('input[name="data[text_style][color]"]').change(function(){
   	$('.p-catalog, .name-catalog').css({color: $(this).val()})
   })
   $('.btn-preview').click(function(e){
@@ -66,4 +76,7 @@ $(document).ready(function() {
 		var element = $('.sizes-create-area').append($('.size-create-item').html())
 		return false;
 	})
+	if($('select[name="data[text_style][font_family]"]').val()) {
+		loadGoogleWebfont($('select[name="data[text_style][font_family]"]').val())
+	}
 })

@@ -1989,8 +1989,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		} else {
 	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
 
-    			\d("text_style(1)", $cat['Category']);
-
 			    if(!empty($cat['Category']['text_style'])) {
 			    	$temp = @json_decode($cat['Category']['text_style']);
 			    	//$cat['Category']['parsed_style'] = $temp;

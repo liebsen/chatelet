@@ -3466,9 +3466,11 @@ background-color: #45a049; /* Darker green on hover */
 	padding: 1rem;
 	background-color: #f8f8f8;
 	.cat-preview-form {
-		max-width: 25rem;
 		overflow-y: scroll;
 		padding-bottom: 5rem;
+		@media(min-width: 992px) {
+				max-width: 25rem;
+		}
 	}	
 	@media(max-width: 992px) {
 		flex-direction: column;
