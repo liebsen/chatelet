@@ -69,7 +69,7 @@
       position: absolute; 
       left:0; 
       right: 0; 
-      top: 8rem;
+      top: 8.5rem;
       padding: 1.5rem;
       z-index: 9;
     }
