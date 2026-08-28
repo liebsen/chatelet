@@ -1,16 +1,13 @@
 <script type="text/javascript">
-	
-function loadGoogleWebfont(font){
-	const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
-	var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = filename;
-  document.getElementsByTagName('head')[0].appendChild(link);
-}
-
+	function loadGoogleWebfont(font){
+		const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
+		var link = document.createElement('link');
+	  link.rel = 'stylesheet';
+	  link.type = 'text/css';
+	  link.href = filename;
+	  document.getElementsByTagName('head')[0].appendChild(link);
+	}
 </script>
-
     <div class="wrapper-fluid">
       <div class="row m-0">
         <div class="col-xs-12">
@@ -35,7 +32,7 @@ function loadGoogleWebfont(font){
                       <?php endif ?>
                       <span class="p-1 p-catalog" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_weight'] ?? '300'?>;font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;paint-order: stroke fill;font-synthesis: none;"><?=$category['Category']['text']?></span>
                     </span>
-                  <?php endif ?>
+                  	<?php endif ?>
                   </div>
                 </a>
               </div>

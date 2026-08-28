@@ -89,4 +89,9 @@ $(document).ready(function() {
 	if($('select[name="data[text_style][font_family]"]').val()) {
 		loadGoogleWebfont($('select[name="data[text_style][font_family]"]').val())
 	}
+  if(window.location.hash.includes('preview')){
+    setTimeout(function(){
+      $('.btn-preview').click()
+    }, 50)
+  }	
 })

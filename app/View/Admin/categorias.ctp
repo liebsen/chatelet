@@ -68,15 +68,12 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 				<tbody>
 					<?php foreach ($cats as $key => $category): ?>
 					<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
-							<td align="center">
-								<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
-							</td>				
+						<td align="center">
+							<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
+						</td>
 						<td>
 							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
-		            <div class="d-flex justify-content-start align-items-center gap-1">
-		              <img src="<?=$settings['upload_url']. $category['Category']['img_url']?>" height="100" />
-								  <span><?=$category['Category']['name']?></span>
-		            </div>
+								<span><?=$category['Category']['name']?></span>
 							</a>
 						</td>
 						<td>
@@ -143,6 +140,19 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 									data-original-title="Editar">
 									<i class="fa fa-eye"></i>
 								</a--> 
+								<a 
+									href="<?=$this->Html->url(
+										array(
+											'action' => 'categorias', 
+											'edit', 
+											$category['Category']['id'],
+											'#' => 'preview'
+										)
+									)?>"
+									data-toggle="tooltip" 
+									title="Editar contenido" 
+									class="btn btn-sm btn-info"><i class="gi gi-font"></i>
+								</a>
 								<a 
 									href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
 									data-toggle="tooltip" 
