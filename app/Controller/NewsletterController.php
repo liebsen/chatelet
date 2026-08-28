@@ -240,6 +240,7 @@ class NewsletterController extends AppController {
       'data' => $newsletter,
       'products' => $products,
       'socials' => $newsletter['Newsletter']['show_social'] == '1' ? \parsed_socials($this->settings) : null,
+      'unsubscribe_id' => $newsletter['NewsletterScheduleItem']['id'],
       'site_url' => $this->settings['site_url'],
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 

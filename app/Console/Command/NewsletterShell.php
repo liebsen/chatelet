@@ -495,6 +495,7 @@ class NewsletterShell extends AppShell {
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 
         null,
+      'unsubscribe_id' => $data['NewsletterScheduleItem']['id'],
       'skip_header' => $skip_header,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
