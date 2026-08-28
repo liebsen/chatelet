@@ -678,6 +678,12 @@ class ShopController extends AppController {
 			}
 
 			//rsort($products);
+
+			if(!empty($category['Category']['text_style'])) {
+	    	$temp = @json_decode($category['Category']['text_style']);
+	    	$category['Category']['text_style'] = $temp;
+			}
+
       $this->set('category',$category);
 			$this->set('products', $products);
 	    if(!empty($category['name'])) {
@@ -941,7 +947,12 @@ class ShopController extends AppController {
 			$product['Product']['old_price'] = $product['Product']['price'];
 			$product['Product']['price'] = $product['Product']['discount'];
 		}
-		
+
+		if(!empty($category['Category']['text_style'])) {
+    	$temp = @json_decode($category['Category']['text_style']);
+    	$category['Category']['text_style'] = $temp;
+		}
+				
     // $this->set('details',$details);
 		$this->set('category_id',$category_id);
     $this->set('name_categories',$name_categories);

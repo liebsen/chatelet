@@ -3469,7 +3469,7 @@ background-color: #45a049; /* Darker green on hover */
 		overflow-y: scroll;
 		padding-bottom: 5rem;
 		@media(min-width: 992px) {
-				max-width: 25rem;
+				width: 25rem;
 		}
 	}	
 	@media(max-width: 992px) {
@@ -3486,6 +3486,7 @@ background-color: #45a049; /* Darker green on hover */
 	display: flex;
 	transition: all 1s ease-in-out;
 	padding: 1rem;
+	min-height: 25rem;
 }
 
 .name-catalog {

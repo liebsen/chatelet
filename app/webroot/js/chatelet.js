@@ -12,6 +12,7 @@ let fakeshown = 0
 var toggleInterval = 0
 const log = false
 
+
 function getStorage(key, def) {
   if(localStorage[key] && localStorage[key] != 'undefined') {
     let res = localStorage[key]
