@@ -17,31 +17,29 @@ $(document).on('click', '.btn-remove-size', function(e) {
 })
 
 $(document).on('click','.btn-delete-size',function(e){
-	console.log('btn-delete-size')
 	e.preventDefault()
 	const target = $(e.target).hasClass('btn-delete-size') ? $(e.target) : $(e.target).parent()
-	console.log('<input type="hidden" name="sizes[rm][]" value="'+target.data('id')+'">')
 	$('#form_app').append('<input type="hidden" name="sizes[rm][]" value="'+target.data('id')+'">')
 	$(target).parent().remove()
 })
 
 $(document).ready(function() {
+  $('input[name="data[name]"]').keyup(function(e){
+  	$('.name-catalog').text($(this).val())
+  })
+  $('textarea[name="data[text]"]').keyup(function(e){
+  	$('.p-catalog').text($(this).val())
+  })
   $('input[name="data[text_size]"]').change(function(){
   	$('.preview-text_size').text($(this).val())
   	$('.p-catalog').css({fontSize: $(this).val()+'px'})
   })
-  $('input[name="data[text_weight]"]').change(function(){
+  $('input[name="data[style][font_weight]"]').change(function(){
   	$('.preview-text_weight').text($(this).val())
   	$('.p-catalog').css({fontWeight: $(this).val()})
   })
-  $('input[name="data[text_color]"]').change(function(){
+  $('input[name="data[style][font_color]"]').change(function(){
   	$('.p-catalog, .name-catalog').css({color: $(this).val()})
-  })
-  $('textarea[name="data[text]"]').change(function(e){
-  	$('.p-catalog').text($(this).val())
-  })
-  $('input[name="data[name]"]').change(function(e){
-  	$('.name-catalog').text($(this).val())
   })
   $('.btn-preview').click(function(e){
   	$('.cat-preview').toggleClass('fs')

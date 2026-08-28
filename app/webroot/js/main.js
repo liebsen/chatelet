@@ -213,7 +213,7 @@ $(function () {
   $('.toggle-block').change(function(e){
     const block = $(this).data('block')
     const className = $(this).data('class') || 'd-disable'
-    if($(e.target).is(':checked')) {
+    if($(this).is(':checked')) {
       $(block).removeClass(className)
     } else {
       $(block).addClass(className)

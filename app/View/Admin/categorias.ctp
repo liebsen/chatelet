@@ -51,10 +51,6 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 	<div class="block-tabs">
 		<div class="tab-content">
 			<p class="collapse alert alert-success result-message">...</p>
-
-	<!-- end discount-layer -->
-	<!-- start template -->
-
 			<table id="categorias-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/category">
 				<thead>
 					<tr>
@@ -192,10 +188,10 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 </div>
 
 <div class="form-actions category-actions" data-url="/admin/batch_categorias/">
-    <span class="selection-count"></span>
-    <button class="disableselection btn btn-warning btn-adjust" type="button"><i class="fa fa-eye-slash"></i><span class="ml-1">Desactivar</span></button>
-    <button class="removeselection btn btn-danger btn-adjust" type="button"><i class="fa fa-close"></i><span class="ml-1">Eliminar</span></button>
-    <button class="enableselection btn btn-success btn-adjust" type="button"><i class="fa fa-check"></i> <span class="ml-1">Activar</span></button>
+  <span class="selection-count"></span>
+  <button class="disableselection btn btn-warning btn-adjust" type="button"><i class="fa fa-eye-slash"></i><span class="ml-1">Desactivar</span></button>
+  <button class="removeselection btn btn-danger btn-adjust" type="button"><i class="fa fa-close"></i><span class="ml-1">Eliminar</span></button>
+  <button class="enableselection btn btn-success btn-adjust" type="button"><i class="fa fa-check"></i> <span class="ml-1">Activar</span></button>
 </div>
 
 <style type="text/css">

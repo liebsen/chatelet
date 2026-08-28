@@ -30,25 +30,32 @@
                 <label for="toggle" class="toggle-label"></label>
               </div>
             </div>
-            <div class="control-group">
-              <label class="control-label" for="toggle2"><?php echo __('Mostrar Texto'); ?></label>
-              <div class="form-group">
-                <input type="checkbox" name="data[alternate_toggle]" value="1" id="toggle2" class="toggle-checkbox  toggle-block" data-block=".texts-block" data-class="d-none"<?= $cat['Category']['alternate_toggle'] == '1' ? ' checked' : '' ?>>
-                <label for="toggle2" class="toggle-label"></label>
-              </div>
-            </div>
 
             <div class="d-flex cat-preview gap-1">
 	            <div class="shop-preview posnum-<?=$cat['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$cat['Category']['alignnum'] ?? '0' ?> d-none" style="background-image: url(<?= $settings['upload_url'].$cat['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
-	            	<span class="texts-block <?=$cat['Category']['alternate_toggle'] == '1' ? '' : 'd-none'?>" style="color: <?=$cat['Category']['text_color'] ?? 'white'?>">
+	            	<span class="texts-block <?=$cat['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$cat['Category']['text_style']->color ?? 'white'?>">
 	            		<span class="name-catalog text-uppercase <?=$cat['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$cat['Category']['name']?></span>
-	            		<span class="p-catalog" style="font-size: <?=$cat['Category']['text_size'] ?? '12'?>px; font-weight: <?=$cat['Category']['text_weight'] ?? '300'?>"><?=$cat['Category']['text']?></span>
+	            		<span class="p-catalog" style="font-size: <?=$cat['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$cat['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$cat['Category']['text_style']->font_family ?? 'inherit'?>;"><?=$cat['Category']['text']?></span>
 	            	</span>
 	            </div>
 	            <div class="cat-preview-form d-flex flex-column">
-		            <div class="form-box bg-info-outline texts-block<?= $cat['Category']['alternate_toggle'] == '1' ? '' : ' d-none' ?>">
-		              <h4 class="sub-header"><?=__('Textos')?></h4>            
+		            <div class="d-flex flex-column w-100">
+		              <label class="control-label" for="show_text"><?php echo __('Mostrar Texto'); ?></label>
+		              <div class="form-group">
+		                <input type="checkbox" name="data[show_text]" value="1" id="show_text" class="toggle-checkbox toggle-block" data-block=".texts-block" data-class="d-none"<?=$cat['Category']['show_text'] == '1' ? ' checked' : '' ?>>
+		                <label for="show_text" class="toggle-label"></label>
+		              </div>
+		            </div>
+		            <div class="form-box bg-info-outline texts-block<?=$cat['Category']['show_text'] == '1' ? '' : ' d-none' ?>">
+		              <h4 class="sub-header"><?=__('Textos')?></h4>
 			            <div class="control-group">
+			              <label class="control-label" for="show_name"><?php echo __('Mostrar Título'); ?></label>
+			              <div class="form-group">
+			                <input type="checkbox" name="data[show_name]" value="1" id="show_name" class="toggle-checkbox toggle-block" data-block=".name-catalog" data-class="d-none"<?= $cat['Category']['show_name'] == '1' ? ' checked' : '' ?>>
+			                <label for="show_name" class="toggle-label"></label>
+			              </div>
+			            </div>		              
+			            <div class="control-group name-catalog">
 			              <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
 			              <div class="controls">
 			                <input class="form-control w-100" type="text" id="" name="data[name]" value="<?=$cat['Category']['name'] ?? ''; ?>" required>
@@ -61,42 +68,48 @@
 			              </div>
 			              <small class="text-muted">Descripción de categoría</small>
 			            </div>
-								</div>
 
-		            <div class="form-box bg-info-outline">
-		              <h4 class="sub-header"><?=__('Propiedades')?></h4>
-		              <p><?=__('Selecciona como deseas ver tu categoría')?></p>  
-			            <div class="control-group">
-			              <label class="control-label" for="show_name"><?php echo __('Mostrar Título'); ?></label>
-			              <div class="form-group">
-			                <input type="checkbox" name="data[show_name]" value="1" id="show_name" class="toggle-checkbox toggle-block" data-block=".name-catalog" data-class="d-none"<?= $cat['Category']['show_name'] == '1' ? ' checked' : '' ?>>
-			                <label for="show_name" class="toggle-label"></label>
-			              </div>
-			            </div>
 		              <div class="control-group">
-		                <label class="control-label" for="text_size">Tamaño texto descripción (<i class="preview-text_size"><?=$cat['Category']['text_size']??'9'?></i> px)</label>
+		                <label class="control-label" for="text_size">Tamaño texto descripción (<i class="preview-text_size"><?=$cat['Category']['text_style']->font_size??'9'?></i> px)</label>
 		                <div class="controls">
-		            			<input type="range" class="form-control" name="data[text_size]" step="1" min="9" max="50" value="<?=$cat['Category']['text_size']??'9'?>">
+		            			<input type="range" class="form-control" name="data[text_style][font_size]" step="1" min="9" max="50" value="<?=$cat['Category']['text_style']->font_size??'9'?>">
 		                </div>
 		                <small class="text-muted">Selecciona tamaño de descripción de categoría</small>
 		              </div>
 		              <div class="control-group">
-		                <label class="control-label" for="text_weight">Peso de texto descripción (<i class="preview-text_weight"><?=$cat['Category']['text_weight']??'300'?></i>)</label>
+		                <label class="control-label" for="text_weight">Peso de texto descripción (<i class="preview-text_weight"><?=$cat['Category']['text_style']->font_weight??'300'?></i>)</label>
 		                <div class="controls">
-		                	<input type="range" class="form-control" name="data[text_weight]" step="100" min="300" max="1000" value="<?=$cat['Category']['text_weight']?>">           
+		                	<input type="range" class="form-control" name="data[text_style][font_weight]" step="100" min="300" max="1000" value="<?=$cat['Category']['text_style']->font_weight?>">
 		                </div>
 		                <small class="text-muted">Selecciona un peso para el texto</small>
+		              </div>
+
+		              <div class="control-group">
+		                <label class="control-label" for="columns-text"><?php echo __('Tipografía del texto'); ?></label>
+		                <div class="controls">
+		                  <select class="form-control" name="data[text_style][font_family]">
+		                  	<option value="">Selecciona una fuente</option>
+		                  <?php foreach($families as $font):?>
+		                  	<option value="<?=$font?>"<?= @$cat['Category']['text_style']->font_family == $font ? ' selected' : '' ?>><?=$font?></option>	
+		                  <?php endforeach?>
+		                  </select>              
+		                </div>
+		                <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
 		              </div>
 									<div class="control-group">
 									  <label class="control-label" for="text_color"><?php echo __('Color Texto'); ?></label>
 									  <div class="controls">
-									  	<input type="color" id="text_color" name="data[text_color]" value="<?= @$cat['Category']['text_color'] ?>">
+									  	<input type="color" id="text_color" name="data[text_style][color]" value="<?= @$cat['Category']['text_style']->color ?>">
 									  </div>
 			              <small class="text-muted">Seleccioná color de texto para esta categoría. <span class="text-info is-clickable" onclick="$('#text_color').val('')">Resetear</span></small>
 									</div>
-		              
+								</div>
+
+		            <div class="form-box bg-info-outline">
+		              <h4 class="sub-header"><?=__('Propiedades de columna')?></h4>
+		              <p><?=__('Selecciona como deseas ver tu categoría en el Catálogo de Shop')?></p>  
 		              <div class="control-group">
-		                <label class="control-label" for="columns-text"><?php echo __('Ancho de columna'); ?></label>
+		                <label class="control-label" for="columns-text"><?php echo __('Ancho'); ?></label>
 		                <div class="controls">
 		                  <select class="form-control" name="data[colsize]">
 		                    <option value="6"<?= empty($cat['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
@@ -117,7 +130,7 @@
 		              </div>
 
 		              <div class="control-group">
-		                <label class="control-label" for="columns-text"><?php echo __('Posición de la imagen para todos los productos. '); ?></label>
+		                <label class="control-label" for="columns-text"><?php echo __('Imagen'); ?></label>
 		                <div class="controls">
 		                  <select class="form-control" name="data[posnum]">
 		                    <option value="1"<?= empty($cat['Category']['posnum']) ? ' selected' : '' ?>>Auto</option>
@@ -129,7 +142,7 @@
 		              </div>
 
 		              <div class="control-group">
-		                <label class="control-label" for="columns-text"><?php echo __('Alineación del texto'); ?></label>
+		                <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
 		                <div class="controls">
 		                  <select class="form-control" name="data[alignnum]">
 		                    <option value="0"<?= empty($cat['Category']['alignnum']) ? ' selected' : '' ?>>Centro</option>
@@ -143,7 +156,7 @@
 		                    <option value="8"<?= @$cat['Category']['alignnum'] == '8' ? ' selected' : '' ?>>Abajo/Derecha</option>
 		                  </select>              
 		                </div>
-		                <small class="text-muted">Seleccioná la posición para el texto dentro de las imágenes del shop.</small>
+		                <small class="text-muted">Seleccioná la posición para el texto de la columna del Catálogo de Shop.</small>
 		              </div>
 		              <div class="control-group">
 		                <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
@@ -157,12 +170,11 @@
 			              <div class="controls">
 			                <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?=@$cat['Category']['ribbon_color']??'#333' ?>">
 			              </div>
-			              <small class="text-muted">Seleccioná color de burbuja para esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
+			              <small class="text-muted">Seleccioná color de burbuja para los productos de esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
 			            </div>
 		            </div>
 		          </div>
 	          </div>
-
           </div>
           <div class="col-md-6"> 
             <div class="form-box bg-info-outline">
@@ -270,7 +282,7 @@
         <div class="form-actions">
           <a href="/admin/categorias" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
           <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
-          <button type="button" class="btn btn-info btn-preview" title="Previsualizar categoría"><i class="fa fa-eye"></i> <span class="ml-1">Previsualizar</span></button>
+          <button type="button" class="btn btn-warning btn-preview" title="Previsualizar categoría"><i class="fa fa-font-awesome"></i> <span class="ml-1">Diseñar</span></button>
           <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
         </div>
       </form>

@@ -9,7 +9,7 @@
                   <span class="p-1 text-catalog text-uppercase">
                     <?php echo 
                       $this->App->cat_title(
-                        strlen($category['Category']['alternate_toggle']) ?  
+                        strlen($category['Category']['show_text']) ?  
                           $category['Category']['alternate_name'] : 
                           $category['Category']['name']
                         ) ?>
