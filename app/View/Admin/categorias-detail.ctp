@@ -68,7 +68,6 @@
 			              </div>
 			              <small class="text-muted">Descripción de categoría</small>
 			            </div>
-
 		              <div class="control-group">
 		                <label class="control-label" for="text_size">Tamaño texto descripción (<i class="preview-text_size"><?=$cat['Category']['text_style']->font_size??'9'?></i> px)</label>
 		                <div class="controls">

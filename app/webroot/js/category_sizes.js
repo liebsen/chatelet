@@ -30,15 +30,19 @@ $(document).ready(function() {
   $('textarea[name="data[text]"]').keyup(function(e){
   	$('.p-catalog').text($(this).val())
   })
-  $('input[name="data[text_size]"]').change(function(){
-  	$('.preview-text_size').text($(this).val())
+  $('input[name="data[text_style][font_size]"]').change(function(){
+  	$('.preview-font_size').text($(this).val())
   	$('.p-catalog').css({fontSize: $(this).val()+'px'})
   })
-  $('input[name="data[style][font_weight]"]').change(function(){
-  	$('.preview-text_weight').text($(this).val())
+  $('input[name="data[text_style][font_weight]"]').change(function(){
+  	$('.preview-font_weight').text($(this).val())
   	$('.p-catalog').css({fontWeight: $(this).val()})
   })
-  $('input[name="data[style][font_color]"]').change(function(){
+  $('input[name="data[text_style][font_weight]"]').change(function(){
+  	$('.preview-font_family').text($(this).val())
+  	$('.p-catalog').css({fontFamily: $(this).val()})
+  })
+  $('input[name="data[text_style][font_color]"]').change(function(){
   	$('.p-catalog, .name-catalog').css({color: $(this).val()})
   })
   $('.btn-preview').click(function(e){
