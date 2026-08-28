@@ -3,7 +3,7 @@
   <div class="shop-preview posnum-<?=$cat['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$cat['Category']['alignnum'] ?? '0' ?>" style="background-image: url(<?= $settings['upload_url'].$cat['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
   	<span class="texts-block <?=$cat['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$cat['Category']['text_style']->color ?? 'white'?>">
   		<span class="name-catalog text-uppercase <?=$cat['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$cat['Category']['name']?></span>
-  		<span class="p-catalog" style="font-size: <?=$cat['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$cat['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$cat['Category']['text_style']->font_family ?? 'inherit'?>; text-shadow: <?=$cat['Category']['text_style']->shadow_width ?? '0'?>px <?=$cat['Category']['text_style']->shadow_width ?? '0'?>px <?=$cat['Category']['text_style']->shadow_blur ?? '1'?>px <?=$cat['Category']['text_style']->shadow_color ?? 'transparent'?>, -<?=$cat['Category']['text_style']->shadow_width ?? '0'?>px -<?=$cat['Category']['text_style']->shadow_width ?? '0'?>px <?=$cat['Category']['text_style']->shadow_blur ?? '1'?>px <?=$cat['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$cat['Category']['text']?></span>
+  		<span class="p-catalog" style="font-size: <?=$cat['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$cat['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$cat['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$cat['Category']['text_style']->shadow_width ?? '0'?>px <?=$cat['Category']['text_style']->shadow_color ?? 'transparent'?>;paint-order: stroke fill;font-synthesis: none;"><?=$cat['Category']['text']?></span>
   	</span>
   </div>
 
@@ -167,13 +167,6 @@
 	      			<input type="range" id="shadow_width" class="form-control" name="data[text_style][shadow_width]" data-change="1" step="1" min="0" max="10" value="<?=$cat['Category']['text_style']->shadow_width??'0'?>">
 	          </div>
 	          <small class="text-muted">Selecciona tamaño de la sombra</small>
-	        </div>
-	        <div class="control-group">
-	          <label class="control-label" for="shadow_blur">Tamaño sombra (<i class="preview-shadow_blur"><?=$cat['Category']['text_style']->shadow_blur??'0'?></i> px)</label>
-	          <div class="controls">
-	      			<input type="range" id="shadow_blur" class="form-control" name="data[text_style][shadow_blur]" data-change="1" step="1" min="0" max="30" value="<?=$cat['Category']['text_style']->shadow_blur??'0'?>">
-	          </div>
-	          <small class="text-muted">Selecciona cantidad de blur para la sombra</small>
 	        </div>
 					<div class="control-group">
 					  <label class="control-label" for="shadow_color"><?php echo __('Color sombra'); ?></label>

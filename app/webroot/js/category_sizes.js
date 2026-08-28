@@ -57,11 +57,11 @@ $(document).ready(function() {
   })
   $('input[name="data[text_style][shadow_width]"]').change(function(){
   	const textShadowColor = $('#shadow_color').val()
-  	const textShadowBlur = $('#shadow_blur').val()
-  	var textShadow = [[$(this).val()+'px',$(this).val()+'px', textShadowBlur+'px', textShadowColor].join(' '),['-'+$(this).val()+'px','-'+$(this).val()+'px', textShadowBlur+'px', textShadowColor].join(' ')].join(',')
-  	console.log('textShadowColor',textShadowColor)
-  	console.log('textShadow',textShadow)
-  	$('.p-catalog, .name-catalog').css({textShadow})
+  	$('.p-catalog, .name-catalog').css("-webkit-text-stroke", $(this).val()+'px '+textShadowColor)
+  })
+  $('input[name="data[text_style][shadow_color]"]').change(function(){
+  	const textShadowWidth = $('#shadow_width').val()
+  	$('.p-catalog, .name-catalog').css("-webkit-text-stroke", textShadowWidth+'px '+$(this).val())
   })
   $('.btn-preview').click(function(e){
   	$('.cat-preview').toggleClass('fs')
