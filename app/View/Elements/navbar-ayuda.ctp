@@ -72,6 +72,7 @@
       top: 8.5rem;
       padding: 1.5rem;
       z-index: 9;
+      background-color: #f4f4f6;
     }
     #optionsHelp.top-fixed { 
       top: 4rem; 
