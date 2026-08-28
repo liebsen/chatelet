@@ -32,7 +32,7 @@
             </div>
 
             <div class="d-flex cat-preview gap-1">
-	            <div class="shop-preview posnum-<?=$cat['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$cat['Category']['alignnum'] ?? '0' ?> d-none" style="background-image: url(<?= $settings['upload_url'].$cat['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
+	            <div class="shop-preview preview-toggle posnum-<?=$cat['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$cat['Category']['alignnum'] ?? '0' ?> d-none" style="background-image: url(<?= $settings['upload_url'].$cat['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
 	            	<span class="texts-block <?=$cat['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$cat['Category']['text_style']->color ?? 'white'?>">
 	            		<span class="name-catalog text-uppercase <?=$cat['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$cat['Category']['name']?></span>
 	            		<span class="p-catalog" style="font-size: <?=$cat['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$cat['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$cat['Category']['text_style']->font_family ?? 'inherit'?>;"><?=$cat['Category']['text']?></span>
@@ -279,9 +279,9 @@
         </div>      
                        
         <div class="form-actions">
-          <a href="/admin/categorias" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-          <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
-          <button type="button" class="btn btn-warning btn-preview" title="Previsualizar categoría"><i class="fa fa-font-awesome"></i> <span class="ml-1">Diseñar</span></button>
+          <a href="/admin/categorias" class="btn btn-info preview-toggle"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
+          <button type="reset" class="btn btn-danger preview-toggle" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
+          <button type="button" class="btn btn-warning btn-preview" title="Previsualizar categoría"><i class="gi gi-font"></i> <span class="ml-1">Diseñar</span></button>
           <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
         </div>
       </form>

@@ -221,9 +221,9 @@
       <i class="fa fa-chevron-left"></i> 
       <span class="ml-1">Atrás</span>
     </a>
-    <span class="btn btn-info btn-templates-editor">
+    <span class="btn btn-warning btn-templates-editor">
       <i class="gi gi-font"></i> 
-      <span class="ml-1">Editor</span>
+      <span class="ml-1">Diseñar</span>
     </span>
     <span class="btn btn-warning btn-templates-elements w-auto">
       <i class="fa fa-key"></i> 

@@ -57,7 +57,9 @@ $(document).ready(function() {
   })
   $('.btn-preview').click(function(e){
   	$('.cat-preview').toggleClass('fs')
-  	$('.shop-preview').toggleClass('d-none')
+  	$('.preview-toggle').toggleClass('d-none')
+  	$(this).toggleClass('btn-warning')
+  	$(this).toggleClass('btn-light')
   })
   $('select[name="data[posnum]"]').change(function(e){
 		$('.shop-preview').removeClass(function(index, className) {
