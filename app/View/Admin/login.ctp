@@ -375,11 +375,12 @@ body.login .form-group {
 
         <script type="text/javascript">
             document.addEventListener("DOMContentLoaded", function() {
-                $('button[type="submit"]').prop('disabled', false)
-                var timeout = 0
-            $('#login_form').submit(function(e) {
-            	 	$('button[type="submit"]').text('Espere...')
-                $('button[type="submit"]').prop('disabled', true)
+              const submit_btn = $('button[type="submit"]');
+              submit_btn.prop('disabled', false)
+              var timeout = 0
+            	$('#login_form').submit(function(e) {
+            	 	submit_btn.text('Espere...')
+                submit_btn.prop('disabled', true)
 
                 e.preventDefault();
                 if($('#password').length){
@@ -400,8 +401,10 @@ body.login .form-group {
                           title: 'Error al iniciar sesión',
                           message: res.errors
                       });
-
-                      $('button[type="submit"]').prop('disabled',false)
+                      setTimeout(function(){
+				                submit_btn.prop('disabled', false)
+				                submit_btn.text('Volver a intentar')	
+			                }, 3000)
                       return false;
                     } else {
                       $.growl.notice({
@@ -416,17 +419,16 @@ body.login .form-group {
                     }
                   })
                   .fail(function() {
-                        $('button[type="submit"]').prop('disabled', false)
-                        $('button[type="submit"]').text('Iniciar sesión')
+			                submit_btn.prop('disabled', false)
+			                submit_btn.text('Volver a intentar')	
                       $.growl.error({
                           title: 'Error al inciar sesión',
                           message: 'Por favor verifica los datos introducidos e intenta de nuevo'
                       });
                   });
-
-              }, 500)
-              return false;
-            });
+	              }, 500)
+	              return false;
+	            });
             // $("#registro_form").bootstrapValidator('validate');      
             })
         </script>        

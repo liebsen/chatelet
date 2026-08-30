@@ -5,37 +5,39 @@
   		<span class="name-catalog text-uppercase <?=$cat['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$cat['Category']['name']?></span>
   		<span class="p-catalog" style="font-size: <?=$cat['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$cat['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$cat['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$cat['Category']['text_style']->shadow_width ?? '0'?>px <?=$cat['Category']['text_style']->shadow_color ?? 'transparent'?>;paint-order: stroke fill;font-synthesis: none;"><?=$cat['Category']['text']?></span>
   	</span>
-  </div>
-
-  <div class="cat-preview-form d-flex flex-column">
-    <div class="d-flex flex-column w-100">
+    <div class="shop-preview-tb d-flex flex-column flex-center">
       <label class="control-label" for="show_text"><?php echo __('Mostrar Texto'); ?></label>
       <div class="form-group">
         <input type="checkbox" name="data[show_text]" value="1" id="show_text" class="toggle-checkbox toggle-block" data-block=".texts-block" data-class="d-none"<?=$cat['Category']['show_text'] == '1' ? ' checked' : '' ?>>
         <label for="show_text" class="toggle-label"></label>
       </div>
     </div>
+  </div>
 
-    <div class="d-flex texts-block flex-column gap-05 w-100">
-      <ul class="nav nav-tabs" role="tablist">
+  <div class="cat-preview-form d-flex flex-column">
+
+    <div class="d-flex flex-column w-100">
+      <ul class="nav nav-tabs nav-justified nav-pills" role="tablist">
         <li class="active text-center">
           <a href="#content" aria-controls="toolbox" role="tab" data-toggle="tab" title="Información">
-            <i class="hi hi-info-sign"></i>
-          </a>
-        </li>
-        <li class="text-center">
-          <a href="#props" aria-controls="toolbox" role="tab" data-toggle="tab" title="Columna">
-          	<i class="fa fa-columns"></i>
+            <i class="gi gi-chat"></i> <span class="text-sm">Texto</span>
           </a>
         </li>
         <li class="text-center">
           <a href="#texts" aria-controls="toolbox" role="tab" data-toggle="tab" title="Texto">
           	<i class="gi gi-font"></i>
+          	<span>Fuente</span>
           </a>
         </li>
         <li class="text-center">
           <a href="#effects" aria-controls="toolbox" role="tab" data-toggle="tab" title="Efectos">
           	<i class="gi gi-magic"></i>
+          	<span>Efectos</span>
+          </a>
+        </li>
+        <li class="text-center">
+          <a href="#props" aria-controls="toolbox" role="tab" data-toggle="tab" title="Columna">
+          	<i class="fa fa-columns"></i> <span>Catalog</span>
           </a>
         </li>
       </ul>
