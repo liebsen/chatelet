@@ -64,12 +64,12 @@ $(document).ready(function() {
 	});
   $('input[name="data[text_style][shadow_width]"]').change(function(){
   	const textShadowColor = $('#shadow_color').val()
-  	$('.p-catalog, .name-catalog').css("-webkit-text-stroke", $(this).val()+'px '+textShadowColor)
+  	$('.p-catalog').css("-webkit-text-stroke", $(this).val()+'px '+textShadowColor)
   	saveStore('textStyle', 'shadow_width', $(this).val())
   })
 	$('#shadow_color').on('input', function() {
 		const textShadowWidth = $('#shadow_width').val()
-		$('.p-catalog, .name-catalog').css("-webkit-text-stroke", textShadowWidth+'px '+$(this).val())
+		$('.p-catalog').css("-webkit-text-stroke", textShadowWidth+'px '+$(this).val())
 		saveStore('textStyle', 'shadow_color', $(this).val())
 	});
   $('.btn-preview').click(function(e){
