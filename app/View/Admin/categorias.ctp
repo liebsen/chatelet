@@ -199,9 +199,10 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 
 <div class="form-actions category-actions" data-url="/admin/batch_categorias/">
   <span class="selection-count"></span>
-  <button class="disableselection btn btn-warning btn-adjust" type="button"><i class="fa fa-eye-slash"></i><span class="ml-1">Desactivar</span></button>
-  <button class="removeselection btn btn-danger btn-adjust" type="button"><i class="fa fa-close"></i><span class="ml-1">Eliminar</span></button>
-  <button class="enableselection btn btn-success btn-adjust" type="button"><i class="fa fa-check"></i> <span class="ml-1">Activar</span></button>
+  <button class="toggle-selection disableselection btn btn-warning d-none" type="button"><i class="fa fa-eye-slash"></i><span class="ml-1">Desactivar</span></button>
+  <button class="toggle-selection removeselection btn btn-danger d-none" type="button"><i class="fa fa-close"></i><span class="ml-1">Eliminar</span></button>
+  <button class="toggle-selection enableselection btn btn-success d-none" type="button"><i class="fa fa-check"></i> <span class="ml-1">Activar</span></button>
+  <a href="/admin/categorias/add" class="btn btn-success" type="button"><i class="fa fa-magic"></i> <span class="ml-1">Crear</span></a>
 </div>
 
 <style type="text/css">

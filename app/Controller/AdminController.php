@@ -1785,10 +1785,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'icon' 		=> 'gi gi-tags',
 				'url'		=> '/admin/categorias',
 			),
-			'Crear' => array(
+			/*'Crear' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> '/admin/categorias/add',
-			),
+			),*/
 			'Compositor' => array(
 				'icon' 		=> 'gi gi-magic',
 				'url'		=> '/admin/categorias/compose',

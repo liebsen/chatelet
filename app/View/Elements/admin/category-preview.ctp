@@ -105,7 +105,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="font_color"><?php echo __('Color Texto'); ?></label>
 					  <div class="controls">
-					  	<input type="color" id="font_color" name="data[text_style][color]" data-change="1" value="<?= @$category['Category']['text_style']->color ?>">
+					  	<input type="color" id="font_color" name="data[text_style][color]" data-change="1" value="<?= @$category['Category']['text_style']->color ?? '#fff' ?>">
 					  </div>
 	          <small class="text-muted">Seleccioná color de texto para esta categoría. <span class="text-info is-clickable" onclick="$('#font_color').val('')">Resetear</span></small>
 					</div>
@@ -173,7 +173,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="shadow_color"><?php echo __('Color sombra'); ?></label>
 					  <div class="controls">
-					  	<input type="color" id="shadow_color" name="data[text_style][shadow_color]" data-change="1" value="<?= @$category['Category']['text_style']->shadow_color ?>">
+					  	<input type="color" id="shadow_color" name="data[text_style][shadow_color]" data-change="1" value="<?= @$category['Category']['text_style']->shadow_color ?? '#000' ?>">
 					  </div>
 	          <small class="text-muted">Seleccioná color de sombra para el texto. <span class="text-info is-clickable" onclick="$('#shadow_color').val('')">Resetear</span></small>
 					</div>

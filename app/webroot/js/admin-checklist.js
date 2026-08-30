@@ -3,6 +3,7 @@ var disabledIds = []
 var enabledIds = []
 
 function batch(action){
+	if(!confirm('¿Estás segutro de realizar esta acción: '+action+'?')) return false
   const method = $('.form-actions').data('url')
   $.ajax({
     url: `${method}/${action}`,
@@ -75,11 +76,12 @@ $('#example-datatables').on('draw.dt', function() {
 
 function updateMessage(){
   let message = ''
-  $('.category-actions').removeClass('chatIn')
   if(checkIds.length) {
-    $('.category-actions').addClass('chatIn')
+  	$('.toggle-selection').removeClass('d-none')
     const s = checkIds.length > 1 ? 's' : ''
     message = `Hay ${checkIds.length} elemento${s} seleccionado${s} <a href="javascript:void(0)" onclick="unselectAll()"> Borrar selección</a> `
+  } else {
+  	$('.toggle-selection').addClass('d-none')
   }
   $('.selection-count').html(message)
 }
@@ -98,7 +100,7 @@ $(document).ready(function() {
   $("input:checkbox[name=checksAll]").click(function(e){
     const checked = $(this).is(':checked')
     $("input:checkbox[name=checks]").map(function(){
-      $(this).click()
+      $(this).trigger('click')
     })
   })
 

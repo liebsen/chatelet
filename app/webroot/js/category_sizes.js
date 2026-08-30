@@ -27,10 +27,7 @@ function applyStore(key){
 	const json = getStore(key)
 	for(var i in json) {
 		const target = $(':input[name="data[text_style]['+i+']"]')
-		if(target.val()) {
-			console.log('value(ok)',i, target.val())
-		} else {
-			console.log('value(fail)',i, target.val())
+		if(target.val()) {} else {
 			target.val(json[i]).trigger('change')
 		}
 	}
@@ -97,14 +94,10 @@ $(document).ready(function() {
 		var element = $('.sizes-create-area').append($('.size-create-item').html())
 		return false;
 	})
-
 	if($('select[name="data[text_style][font_family]"]').val()) {
 		loadFont($('select[name="data[text_style][font_family]"]').val())
 	}
-
   if(window.location.hash.includes('preview')){
-    setTimeout(function(){
-      $('.btn-preview').click()
-    }, 50)
+    $('.btn-preview').trigger('click')
   }	
 })
