@@ -23,16 +23,16 @@ $(document).on('click','.btn-delete-size',function(e){
 	$(target).parent().remove()
 })
 
-function loadGoogleWebfont(font){
-	const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
-	var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = filename;
-  document.getElementsByTagName('head')[0].appendChild(link);
+function applyStore(key){
+	const json = getStore(key)
+	for(var i in json) {
+		//console.log(i, json[i])
+		$('[name="data[text_style]['+i+']"]').val(json[i]).trigger('change')
+	}
 }
 
 $(document).ready(function() {
+	applyStore('textStyle')
   $('input[name="data[name]"]').keyup(function(e){
   	$('.name-catalog').text($(this).val())
   })
@@ -42,27 +42,33 @@ $(document).ready(function() {
   $('input[name="data[text_style][font_size]"]').change(function(){
   	$('.preview-font_size').text($(this).val())
   	$('.p-catalog').css({fontSize: $(this).val()+'px'})
+  	saveStore('textStyle', 'font_size', $(this).val())
   })
   $('input[name="data[text_style][font_weight]"]').change(function(){
   	$('.preview-font_weight').text($(this).val())
   	$('.p-catalog').css({fontWeight: $(this).val()})
+  	saveStore('textStyle', 'font_weight', $(this).val())
   })
   $('select[name="data[text_style][font_family]"]').change(function(){
-  	loadGoogleWebfont($(this).val())
+  	loadFont($(this).val())
   	$('.preview-font_family').text($(this).val())
   	$('.p-catalog').css({fontFamily: encodeURIComponent($(this).val())})
+  	saveStore('textStyle', 'font_family', $(this).val())
   })
-  $('input[name="data[text_style][color]"]').change(function(){
-  	$('.p-catalog, .name-catalog').css({color: $(this).val()})
-  })
+	$('#font_color').on('input', function() {
+		$('.p-catalog, .name-catalog').css({color: $(this).val()})
+		saveStore('textStyle', 'color', $(this).val())
+	});
   $('input[name="data[text_style][shadow_width]"]').change(function(){
   	const textShadowColor = $('#shadow_color').val()
   	$('.p-catalog, .name-catalog').css("-webkit-text-stroke", $(this).val()+'px '+textShadowColor)
+  	saveStore('textStyle', 'shadow_width', $(this).val())
   })
-  $('input[name="data[text_style][shadow_color]"]').change(function(){
-  	const textShadowWidth = $('#shadow_width').val()
-  	$('.p-catalog, .name-catalog').css("-webkit-text-stroke", textShadowWidth+'px '+$(this).val())
-  })
+	$('#shadow_color').on('input', function() {
+		const textShadowWidth = $('#shadow_width').val()
+		$('.p-catalog, .name-catalog').css("-webkit-text-stroke", textShadowWidth+'px '+$(this).val())
+		saveStore('textStyle', 'shadow_color', $(this).val())
+	});
   $('.btn-preview').click(function(e){
   	$('.cat-preview').toggleClass('fs')
   	$('.preview-toggle').toggleClass('d-none')
@@ -86,9 +92,11 @@ $(document).ready(function() {
 		var element = $('.sizes-create-area').append($('.size-create-item').html())
 		return false;
 	})
+
 	if($('select[name="data[text_style][font_family]"]').val()) {
-		loadGoogleWebfont($('select[name="data[text_style][font_family]"]').val())
+		loadFont($('select[name="data[text_style][font_family]"]').val())
 	}
+
   if(window.location.hash.includes('preview')){
     setTimeout(function(){
       $('.btn-preview').click()

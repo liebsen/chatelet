@@ -60,14 +60,14 @@
         </div>
 	      <div class="tab-pane" id="texts" role="tabpanel">
 	        <div class="control-group">
-	          <label class="control-label" for="font_size">Tamaño texto descripción (<i class="preview-font_size"><?=$cat['Category']['text_style']->font_size??'9'?></i> px)</label>
+	          <label class="control-label" for="font_size">Tamaño del texto (<i class="preview-font_size"><?=$cat['Category']['text_style']->font_size??'9'?></i> px)</label>
 	          <div class="controls">
 	      			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" data-change="1" step="1" min="8" max="92" value="<?=$cat['Category']['text_style']->font_size??'9'?>">
 	          </div>
 	          <small class="text-muted">Selecciona tamaño de descripción de categoría</small>
 	        </div>
 	        <div class="control-group">
-	          <label class="control-label" for="font_weight">Peso de texto descripción (<i class="preview-font_weight"><?=$cat['Category']['text_style']->font_weight??'300'?></i>)</label>
+	          <label class="control-label" for="font_weight">Peso del texto (<i class="preview-font_weight"><?=$cat['Category']['text_style']->font_weight??'300'?></i>)</label>
 	          <div class="controls">
 	          	<input type="range" class="form-control" id="font_weight" name="data[text_style][font_weight]" data-change="1" step="100" min="300" max="1000" value="<?=$cat['Category']['text_style']->font_weight?>">
 	          </div>

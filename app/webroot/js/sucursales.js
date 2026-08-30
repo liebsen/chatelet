@@ -32,7 +32,7 @@ $(document).ready(function() {
 			        position: new google.maps.LatLng(sucursal.lat, sucursal.lng),
 				    })
 						const infowindow = new google.maps.InfoWindow({
-							content: '<div style="overflow: hidden"><h4 style="margin:0">'+ sucursal.name + '</h4>'+ (sucursal.takeaway == '1' ? '<br /><span class="text-chatelet"><i class="fa fa-shopping-bag"></i> Takeaway</span><br />' : '') + '<br><p><i class="fa fa-map-pin"></i>' + sucursal.address + '<br /><i class="fa fa-phone"></i>' + sucursal.phone + '<br /><i class="fa fa-whatsapp"></i>' + sucursal.whatsapp + '<br />' + '</p></div>'
+							content: '<div style="overflow: hidden; padding: 0.5rem; min-width: 300px"><img src="/img/logo.png" width=105><h4 style="margin-bottom:0;margin-top:0.5rem">'+ sucursal.name + '</h4>'+ (sucursal.takeaway == '1' ? '<br /><span class="text-chatelet"><i class="fa fa-shopping-bag"></i> Takeaway</span><br />' : '') + '<br><p><i class="fa fa-map-pin"></i>' + sucursal.address + '<br /><i class="fa fa-phone"></i>' + sucursal.phone + '<br /><i class="fa fa-whatsapp"></i>' + sucursal.whatsapp + '<br />' + '</p></div>'
 						})
 						var open = false
 						var close = function(){

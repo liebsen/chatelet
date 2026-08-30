@@ -3107,8 +3107,6 @@ form .control-label:not(.switch-scale > span > label) {
 }
 .form-control:not(input[type="radio"], input[type="checkbox"]),
 .input-group {
-  margin-top: 1px;
-  margin-bottom: 1px;
   min-height: 40px;
   border-radius: 1rem;
   transition: none;
@@ -3132,8 +3130,9 @@ form .control-label:not(.switch-scale > span > label) {
 
 .input-group-addon {
   background-color: #f9f9f9;
+	border-color: #e7e7e7;
+	box-shadow: 0 2px 2px #00000008;
 }
-
 
 .form-inline,
 .form-horizontal {
@@ -3358,8 +3357,8 @@ background-color: #45a049; /* Darker green on hover */
 .form-pass-icon {
   position: absolute;
   z-index: 9;
-  right: 1rem;
-  top: 0.75rem;
+  right: 0.95rem;
+  top: 0.95rem;
   color: #888;
 }
 
@@ -3482,7 +3481,7 @@ background-color: #45a049; /* Darker green on hover */
 .shop-preview {
 	position: relative;
 	flex: 1;
-	background-color: #f8f8f8;
+	background-color: #e7e7e7;
 	border-radius: 1rem;
 	margin-bottom: 1rem;
 	min-height: 20rem;

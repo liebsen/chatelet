@@ -1851,7 +1851,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    return json_encode(
 			    	array(
 			    		'success' => true,
-			    		'redirect' => '/admin/categorias'
+			    		'redirect' => '/admin/categorias/'.$data['id']
 			    	)
 			    );
 			} else {

@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	function loadGoogleWebfont(font){
+	function loadFont(font){
 		const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
 		var link = document.createElement('link');
 	  link.rel = 'stylesheet';
@@ -17,7 +17,7 @@
 	$temp = @json_decode($category['Category']['text_style']);
 	$category['Category']['text_style'] = $temp;
 	if(!empty($category['Category']['text_style']->font_family) && !in_array($category['Category']['text_style']->font_family, $loaded_fonts)) {
-		?><script type="text/javascript">loadGoogleWebfont('<?=$category['Category']['text_style']->font_family?>');</script><?php 
+		?><script type="text/javascript">loadFont('<?=$category['Category']['text_style']->font_family?>');</script><?php 
 		$loaded_fonts[]= $category['Category']['text_style']->font_family;
 	}
 } ?>
