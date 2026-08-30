@@ -3740,12 +3740,8 @@ a.thumbnail-borderless,
 .form-actions {
   text-align: right;
   position: fixed;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  grid-gap: 0.5rem;
   bottom: 0;
-  right: 0;
+  right: 0.5rem;
   padding: 1rem;
   z-index: 9999;
 }
@@ -3869,7 +3865,6 @@ a.thumbnail-borderless,
   .form-actions {
     margin: 1rem;
     margin-left: -210px;
-    min-width: calc(100% - 210px);
   }
 
   /* Hide Side Content */
