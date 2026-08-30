@@ -62,7 +62,7 @@
 	        <div class="control-group">
 	          <label class="control-label" for="font_size">Tamaño texto descripción (<i class="preview-font_size"><?=$cat['Category']['text_style']->font_size??'9'?></i> px)</label>
 	          <div class="controls">
-	      			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" data-change="1" step="1" min="9" max="50" value="<?=$cat['Category']['text_style']->font_size??'9'?>">
+	      			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" data-change="1" step="1" min="8" max="92" value="<?=$cat['Category']['text_style']->font_size??'9'?>">
 	          </div>
 	          <small class="text-muted">Selecciona tamaño de descripción de categoría</small>
 	        </div>
@@ -85,6 +85,23 @@
 	            </select>
 	          </div>
 	          <small class="text-muted">Seleccioná una fuente para mostrar tu texto</small>
+	        </div>
+	        <div class="control-group">
+	          <label class="control-label" for="columns-text"><?php echo __('Ubicación'); ?></label>
+	          <div class="controls">
+	            <select class="form-control" name="data[alignnum]">
+	              <option value="0"<?= empty($cat['Category']['alignnum']) ? ' selected' : '' ?>>Centro</option>
+	              <option value="1"<?= @$cat['Category']['alignnum'] == '1' ? ' selected' : '' ?>>Izquierda</option>
+	              <option value="2"<?= @$cat['Category']['alignnum'] == '2' ? ' selected' : '' ?>>Derecha</option>
+	              <option value="3"<?= @$cat['Category']['alignnum'] == '3' ? ' selected' : '' ?>>Arriba</option>
+	              <option value="4"<?= @$cat['Category']['alignnum'] == '4' ? ' selected' : '' ?>>Abajo</option>
+	              <option value="5"<?= @$cat['Category']['alignnum'] == '5' ? ' selected' : '' ?>>Arriba/Izquierda</option>
+	              <option value="6"<?= @$cat['Category']['alignnum'] == '6' ? ' selected' : '' ?>>Arriba/Derecha</option>
+	              <option value="7"<?= @$cat['Category']['alignnum'] == '7' ? ' selected' : '' ?>>Abajo/Izquierda</option>
+	              <option value="8"<?= @$cat['Category']['alignnum'] == '8' ? ' selected' : '' ?>>Abajo/Derecha</option>
+	            </select>              
+	          </div>
+	          <small class="text-muted">Seleccioná la posición para el texto de la columna del Catálogo de Shop.</small>
 	        </div>
 					<div class="control-group">
 					  <label class="control-label" for="font_color"><?php echo __('Color Texto'); ?></label>
@@ -130,23 +147,7 @@
 	          <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
 	        </div>
 
-	        <div class="control-group">
-	          <label class="control-label" for="columns-text"><?php echo __('Texto'); ?></label>
-	          <div class="controls">
-	            <select class="form-control" name="data[alignnum]">
-	              <option value="0"<?= empty($cat['Category']['alignnum']) ? ' selected' : '' ?>>Centro</option>
-	              <option value="1"<?= @$cat['Category']['alignnum'] == '1' ? ' selected' : '' ?>>Izquierda</option>
-	              <option value="2"<?= @$cat['Category']['alignnum'] == '2' ? ' selected' : '' ?>>Derecha</option>
-	              <option value="3"<?= @$cat['Category']['alignnum'] == '3' ? ' selected' : '' ?>>Arriba</option>
-	              <option value="4"<?= @$cat['Category']['alignnum'] == '4' ? ' selected' : '' ?>>Abajo</option>
-	              <option value="5"<?= @$cat['Category']['alignnum'] == '5' ? ' selected' : '' ?>>Arriba/Izquierda</option>
-	              <option value="6"<?= @$cat['Category']['alignnum'] == '6' ? ' selected' : '' ?>>Arriba/Derecha</option>
-	              <option value="7"<?= @$cat['Category']['alignnum'] == '7' ? ' selected' : '' ?>>Abajo/Izquierda</option>
-	              <option value="8"<?= @$cat['Category']['alignnum'] == '8' ? ' selected' : '' ?>>Abajo/Derecha</option>
-	            </select>              
-	          </div>
-	          <small class="text-muted">Seleccioná la posición para el texto de la columna del Catálogo de Shop.</small>
-	        </div>
+
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
 	          <div class="controls">
@@ -166,7 +167,7 @@
 	        <div class="control-group">
 	          <label class="control-label" for="shadow_width">Tamaño sombra (<i class="preview-shadow_width"><?=$cat['Category']['text_style']->shadow_width??'0'?></i> px)</label>
 	          <div class="controls">
-	      			<input type="range" id="shadow_width" class="form-control" name="data[text_style][shadow_width]" data-change="1" step="1" min="0" max="10" value="<?=$cat['Category']['text_style']->shadow_width??'0'?>">
+	      			<input type="range" id="shadow_width" class="form-control" name="data[text_style][shadow_width]" data-change="1" step="1" min="0" max="30" value="<?=$cat['Category']['text_style']->shadow_width??'0'?>">
 	          </div>
 	          <small class="text-muted">Selecciona tamaño de la sombra</small>
 	        </div>
