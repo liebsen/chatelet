@@ -3732,8 +3732,9 @@ a.thumbnail-borderless,
 }
 
 .btn > i {
-  font-size: 12px;
+  font-size: 15px;
   margin: auto;
+  line-height: 1;
 }
 
 .form-actions {

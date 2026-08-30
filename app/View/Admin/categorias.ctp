@@ -1,4 +1,4 @@
-<?php // echo $this->Html->script('admin-delete', array('inline' => false));
+<?php echo $this->Html->script('admin-delete', array('inline' => false));
 echo $this->element('admin/menu');
 echo $this->Html->css('draggable-table', array('inline' => false));
 echo $this->Html->script('draggable-table', array('inline' => false));
@@ -151,7 +151,7 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 									)?>"
 									data-toggle="tooltip" 
 									title="Editar contenido" 
-									class="btn btn-sm btn-info"><i class="gi gi-font"></i>
+									class="btn btn-info"><i class="gi gi-font"></i>
 								</a>
 								<a 
 									href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
