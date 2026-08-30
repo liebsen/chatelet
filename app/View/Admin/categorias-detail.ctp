@@ -11,7 +11,7 @@
   <div class="block-tabs">
     <!--div class="block-title">
       <h4><?php 
-        echo (isset($cat)) ? __('Editar Categoria') : __('Agregar Categoria');
+        echo (isset($category)) ? __('Editar Categoria') : __('Agregar Categoria');
       ?></h4>
     </div-->
     <div class="tab-content">
@@ -28,14 +28,14 @@
             <div class="control-group">
               <label class="control-label" for="toggle"><?php echo __('Visible'); ?></label>
               <div class="form-group">
-                <input type="checkbox" name="data[visible]" value="1" id="toggle" class="toggle-checkbox"<?= $cat['Category']['visible'] == '1' ? ' checked' : '' ?>>
+                <input type="checkbox" name="data[visible]" value="1" id="toggle" class="toggle-checkbox"<?= $category['Category']['visible'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle" class="toggle-label"></label>
               </div>
             </div>
 	          <div class="control-group">
 	            <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
 	            <div class="controls">
-	              <input class="form-control w-100" type="text" id="" name="data[name]" value="<?=$cat['Category']['name'] ?? ''; ?>" required>
+	              <input class="form-control w-100" type="text" id="" name="data[name]" value="<?=$category['Category']['name'] ?? ''; ?>" required>
 	            </div>
 	          </div>
 	          <hr>
@@ -68,14 +68,14 @@
             </div>
 
 
-            <div class="form-box bg-info-outline<?=empty($cat['Category']['id']) ? ' d-disable' : ''?>">
+            <div class="form-box bg-info-outline<?=empty($category['Category']['id']) ? ' d-disable' : ''?>">
               <h4 class="sub-header"><?=__('Imágenes')?></h4>
               <p><?=__('Carga tus imágenes para esta categoría')?></p>
               <div class="control-group">
                 <label class="control-label" for=""><?=__('Imagen principal')?></label>
-                <?php if(!empty($cat['Category']['img_url'])):?>
+                <?php if(!empty($category['Category']['img_url'])):?>
                   
-                  <img src="<?php echo $settings['upload_url'].$cat['Category']['img_url']?>" width="300">
+                  <img src="<?php echo $settings['upload_url'].$category['Category']['img_url']?>" width="300">
                 <?php endif ?>
                 <div class="controls">
                   <input  class="form-control" type="file" class="attached" name="image">
@@ -84,8 +84,8 @@
 
               <div class="control-group">
                 <label class="control-label" for=""><?=__('Banner')?></label>
-                <?php if(!empty($cat['Category']['banner_url'])):?>
-                  <img src="<?php echo $settings['upload_url'].$cat['Category']['banner_url']?>" width="300">
+                <?php if(!empty($category['Category']['banner_url'])):?>
+                  <img src="<?php echo $settings['upload_url'].$category['Category']['banner_url']?>" width="300">
                 <?php endif ?>
                 <div class="controls">
                   <input class="form-control" type="file" class="attached" name="banner">
@@ -94,9 +94,9 @@
 
               <div class="control-group">
                 <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
-                <?php if(!empty($cat['Category']['size'])):?>
+                <?php if(!empty($category['Category']['size'])):?>
                   
-                  <img src="<?php echo $settings['upload_url'].$cat['Category']['size']?>" width="300">
+                  <img src="<?php echo $settings['upload_url'].$category['Category']['size']?>" width="300">
                 <?php endif ?>
                 <div class="controls">
                   <input  class="form-control" type="file" class="attached" name="size">
@@ -112,15 +112,15 @@
 	            <div class="control-group">
 	              <label class="control-label" for="columns-text"><?php echo __('Aplica descuentos por Tarjeta'); ?></label>
 	              <div class="form-group">
-	                <input type="checkbox" name="data[mp_discount_enable]" value="1" id="toggle-mp_discount" class="toggle-checkbox toggle-block" data-block=".mp-discount" data-class="d-none" <?= $cat['Category']['mp_discount_enable'] == '1' ? ' checked' : '' ?>>
+	                <input type="checkbox" name="data[mp_discount_enable]" value="1" id="toggle-mp_discount" class="toggle-checkbox toggle-block" data-block=".mp-discount" data-class="d-none" <?= $category['Category']['mp_discount_enable'] == '1' ? ' checked' : '' ?>>
 	                <label for="toggle-mp_discount" class="toggle-label"></label>
 	              </div>
 	            </div>
 
-	            <div class="control-group mp-discount <?= empty($cat['Category']['mp_discount_enable']) ? 'd-none' : '' ?>">
+	            <div class="control-group mp-discount <?= empty($category['Category']['mp_discount_enable']) ? 'd-none' : '' ?>">
 	              <label class="control-label" for="columns-text"><?php echo __('Descuento por Tarjeta'); ?></label>
 	              <div class="controls">
-	                <input  class="form-control w-100" type="number" name="data[mp_discount]" value="<?= !empty($cat) ? $cat['Category']['mp_discount'] : '0' ?>">
+	                <input  class="form-control w-100" type="number" name="data[mp_discount]" value="<?= !empty($category) ? $category['Category']['mp_discount'] : '0' ?>">
 	              </div>
 	              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Tarjeta si hubiera.</small>
 	            </div>
@@ -128,14 +128,14 @@
 	            <div class="control-group">
 	              <label class="control-label" for="columns-text"><?php echo __('Activar descuentos por Banco'); ?></label>
 	              <div class="form-group">
-	                <input type="checkbox" name="data[bank_discount_enable]" value="1" id="toggle-bank_discount" class="toggle-checkbox toggle-block" data-block=".bank-discount" data-class="d-none" <?= $cat['Category']['bank_discount_enable'] == '1' ? ' checked' : '' ?>>
+	                <input type="checkbox" name="data[bank_discount_enable]" value="1" id="toggle-bank_discount" class="toggle-checkbox toggle-block" data-block=".bank-discount" data-class="d-none" <?= $category['Category']['bank_discount_enable'] == '1' ? ' checked' : '' ?>>
 	                <label for="toggle-bank_discount" class="toggle-label"></label>
 	              </div>
 	            </div>
-	            <div class="control-group bank-discount <?= empty($cat['Category']['bank_discount_enable']) ? 'd-none' : '' ?>">
+	            <div class="control-group bank-discount <?= empty($category['Category']['bank_discount_enable']) ? 'd-none' : '' ?>">
 	              <label class="control-label" for="columns-text"><?php echo __('Descuento por Banco'); ?></label>
 	              <div class="controls">
-	                <input  class="form-control w-100" type="number" name="data[bank_discount]" value="<?= !empty($cat) ? $cat['Category']['bank_discount'] : '0' ?>">
+	                <input  class="form-control w-100" type="number" name="data[bank_discount]" value="<?= !empty($category) ? $category['Category']['bank_discount'] : '0' ?>">
 	              </div>
 	              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Transferencia si hubiera.</small>
 	            </div>
@@ -144,9 +144,9 @@
         </div>      
                        
         <div class="form-actions">
-          <a href="/admin/categorias" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
+          <a href="/admin/categorias" class="btn btn-info preview-toggle"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
           <button type="reset" class="btn btn-danger preview-toggle" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
-         <?php if(!empty($cat['Category']['id'])):?>
+         <?php if(!empty($category['Category']['id'])):?>
           <button type="button" class="btn btn-warning btn-preview" title="Previsualizar categoría"><i class="gi gi-font"></i> <span class="ml-1">Diseñar</span></button>
          <?php endif ?>
           <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>

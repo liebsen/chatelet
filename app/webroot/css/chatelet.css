@@ -724,9 +724,9 @@ body > section {
 
 .tap-to-continue {
 	position: absolute;
-  top: calc(100dvh - 4.75rem);
-	left: 1rem;
-	text-align: center;
+  top: calc(100dvh - 2.75rem);
+  left: 2rem;
+  text-align: center;
 	white-space: nowrap;
 	text-shadow: 0 0 2px #0009;
   text-transform: uppercase;

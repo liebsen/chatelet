@@ -26,9 +26,11 @@ $(document).on('click','.btn-delete-size',function(e){
 function applyStore(key){
 	const json = getStore(key)
 	for(var i in json) {
-		const target = $('[name="data[text_style]['+i+']"]')
-		//console.log(i, json[i])
-		if(target.val()) {} else {
+		const target = $(':input[name="data[text_style]['+i+']"]')
+		if(target.val()) {
+			console.log('value(ok)',i, target.val())
+		} else {
+			console.log('value(fail)',i, target.val())
 			target.val(json[i]).trigger('change')
 		}
 	}

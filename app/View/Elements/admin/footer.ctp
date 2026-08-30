@@ -11,7 +11,7 @@
     echo $this->fetch('script');
 ?>
 
-<?php if($_SERVER['REMOTE_ADDR'] == '127.0.0.1'): ?>
+<?php if(!empty($space_reload) && $_SERVER['REMOTE_ADDR'] == '127.0.0.1'): ?>
 <script type="text/javascript">
 document.addEventListener('keydown', function(event) {
     // Check using event.code for the physical key

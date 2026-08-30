@@ -4013,8 +4013,8 @@ a.thumbnail-borderless,
   }
 
   .shop-preview {
-		min-height: 50dvh;
-		max-height: 50dvh;
+		min-height: 30dvh;
+		max-height: 30dvh;
 	}
 
   #page-container,

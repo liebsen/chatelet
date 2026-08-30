@@ -1987,12 +1987,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    	)
 			    );
     		} else {
-	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
+	    		$category = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
+	    		$parents = $this->Category->find('all', array('conditions' => array('visible' => 1)));
 
-			    if(!empty($cat['Category']['text_style'])) {
-			    	$temp = @json_decode($cat['Category']['text_style']);
+			    if(!empty($category['Category']['text_style'])) {
+			    	$temp = json_decode($category['Category']['text_style']);
 			    	//$cat['Category']['parsed_style'] = $temp;
-			    	$cat['Category']['text_style'] = $temp;
+			    	$category['Category']['text_style'] = $temp;
 			    }
 
 	    		$sizes = $this->CategorySize->find('all', array(
@@ -2001,16 +2002,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		));	
 	    		$families = ['Rubik', 'Montserrat', 'DM Sans', 'Nunito', 'Poppins', 'DynaPuff'];
 	    		$navs = array();
-    			$navs[$cat['Category']['name']] = array(
+    			$navs[$category['Category']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
+						'url'		=> '/admin/categorias/edit/'.$category['Category']['id'],
 					);
     			#\d("navs",$navs);
 					$this->set('navs', $navs);
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 	    		$this->set('families', $families);
-	    		$this->set('cat', $cat);
+	    		$this->set('category', $category);
+	    		$this->set('parents', $parents);
 	    		$this->set('sizes', $sizes);
 	    		return $this->render('categorias-detail');
     		}
