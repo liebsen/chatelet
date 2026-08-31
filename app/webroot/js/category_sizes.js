@@ -33,35 +33,55 @@ function applyStore(key){
 	}
 }
 
+function blinkTarget(){
+	const target = $('.p-catalog')
+	target.removeClass('animation-fadeOut')
+	target.removeClass('animation-fadeIn')
+	setTimeout(function(){
+		target.addClass('animation-fadeOut')
+	}, 10)
+	setTimeout(function(){
+		target.addClass('animation-fadeIn')	
+	}, 5000)
+}
+
 $(document).ready(function() {
 	applyStore('textStyle')
   $('input[name="data[name]"]').keyup(function(e){
+  	blinkTarget()
   	$('.name-catalog').text($(this).val())
   })
   $('textarea[name="data[text]"]').keyup(function(e){
+  	blinkTarget()
   	$('.p-catalog').text($(this).val())
   })
   $('input[name="data[text_style][font_size]"]').change(function(){
+  	blinkTarget()
   	$('.preview-font_size').text($(this).val())
   	$('.p-catalog').css({fontSize: $(this).val()+'px'})
   	saveStore('textStyle', 'font_size', $(this).val())
   })
   $('input[name="data[text_style][font_weight]"]').change(function(){
+  	blinkTarget()
   	$('.preview-font_weight').text($(this).val())
   	$('.p-catalog').css({fontWeight: $(this).val()})
   	saveStore('textStyle', 'font_weight', $(this).val())
   })
   $('select[name="data[text_style][font_family]"]').change(function(){
+  	blinkTarget()
   	loadFont($(this).val())
   	$('.preview-font_family').text($(this).val())
-  	$('.p-catalog').css({fontFamily: encodeURIComponent($(this).val())})
+  	//$('.p-catalog').css({fontFamily: encodeURIComponent($(this).val())})
+  	$('.p-catalog').css({fontFamily: $(this).val()})
   	saveStore('textStyle', 'font_family', $(this).val())
   })
 	$('#font_color').on('input', function() {
+		blinkTarget()
 		$('.p-catalog, .name-catalog').css({color: $(this).val()})
 		saveStore('textStyle', 'color', $(this).val())
 	});
   $('input[name="data[text_style][shadow_width]"]').change(function(){
+  	blinkTarget()
   	const textShadowColor = $('#shadow_color').val()
   	$('.p-catalog').css("-webkit-text-stroke", $(this).val()+'px '+textShadowColor)
   	saveStore('textStyle', 'shadow_width', $(this).val())

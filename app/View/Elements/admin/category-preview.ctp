@@ -60,6 +60,18 @@
         </div>
 	      <div class="tab-pane" id="texts" role="tabpanel">
 	        <div class="control-group">
+	          <label class="control-label" for="font_family"><?php echo __('Tipografía del texto'); ?></label>
+	          <div class="controls">
+	            <select class="form-control" id="font_family" name="data[text_style][font_family]" data-change="1">
+	            	<option value="">Selecciona una fuente</option>
+	            <?php foreach($families as $font):?>
+	            	<option value="<?=$font?>"<?= @$category['Category']['text_style']->font_family == $font ? ' selected' : '' ?>><?=$font?></option>	
+	            <?php endforeach?>
+	            </select>
+	          </div>
+	          <small class="text-muted">Seleccioná una fuente para activar tu texto</small>
+	        </div>
+	        <div class="control-group">
 	          <label class="control-label" for="font_size">Tamaño del texto (<i class="preview-font_size"><?=$category['Category']['text_style']->font_size??'9'?></i>&nbsp;px)</label>
 	          <div class="controls">
 	      			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" data-change="1" step="1" min="8" max="92" value="<?=$category['Category']['text_style']->font_size??'9'?>">
@@ -72,18 +84,6 @@
 	          	<input type="range" class="form-control" id="font_weight" name="data[text_style][font_weight]" data-change="1" step="100" min="300" max="1000" value="<?=$category['Category']['text_style']->font_weight?>">
 	          </div>
 	          <small class="text-muted">Selecciona un peso para el texto</small>
-	        </div>
-	        <div class="control-group">
-	          <label class="control-label" for="font_family"><?php echo __('Tipografía del texto'); ?></label>
-	          <div class="controls">
-	            <select class="form-control" id="font_family" name="data[text_style][font_family]" data-change="1">
-	            	<option value="">Selecciona una fuente</option>
-	            <?php foreach($families as $font):?>
-	            	<option value="<?=$font?>"<?= @$category['Category']['text_style']->font_family == $font ? ' selected' : '' ?>><?=$font?></option>	
-	            <?php endforeach?>
-	            </select>
-	          </div>
-	          <small class="text-muted">Seleccioná una fuente para activar tu texto</small>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Ubicación'); ?></label>

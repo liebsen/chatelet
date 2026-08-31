@@ -2000,7 +2000,19 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    			'conditions' => array('category_id' => $this->request->pass[1]),
 	    			'order' => ['CategorySize.code ASC']
 	    		));	
-	    		$families = ['Rubik', 'Montserrat', 'DM Sans', 'Nunito', 'Poppins', 'DynaPuff'];
+	    		$families = [
+	    			'DynaPuff', 
+	    			'Shantell Sans', 
+	    			'Playpen Sans',
+	    			'Comic Relief', 
+	    			'Montserrat', 
+	    			'DM Sans', 
+	    			'Nunito', 
+	    			'Poppins', 
+	    			'Itim', 
+	    			'Patrick Hand', 
+	    			'Indie Flower'
+	    		];
 	    		$navs = array();
     			$navs[$category['Category']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
