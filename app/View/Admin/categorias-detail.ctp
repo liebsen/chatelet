@@ -6,7 +6,6 @@
   echo $this->element('admin/menu');
 ?>
 
-
 <div class="block-section">
   <div class="block-tabs">
     <!--div class="block-title">
@@ -78,7 +77,6 @@
             <div class="form-box bg-info-outline<?=empty($category['Category']['id']) ? ' d-disable' : ''?>">
               <h4 class="sub-header"><?=__('Imágenes')?></h4>
               <p><?=__('Carga tus imágenes para esta categoría')?></p>
-
               <div class="control-group">
                 <label class="control-label" for=""><?=__('Imagen principal')?></label>
                 <?php if(!empty($category['Category']['img_url'])):?>
@@ -148,9 +146,7 @@
         <div class="form-actions">
           <a href="/admin/categorias" class="btn btn-info preview-toggle"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
           <button type="reset" class="btn btn-danger preview-toggle" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
-         <?php if(!empty($category['Category']['id'])):?>
-          <button type="button" class="btn btn-warning btn-preview" title="Previsualizar categoría"><i class="gi gi-font"></i> <span class="ml-1">Diseñar</span></button>
-         <?php endif ?>
+          <button type="button" class="btn btn-warning btn-preview<?=empty($category['Category']['id'])?'  d-none':''?>" title="Previsualizar categoría"><i class="gi gi-font"></i> <span class="ml-1">Diseñar</span></button>
           <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
         </div>
       </form>

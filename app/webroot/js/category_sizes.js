@@ -98,6 +98,6 @@ $(document).ready(function() {
 		loadFont($('select[name="data[text_style][font_family]"]').val())
 	}
   if(window.location.hash.includes('preview')){
-    $('.btn-preview').trigger('click')
+    $('.btn-preview').first().trigger('click')
   }	
 })

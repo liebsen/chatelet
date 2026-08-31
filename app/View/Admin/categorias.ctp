@@ -78,7 +78,7 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 							</a>
 						</td>
 						<td>
-							<a href="#preview">
+							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id'],'#' => 'preview'))?>">
 								<span><?=\word_limit($category['Category']['text'])?></span>
 							</a>
 						</td>
