@@ -142,7 +142,7 @@
             </div>
           </div>                
         </div>      
-                       
+
         <div class="form-actions">
           <a href="/admin/categorias" class="btn btn-info preview-toggle"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
           <button type="reset" class="btn btn-danger preview-toggle" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>

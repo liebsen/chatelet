@@ -3,10 +3,10 @@
   <div class="shop-preview posnum-<?=$category['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>" style="background-image: url(<?= $settings['upload_url'].$category['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
   	<span class="texts-block <?=$category['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$category['Category']['text_style']->color ?? 'white'?>">
   		<span class="name-catalog text-uppercase <?=$category['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$category['Category']['name']?></span>
-  		<span class="p-catalog" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;paint-order: stroke fill;font-synthesis: none;"><?=$category['Category']['text']?></span>
+  		<span class="p-catalog" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
   	</span>
     <div class="shop-preview-tb d-flex flex-column flex-center">
-      <label class="control-label" for="show_text"><?php echo __('Mostrar Texto'); ?></label>
+      <label class="control-label" for="show_text"><span class="text-white text-selected"><?php echo __('Activar Texto')?></span></label>
       <div class="form-group">
         <input type="checkbox" name="data[show_text]" value="1" id="show_text" class="toggle-checkbox toggle-block" data-block=".texts-block" data-class="d-none"<?=$category['Category']['show_text'] == '1' ? ' checked' : '' ?>>
         <label for="show_text" class="toggle-label"></label>
@@ -44,7 +44,7 @@
       <div class="tab-content" id="toolbox">
         <div class="tab-pane active" id="content" role="tabpanel">
           <div class="control-group">
-            <label class="control-label" for="show_name"><?php echo __('Mostrar Título'); ?></label>
+            <label class="control-label" for="show_name"><?php echo __('Activar Título'); ?></label>
             <div class="form-group">
               <input type="checkbox" name="data[show_name]" value="1" id="show_name" class="toggle-checkbox toggle-block" data-block=".name-catalog" data-class="d-none"<?= $category['Category']['show_name'] == '1' ? ' checked' : '' ?>>
               <label for="show_name" class="toggle-label"></label>
@@ -83,7 +83,7 @@
 	            <?php endforeach?>
 	            </select>
 	          </div>
-	          <small class="text-muted">Seleccioná una fuente para mostrar tu texto</small>
+	          <small class="text-muted">Seleccioná una fuente para activar tu texto</small>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Ubicación'); ?></label>

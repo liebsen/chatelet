@@ -68,7 +68,7 @@
             </div>
             <br />
             <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Mostrar Descuento? (0 o vacio para ignorar)'); ?></label>
+              <label class="control-label" for="columns-text"><?php echo __('Activar Descuento? (0 o vacio para ignorar)'); ?></label>
               <small>Este descuento no se mostrará actualizado hasta ejecutar el boton "Sincronizar Descuentos"</small>
               <div class="controls">
                 <input type="text" class="form-control" id="" name="discount_label" value="<?php echo (isset($prod)) ? $prod['Product']['discount_label'] : ''; ?>">

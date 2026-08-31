@@ -2349,6 +2349,13 @@ a.text-black:focus {
   color: #000;
 }
 
+.text-selected {
+	color: white;
+	-webkit-text-stroke: 2px #888;
+	paint-order: stroke fill;
+	font-synthesis: none;		
+}
+
 /* Added !important to these bootstrap classes */
 .text-left {
   text-align: left !important;
@@ -3495,6 +3502,7 @@ background-color: #45a049; /* Darker green on hover */
 	bottom: 1rem;
 	right: 1rem;
 }
+
 .name-catalog {
   text-shadow: 0 0 3px #00000008;
   font-size: 1.5rem;
@@ -3505,6 +3513,8 @@ background-color: #45a049; /* Darker green on hover */
 .p-catalog {
 	display: block!important;
 	white-space: break-spaces;
+	paint-order: stroke fill;
+	font-synthesis: none;	
 }
 
 .position-relative {
@@ -3512,11 +3522,11 @@ background-color: #45a049; /* Darker green on hover */
 }
 
 .position-absolute {
-position: absolute;
-left: 0;
-top: 0;
-right: 0;
-bottom: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
 }
 
 /* Popover */

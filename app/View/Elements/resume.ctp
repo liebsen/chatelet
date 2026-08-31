@@ -47,7 +47,7 @@ $read_payment_method = $payment_method == 'bank' ? 'transferencia' : $payment_me
 			echo '</div>';
 			echo '</div>';	
 				if($hidden && count($sorted) === $i + 1) {
-					echo '<button class="btn btn-chatelet btn-list-showall">Mostrar todos ('.count($sorted).')</button>';
+					echo '<button class="btn btn-chatelet btn-list-showall">Activar todos ('.count($sorted).')</button>';
 				}
 				$i++;
 	

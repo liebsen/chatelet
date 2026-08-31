@@ -143,7 +143,7 @@ echo $this->element('admin/menu');
 
 			
 			<div style="display:inline;">
-				<label class="" for="show_shop">Mostrar Shop </label>
+				<label class="" for="show_shop">Activar Shop </label>
 				<input type="checkbox" class="input-themed" id="show_shop" name="show_shop" value="<?php echo @$show_shop ?>" <?php echo (!empty($show_shop))?'checked':''; ?>/>
 			</div>
 			

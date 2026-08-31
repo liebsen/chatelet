@@ -312,13 +312,13 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="display_popup_form"><?php echo __('Mostrar formulario en popup'); ?></label>
+							<label class="control-label" for="display_popup_form"><?php echo __('Activar formulario en popup'); ?></label>
 							<div class="controls">
 								<input type="checkbox" name="display_popup_form" id="display_popup_form" class="form-control" <?=(!empty($p['Home']['display_popup_form']))?'checked':''?>>
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="display_popup_form_in_last"><?php echo __('Mostrar formulario en ultimo popup solamente'); ?></label>
+							<label class="control-label" for="display_popup_form_in_last"><?php echo __('Activar formulario en ultimo popup solamente'); ?></label>
 							<div class="controls">
 								<input type="checkbox" name="display_popup_form_in_last" id="display_popup_form_in_last" class="form-control" <?=(!empty($p['Home']['display_popup_form_in_last']))?'checked':''?>>
 							</div>
