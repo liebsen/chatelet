@@ -2002,16 +2002,27 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		));	
 	    		$families = [
 	    			'DynaPuff', 
+	    			'Montserrat', 
+	    			'Basic', 
+	    			'Fira Sans', 
+	    			'Antonio', 
+	    			'Grandstander', 
+	    			'DM Sans', 
+	    			'Jura', 
+	    			'Arizonia', 
 	    			'Shantell Sans', 
 	    			'Playpen Sans',
 	    			'Comic Relief', 
-	    			'Montserrat', 
-	    			'DM Sans', 
+	    			'Kablammo', 
+	    			'Supermercado One', 
+	    			'National Park', 
+	    			'Varela Round', 
 	    			'Nunito', 
 	    			'Poppins', 
-	    			'Itim', 
-	    			'Patrick Hand', 
-	    			'Indie Flower'
+	    			'Fredoka', 
+	    			#'Itim', 
+	    			#'Patrick Hand', 
+	    			#'Indie Flower'
 	    		];
 	    		$navs = array();
     			$navs[$category['Category']['name']] = array(
