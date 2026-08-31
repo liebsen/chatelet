@@ -57,8 +57,6 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 						<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
 						<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
 						<th class="text-center hidden-phone"><?php echo __('Texto'); ?></th>        
-						<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
-						<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
 						<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 						<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
 						<th class="text-center hidden-phone"><?php echo __('%OFF Tarjeta'); ?></th>        
@@ -82,30 +80,6 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 								<span><?=\word_limit($category['Category']['text'])?></span>
 							</a>
 						</td>
-						<td>
-							<?php if(empty(@$category['Category']['colsize'])) echo '<span class="text-muted">Auto</span>' ?>
-							<?php if(@$category['Category']['colsize'] == '20') echo '20%' ?>
-							<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
-							<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
-							<?php if(@$category['Category']['colsize'] == '40') echo '40%' ?>
-							<?php if(@$category['Category']['colsize'] == '6') echo '50%' ?>
-							<?php if(@$category['Category']['colsize'] == '60') echo '60%' ?>
-							<?php if(@$category['Category']['colsize'] == '80') echo '80%' ?>
-							<?php if(@$category['Category']['colsize'] == '12') echo '100%' ?>
-						</td>
-						<td>
-							<?php if(empty(@$category['Category']['posnum'])) echo '<span class="text-muted">Auto</span>' ?>
-							<?php if(@$category['Category']['posnum'] == '1') echo '<span class="text-muted">Auto</span>' ?>
-							<?php if(@$category['Category']['posnum'] == '2') echo 'Arriba' ?>
-							<?php if(@$category['Category']['posnum'] == '3') echo 'Abajo' ?>
-						</td>
-						<td>          
-							<?php
-								if(!empty($category['Category']['img_url'])){
-									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
-								}
-							?>
-						</td> 
 						<td>          
 							<?php
 								if(!empty($category['Category']['size'])){
