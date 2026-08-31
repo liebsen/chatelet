@@ -2342,7 +2342,6 @@ a.text-white:focus {
   color: #fff!important;
 }
 
-
 .text-black,
 a.text-black:hover,
 a.text-black:focus {
@@ -2351,7 +2350,8 @@ a.text-black:focus {
 
 .text-selected {
 	color: white;
-	-webkit-text-stroke: 2px #888;
+	font-weight: 1000;
+	text-shadow: 0 0 3px #3339;
 	paint-order: stroke fill;
 	font-synthesis: none;		
 }
@@ -3504,6 +3504,7 @@ background-color: #45a049; /* Darker green on hover */
 }
 
 .name-catalog {
+	cursor: pointer;
   text-shadow: 0 0 3px #00000008;
   font-size: 1.5rem;
   line-height: 1;
@@ -3511,6 +3512,7 @@ background-color: #45a049; /* Darker green on hover */
 }
 
 .p-catalog {
+	cursor: pointer;
 	display: block!important;
 	white-space: break-spaces;
 	paint-order: stroke fill;

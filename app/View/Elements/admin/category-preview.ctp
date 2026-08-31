@@ -60,7 +60,7 @@
         </div>
 	      <div class="tab-pane" id="texts" role="tabpanel">
 	        <div class="control-group">
-	          <label class="control-label" for="font_family"><?php echo __('Tipografía del texto'); ?></label>
+	          <label class="control-label" for="font_family"><?php echo __('Tipografía'); ?></label>
 	          <div class="controls">
 	            <select class="form-control" id="font_family" name="data[text_style][font_family]" data-change="1">
 	            	<option value="">Selecciona una fuente</option>
@@ -72,14 +72,14 @@
 	          <small class="text-muted">Seleccioná una fuente para activar tu texto</small>
 	        </div>
 	        <div class="control-group">
-	          <label class="control-label" for="font_size">Tamaño del texto (<i class="preview-font_size"><?=$category['Category']['text_style']->font_size??'9'?></i>&nbsp;px)</label>
+	          <label class="control-label" for="font_size">Tamaño (<i class="preview-font_size"><?=$category['Category']['text_style']->font_size??'9'?></i>&nbsp;px)</label>
 	          <div class="controls">
 	      			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" data-change="1" step="1" min="8" max="92" value="<?=$category['Category']['text_style']->font_size??'9'?>">
 	          </div>
 	          <small class="text-muted">Selecciona tamaño de descripción de categoría</small>
 	        </div>
 	        <div class="control-group">
-	          <label class="control-label" for="font_weight">Peso del texto (<i class="preview-font_weight"><?=$category['Category']['text_style']->font_weight??'300'?></i>)</label>
+	          <label class="control-label" for="font_weight">Peso (<i class="preview-font_weight"><?=$category['Category']['text_style']->font_weight??'300'?></i>)</label>
 	          <div class="controls">
 	          	<input type="range" class="form-control" id="font_weight" name="data[text_style][font_weight]" data-change="1" step="100" min="300" max="1000" value="<?=$category['Category']['text_style']->font_weight?>">
 	          </div>
@@ -145,8 +145,6 @@
 	          </div>
 	          <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
 	        </div>
-
-
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
 	          <div class="controls">

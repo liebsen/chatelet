@@ -109,6 +109,9 @@ $(document).ready(function() {
 		})
 		$('.shop-preview').addClass('alignnum-'+$(this).val())
   })
+  $('.p-catalog').click(function(e){
+  	$('a[href="#texts"]').first().trigger('click')
+  })
   $('.btn-create-size').click(function(e){
 		e.preventDefault()
 		var element = $('.sizes-create-area').append($('.size-create-item').html())

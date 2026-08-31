@@ -919,6 +919,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .text-catalog {
+	cursor: pointer;
   text-shadow: 0 0 3px #00000008;
   font-size: 1.5rem;
   line-height: 1;
@@ -926,6 +927,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .p-catalog {
+	cursor: pointer;
 	display: block!important;
 	white-space: break-spaces;
 	paint-order: stroke fill;
