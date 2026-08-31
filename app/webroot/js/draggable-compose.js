@@ -90,8 +90,9 @@
       let currIndex = Array.from(tbody.children).indexOf(currRow)
       row1 = currIndex > index ? currRow : row
       row2 = currIndex > index ? row : currRow;
+      console.log('row1, row2', row1, row2)
       tbody.insertBefore(row1, row2);
-    }, 250)
+    }, 100)
   }
     
   function moveRow(x, y) {

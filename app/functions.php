@@ -70,7 +70,7 @@ function read_file($file, $lines) {
 
 function word_limit($str, $at=4) {
   if(!strlen(trim($str))) {
-    return 'Sin nombre';
+    return '&mdash;';
   }
   $parts = array_filter(array_values(explode(' ', trim($str))));
   if(count($parts) <= $at) {

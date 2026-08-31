@@ -60,7 +60,7 @@
         </div>
 	      <div class="tab-pane" id="texts" role="tabpanel">
 	        <div class="control-group">
-	          <label class="control-label" for="font_size">Tamaño del texto (<i class="preview-font_size"><?=$category['Category']['text_style']->font_size??'9'?></i> px)</label>
+	          <label class="control-label" for="font_size">Tamaño del texto (<i class="preview-font_size"><?=$category['Category']['text_style']->font_size??'9'?></i>&nbsp;px)</label>
 	          <div class="controls">
 	      			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" data-change="1" step="1" min="8" max="92" value="<?=$category['Category']['text_style']->font_size??'9'?>">
 	          </div>

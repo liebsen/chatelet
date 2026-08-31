@@ -56,12 +56,13 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 					<tr>
 						<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
 						<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
+						<th class="text-center hidden-phone"><?php echo __('Texto'); ?></th>        
 						<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
 						<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
 						<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 						<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
-						<th class="text-center hidden-phone"><?php echo __('Descuento Tarjeta'); ?></th>        
-						<th class="text-center hidden-phone"><?php echo __('Descuento Banco'); ?></th>
+						<th class="text-center hidden-phone"><?php echo __('%OFF Tarjeta'); ?></th>        
+						<th class="text-center hidden-phone"><?php echo __('%OFF Banco'); ?></th>
 						<th class="span1 text-center"><i class="gi gi-flash"></i></th>
 					</tr>
 				</thead>
@@ -74,6 +75,11 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 						<td>
 							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
 								<span><?=$category['Category']['name']?></span>
+							</a>
+						</td>
+						<td>
+							<a href="#preview">
+								<span><?=\word_limit($category['Category']['text'])?></span>
 							</a>
 						</td>
 						<td>
@@ -98,7 +104,7 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 								if(!empty($category['Category']['img_url'])){
 									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
 								}
-							?>     
+							?>
 						</td> 
 						<td>          
 							<?php
@@ -204,9 +210,3 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
   <button class="toggle-selection enableselection btn btn-success d-none" type="button"><i class="fa fa-check"></i> <span class="ml-1">Activar</span></button>
   <a href="/admin/categorias/add" class="btn btn-success" type="button"><i class="fa fa-magic"></i> <span class="ml-1">Crear</span></a>
 </div>
-
-<style type="text/css">
-	.category-actions {
-		transform: translateY(100rem);
-	}
-</style>

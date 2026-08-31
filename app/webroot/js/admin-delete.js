@@ -26,12 +26,11 @@ $(document).ready(function() {
   //$('#example-datatables2').DataTable();
   $('#usuarios-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 10 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
   $('#sucursales-datatables').DataTable({"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6 ] } ] , "language": {"url": "/json/datatables-locale-es.json"}});
-
   $('#categorias-datatables').DataTable({
     "ordering": true,
     "language": {
       "url": "/json/datatables-locale-es.json"
-    }
+    },
   });
 
   $('#prods-datatables').DataTable({

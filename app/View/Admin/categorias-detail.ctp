@@ -39,73 +39,8 @@
 	            </div>
 	          </div>
 	          <hr>
-            <div class="form-box bg-info-outline">
-              <h4 class="sub-header"><?=__('Talles')?></h4>
-              <p><?=__('Indica talle original y su conversión correspondiente (ej: 7 => S)')?></p>            
-            <?php foreach($sizes as $s => $size):?>
-              <div class="control-group flex-nowrap flex-row gap-05">
-                <select class="form-control" disabled>
-                	<option value="" selected><?=sprintf('%03d', $size['CategorySize']['code'])?></option>
-              	</select>
-                <input type="text" class="form-control" value="<?=$size['CategorySize']['name']?>" disabled>
-                <button class="btn btn-delete-size btn-danger form-control flex-1" data-id="<?=$size['CategorySize']['id']?>"><i class="fa fa-trash-o"></i></button>
-             	</div>
-            <?php endforeach ?>
-              <div class="size-create-item">
-              	<div class="control-group flex-nowrap flex-row gap-05">
-	                <select class="form-control" name="sizes[code][]" data-change="1">
-	                	<option value="">Código de talle</option>
-	                <?php for($i=7; $i<21; $i++):?>
-	                	<option value="<?=$i?>"><?=sprintf('%03d', $i)?></option>
-	                <?php endfor?>
-	              	</select>
-	                <input type="text" class="form-control" name="sizes[name][]" placeholder="Nombre talle" value="" data-change="1">
-	                <button class="btn btn-remove-size btn-danger form-control flex-1"><i class="fa fa-trash-o"></i></button>
-	              </div>
-             	</div>            
-	            <div class="sizes-create-area"></div>
-	            <button class="btn btn-success btn-create-size"><i class="gi gi-circle_plus"></i></button>
-            </div>
 
 
-            <div class="form-box bg-info-outline<?=empty($category['Category']['id']) ? ' d-disable' : ''?>">
-              <h4 class="sub-header"><?=__('Imágenes')?></h4>
-              <p><?=__('Carga tus imágenes para esta categoría')?></p>
-              <div class="control-group">
-                <label class="control-label" for=""><?=__('Imagen principal')?></label>
-                <?php if(!empty($category['Category']['img_url'])):?>
-                  
-                  <img src="<?php echo $settings['upload_url'].$category['Category']['img_url']?>" width="300">
-                <?php endif ?>
-                <div class="controls">
-                  <input  class="form-control" type="file" class="attached" name="image">
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for=""><?=__('Banner')?></label>
-                <?php if(!empty($category['Category']['banner_url'])):?>
-                  <img src="<?php echo $settings['upload_url'].$category['Category']['banner_url']?>" width="300">
-                <?php endif ?>
-                <div class="controls">
-                  <input class="form-control" type="file" class="attached" name="banner">
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
-                <?php if(!empty($category['Category']['size'])):?>
-                  
-                  <img src="<?php echo $settings['upload_url'].$category['Category']['size']?>" width="300">
-                <?php endif ?>
-                <div class="controls">
-                  <input  class="form-control" type="file" class="attached" name="size">
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-md-6"> 
             <div class="form-box bg-info-outline">
               <h4 class="sub-header"><?=__('Descuentos')?></h4>
               <p><?=__('Establece descuentos')?></p>    
@@ -140,6 +75,73 @@
 	              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Transferencia si hubiera.</small>
 	            </div>
 	          </div>
+            <div class="form-box bg-info-outline<?=empty($category['Category']['id']) ? ' d-disable' : ''?>">
+              <h4 class="sub-header"><?=__('Imágenes')?></h4>
+              <p><?=__('Carga tus imágenes para esta categoría')?></p>
+
+              <div class="control-group">
+                <label class="control-label" for=""><?=__('Imagen principal')?></label>
+                <?php if(!empty($category['Category']['img_url'])):?>
+                  <a href="javascript:void(0)" class="<?=empty($category['Category']['id'])?'':'btn-preview'?>">
+                  	<img class="img-rounded" src="<?php echo $settings['upload_url'].$category['Category']['img_url']?>" width="300">
+                	</a>
+                <?php endif ?>
+                <div class="controls">
+                  <input  class="form-control" type="file" class="attached" name="image">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for=""><?=__('Banner')?></label>
+                <?php if(!empty($category['Category']['banner_url'])):?>
+                  <img src="<?php echo $settings['upload_url'].$category['Category']['banner_url']?>" width="300">
+                <?php endif ?>
+                <div class="controls">
+                  <input class="form-control" type="file" class="attached" name="banner">
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
+                <?php if(!empty($category['Category']['size'])):?>
+                  
+                  <img src="<?php echo $settings['upload_url'].$category['Category']['size']?>" width="300">
+                <?php endif ?>
+                <div class="controls">
+                  <input  class="form-control" type="file" class="attached" name="size">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-box bg-info-outline">
+              <h4 class="sub-header"><?=__('Talles')?></h4>
+              <p><?=__('Indica talle original y su conversión correspondiente (ej: 7 => S)')?></p>            
+            <?php foreach($sizes as $s => $size):?>
+              <div class="control-group flex-nowrap flex-row gap-05">
+                <select class="form-control" disabled>
+                	<option value="" selected><?=sprintf('%03d', $size['CategorySize']['code'])?></option>
+              	</select>
+                <input type="text" class="form-control" value="<?=$size['CategorySize']['name']?>" disabled>
+                <button class="btn btn-delete-size btn-danger form-control flex-1" data-id="<?=$size['CategorySize']['id']?>"><i class="fa fa-trash-o"></i></button>
+             	</div>
+            <?php endforeach ?>
+              <div class="size-create-item">
+              	<div class="control-group flex-nowrap flex-row gap-05">
+	                <select class="form-control" name="sizes[code][]" data-change="1">
+	                	<option value="">Código de talle</option>
+	                <?php for($i=7; $i<21; $i++):?>
+	                	<option value="<?=$i?>"><?=sprintf('%03d', $i)?></option>
+	                <?php endfor?>
+	              	</select>
+	                <input type="text" class="form-control" name="sizes[name][]" placeholder="Nombre talle" value="" data-change="1">
+	                <button class="btn btn-remove-size btn-danger form-control flex-1"><i class="fa fa-trash-o"></i></button>
+	              </div>
+             	</div>            
+	            <div class="sizes-create-area"></div>
+	            <button class="btn btn-success btn-create-size"><i class="gi gi-circle_plus"></i></button>
+            </div>
           </div>                
         </div>      
                        
