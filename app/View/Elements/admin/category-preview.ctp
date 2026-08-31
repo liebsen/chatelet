@@ -105,7 +105,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="font_color"><?php echo __('Color Texto'); ?></label>
 					  <div class="controls">
-					  	<input type="color" id="font_color" name="data[text_style][color]" data-change="1" value="<?= @$category['Category']['text_style']->color ?? '#fff' ?>">
+					  	<input type="color" id="font_color" name="data[text_style][color]" data-change="1" value="<?= @$category['Category']['text_style']->color ?? '#ffffff' ?>">
 					  </div>
 	          <small class="text-muted">Seleccioná color de texto para esta categoría. <span class="text-info is-clickable" onclick="$('#font_color').val('')">Resetear</span></small>
 					</div>
@@ -157,7 +157,7 @@
 	        <div class="control-group">
 	          <label class="control-label" for="ribbon_color"><?php echo __('Color Burbuja'); ?></label>
 	          <div class="controls">
-	            <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?=@$category['Category']['ribbon_color']??'#333' ?>">
+	            <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?=@$category['Category']['ribbon_color']??'#333333' ?>">
 	          </div>
 	          <small class="text-muted">Seleccioná color de burbuja para los productos de esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
 	        </div>
@@ -173,7 +173,7 @@
 					<div class="control-group">
 					  <label class="control-label" for="shadow_color"><?php echo __('Color sombra'); ?></label>
 					  <div class="controls">
-					  	<input type="color" id="shadow_color" name="data[text_style][shadow_color]" data-change="1" value="<?= @$category['Category']['text_style']->shadow_color ?? '#000' ?>">
+					  	<input type="color" id="shadow_color" name="data[text_style][shadow_color]" data-change="1" value="<?= @$category['Category']['text_style']->shadow_color ?? '#000000' ?>">
 					  </div>
 	          <small class="text-muted">Seleccioná color de sombra para el texto. <span class="text-info is-clickable" onclick="$('#shadow_color').val('')">Resetear</span></small>
 					</div>
