@@ -1,11 +1,11 @@
-<?php echo $this->Html->script('admin-delete', array('inline' => false));
-echo $this->element('admin/menu');
-echo $this->Html->css('draggable-table', array('inline' => false));
-echo $this->Html->script('draggable-table', array('inline' => false));
-echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
-echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
-echo $this->Html->script('admin-categories.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inline' => false)); 
+<?php $this->Html->script('admin-delete', array('block' => 'script'));
+$this->element('admin/menu');
+$this->Html->css('draggable-table', array('block' => 'css'));
+$this->Html->script('draggable-table', array('block' => 'script'));
+$this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
+$this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
+$this->Html->script('admin-categories.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 'script')); 
 ?>
 
 <!-- discount-layer -->
@@ -80,6 +80,13 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 								<span><?=\word_limit($category['Category']['text'])?></span>
 							</a>
 						</td>
+						<td>          
+							<?php
+								if(!empty($category['Category']['img_url'])){
+									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
+								}
+							?>     
+						</td> 
 						<td>          
 							<?php
 								if(!empty($category['Category']['size'])){

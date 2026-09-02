@@ -1999,7 +1999,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$sizes = $this->CategorySize->find('all', array(
 	    			'conditions' => array('category_id' => $this->request->pass[1]),
 	    			'order' => ['CategorySize.code ASC']
-	    		));	
+	    		));
+
 	    		$families = [
 	    			'DynaPuff', 
 	    			'Montserrat', 

@@ -1,17 +1,26 @@
 <?php
-  echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+  $this->Html->script('ckeditor/ckeditor', array('block' => 'script'));
   #echo $this->Html->script('category', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->Html->script('category_sizes.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->element('admin/menu');
+  $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->Html->script('vendor/sweetalert.min', array('block' => 'script'));
+  $this->Html->css('sweetalert', array('block' => 'css'));
+  $this->Html->script('category_sizes.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->element('admin/menu');
+  $styles = array_map(fn($item) => array(
+		'name' => $item['Category']['name'], 
+		'style' => json_decode($item['Category']['text_style']))
+	, $parents);
 ?>
-
+<script type="text/javascript">
+	const styles = <?=json_encode(array_values(array_filter(array_map(fn($item) => $item['style'] ? $item : null, $styles))))?>;
+</script>
 <div class="block-section">
   <div class="block-tabs">
     <!--div class="block-title">
       <h4><?php 
         echo (isset($category)) ? __('Editar Categoria') : __('Agregar Categoria');
-      ?></h4>
+      ?></h4>	
     </div-->
     <div class="tab-content">
       <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">

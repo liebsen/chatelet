@@ -4,6 +4,7 @@ let focusAnim = 'pulse'
 let clock = 0
 let fakeshown = 0 
 let growlTimeout = 15000
+let loadedFonts = []
 const log = false
 
 function getStore(key){
@@ -22,11 +23,13 @@ function saveStore(key, prop, value){
 }
 
 function loadFont(font){
+	if(loadedFonts[font]) return false
 	const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
 	var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
   link.href = filename;
+  loadedFonts.push(font)
   document.getElementsByTagName('head')[0].appendChild(link);
 }
 

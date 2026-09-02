@@ -108,6 +108,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .nav-tabs {
     background-color: #111!important;
   }
+  .cat-preview.fs,
   .navbar.navbar-inverse {
     background: linear-gradient(45deg, purple, orange)!important;
   }
@@ -662,7 +663,6 @@ background-color: #e8ffa8!important;
   }
 
   #toggle-sidebar {
-  	background-color: var(--theme-color);
     height: calc(100dvh - 83px)!important;
     display: block!important;
     padding-bottom: 2rem;
@@ -2352,10 +2352,12 @@ a.text-black:focus {
 	color: white;
 	font-weight: 1000;
 	text-shadow: 0 0 3px #3339;
-	paint-order: stroke fill;
-	font-synthesis: none;		
 }
 
+.text-stroke {
+	paint-order: stroke fill;
+	font-synthesis: none;	
+}
 /* Added !important to these bootstrap classes */
 .text-left {
   text-align: left !important;
@@ -3036,8 +3038,25 @@ background-color: #fff;
 
 /* Carousel */
 .carousel {
-  border: 3px solid var(--theme-color);
-  margin-bottom: 15px;
+	border-radius: 1rem;
+	background-color: #e7e7e7;
+	min-height: 20rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.carousel-control {
+  opacity: 1;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.carousel-indicators {
+	bottom: 0;
 }
 
 /* Tooltip */
@@ -3512,11 +3531,10 @@ background-color: #45a049; /* Darker green on hover */
 }
 
 .p-catalog {
+	position: relative;
 	cursor: pointer;
 	display: block!important;
 	white-space: break-spaces;
-	paint-order: stroke fill;
-	font-synthesis: none;	
 }
 
 .position-relative {

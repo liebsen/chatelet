@@ -1,12 +1,12 @@
 
 <div class="d-flex cat-preview preview-toggle d-none gap-1">
   <div class="shop-preview posnum-<?=$category['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>" style="background-image: url(<?= $settings['upload_url'].$category['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
-  	<span class="texts-block <?=$category['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$category['Category']['text_style']->color ?? 'white'?>">
+  	<div class="texts-block animation-both animation-fadeIn  <?=$category['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$category['Category']['text_style']->color ?? 'white'?>">
   		<span class="name-catalog text-uppercase <?=$category['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$category['Category']['name']?></span>
-  		<span class="p-catalog" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
-  	</span>
+  		<span class="p-catalog text-stroke trigger-style" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
+  	</div>
     <div class="shop-preview-tb d-flex flex-column flex-center">
-      <label class="control-label" for="show_text"><span class="text-white text-selected"><?php echo __('Activar Texto')?></span></label>
+      <label class="control-label" for="show_text"><span class="text-white text-stroke text-selected"><?php echo __('Activar Texto')?></span></label>
       <div class="form-group">
         <input type="checkbox" name="data[show_text]" value="1" id="show_text" class="toggle-checkbox toggle-block" data-block=".texts-block" data-class="d-none"<?=$category['Category']['show_text'] == '1' ? ' checked' : '' ?>>
         <label for="show_text" class="toggle-label"></label>

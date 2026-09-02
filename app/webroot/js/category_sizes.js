@@ -10,10 +10,28 @@ function category_sizes_update(data) {
 	}
 }
 
+const camelToSnake = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).replace(/^_/, ''); 
+
+
 $(document).on('click', '.btn-remove-size', function(e) {
 	e.preventDefault()
 	const target = $(e.target).hasClass('btn-remove-size') ? $(e.target) : $(e.target).parent()
 	$(target).parent().remove()
+})
+
+$(document).on('click','.style-option',function(e){
+	const target = $(this).find('.text-stroke').first()
+	const styleObject = target.prop('style');
+	const attrs = ['color','fontSize','fontWeight','webkitTextStrokeColor','webkitTextStrokeWidth']
+	for(var i in attrs) {
+		const camel = attrs[i]
+		const val = styleObject[camel]
+		var snake = camelToSnake(camel)
+		snake = snake.split('webkit_text_stroke').join('shadow')
+		$(':input[name="data[text_style]['+snake+']"]').val(val).trigger('change')
+	}
+	$('.p-catalog').prop('style', target.attr('style'))
+	swal.close()
 })
 
 $(document).on('click','.btn-delete-size',function(e){
@@ -43,6 +61,38 @@ function blinkTarget(){
 	setTimeout(function(){
 		target.addClass('animation-fadeIn')	
 	}, 5000)
+}
+
+function showStyleSelector(){
+	var html = '<div id="style_carousel" class="carousel animation-both animation-fadeIn slide"><div class="carousel-inner" role="listbox">'
+	for(var i in styles) {
+		const item = styles[i]
+		loadFont(item.style.font_family)
+		html+= '<a href="#" class="item '+(i==0?'active':'')+' style-option"><span class="text-stroke" style="color:'+(item.style.color||'#ffffff')+';font-size:'+(item.style.font_size||'9')+'px;font-weight:'+(item.style.font_weight||'300')+';font-family:'+(item.style.font_family||'inherit')+';-webkit-text-stroke:'+(item.style.shadow_width||'0')+'px '+(item.style.shadow_color||'transparent')+'">'+item.name+'</span></a>'
+	}
+	html+= '</div>'
+	if(styles.length > 1) {
+		html+= '<ol class="carousel-indicators">'
+		for(var i in styles) {
+			html+= '<li data-target="#style_carousel" data-slide-to="'+i+'" class="'+(i==0?'active':'')+'"></li>'
+		}
+		html+= '</ol>'
+	}
+
+	if(styles.length){
+		html+= '<a class="left carousel-control is-transparent" href="#style_carousel" role="button" data-slide="prev"><span class="arrow arrow-left" aria-hidden="true"><i class="hi hi-chevron-left"></i></span><span class="sr-only">Previous</span></a>'
+		html+= '<a class="right carousel-control is-transparent" href="#style_carousel" role="button" data-slide="next"><span class="arrow arrow-right" aria-hidden="true"><i class="hi hi-chevron-right"></i></span><span class="sr-only">Next</span></a>'
+	}
+
+	html+= '</div>'
+	swal({
+		title: null,
+		text: html,
+		html: true,
+		showConfirmButton: false,
+	})
+
+	$('#style_carousel').carousel()  	
 }
 
 $(document).ready(function() {
@@ -111,7 +161,9 @@ $(document).ready(function() {
   })
   $('.p-catalog').click(function(e){
   	$('a[href="#texts"]').first().trigger('click')
+  	showStyleSelector()
   })
+
   $('.btn-create-size').click(function(e){
 		e.preventDefault()
 		var element = $('.sizes-create-area').append($('.size-create-item').html())
