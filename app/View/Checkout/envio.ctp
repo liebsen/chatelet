@@ -6,11 +6,11 @@ $this->set('short_header', 'Checkout');
 $this->set('short_header_text', '<i class="gi gi-shopping_cart mr-1"></i> Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
-echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));	
-echo $this->Html->script('envio.js?v=' . $version['ver'], array('inline' => false));
-// echo $this->Html->script('shipping-validation.js?v=' . $version['ver'], array('inline' => false));
+$this->Html->css('checkout.css?v=' . $version['ver'], array('block' => 'css'));
+$this->Html->script('bootstrap-datepicker', array('block' => 'script'));
+$this->Html->script('cart.js?v=' . $version['ver'], array('block' => 'script'));	
+$this->Html->script('envio.js?v=' . $version['ver'], array('block' => 'script'));
+// $this->Html->script('shipping-validation.js?v=' . $version['ver'], array('block' => 'script'));
 echo $this->element('checkout-params');
 ?>
 

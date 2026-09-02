@@ -1,8 +1,8 @@
 <?php
+$this->Html->css('draggable-compose.css?v=' . $version['ver'], array('block' => 'css'));
+$this->Html->script('draggable-compose.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->script('shop-compose.js?v=' . $version['ver'], array('block' => 'script'));
 echo $this->element('admin/menu');
-echo $this->Html->css('draggable-compose.css?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('draggable-compose.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('shop-compose.js?v=' . $version['ver'], array('inline' => false));
 ?>
 
 <div class="block-section">

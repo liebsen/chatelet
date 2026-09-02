@@ -1,12 +1,12 @@
 <?php 
-echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
-echo $this->Html->script('image_prodshop', array('inline' => false)); 
-echo $this->Html->script('admin-delete', array('inline' => false)); 
-echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->css('draggable-table', array('inline' => false));
-echo $this->Html->script('draggable-table', array('inline' => false));
-echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
-echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
+$this->Html->script('handlebars-v2.0.0',array('block' => 'script'));
+$this->Html->script('image_prodshop', array('block' => 'script')); 
+$this->Html->script('admin-delete', array('block' => 'script')); 
+$this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->css('draggable-table', array('block' => 'css'));
+$this->Html->script('draggable-table', array('block' => 'script'));
+$this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
+$this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
 echo $this->element('admin/menu');
 ?>
 

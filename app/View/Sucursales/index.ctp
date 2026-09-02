@@ -1,7 +1,7 @@
 <?php
     echo $this->Session->flash();
-    echo $this->Html->css('sucursales', array('inline' => false));
-    echo $this->Html->script('sucursales', array('inline' => false));
+    $this->Html->css('sucursales', array('block' => 'css'));
+    $this->Html->script('sucursales', array('block' => 'script'));
 ?>
 
   <section class="wrapper-fluid map animation-fadeIn animation-both delay">
@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-xs-12 col-md-9">
-      <div id="map-canvas" class="sucursales"  data-url="<?php echo $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
+      <div id="map-canvas" class="sucursales"  data-url="<?php $this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
     </div>
   </section>
 

@@ -1,16 +1,16 @@
 <?php
-
-echo $this->Html->script('formValidation.min', array('inline' => false));
-// echo $this->Html->script('vendor/validation/jquery.validate.min', array('inline' => false));
-// echo $this->Html->script('bootstrapValidator', array('inline' => false));
-// echo $this->Html->script('particular-validation', array('inline' => false));
-echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-echo $this->Html->css('bootstrapValidator.min');
-echo $this->Html->css('bootstrap-datepicker');
-
 $this->set('short_header', $loggedIn ? 'Actualizar mi cuenta' : 'Registrarme');
 $this->set('short_header_text', '<i class="gi gi-woman mr-1"></i> Volver a mi cuenta');
 $this->set('short_header_link', '/shop/cuenta');
+
+$this->Html->script('formValidation.min', array('block' => 'script'));
+// $this->Html->script('vendor/validation/jquery.validate.min', array('block' => 'script'));
+// $this->Html->script('bootstrapValidator', array('block' => 'script'));
+// $this->Html->script('particular-validation', array('block' => 'script'));
+$this->Html->script('bootstrap-datepicker', array('block' => 'script'));
+$this->Html->css('bootstrapValidator.min', array('block' => 'css'));
+$this->Html->css('bootstrap-datepicker', array('block' => 'css'));
+
 
 if (!$loggedIn) {
 $userData = array(

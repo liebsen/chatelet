@@ -1,8 +1,8 @@
 <?php
 	echo $this->Session->flash();
-	echo $this->Html->css('carrito.css?v=' . $version['ver'], array('inline' => false));
-	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));
-	echo $this->Html->script('carrito.js?v=' . $version['ver'], array('inline' => false));
+	$this->Html->css('carrito.css?v=' . $version['ver'], array('block' => 'css'));
+	$this->Html->script('cart.js?v=' . $version['ver'], array('block' => 'script'));
+	$this->Html->script('carrito.js?v=' . $version['ver'], array('block' => 'script'));
 	echo $this->element('checkout-modal');
 	$payment_methods = [
 		'bank' => 'transferencia',
@@ -99,7 +99,7 @@
 							//echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animation-fadeIn delay" title="Eliminar del carrito">';
 								//echo '<span class="glyphicon glyphicon-remove"></span>';
 
-						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
+						/*$this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
 							array(
 								'controller' => 'carrito',
 								'action' => 'remove',

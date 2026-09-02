@@ -1,8 +1,8 @@
 <?php
-	echo $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->Html->script('relations.js?v=' . $version['ver'], array('inline' => false));
-	echo $this->Html->script('templates-edit.js?v=' . $version['ver'], array('inline' => false));
+	$this->Html->script('ckeditor/ckeditor.js', array('block' => 'script'));
+  $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->Html->script('relations.js?v=' . $version['ver'], array('block' => 'script'));
+	$this->Html->script('templates-edit.js?v=' . $version['ver'], array('block' => 'script'));
 ?>
 
 <?php echo $this->Form->create(null,

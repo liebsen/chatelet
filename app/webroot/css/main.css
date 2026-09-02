@@ -2263,11 +2263,11 @@ pre, code {
   font-size: 3rem;
   border-radius: 2rem!important;
   background-color: rgba(250,250,250,0.75);
-  padding: 1rem;
+  padding: 1.5rem;
   position: relative;
   transition: all 0.5s ease-in-out;
   box-shadow: 0 0 3px rgba(50,50,50,0.1);
-  min-width: 10rem;
+  width: 12rem;
 }
 
 .list-group-hero > a > li:hover {
@@ -3117,6 +3117,7 @@ background-color: #fff;
 
 .form-control {
 	flex: 1;
+	margin-bottom: 0;
   font-size: 14px;
   height: 40px;
 }

@@ -1,8 +1,8 @@
-<?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
-<?php echo $this->Html->css('/css/admin-sales.css?v=' . $version['ver'], array('inline' => false));?>
-<?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
-<?php echo $this->Html->script('admin-delete.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('admin-sales.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));?>
+<?php $this->Html->css('/css/admin-sales.css?v=' . $version['ver'], array('block' => 'css'));?>
+<?php $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));?>
+<?php $this->Html->script('admin-delete.js?v=' . $version['ver'], array('block' => 'script')); ?>
+<?php $this->Html->script('admin-sales.js?v=' . $version['ver'], array('block' => 'script')); ?>
 
 <!-- bank layer -->
 

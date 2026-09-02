@@ -1,6 +1,6 @@
 <?php 
-	echo $this->Html->script('admin-delete', array('inline' => false));
-	echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));	
+	$this->Html->script('admin-delete', array('block' => 'script'));
+	$this->Html->script('custom-tabs.js?v=' . $version['ver'], array('block' => 'script'));	
 ?>
 	<div class="block">
 		<div class="block-content">

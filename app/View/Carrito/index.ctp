@@ -5,8 +5,8 @@
 	$this->set('short_header_link', '/shop');
 
 	echo $this->Session->flash();
-	echo $this->Html->css('carrito.css?v=' . $version['ver'], array('inline' => false));
-	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));
+	$this->Html->css('carrito.css?v=' . $version['ver'], array('block' => 'css'));
+	$this->Html->script('cart.js?v=' . $version['ver'], array('block' => 'script'));
 	echo $this->element('checkout-params');
 	// echo $this->element('checkout-modal');
 	$payment_methods = [
@@ -42,7 +42,7 @@
 							<?php $disable = !isset($product['promo_enabled']) ? ' disable' : '' ?>
 							<div class='ribbon".$disable."'><span><?php echo $product['promo'] ?></span></div>
 						<?php endif ?>
-			        <a href="<?php echo $this->Html->url(array(
+			        <a href="<?php $this->Html->url(array(
 			          'controller' => 'shop',
 			          'action' => 'detalle',
 			          $product['id'],

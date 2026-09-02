@@ -1,6 +1,6 @@
 <?php
 	echo $this->Session->flash();
-  echo $this->Html->script('mis_compras.js?v=' . $version['ver'], array('inline' => false));
+  $this->Html->script('mis_compras.js?v=' . $version['ver'], array('block' => 'script'));
 ?>
     <?php echo $this->element('navbar-ayuda'); ?>
 

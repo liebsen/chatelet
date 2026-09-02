@@ -1,7 +1,7 @@
-<?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('admin-index.js?v=' . $version['ver'], array('inline'=>false)) ?>
-<?php // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
+<?php $this->Html->script('handlebars-v2.0.0',array('block' => 'script')) ?>
+<?php $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('block' => 'script')); ?>
+<?php $this->Html->script('admin-index.js?v=' . $version['ver'], array('block' => 'script')) ?>
+<?php // $this->Html->script('ckeditor/ckeditor.js', array('block' => 'script'));?>
 
 <div class="block">
 	<div class="block-content">
@@ -46,7 +46,7 @@
 					  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>
 						<div class="control-group">
 							<div class="controls">
-								<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-progress=".progress_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+								<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-progress=".progress_newsletter" data-url="<?php $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 								Imagen. Tamaño recomendado 1920x1080 o 720x1600
 								<input type="hidden" name="data[img_popup_newsletter]" value="<?php echo $p['Home']['img_popup_newsletter'] ?>" />
 							</div>
@@ -77,7 +77,7 @@
 							<progress class="progress_slider hide w-100" value="50" max="100">0%</progress>
 							<div class="control-group">
 							<div class="controls">
-								<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-progress=".progress_slider" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>Imagen y video. Tamaño recomendado 1920x1080 o 720x1600
+								<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-progress=".progress_slider" data-url="<?php $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>Imagen y video. Tamaño recomendado 1920x1080 o 720x1600
 								<input type="hidden" name="data[img_url]" value="<?php echo $p['Home']['img_url'] ?>" />
 							</div>
 						</div>		        

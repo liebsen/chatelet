@@ -1,8 +1,8 @@
 <?php 
 	echo $this->element('admin/menu');
-	echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
-	echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
-	echo $this->Html->script('admin-delete', array('inline' => false));
+	$this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
+	$this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
+	$this->Html->script('admin-delete', array('block' => 'script'));
 ?>
 <div class="block-section table-responsive">
 	<table id="contacto-datatables" class="table table-bordered table-hover"  width="100%">

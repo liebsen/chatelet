@@ -1,15 +1,15 @@
 <?php
-  echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-  echo $this->Html->css('productos-detail', array('inline' => false));
-  //echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
+  $this->Html->script('ckeditor/ckeditor', array('block' => 'script'));
+  $this->Html->css('productos-detail', array('block' => 'css'));
+  //echo $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script')); 
   if($this->request->params['pass'][0]=="add"){
-    echo $this->Html->script('productos-detail-add', array('inline' => false));
+    $this->Html->script('productos-detail-add', array('block' => 'script'));
   } else {
-    echo $this->Html->script('productos-detail', array('inline' => false));
+    $this->Html->script('productos-detail', array('block' => 'script'));
   }  
   /* ColorPicker */
-  echo $this->Html->css('colorpicker', array('inline' => false));
-  echo $this->Html->script('colorpicker', array('inline' => false));
+  $this->Html->css('colorpicker', array('block' => 'css'));
+  $this->Html->script('colorpicker', array('block' => 'script'));
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block-section">

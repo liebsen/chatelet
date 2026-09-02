@@ -1,6 +1,6 @@
-<?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
-<?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
-<?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
+<?php $this->Html->script('admin-delete', array('block' => 'script')); ?>
+<?php $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));?>
+<?php $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));?>
 <?php echo $this->element('admin/menu'); ?>
 <div class="block-section table-responsive">
 	<table id="usuarios-datatables" class="table table-bordered table-hover">

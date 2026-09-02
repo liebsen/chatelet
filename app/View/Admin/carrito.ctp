@@ -1,7 +1,7 @@
 <?php
-  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->script('admin-carrito', array('inline' => false));
+  $this->Html->script('bootstrap-datepicker', array('block' => 'script'));
+  $this->Html->css('bootstrap-datepicker', array('block' => 'script'));
+  $this->Html->script('admin-carrito', array('block' => 'script'));
   echo $this->element('admin/menu'); 
 ?>
 <div class="block-section">

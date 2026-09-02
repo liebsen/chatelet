@@ -1,10 +1,10 @@
 <?php
-  // echo $this->Html->css('cupones-detail', array('inline' => false));
-  echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->script('cupones-detail', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
-  $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
+  // $this->Html->css('cupones-detail', array('block' => 'script'));
+  $this->Html->css('bootstrap-datepicker', array('block' => 'css'));
+  $this->Html->script('bootstrap-datepicker', array('block' => 'script'));
+  $this->Html->script('cupones-detail', array('block' => 'script'));
+  $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('block' => 'script'));
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block">

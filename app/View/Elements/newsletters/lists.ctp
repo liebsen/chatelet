@@ -1,7 +1,7 @@
-<?php // echo $this->Html->script('newsletters-lists', array('inline' => false)); ?>
-<?php echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));?>
-<?php echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));?>
-<?php echo $this->Html->script('admin-delete', array('inline' => false)); ?>
+<?php // $this->Html->script('newsletters-lists', array('block' => 'script')); ?>
+<?php $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));?>
+<?php $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));?>
+<?php $this->Html->script('admin-delete', array('block' => 'script')); ?>
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php if(empty($lists)):?>

@@ -1,6 +1,4 @@
-<?php 
-	echo $this->Html->script('coupon.js?v=' . $version['ver'], array('inline' => false));
-?>
+<?php $this->Html->script('coupon.js?v=' . $version['ver'], array('block' => 'script'));?>
  	<div class="calc-coupon' d-flex flex-column justify-content-center align-items-start">
  			<h5>¿Tenés un cupón de descuento?</h5>
  			<div class="d-flex justify-content-center align-items-center gap-05 w-100">

@@ -1,8 +1,8 @@
-<?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('jquery.growl.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->css('jquery.growl.css?v=' . $version['ver']) ?>
+<?php $this->Html->script('handlebars-v2.0.0',array('block' => 'script')) ?>
+<?php $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('block' => 'script')); ?>
+<?php $this->Html->script('jquery.growl.js?v=' . $version['ver'], array('block' => 'script')); ?>
+<?php $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script')); ?>
+<?php $this->Html->css('jquery.growl.css?v=' . $version['ver'], array('block' => 'css')) ?>
 	
 	<div class="block">
 		<div class="block-content">

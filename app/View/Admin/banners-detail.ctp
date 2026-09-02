@@ -1,6 +1,6 @@
 <?php
-echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
+$this->Html->script('ckeditor/ckeditor', array('block' => 'script'));
+$this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
 echo $this->element('admin/menu');
 ?>
 <div class="block-section">
