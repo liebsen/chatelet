@@ -525,7 +525,6 @@ background-color: #e8ffa8!important;
   text-transform: uppercase;
   position: relative;
   text-decoration: none;
-  transition: all 0.25s ease-in;
   @media(min-width: 992px) {
   	padding-left: 0.75rem;
   }
@@ -3993,8 +3992,8 @@ a.thumbnail-borderless,
       flex: 1;
       border: 1px solid #337ab7;
       border-radius: 1rem;
-      min-width: 5rem;
-      min-height: 5rem;
+      min-width: 6rem;
+      min-height: 6rem;
   }
   #primary-nav > ul > li > a {
       flex-direction: column;
