@@ -111,7 +111,7 @@
                         </a>
                     </li>
                 </ul-->
-                <h3 class="text-center text-white mt-0">ADMINISTRADOR</h3>
+                <!--h3 class="text-center text-white mt-0">ADMINISTRADOR</h3-->
                 <p class="notification text-white">Ingresa tus credenciales para continuar</p>
                 <div class="tab-content is-rounded bg-translucid">
                     <div class="tab-pane pane-index active" id="login-form-tab">
@@ -239,7 +239,7 @@
 .login-btn {
   z-index: 1000;
   position: absolute;
-  top: 250px;
+  top: calc(50dvh - 5.35rem);
   left: 50%;
   display: flex;
   justify-content: center;
