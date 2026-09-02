@@ -31,6 +31,7 @@ $(document).on('click','.style-option',function(e){
 		$(':input[name="data[text_style]['+snake+']"]').val(val).trigger('change')
 	}
 	$('.p-catalog').prop('style', target.attr('style'))
+	$('button[type="submit"]').prop('disabled', false)
 	swal.close()
 })
 
@@ -68,7 +69,7 @@ function showStyleSelector(){
 	for(var i in styles) {
 		const item = styles[i]
 		loadFont(item.style.font_family)
-		html+= '<a href="#" class="item '+(i==0?'active':'')+' style-option"><span class="text-stroke" style="color:'+(item.style.color||'#ffffff')+';font-size:'+(item.style.font_size||'9')+'px;font-weight:'+(item.style.font_weight||'300')+';font-family:'+(item.style.font_family||'inherit')+';-webkit-text-stroke:'+(item.style.shadow_width||'0')+'px '+(item.style.shadow_color||'transparent')+'">'+item.name+'</span></a>'
+		html+= '<a href="#" class="item'+(i==0?' active':'')+' style-option"><span class="text-stroke" style="color:'+(item.style.color||'#ffffff')+';font-size:'+(item.style.font_size||'9')+'px;font-weight:'+(item.style.font_weight||'300')+';font-family:'+(item.style.font_family||'inherit')+';-webkit-text-stroke:'+(item.style.shadow_width||'0')+'px '+(item.style.shadow_color||'transparent')+'">'+item.name+'</span></a>'
 	}
 	html+= '</div>'
 	if(styles.length > 1) {

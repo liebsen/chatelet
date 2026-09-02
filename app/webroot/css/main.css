@@ -2246,7 +2246,6 @@ pre, code {
 =================================================================
 */
 
-
 .list-group-hero {
   display: flex;
   align-items: center;
@@ -3057,7 +3056,13 @@ background-color: #fff;
 }
 
 .carousel-indicators {
-	bottom: 0;
+	bottom: 10px;
+	width: auto;
+	margin: auto;
+	left: auto;	
+	background-color: #fff6;
+	border-radius: 1rem;
+	padding: 0.25rem 0.75rem;
 }
 
 /* Tooltip */
@@ -3536,6 +3541,11 @@ background-color: #45a049; /* Darker green on hover */
 	cursor: pointer;
 	display: block!important;
 	white-space: break-spaces;
+}
+
+.style-option {
+	text-decoration: none;
+	transform: scale(0.5);
 }
 
 .position-relative {
