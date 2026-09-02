@@ -1,5 +1,16 @@
 <?php
 
+function unique_by_value(array $array, string $key): array {
+  $unique = [];
+  foreach ($array as $item) {
+      // Use the value of $key as the new index
+      $index = $item[$key];
+      // Use '??' to keep the first occurrence (if you want the last, use direct assignment)
+      $unique[$index] = $unique[$index] ?? $item;
+  }
+  return array_values($unique); // Re-index to 0, 1, 2...
+}
+
 function render_google_article_schema($headline, $author_name, $date_published, $image_url) {
   $schema = [
     '@context' => 'https://schema.org',

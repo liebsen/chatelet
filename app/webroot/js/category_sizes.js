@@ -12,7 +12,6 @@ function category_sizes_update(data) {
 
 const camelToSnake = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`).replace(/^_/, ''); 
 
-
 $(document).on('click', '.btn-remove-size', function(e) {
 	e.preventDefault()
 	const target = $(e.target).hasClass('btn-remove-size') ? $(e.target) : $(e.target).parent()

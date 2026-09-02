@@ -13,7 +13,13 @@
 	, $parents);
 ?>
 <script type="text/javascript">
-	const styles = <?=json_encode(array_values(array_filter(array_map(fn($item) => $item['style'] ? $item : null, $styles))))?>;
+	const styles = <?=json_encode(
+		array_values(
+			array_filter(
+				array_map(fn($item) => $item['style'] ? $item : null, $styles)
+			)
+		)
+	)?>;
 </script>
 <div class="block-section">
   <div class="block-tabs">
