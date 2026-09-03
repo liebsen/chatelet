@@ -130,30 +130,34 @@
           <div class="col-md-6">
             <div class="form-box bg-info-outline">
               <h4 class="sub-header"><?=__('Talles')?></h4>
-              <p><?=__('Indica talle original y su conversión correspondiente (ej: 7 => S)')?></p>            
-            <?php foreach($sizes as $s => $size):?>
-              <div class="control-group flex-nowrap flex-row gap-05">
-                <select class="form-control" disabled>
-                	<option value="" selected><?=sprintf('%03d', $size['CategorySize']['code'])?></option>
-              	</select>
-                <input type="text" class="form-control" value="<?=$size['CategorySize']['name']?>" disabled>
-                <button class="btn btn-delete-size btn-danger form-control flex-1" data-id="<?=$size['CategorySize']['id']?>"><i class="fa fa-trash-o"></i></button>
-             	</div>
-            <?php endforeach ?>
-              <div class="size-create-item">
-              	<div class="control-group flex-nowrap flex-row gap-05">
-	                <select class="form-control" name="sizes[code][]" data-change="1">
-	                	<option value="">Código de talle</option>
-	                <?php for($i=7; $i<21; $i++):?>
-	                	<option value="<?=$i?>"><?=sprintf('%03d', $i)?></option>
-	                <?php endfor?>
+              <p><?=__('Indica talle original y su conversión correspondiente (ej: 7 => S)')?></p>
+              <div class="d-flex flex-column gap-05">
+	            <?php foreach($sizes as $s => $size):?>
+	              <div class="control-group d-flex flex-nowrap flex-row gap-05">
+	                <select class="form-control" disabled>
+	                	<option value="" selected><?=sprintf('%03d', $size['CategorySize']['code'])?></option>
 	              	</select>
-	                <input type="text" class="form-control" name="sizes[name][]" placeholder="Nombre talle" value="" data-change="1">
-	                <button class="btn btn-remove-size btn-danger form-control flex-1"><i class="fa fa-trash-o"></i></button>
-	              </div>
-             	</div>            
-	            <div class="sizes-create-area"></div>
-	            <button class="btn btn-success btn-create-size"><i class="gi gi-circle_plus"></i></button>
+	                <input type="text" class="form-control" value="<?=$size['CategorySize']['name']?>" disabled>
+	                <button class="btn btn-delete-size btn-danger form-control flex-1" data-id="<?=$size['CategorySize']['id']?>"><i class="fa fa-trash-o"></i></button>
+	             	</div>
+	            <?php endforeach ?>
+	              <div class="size-create-item d-flex flex-column gap-05">
+	              	<div class="control-group d-flex flex-nowrap flex-row gap-05">
+		                <select class="form-control" name="sizes[code][]" data-change="1">
+		                	<option value="">Código de talle</option>
+		                <?php for($i=7; $i<21; $i++):?>
+		                	<option value="<?=$i?>"><?=sprintf('%03d', $i)?></option>
+		                <?php endfor?>
+		              	</select>
+		                <input type="text" class="form-control" name="sizes[name][]" placeholder="Nombre talle" value="" data-change="1">
+		                <button class="btn btn-remove-size btn-danger form-control flex-1"><i class="fa fa-trash-o"></i></button>
+		              </div>
+	             	</div>          
+	            	<div class="sizes-create-area d-flex flex-column gap-05"></div>
+	            </div>
+	            <div class="pt-2">
+	            	<button class="btn btn-success btn-create-size"><i class="gi gi-circle_plus"></i></button>
+	            </div>
             </div>
           </div>                
         </div>      
