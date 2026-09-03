@@ -8,7 +8,7 @@
   $this->Html->script('category_sizes.js?v=' . $version['ver'], array('block' => 'script'));
   $this->element('admin/menu');
   $styles = array_map(fn($item) => array(
-		'name' => $item['Category']['name'], 
+		'text' => $item['Category']['text'], 
 		'style' => json_decode($item['Category']['text_style']))
 	, $parents);
 ?>
@@ -16,7 +16,7 @@
 	const styles = <?=json_encode(
 		array_values(
 			array_filter(
-				array_map(fn($item) => $item['style'] ? $item : null, $styles)
+				array_map(fn($item) => $item['text'] && $item['style'] ? $item : null, $styles)
 			)
 		)
 	)?>;

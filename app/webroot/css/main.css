@@ -2355,6 +2355,7 @@ a.text-black:focus {
 .text-stroke {
 	paint-order: stroke fill;
 	font-synthesis: none;	
+	white-space: break-spaces;
 }
 /* Added !important to these bootstrap classes */
 .text-left {
