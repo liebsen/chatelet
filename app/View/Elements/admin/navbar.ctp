@@ -102,7 +102,7 @@
         $body_classes .= ' ' . $template['side_content'];
     }
 
-    $body_classes .= 'show-sidebar';
+    //$body_classes .= 'show-sidebar';
     ?>
     <body<?php if ($body_classes) { echo ' class="' . $body_classes . '"'; } ?>>
 

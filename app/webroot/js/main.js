@@ -314,12 +314,12 @@ $(function () {
   });
 
   if($(window).width() < 992) {
-    $('#toggle-sidebar').removeClass('in')
-    $('body').removeClass('show-sidebar');
+    //$('#toggle-sidebar').removeClass('in')
+    //$('body').removeClass('show-sidebar');
   } else {
-  	if(localStorage.sidebar == 'false') {
-	    $('#toggle-sidebar').removeClass('in')
-	    $('body').removeClass('show-sidebar');
+  	if(localStorage.sidebar != 'false') {
+	    $('#toggle-sidebar').addClass('in')
+	    $('body').addClass('show-sidebar');
   	}
   }
 

@@ -499,9 +499,9 @@ $(document).ready(function() {
     if (!$('.navbar-toggle').hasClass('collapsed')) {
       $('.navbar-toggle').addClass('collapsed')
     }
-    if ($('.navbar-collapse').hasClass('in')) {
+    /*if ($('.navbar-collapse').hasClass('in')) {
       $('.navbar-collapse').removeClass('in')
-    }
+    }*/
     //window.scrollTo(0,0)
   })
 

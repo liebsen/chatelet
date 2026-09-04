@@ -189,7 +189,7 @@ body {
 #page-content {
   position: relative;
   z-index: 10;
-  transition: 0.5s all 0.25s ease-in;
+  /*transition: 0.5s all 0.25s ease-in;*/
 }
 
 #page-content + footer {
@@ -491,12 +491,15 @@ background-color: #e8ffa8!important;
 /* Primary Menu */
 
 #toggle-sidebar.navbar-collapse {
-  padding: 0 !important;
+  padding: 0!important;
   border-top: none;
   overflow-y: scroll!important;
-  transition: 0.5s all 0.25s ease-in;
+  /*transition: 0.5s all 0.25s ease-in;*/
+  transition: none!important;
   opacity: 0;
+  left: -30rem;
   &.in {
+  	left: 0;
   	opacity: 1;
   }
 }
@@ -666,10 +669,9 @@ background-color: #e8ffa8!important;
     display: block!important;
     padding-bottom: 2rem;
     position: absolute;
-    z-index: 10;
     left: 0;
     top: 83px;
-    transition: 0.5s all 0.25s ease-in;
+    /*transition: 0.5s all 0.25s ease-in;*/
   }
 
   .side-scrollable {
@@ -679,9 +681,11 @@ background-color: #e8ffa8!important;
   }
   
   body.show-sidebar #page-content {
-  	transition: 0.5s all 0.15s ease-in;
-    /* border-left: 1px solid #333;*/
+  	/*transition: 0.5s all 0.15s ease-in;*/
+  	transition: none!important;
+    /* border-left: 1px solid #333;
     margin: 0 0 0 220px;
+    */
   }
 
   #page-content > div:not(.toolnav-right):not(.form-actions),
@@ -3907,9 +3911,9 @@ a.thumbnail-borderless,
 
   /* Hide Side Content */
 
-	#toggle-sidebar.navbar-collapse:not(.in) {
+	/*#toggle-sidebar.navbar-collapse:not(.in) {
 		left: -30rem;
-	}
+	}*/
 
   /*.show-sidebar #pre-page-content,*/
 
