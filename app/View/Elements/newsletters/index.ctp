@@ -12,7 +12,7 @@
 				</h1>
 				<h5><?= $name ?></h5>
 <?php if(!empty($nav['text'])):?>
-<i class="badge fa fa-question-circle is-clickable ml-1" data-text="<?=$nav['text']?>"> </i>
+<i class="help fa fa-question-circle is-clickable ml-1" data-text="<?=$nav['text']?>"> </i>
 <?php endif ?>
 			</li>
 		</a>
