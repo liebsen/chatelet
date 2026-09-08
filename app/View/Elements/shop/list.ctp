@@ -1,13 +1,4 @@
-<script type="text/javascript">
-	function loadFont(font){
-		const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
-		var link = document.createElement('link');
-	  link.rel = 'stylesheet';
-	  link.type = 'text/css';
-	  link.href = filename;
-	  document.getElementsByTagName('head')[0].appendChild(link);
-	}
-</script>
+
     <div class="wrapper-fluid">
       <div class="row m-0">
         <div class="col-xs-12">

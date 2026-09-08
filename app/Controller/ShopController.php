@@ -679,9 +679,9 @@ class ShopController extends AppController {
 
 			//rsort($products);
 
-			if(!empty($category['Category']['text_style'])) {
-	    	$temp = @json_decode($category['Category']['text_style']);
-	    	$category['Category']['text_style'] = $temp;
+			if(!empty($category['text_style'])) {
+	    	$temp = @json_decode($category['text_style']);
+	    	$category['text_style'] = $temp;
 			}
 
       $this->set('category',$category);

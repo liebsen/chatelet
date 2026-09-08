@@ -918,6 +918,12 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   line-height: 1;
 }
 
+.text-stroke {
+	paint-order: stroke fill;
+	font-synthesis: none;	
+	white-space: break-spaces;
+}
+
 .text-catalog {
 	cursor: pointer;
   text-shadow: 0 0 3px #00000008;

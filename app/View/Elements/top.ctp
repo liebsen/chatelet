@@ -50,11 +50,19 @@
       echo $this->Html->css('custom.css?v=' . $version['ver']);
       // echo $this->Html->css('animate.css?v=' . $version['ver']);
       echo $this->Html->css('plugins.css?v=' . $version['ver']);
-
-
       echo $this->fetch('meta');
       echo $this->fetch('css');
     ?>
+  	<script type="text/javascript">
+			function loadFont(font){
+				const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
+				var link = document.createElement('link');
+			  link.rel = 'stylesheet';
+			  link.type = 'text/css';
+			  link.href = filename;
+			  document.getElementsByTagName('head')[0].appendChild(link);
+			}    		
+  	</script>
   </head>
   <body class="noscroll p-0">
     <?php if($settings['env_staging']) : ?>

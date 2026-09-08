@@ -49,8 +49,21 @@ function updateSrcTo(obj){
 }
 </style>
 <?php if(!empty($category['banner_url'])): ?>
+	<?php if(!empty($category['text_style']->font_family)):?>
+<script type="text/javascript">loadFont('<?=$category['text_style']->font_family?>');</script>
+<?php endif ?>
 <div id="headabrigos">
-  <div class="img-resp is-main" style="background-image:url(<?php echo $settings['upload_url'].$category['banner_url'] ?>)">
+  <div class="img-resp is-main posnum-<?=$category['posnum'] ?? 'auto' ?>" style="background-image:url(<?php echo $settings['upload_url'].$category['banner_url'] ?>)">
+      <div class="category-image alignnum-<?=$category['alignnum'] ?? '0' ?> p-3 w-100">  
+      	<?php if($category['show_text'] == '1'):?>
+        <span class="p-1 text-catalog" style="color: <?=$category['text_style']->color ?? 'white'?>">
+        	<?php if($category['show_name'] == '1'):?>
+          <span class="text-uppercase"><?=$category['name']?></span>
+          <?php endif ?>
+          <span class="p-1 p-catalog text-stroke" style="font-size: <?=$category['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['text_style']->font_weight ?? '300'?>;font-family: <?=$category['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['text_style']->shadow_width ?? '0'?>px <?=$category['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['text']?></span>
+        </span>
+      	<?php endif ?>
+      </div>  	
     <!--h1 class="name_shop delay2 animation-pullUp animation-both"><?php echo $category['name']; ?></h1-->
   </div>  
 </div>
@@ -94,7 +107,7 @@ function updateSrcTo(obj){
       } 
     } else {
       foreach ($categories as $category) {
-        echo $this->App->tile($category['Category'], $settings);
+        echo $this->App->tile($category, $settings);
       }
     }
   ?>
@@ -104,7 +117,7 @@ function updateSrcTo(obj){
                     <ul>
                         <?php
                             foreach ($categories as $category) {
-                                $category = $category['Category'];
+                                $category = $category;
                                 $slug =  str_replace(' ',
                                 '-',strtolower($category['name']));
                         if (strpos($slug, 'trajes')!==false){
