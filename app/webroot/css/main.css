@@ -165,7 +165,7 @@ body {
 }
 
 .primary-search {
-  padding: 1.5rem;
+  padding: 1rem;
 	margin: 0;
 	padding-bottom: 0;  
 }
@@ -189,7 +189,7 @@ body {
 #page-content {
   position: relative;
   z-index: 10;
-  /*transition: 0.5s all 0.25s ease-in;*/
+  transition: 0.5s all 0.25s ease-in;
 }
 
 #page-content + footer {
@@ -494,10 +494,11 @@ background-color: #e8ffa8!important;
   padding: 0!important;
   border-top: none;
   overflow-y: scroll!important;
-  /*transition: 0.5s all 0.25s ease-in;*/
-  transition: none!important;
+  transition: 0.25s all 0.5s ease-in;
+  /*transition: none!important;
+  left: -10rem;*/
   opacity: 0;
-  left: -30rem;
+  
   &.in {
   	left: 0;
   	opacity: 1;
@@ -665,13 +666,14 @@ background-color: #e8ffa8!important;
   }
 
   #toggle-sidebar {
-    height: calc(100dvh - 83px)!important;
-    display: block!important;
-    padding-bottom: 2rem;
     position: absolute;
     left: 0;
     top: 83px;
-    /*transition: 0.5s all 0.25s ease-in;*/
+    height: calc(100dvh - 83px)!important;
+		width: 15rem;
+    display: block!important;
+    padding-bottom: 2rem;
+    transition: all 0.5s ease-in;
   }
 
   .side-scrollable {
@@ -681,8 +683,8 @@ background-color: #e8ffa8!important;
   }
   
   body.show-sidebar #page-content {
-  	/*transition: 0.5s all 0.15s ease-in;*/
-  	transition: none!important;
+  	transition: all 0.25s ease-in;
+  	/*transition: none!important;*/
     /* border-left: 1px solid #333;
     margin: 0 0 0 220px;
     */
@@ -819,13 +821,11 @@ background-color: #e8ffa8!important;
 }
 
 .block-tabs > .nav-tabs {
-
   animation-name: fadeIn;
   animation-fill-mode: both;
-  animation-duration: 1s;
-  animation-delay: 0.5s;
+  animation-duration: 0.5s;
+  animation-delay: 0s;
   animation-timing-function: ease;
-
 	display: flex;
   overflow: auto;
   padding: 0.75rem;
@@ -2283,6 +2283,7 @@ pre, code {
   top: 1rem;
   right: 1rem;
   border-radius: 100%;
+  font-size: 1.5rem;
   background-color: var(--theme-color);
 }
 
@@ -2859,8 +2860,8 @@ header.navbar .navbar-brand {
 .tab-pane:not(#side-tab-menu) {
   max-width: 99%;
   padding: 1rem;
-  animation-delay: 0.5s;
-  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-name: fadeIn;
 }

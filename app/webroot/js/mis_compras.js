@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	let clock = 0
 	var mis_compras = (period, assureContent) => {
 		let days = 1
 		let size = 0 

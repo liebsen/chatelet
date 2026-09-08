@@ -318,7 +318,8 @@ $(function () {
     //$('body').removeClass('show-sidebar');
   } else {
   	if(localStorage.sidebar != 'false') {
-	    $('#toggle-sidebar').addClass('in')
+	    $('#toggle-sidebar').addClass('in remove-transition')
+	    $('#page-content').addClass('remove-transition')
 	    $('body').addClass('show-sidebar');
   	}
   }

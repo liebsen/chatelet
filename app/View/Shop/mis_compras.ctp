@@ -56,19 +56,19 @@
         <?php endif ?>
         <?php foreach($sales as $sale):?>
         <div class="history-items col-xs-12 col-lg-6 is-clickable" onclick="$(this).find('.area-secondary').toggle()">
-          <div class="card p-3 gap-1">
-            <div class="card-body card-area is-bordered">
+          <div class="p-3">
+            <div class="box card-area is-bordered">
               <!--span class="name">REMERA CONICA BELEN</span-->
-              <p>Fecha: 
-                <span class="text-muted text-lowercase">(hace <?= \readable_time_ago($sale['Sale']['created']) ?>)</span>
-                <span class="text-muted timestamp"><?= $sale['Sale']['created'] ?></span><br>
+              <p><span class="text-muted">Fecha: </span>
+                <span class="text-lowercase">(hace <?= \readable_time_ago($sale['Sale']['created']) ?>)</span>
+                <span class="timestamp"><?= $sale['Sale']['created'] ?></span><br>
               </p>
-              <p>Productos: <?= count($sale['Products']) ?></p>
-              <p>Estado: 
+              <p><span class="text-muted">Productos: </span><?= count($sale['Products']) ?></p>
+              <p><span class="text-muted">Estado: </span>
                 <?php if(empty($sale['Sale']['def_mail_sent'])):?>
                   <span class="text-success">Procesando</span>
                 <?php else: ?>
-                  Asignado a <span class="text-muted"><?= $sale['Sale']['def_orden_tracking'] ?></span>
+                  <span class="text-muted">Asignado a </span><span class=""><?= $sale['Sale']['def_orden_tracking'] ?></span>
                 <?php endif; ?>
               </p>
               <div class="area-secondary d-none">
