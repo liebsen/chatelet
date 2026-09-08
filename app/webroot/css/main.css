@@ -757,7 +757,7 @@ background-color: #e8ffa8!important;
 }
 
 .block-content {
-  margin: 0;
+  margin: 15px;
   border-top: none;
 }
 
@@ -3170,11 +3170,6 @@ form .control-label:not(.switch-scale > span > label) {
   background-color: #f9f9f9;
 	border-color: #e7e7e7;
 	box-shadow: 0 2px 2px #00000008;
-}
-
-.form-inline,
-.form-horizontal {
-  margin: 15px;
 }
 
 .form-horizontal.form-bordered .form-group {
