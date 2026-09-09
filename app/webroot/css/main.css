@@ -2287,7 +2287,7 @@ pre, code {
 
 .list-group-hero > a > li > .help {
   position: absolute;
-  bottom: 1rem;
+  top: 1rem;
   left: 1rem;
   border-radius: 100%;
   font-size: 1.5rem;

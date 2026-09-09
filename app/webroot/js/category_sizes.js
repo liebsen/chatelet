@@ -117,6 +117,12 @@ $(document).ready(function() {
   	$('.p-catalog').css({fontWeight: $(this).val()})
   	saveStore('textStyle', 'font_weight', $(this).val())
   })
+  $('input[name="data[text_style][line_height]"]').change(function(){
+  	blinkTarget()
+  	$('.preview-line_height').text($(this).val())
+  	$('.p-catalog').css({lineHeight: $(this).val()})
+  	saveStore('textStyle', 'line_height', $(this).val())
+  })
   $('select[name="data[text_style][font_family]"]').change(function(){
   	blinkTarget()
   	loadFont($(this).val())

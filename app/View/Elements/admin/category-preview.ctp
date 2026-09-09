@@ -3,7 +3,7 @@
   <div class="shop-preview posnum-<?=$category['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>" style="background-image: url(<?= $settings['upload_url'].$category['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
   	<div class="texts-block animation-both animation-fadeIn <?=$category['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$category['Category']['text_style']->color ?? 'white'?>">
   		<span class="name-catalog text-uppercase <?=$category['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$category['Category']['name']?></span>
-  		<span class="p-catalog text-stroke trigger-style" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
+  		<span class="p-catalog text-stroke trigger-style" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: <?=$category['Category']['text_style']->line_height ?? '1'?>; font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
   	</div>
     <div class="shop-preview-tb d-flex flex-column flex-center">
       <label class="control-label" for="show_text"><span class="text-white text-stroke text-selected"><?php echo __('Activar Texto')?></span></label>
@@ -76,7 +76,7 @@
 	          <div class="controls">
 	      			<input type="range" id="font_size" class="form-control" name="data[text_style][font_size]" data-change="1" step="1" min="8" max="92" value="<?=$category['Category']['text_style']->font_size??'9'?>">
 	          </div>
-	          <small class="text-muted">Selecciona tamaño de descripción de categoría</small>
+	          <small class="text-muted">Selecciona tamaño del texto</small>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="font_weight">Peso (<i class="preview-font_weight"><?=$category['Category']['text_style']->font_weight??'300'?></i>)</label>
@@ -84,6 +84,13 @@
 	          	<input type="range" class="form-control" id="font_weight" name="data[text_style][font_weight]" data-change="1" step="100" min="300" max="1000" value="<?=$category['Category']['text_style']->font_weight?>">
 	          </div>
 	          <small class="text-muted">Selecciona un peso para el texto</small>
+	        </div>
+	        <div class="control-group">
+	          <label class="control-label" for="font_size">Línea (<i class="preview-line_height"><?=$category['Category']['text_style']->line_height??'1'?></i>&nbsp;pt)</label>
+	          <div class="controls">
+	      			<input type="range" id="line_height" class="form-control" name="data[text_style][line_height]" data-change="1" step="0.5" min="0" max="2" value="<?=$category['Category']['text_style']->line_height??'1'?>">
+	          </div>
+	          <small class="text-muted">Selecciona altura de línea del texto</small>
 	        </div>
 	        <div class="control-group">
 	          <label class="control-label" for="columns-text"><?php echo __('Ubicación'); ?></label>
