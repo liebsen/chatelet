@@ -259,7 +259,7 @@
             <div class="control-group">
               <label class="control-label" for=""></label>
               <div class="controls">
-                <input type="file" class="form-control attached" name="image">
+                <input type="file" class="form-control" name="image">
               </div>
             </div>
             <br />

@@ -100,7 +100,7 @@
                 	</a>
                 <?php endif ?>
                 <div class="controls">
-                  <input class="form-control" type="file" class="attached" name="image">
+                  <input class="form-control" type="file" name="image">
                 </div>
               </div>
 
@@ -110,7 +110,7 @@
                   <img src="<?php echo $settings['upload_url'].$category['Category']['banner_url']?>" width="300">
                 <?php endif ?>
                 <div class="controls">
-                  <input class="form-control" type="file" class="attached" name="banner">
+                  <input class="form-control" type="file" name="banner">
                 </div>
               </div>
 
@@ -121,7 +121,7 @@
                   <img src="<?php echo $settings['upload_url'].$category['Category']['size']?>" width="300">
                 <?php endif ?>
                 <div class="controls">
-                  <input  class="form-control" type="file" class="attached" name="size">
+                  <input  class="form-control" type="file" name="size">
                 </div>
               </div>
             </div>

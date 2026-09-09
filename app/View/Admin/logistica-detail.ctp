@@ -119,7 +119,7 @@
               <br>
             <?php endif ?>
               <div class="controls">
-                <input type="file" class="attached" name="image">
+                <input type="file" class="form-control" name="image">
               </div>
             </div>
             <br>

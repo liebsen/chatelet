@@ -88,7 +88,7 @@
           <div class="control-group">
             <label class="control-label" for="file2">Select multiple files</label>
             <div class="controls">
-              <input type="file" class="attached" name="pictures[]" multiple>
+              <input type="file" class="form-control" name="pictures[]" multiple>
             </div>
           </div>
           <br><br>

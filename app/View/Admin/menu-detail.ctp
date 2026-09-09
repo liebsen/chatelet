@@ -88,7 +88,7 @@
             <!--div class="control-group">
               <label class="control-label" for=""><?=__('Seleccione una imagen de Menu')?></label>
               <div class="controls">
-                <input class="form-control" type="file" class="attached" name="image">
+                <input class="form-control" type="file" name="image">
               </div>
             </div-->
             <br /> 
