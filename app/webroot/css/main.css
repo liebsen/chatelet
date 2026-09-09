@@ -3789,7 +3789,7 @@ a.thumbnail-borderless,
 .form-actions {
   text-align: right;
   position: fixed;
-  bottom: 0;
+  bottom: 0.5rem;
   right: 0.5rem;
   z-index: 9999;
 }
