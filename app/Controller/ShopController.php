@@ -418,7 +418,6 @@ class ShopController extends AppController {
 					$record['article_id'] = $article_id;
 					$record['cod_articulo'] = $row['cod_articulo'];
 					$record['stock'] = (int)$row['cantidad'];
-
 					$success = $this->StockCount->save($record);
 					if (!$success){
 						echo "\r\nFailed to save";

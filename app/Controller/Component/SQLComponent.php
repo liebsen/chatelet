@@ -2,7 +2,6 @@
 App::uses('Component', 'Controller');
 class SQLComponent extends Component {
 	private $conn;
-
 	public function __construct() {
 		//$myServer = "181.164.35.14";
 		$myServer = "181.98.11.110";
@@ -102,6 +101,7 @@ class SQLComponent extends Component {
 	}
 
 	public function general_stock(){
+		var_dump("-----general_stock(1)----");
 		try {
 			echo "\r\nstock:query init;";
 			$stmt = $this->conn->prepare("EXEC pa_stock_todos;");

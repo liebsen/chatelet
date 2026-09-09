@@ -31,7 +31,7 @@ $(document).ready(function() {
     $('[type="submit"]').prop('disabled', false)
     if($(elem).attr('type') == 'file') {
       const matches = $(elem).attr('name').match(/\[(.*?)\]/)
-      if(matches[1]) {
+      if(matches && matches[1]) {
         const tempUrl = URL.createObjectURL(elem.files[0])
         $(`#${matches[1]}`).attr('src', tempUrl);
       }

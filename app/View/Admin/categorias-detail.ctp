@@ -100,7 +100,7 @@
                 	</a>
                 <?php endif ?>
                 <div class="controls">
-                  <input  class="form-control" type="file" class="attached" name="image">
+                  <input class="form-control" type="file" class="attached" name="image">
                 </div>
               </div>
 

@@ -54,17 +54,6 @@ function updateSrcTo(obj){
 <?php endif ?>
 <div id="headabrigos">
   <div class="img-resp is-main posnum-<?=$category['posnum'] ?? 'auto' ?>" style="background-image:url(<?php echo $settings['upload_url'].$category['banner_url'] ?>)">
-      <div class="category-image alignnum-<?=$category['alignnum'] ?? '0' ?> p-3 w-100">  
-      	<?php if($category['show_text'] == '1'):?>
-        <span class="p-1 text-catalog" style="color: <?=$category['text_style']->color ?? 'white'?>">
-        	<?php if($category['show_name'] == '1'):?>
-          <span class="text-uppercase"><?=$category['name']?></span>
-          <?php endif ?>
-          <span class="p-1 p-catalog text-stroke" style="font-size: <?=$category['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['text_style']->font_weight ?? '300'?>;font-family: <?=$category['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['text_style']->shadow_width ?? '0'?>px <?=$category['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['text']?></span>
-        </span>
-      	<?php endif ?>
-      </div>  	
-    <!--h1 class="name_shop delay2 animation-pullUp animation-both"><?php echo $category['name']; ?></h1-->
   </div>  
 </div>
 <?php endif ?>
