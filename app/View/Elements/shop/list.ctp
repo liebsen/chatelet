@@ -17,11 +17,11 @@
                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
                   <div class="category-image alignnum-<?=$category['Category']['alignnum'] ?? '0' ?> p-3 w-100">  
                   	<?php if($category['Category']['show_text'] == '1'):?>
-                    <span class="p-1 text-catalog" style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
+                    <span style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
                     	<?php if($category['Category']['show_name'] == '1'):?>
                       <span class="text-uppercase"><?=$category['Category']['name']?></span>
                       <?php endif ?>
-                      <span class="p-1 p-catalog text-stroke" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>;font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
+                      <span class="p-catalog text-stroke" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>;font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>; -webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
                     </span>
                   	<?php endif ?>
                   </div>

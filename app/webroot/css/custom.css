@@ -1660,8 +1660,8 @@ ul#ul-moreviews li.dontResize img {
   .accept-terms {
 		flex-direction: column;
 	}
-	#listShop a .category-image {
-		transform: scale(0.75);
+	.p-catalog {
+		font-size: 80%!important;
 	}
   .navbar-header { 
     display: flex;
