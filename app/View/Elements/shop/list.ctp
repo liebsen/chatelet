@@ -12,7 +12,7 @@
 		$loaded_fonts[]= $category['Category']['text_style']->font_family;
 	}
 } ?>
-            <div class="category-item p-1 col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
+            <div class="category-item col-xs-12 col-md-<?= !empty($category['Category']['colsize']) ? $category['Category']['colsize'] : 'auto' ?>">
               <div class="category-content posnum-<?=$category['Category']['posnum'] ?? 'auto' ?>" style="background-image: url('<?php echo $settings['upload_url'].$category['Category']['img_url']?>')">
                 <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
                   <div class="category-image alignnum-<?=$category['Category']['alignnum'] ?? '0' ?> p-3 w-100">  

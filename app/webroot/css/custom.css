@@ -850,10 +850,13 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 .alignnum-8 span {
   text-align: right;
 }
-
-.category-item-container {
-  padding: 0.25rem;
+.category-item {
+	padding: 0;
 }
+
+/*.category-item-container {
+  padding: 0.25rem;
+}*/
 
 .category-content {
   background-size: cover;
@@ -1955,6 +1958,7 @@ span.out{
 .add-no-stock {
   position: relative;
   padding: 0;
+  min-height: 26rem!important;
   @media(max-width: 400px) {
   	width: 50%;
   }
