@@ -561,7 +561,9 @@ background-color: #e8ffa8!important;
 
 #primary-nav a > i {
   min-width: 26px;
-  font-size: 14px;
+	font-size: 14px;
+	position: relative;
+	top: 2px;  
   text-align: center;
   background-color: transparent;
   border: none;

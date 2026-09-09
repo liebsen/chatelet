@@ -8,7 +8,7 @@ echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => f
     <div class="tab-content">
       <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
         <div class="row">
-          <div class="col-md-12 p-0">
+          <div class="col-md-12">
             <h4 class="sub-header">Configuración de Envíos</h4> 
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Tipo de envío'); ?></label>
@@ -23,7 +23,7 @@ echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => f
               </div>
             </div>
             <br />     
-            <div class="show-panel<?php echo $settings['shipping_type'] == 'default' ? ' d-disable' : '' ?>">
+            <div class="show-panel<?php echo $settings['shipping_type'] == 'default' ? ' d-disable' : '' ?>" style="padding: 1rem;">
               <small>Ingrese el monto mínimo. <span class="dummy-sub-block<?php echo $settings['shipping_type'] != 'zip_code' ? ' d-disable' : '' ?>">Ingrese valor cero para deshabilitar monto mínimo. </span></small> 
               <br />
               <input class="form-control" type="number" name="data[shipping_price_min]" value="<?php echo $settings['shipping_price_min']; ?>"/>
