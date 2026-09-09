@@ -88,7 +88,7 @@
 	        <div class="control-group">
 	          <label class="control-label" for="font_size">Línea (<i class="preview-line_height"><?=$category['Category']['text_style']->line_height??'1'?></i>&nbsp;pt)</label>
 	          <div class="controls">
-	      			<input type="range" id="line_height" class="form-control" name="data[text_style][line_height]" data-change="1" step="0.5" min="0" max="2" value="<?=$category['Category']['text_style']->line_height??'1'?>">
+	      			<input type="range" id="line_height" class="form-control" name="data[text_style][line_height]" data-change="1" step="0.25" min="0" max="2" value="<?=$category['Category']['text_style']->line_height??'1'?>">
 	          </div>
 	          <small class="text-muted">Selecciona altura de línea del texto</small>
 	        </div>

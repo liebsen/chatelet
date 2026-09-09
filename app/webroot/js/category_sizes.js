@@ -51,8 +51,9 @@ function applyStore(key){
 	}
 }
 
-function blinkTarget(){
-	const target = $('.p-catalog')
+function textChanged(){
+	return false
+	/* const target = $('.p-catalog')
 	target.removeClass('animation-fadeOut')
 	target.removeClass('animation-fadeIn')
 	setTimeout(function(){
@@ -60,7 +61,7 @@ function blinkTarget(){
 	}, 10)
 	setTimeout(function(){
 		target.addClass('animation-fadeIn')	
-	}, 5000)
+	}, 5000)*/
 }
 
 function showStyleSelector(){
@@ -98,33 +99,33 @@ function showStyleSelector(){
 $(document).ready(function() {
 	applyStore('textStyle')
   $('input[name="data[name]"]').keyup(function(e){
-  	blinkTarget()
+  	textChanged()
   	$('.name-catalog').text($(this).val())
   })
   $('textarea[name="data[text]"]').keyup(function(e){
-  	blinkTarget()
+  	textChanged()
   	$('.p-catalog').text($(this).val())
   })
   $('input[name="data[text_style][font_size]"]').change(function(){
-  	blinkTarget()
+  	textChanged()
   	$('.preview-font_size').text($(this).val())
   	$('.p-catalog').css({fontSize: $(this).val()+'px'})
   	saveStore('textStyle', 'font_size', $(this).val())
   })
   $('input[name="data[text_style][font_weight]"]').change(function(){
-  	blinkTarget()
+  	textChanged()
   	$('.preview-font_weight').text($(this).val())
   	$('.p-catalog').css({fontWeight: $(this).val()})
   	saveStore('textStyle', 'font_weight', $(this).val())
   })
   $('input[name="data[text_style][line_height]"]').change(function(){
-  	blinkTarget()
+  	textChanged()
   	$('.preview-line_height').text($(this).val())
   	$('.p-catalog').css({lineHeight: $(this).val()})
   	saveStore('textStyle', 'line_height', $(this).val())
   })
   $('select[name="data[text_style][font_family]"]').change(function(){
-  	blinkTarget()
+  	textChanged()
   	loadFont($(this).val())
   	$('.preview-font_family').text($(this).val())
   	//$('.p-catalog').css({fontFamily: encodeURIComponent($(this).val())})
@@ -132,12 +133,12 @@ $(document).ready(function() {
   	saveStore('textStyle', 'font_family', $(this).val())
   })
 	$('#font_color').on('input', function() {
-		blinkTarget()
+		textChanged()
 		$('.p-catalog, .name-catalog').css({color: $(this).val()})
 		saveStore('textStyle', 'color', $(this).val())
 	});
   $('input[name="data[text_style][shadow_width]"]').change(function(){
-  	blinkTarget()
+  	textChanged()
   	const textShadowColor = $('#shadow_color').val()
   	$('.p-catalog').css("-webkit-text-stroke", $(this).val()+'px '+textShadowColor)
   	saveStore('textStyle', 'shadow_width', $(this).val())
