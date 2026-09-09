@@ -753,9 +753,10 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #listShop a:hover { text-decoration:none!important }
 #listShop a .category-image {
   display: flex;
-  height:24rem;
+  height: 24rem;
   transition: all .3s ease-in-out;
 }
+
 .container-list {
 	padding: 0 2rem;
 }
@@ -1658,6 +1659,9 @@ ul#ul-moreviews li.dontResize img {
   }
   .accept-terms {
 		flex-direction: column;
+	}
+	#listShop a .category-image {
+		transform: scale(0.75);
 	}
   .navbar-header { 
     display: flex;
