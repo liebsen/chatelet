@@ -854,6 +854,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .category-item {
 	padding: 5px;
+	padding-top: 0;
 }
 
 /*.category-item-container {
