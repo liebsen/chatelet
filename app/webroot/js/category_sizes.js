@@ -124,6 +124,18 @@ $(document).ready(function() {
   	$('.p-catalog').css({lineHeight: $(this).val()})
   	saveStore('textStyle', 'line_height', $(this).val())
   })
+  $('input[name="data[text_style][letter_spacing]"]').change(function(){
+  	textChanged()
+  	$('.preview-letter_spacing').text($(this).val())
+  	$('.p-catalog').css({letterSpacing: $(this).val()+'px'})
+  	saveStore('textStyle', 'letter_spacing', $(this).val())
+  })
+  $('input[name="data[text_style][word_spacing]"]').change(function(){
+  	textChanged()
+  	$('.preview-word_spacing').text($(this).val())
+  	$('.p-catalog').css({wordSpacing: $(this).val()+'px'})
+  	saveStore('textStyle', 'word_spacing', $(this).val())
+  })
   $('select[name="data[text_style][font_family]"]').change(function(){
   	textChanged()
   	loadFont($(this).val())

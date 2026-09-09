@@ -1166,7 +1166,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     }
 
 		$this->set('logistics_images', $logistics_images);
-		$this->set('list_payments', [
+		/*$this->set('list_payments', [
 	    '' => "CBU/Alias",
 	    'credit_card' => "Crédito",
 	    'debit_card' => "Débito",
@@ -1179,7 +1179,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    'approved' => "Aprobado",
 	    'processing' => "Procesando...",
 	    'rejected' => "Rechazado",
-		]);
+		]);*/
 
 		$this->set('shipping_price_min',$this->Setting->findById('shipping_price_min'));
 		$this->set('logistics',$logistics);
@@ -4793,7 +4793,7 @@ ORDER BY u.id DESC;';
 
 	public function bank() {
 		$h1 = array(
-			'name' => 'CBU/Alias',
+			'name' => 'Bancos',
 			'icon' => 'gi gi-bank'
 		);
 
