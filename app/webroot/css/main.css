@@ -757,7 +757,6 @@ background-color: #e8ffa8!important;
 }
 
 .block-content {
-  margin: 15px;
   border-top: none;
 }
 
@@ -771,7 +770,7 @@ background-color: #e8ffa8!important;
 
 .block-section {
   margin-bottom: 4rem;
-  /*padding: 1rem;*/
+  padding: 1rem;
 }
 
 .block-section-pad {
