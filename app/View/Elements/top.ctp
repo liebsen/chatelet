@@ -37,9 +37,7 @@
     
     <link rel="canonical" href="<?=@$settings['site_url'].$_SERVER['REQUEST_URI']?>">
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
-
     <?php echo $this->element('css_root') ?>
-
     <?php
       // echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
@@ -70,7 +68,10 @@
         <span class="corner-pin is-clickable" style="top: 0.7rem!important" onclick="$('.dev-note').remove()">
           <i class="ico-times"></i>
         </span>
-        <span class="text-sm text-dark"><b><i class="gi gi-warning_sign text-danger mr-1"></i> Tienda de pruebas &nbsp;&nbsp;<a class="text-info text-bold" href="https://chatelet.com.ar">Ir a tienda Châtelet</a></span>
+        <span class="text-sm text-dark">
+        	<i class="gi gi-warning_sign text-danger mr-1"></i> 
+        	Tienda de pruebas &nbsp;&nbsp;<a class="text-info text-bold" href="https://chatelet.com.ar">Ir a tienda Châtelet</a>
+        </span>
       </div>
       <style>
         .dev-note {
