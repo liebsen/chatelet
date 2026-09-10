@@ -2907,11 +2907,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    			),
 	    			false,
 	    			false
-<<<<<<< HEAD
-					);					
-=======
 					);
->>>>>>> origin/staging
 	    	}
 		  }
       return json_encode(['success' => true]);

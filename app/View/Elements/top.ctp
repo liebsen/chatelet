@@ -16,7 +16,7 @@
     <?php if(isset($product) && isset($product['name'])):?>
     <!-- FB OpenGraph -->
     <meta property="og:title" content="<?= ucwords(strtolower($product['name'])) ?>">
-    <meta property="og:description" content="<?= ucwords(strtolower($product['desc'])) ?>">
+    <meta property="og:description" content="<?= ucwords(strtolower($product['name'])) ?>">
     <meta property="og:url" content="<?= $this->Html->url(['controller' => 'shop', 'action' => 'detalle', $product['id'], $product['category_id'], strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $product['name'])))], true) ?>">
     <meta property="og:image" content="<?= $settings['site_url'] . $settings['upload_url'] . $product['img_url'] ?>">
     <meta property="product:brand" content="Châtelet">
@@ -35,11 +35,7 @@
     <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= $settings['site_url'] . @$settings['opengraph_image'] ?>" />
     <?php endif ?>
     
-<<<<<<< HEAD
-    <link rel="canonical" href="<?=@$settings['site_url'].$_SERVER['REQUEST_URI']?>">    
-=======
     <link rel="canonical" href="<?=@$settings['site_url'].$_SERVER['REQUEST_URI']?>">
->>>>>>> origin/staging
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
     <?php echo $this->element('css_root') ?>
     <?php

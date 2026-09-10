@@ -231,15 +231,14 @@ class ShopController extends AppController {
     $data = array(
         'sitemapindex' => array(
             'sitemap' => array(
-                'loc' => $this->settings['site_url'],
-                'lastmod' => date('Y-m-d'),
-            ),
+                'loc' => $this->settings['site_url']
+            )
         )
     );
     
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
-    $xmlObject->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
 
     $xmlString = $xmlObject->asXML();
     
@@ -283,7 +282,7 @@ class ShopController extends AppController {
 
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
-    $xmlObject->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
     $xmlString = $xmlObject->asXML();
     
     // Set content type header to application/xml
@@ -338,8 +337,8 @@ class ShopController extends AppController {
 
     // Convert array to XML using Cake's Xml utility
     $xmlObject = Xml::fromArray($data, array('format' => 'tags'));
-    $xmlObject->addAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
-    $xmlObject->addAttribute('xmlns-image', 'http://www.google.com/schemas/sitemap-image/1.1');
+    $xmlObject->addAttribute('xmlns', 'http://sitemaps.org');
+    $xmlObject->addAttribute('xmlns-image', 'http://google.com');
     $xmlString = $xmlObject->asXML();
     
     // Set content type header to application/xml
@@ -677,15 +676,6 @@ class ShopController extends AppController {
 				$product['Product']['colors'] = $all_colors;
 			}
 
-
-	    if(!empty($category['name'])) {
-	    	$site_title = $category['name'];
-	    	$site_description = $category['name'];
-
-				$this->set('site_title', $site_title);		
-				$this->set('site_description', $site_description);		
-	    }
-
 			//rsort($products);
 
 			if(!empty($category['text_style'])) {
@@ -695,19 +685,12 @@ class ShopController extends AppController {
 
       $this->set('category',$category);
 			$this->set('products', $products);
-<<<<<<< HEAD
-		} else {
-	    if(!empty($product['name'])) {
-	    	$site_title = $product['name'];
-	    	$site_description = $product['desc'];
-=======
 	    if(!empty($category['name'])) {
 	    	$site_title = $category['name'];
 	    	$site_description = $category['name'];
 
 				$this->set('site_title', $site_title);		
 				$this->set('site_description', $site_description);		
->>>>>>> origin/staging
 	    }
 		}
 
@@ -989,10 +972,6 @@ class ShopController extends AppController {
 			$this->set('site_description', $site_description);		
     }
 
-<<<<<<< HEAD
-		//$this->set('schema', $schema);
-=======
->>>>>>> origin/staging
 		$this->set('legends', $legends);
 		$this->set('all_but_me', $all_but_me);
 	}
