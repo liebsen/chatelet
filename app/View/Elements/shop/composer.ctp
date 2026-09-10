@@ -23,7 +23,7 @@
 } ?>
             <div class="category-item col-xs-12 col-md-<?=$category['Category']['colsize'] ?? 'auto'?> <?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>" data-id="<?=@$category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>">
               <span class="category-content posnum-<?=@$category['Category']['posnum'] ?>" style="background-image: url('<?php echo $settings['upload_url'].$category['Category']['img_url']?>')">
-                <div class="category-image alignnum-<?=$category['Category']['alignnum'] ?? '0' ?> p-3 w-100">  
+                <div class="category-image alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>">  
                 	<?php if($category['Category']['show_text'] == '1'):?>
                   <span class="p-1 text-catalog" style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
                   	<?php if($category['Category']['show_name'] == '1'):?>

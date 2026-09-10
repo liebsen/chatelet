@@ -754,7 +754,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #listShop a .category-image {
   display: flex;
   height: 24rem;
-  transition: all .3s ease-in-out;
+  padding: 1.5rem;
+  width: 100%;
+  transition: all .5s ease-in-out;
 }
 
 .container-list {

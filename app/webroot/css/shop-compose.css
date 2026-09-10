@@ -18,11 +18,7 @@
   padding: 2px;
   margin-bottom: 4px;
 }
-.category-image {
-  display: flex;
-  height: 200px;
-  transition: all .3s ease-in-out;
-}
+
 .category-toolbox {
   position: absolute;
   z-index: 3;

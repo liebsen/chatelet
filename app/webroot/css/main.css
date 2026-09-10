@@ -219,6 +219,14 @@ body {
   color: white!important;
 }
 
+.category-image {
+  display: flex;
+  height: 200px;
+  padding: 1.5rem;
+  width: 100%;  
+  transition: all .5s ease-in-out;
+}
+
 .product-container .label.is-enabled {
   background-color: #01c801!important;
   color: white!important;
@@ -858,7 +866,7 @@ background-color: #e8ffa8!important;
 }
 
 .block-tabs > .tab-content {
-  /*padding: 20px;*/
+  padding-bottom: 4rem;
   margin: 0;
   border: none;
 }
