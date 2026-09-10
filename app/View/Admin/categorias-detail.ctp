@@ -53,8 +53,6 @@
 	            </div>
 	          </div>
 	          <hr>
-
-
             <div class="form-box bg-info-outline">
               <h4 class="sub-header"><?=__('Descuentos')?></h4>
               <p><?=__('Establece descuentos')?></p>    
@@ -65,7 +63,6 @@
 	                <label for="toggle-mp_discount" class="toggle-label"></label>
 	              </div>
 	            </div>
-
 	            <div class="control-group mp-discount <?= empty($category['Category']['mp_discount_enable']) ? 'd-none' : '' ?>">
 	              <label class="control-label" for="columns-text"><?php echo __('Descuento por Tarjeta'); ?></label>
 	              <div class="controls">
@@ -73,7 +70,6 @@
 	              </div>
 	              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Tarjeta si hubiera.</small>
 	            </div>
-
 	            <div class="control-group">
 	              <label class="control-label" for="columns-text"><?php echo __('Activar descuentos por Banco'); ?></label>
 	              <div class="form-group">
