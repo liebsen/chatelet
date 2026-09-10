@@ -3506,7 +3506,7 @@ background-color: #45a049; /* Darker green on hover */
 
 .cat-preview.fs {
 	position: fixed;
-	z-index: 9999;
+	z-index: 999;
 	left: 0;
 	top: 0;
 	right: 0;
