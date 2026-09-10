@@ -80,10 +80,20 @@
                 }
             }
         </style>
-
-        <script>
-        window.baseUrl  = "<?=Router::url('/',true)?>";
-        </script>
+				<script type="text/javascript">
+					let loadedFonts = []
+					window.baseUrl  = "<?=Router::url('/',true)?>";
+					function loadFont(font){
+						if(loadedFonts[font]) return false
+						const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
+						var link = document.createElement('link');
+					  link.rel = 'stylesheet';
+					  link.type = 'text/css';
+					  link.href = filename;
+					  loadedFonts.push(font)
+					  document.getElementsByTagName('head')[0].appendChild(link);
+					}
+				</script>
     </head>
 
     <!-- Body -->
