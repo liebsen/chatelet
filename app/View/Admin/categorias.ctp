@@ -56,9 +56,9 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 					<tr>
 						<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
 						<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
-						<th class="text-center hidden-phone"><?php echo __('Texto'); ?></th>        
 						<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
-						<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
+						<!--th class="text-center hidden-phone"><?php echo __('Texto'); ?></th>        
+						<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th-->    
 						<th class="text-center hidden-phone"><?php echo __('%OFF Tarjeta'); ?></th>        
 						<th class="text-center hidden-phone"><?php echo __('%OFF Banco'); ?></th>
 						<th class="span1 text-center"><i class="gi gi-flash"></i></th>
@@ -66,6 +66,14 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 				</thead>
 				<tbody>
 					<?php foreach ($cats as $key => $category): ?>
+<?php if(!empty($category['Category']['text_style'])) {
+	$temp = @json_decode($category['Category']['text_style']);
+	$category['Category']['text_style'] = $temp;
+	if(!empty($category['Category']['text_style']->font_family) && !in_array($category['Category']['text_style']->font_family, $loaded_fonts)) {
+		?><script type="text/javascript">loadFont('<?=$category['Category']['text_style']->font_family?>');</script><?php 
+		$loaded_fonts[]= $category['Category']['text_style']->font_family;
+	}
+} ?>
 					<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
 						<td align="center">
 							<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
@@ -77,10 +85,23 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 						</td>
 						<td>
 							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id'],'#' => 'preview'))?>">
-								<span><?=\word_limit($category['Category']['text'])?></span>
+	              <div class="category-content posnum-<?=$category['Category']['posnum'] ?? 'auto' ?>" style="background-image: url('<?php echo $settings['upload_url'].$category['Category']['img_url']?>')">
+	                <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
+	                  <div class="category-image alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>">  
+	                  	<?php if($category['Category']['show_text'] == '1'):?>
+	                    <span style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
+	                    	<?php if($category['Category']['show_name'] == '1'):?>
+	                      <span class="text-uppercase"><?=$category['Category']['name']?></span>
+	                      <?php endif ?>
+	                      <span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: 0.5;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><span class="font-preview"><?=\word_limit($category['Category']['text'], 10)?></span></span>
+	                    </span>
+	                  	<?php endif ?>
+	                  </div>
+	                </a>
+	              </div>
 							</a>
 						</td>
-						<td>          
+						<!--td>          
 							<?php
 								if(!empty($category['Category']['img_url'])){
 									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
@@ -93,7 +114,7 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['size'] ."''>LINK</a>";
 								}
 							?>     
-						</td>
+						</td-->
 						<td>
 							<?php
 								if(

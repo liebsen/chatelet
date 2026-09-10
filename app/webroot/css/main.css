@@ -219,6 +219,14 @@ body {
   color: white!important;
 }
 
+.category-content {
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in;
+  border-collapse: collapse;
+  border-radius: 1rem;
+}
+
 .category-image {
   display: flex;
   height: 200px;
@@ -648,6 +656,11 @@ background-color: #e8ffa8!important;
 
 .block {
   padding: 0;
+}
+
+.font-preview {
+	font-size: 50%!important;
+	line-height: 1!important;
 }
 
 @media (min-width: 991px) {
@@ -3541,7 +3554,7 @@ background-color: #45a049; /* Darker green on hover */
 	min-height: 20rem;
 	display: flex;
 	transition: all 1s ease-in-out;
-	padding: 1rem;
+	padding: 1.5rem;
 }
 
 .shop-preview-tb {

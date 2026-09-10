@@ -21,7 +21,7 @@
                     	<?php if($category['Category']['show_name'] == '1'):?>
                       <span class="text-uppercase"><?=$category['Category']['name']?></span>
                       <?php endif ?>
-                      <span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: <?=$category['Category']['text_style']->line_height ?? '1'?>;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word_spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
+                      <span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: <?=$category['Category']['text_style']->line_height ?? '1'?>;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
                     </span>
                   	<?php endif ?>
                   </div>

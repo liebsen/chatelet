@@ -947,9 +947,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 .p-catalog {
 	cursor: pointer;
 	display: block!important;
-	white-space: break-spaces;
-	paint-order: stroke fill;
-	font-synthesis: none;	
 }
 
 .price {
