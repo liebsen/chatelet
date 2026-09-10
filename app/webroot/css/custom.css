@@ -406,7 +406,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
     flex-direction: row;
   }
 	.add-no-stock {
-    min-height: 30rem!important;
+    min-height: 32rem!important;
   }
   body.top-fixed .navbar-collapse.collapse {
     top: 3px;
@@ -1963,7 +1963,7 @@ span.out{
 .add-no-stock {
   position: relative;
   padding: 5px;
-  min-height: 26rem!important;
+  min-height: 32rem!important;
   @media(max-width: 400px) {
   	width: 50%;
   }
