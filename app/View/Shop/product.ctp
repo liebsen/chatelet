@@ -105,8 +105,8 @@ function updateSrcTo(obj){
                 <nav>
                     <ul>
                         <?php
-                            foreach ($categories as $category) {
-                                $category = $category;
+                            foreach ($categories as $cat) {
+                                $category = $cat['Category'];
                                 $slug =  str_replace(' ',
                                 '-',strtolower($category['name']));
                         if (strpos($slug, 'trajes')!==false){
