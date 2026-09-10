@@ -7,11 +7,10 @@
 				<h1>
 					<i class="<?= $nav['icon'] ?>"></i> 
 				</h1>
-				<h5><?= $name ?>
+				<h5><?= $name ?></h5>
 <?php if(!empty($nav['text'])):?>
-<i class="fa fa-question-circle is-clickable ml-1" data-text="<?=$nav['text']?>" title="<?=$nav['text']?>"></i>
-<?php endif ?>					
-				</h5>
+<i class="help fa fa-question-circle is-clickable ml-1" data-text="<?=$nav['text']?>" title="<?=$nav['text']?>"> </i>
+<?php endif ?>
 			</li>
 		</a>
 	<?php endforeach ?>

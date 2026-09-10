@@ -280,7 +280,7 @@ function onSuccessAlert(title, text, duration, group){
     return groupAlerts(title, text)
   }  
   $.growl.notice({
-    title: title || 'OK',
+    title: title || 'Hecho',
     message: text && text !== 'undefined' ? text : '',
     queue: true,
     duration: duration || 15000
@@ -293,7 +293,7 @@ function onWarningAlert(title, text, duration, group){
   }
   // $('#growls').remove();
   $.growl.warning({
-    title: title || 'OK',
+    title: title || 'Hecho',
     message: text && text !== 'undefined' ? text : '',
     queue: true,
     duration: duration || 15000
@@ -498,9 +498,9 @@ $(document).ready(function() {
     if (!$('.navbar-toggle').hasClass('collapsed')) {
       $('.navbar-toggle').addClass('collapsed')
     }
-    if ($('.navbar-collapse').hasClass('in')) {
+    /*if ($('.navbar-collapse').hasClass('in')) {
       $('.navbar-collapse').removeClass('in')
-    }
+    }*/
     //window.scrollTo(0,0)
   })
 

@@ -1,7 +1,7 @@
 var max_count = 5
 var itemData = itemData || {}	
 var timeout = 0
-
+var min_stock = 3
 function addCount() {
 	var value = parseInt($('.has-item-counter.active .product-count').val()) + 1
 	if (value > max_count) max_count = 5
@@ -25,9 +25,7 @@ function checkCount(value) {
 }
 
 function pideStock(obj){
-	clearTimeout(timeout)
-	timeout = setTimeout(() => {
-		var url 		= $(obj).closest("form").data('url');
+	setTimeout(function(){
 		var id 	= $('#product_id').text()
 		var article 	= $(obj).closest("form").data('article');
 		var color_code 	= $(obj).closest("form").find('input[name="color"]:checked').attr('code');
@@ -40,46 +38,31 @@ function pideStock(obj){
 		var no_color	= '<span class="text-warning">(Elegí color)<span>';
 		var no_size	= '<span class="text-warning">(Elegí talle)<span>';
 	  var stock_v  	= '<span class="text-muted">Consultando ...</span>';
-	  // console.log({color_code, size_number})
 
 		if(!color_code){
-			// onWarningAlert(`Talle seleccionado`,`Seleccionaste talle ${size_number}, ahora elegí un color para este producto`)
 			stock_cont.html(no_color);
-			//show_stock()
 			return false;
 		}
 
 		if(!size_number){
-			// onWarningAlert(`Color seleccionado`,`Seleccionaste color ${color_alias}, ahora elegí un talle para tu prenda`)
 			stock_cont.html(no_size);
-			//show_stock()
 			return false;
 		}
 
 		window.stock = 0;
-		if(url && article && color_code && size_number){
+		if(article && color_code && size_number){
 			// onWarningAlert('Consultando stock','Un momento por favor...')
-      stock_cont.html(stock_v);
+	    stock_cont.html(stock_v);
+	    const count = window.stockCount[size_number+color_code] || 0
+			if(count < min_stock){
+				stock_cont.html( stock_0 );
+			} else {
+				stock_cont.html(stock);				
+			}
 
-	  	$.get(url+'/'+id+'/'+article+'/'+size_number+'/'+color_code, function(data) {
-	  		setTimeout(() => {
-					if(data != 0){
-					  // stock_cont.html( '<i style="color:green">'+data+' unidades.</i>' );
-					  // $('.growl').remove()
-					  // onErrorAlert('Producto disponible', 'Selecciona cantidad y presiona botón Agregar al carrito para continuar')
-						stock_cont.html(stock);
-					}else{
-						// onWarningAlert('Producto no disponible', 'Lamentablemente este producto ya no se encuentra disponible')
-						stock_cont.html( stock_0 );
-					}
-
-					//show_stock()	
-					window.stock = data;
-				}, 1000)
-			});
+			window.stock = count;
 		}else{
 			stock_cont.html(missing);
-			//show_stock()		
 		}
 	}, 100)
 }
@@ -102,10 +85,23 @@ function updatePrefs(obj){
 		}
 }
 
+function updateSizes(obj){
+	const code = $(obj).find('input[type="radio"]').attr('code')
+	$('.size-options label').each(function(i,e){
+		const size = $(e).find('input[type="radio"]').val()
+		const stock = window.stockCount[size+code] || 0
+		if(stock < min_stock) {
+			$(e).addClass('disabled')
+		} else {
+			$(e).removeClass('disabled')
+		}
+	})
+}
+
 $(document).ready(function() {
 	//Stock
-
 	$('.color-options .btn').click(function(event) {
+		updateSizes(this)
 		updatePrefs(this)
 		pideStock(this)
 	});

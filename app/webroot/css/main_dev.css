@@ -3449,18 +3449,18 @@ a.thumbnail-borderless,
 @media (min-width: 992px) {
 
     /* Hide Side Content */
-    .hide-side-content #page-sidebar {
+    .show-sidebar #page-sidebar {
         display: none !important;
     }
 
-    .hide-side-content #pre-page-content,
-    .hide-side-content #page-content,
-    .hide-side-content #page-content + footer {
+    .show-sidebar #pre-page-content,
+    .show-sidebar #page-content,
+    .show-sidebar #page-content + footer {
         margin: 0;
         border-left: none;
     }
 
-    .hide-side-content .affix {
+    .show-sidebar .affix {
         margin-left: 0 !important;
     }
 }

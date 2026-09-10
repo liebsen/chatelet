@@ -35,54 +35,47 @@
     <meta property="og:image" itemprop="image primaryImageOfPage" content="<?= $settings['site_url'] . @$settings['opengraph_image'] ?>" />
     <?php endif ?>
     
+<<<<<<< HEAD
     <link rel="canonical" href="<?=@$settings['site_url'].$_SERVER['REQUEST_URI']?>">    
+=======
+    <link rel="canonical" href="<?=@$settings['site_url'].$_SERVER['REQUEST_URI']?>">
+>>>>>>> origin/staging
     <link href="https://fonts.googleapis.com/css?family=<?= @urlencode(@$settings['google_font_name']) ?>:<?= @$settings['google_font_size'] ?>" rel="stylesheet">
-
     <?php echo $this->element('css_root') ?>
-
     <?php
       // echo $this->Html->css('font-awesome.min');
       echo $this->Html->css('bootstrap-select');
-      echo $this->Html->css('bootstrap.css?v=' . $version['ver']);
+      echo $this->Html->css('bootstrap');
       // echo $this->Html->css('bootstrapValidator.min');
-      echo $this->Html->css('jquery.growl.css?v=' . $version['ver']);
+      echo $this->Html->css('jquery.growl');
       echo $this->Html->css('chatelet.css?v=' . $version['ver']);
       echo $this->Html->css('custom.css?v=' . $version['ver']);
       // echo $this->Html->css('animate.css?v=' . $version['ver']);
       echo $this->Html->css('plugins.css?v=' . $version['ver']);
-      echo $this->Html->script('jquery-1.11.1.min');
-      echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
-      echo $this->Html->script('bootstrap');
-      echo $this->Html->script('jquery.growl');
-      echo $this->Html->script('bootstrap-select.min');
-      echo $this->Html->script('bootstrapValidator.min');
-      echo $this->Html->script('plugins');
-      echo $this->Html->script('chatelet.js?v=' . $version['ver'], array('inline' => false));
-
-      if(!empty($user['id'])) {
-        echo $this->Html->script('webpush.js?v=' . $version['ver'], array('inline' => false));
-      }
-
       echo $this->fetch('meta');
       echo $this->fetch('css');
     ?>
-    <script>
-      $.ajaxSetup({
-        cache:false,
-        dataType: "json",
-        xhrFields: {
-          withCredentials: true
-        },
-      });
-    </script>
+  	<script type="text/javascript">
+			function loadFont(font){
+				const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
+				var link = document.createElement('link');
+			  link.rel = 'stylesheet';
+			  link.type = 'text/css';
+			  link.href = filename;
+			  document.getElementsByTagName('head')[0].appendChild(link);
+			}    		
+  	</script>
   </head>
   <body class="noscroll p-0">
     <?php if($settings['env_staging']) : ?>
       <div class="dev-note is-flex-center p-3 text-center bg-warning animation-pullUp animation-both delay10">
-        <span class="corner-pin is-clickable" style="top: 0.5rem!important" onclick="$('.dev-note').remove()">
+        <span class="corner-pin is-clickable" style="top: 0.7rem!important" onclick="$('.dev-note').remove()">
           <i class="ico-times"></i>
         </span>
-        <span class="text-sm text-dark"><b><i class="gi gi-warning_sign text-danger mr-1"></i> Tienda de pruebas <?=$version['count']?></b> &nbsp;<a class="text-info text-bold" href="https://chatelet.com.ar">Ir a tienda oficial Châtelet</a></span>
+        <span class="text-sm text-dark">
+        	<i class="gi gi-warning_sign text-danger mr-1"></i> 
+        	Tienda de pruebas &nbsp;&nbsp;<a class="text-info text-bold" href="https://chatelet.com.ar">Ir a tienda Châtelet</a>
+        </span>
       </div>
       <style>
         .dev-note {

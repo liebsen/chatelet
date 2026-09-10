@@ -1,7 +1,7 @@
 <?php
-  echo $this->Html->script('logistica-detail', array('inline' => false));
-  echo $this->Html->css('logistica-detail', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
+  $this->Html->script('logistica-detail', array('block' => 'script'));
+  $this->Html->css('logistica-detail', array('block' => 'css'));
+  $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script')); 
 ?>
 <?php echo $this->element('admin/menu');?>
 <div class="block-section">
@@ -119,7 +119,7 @@
               <br>
             <?php endif ?>
               <div class="controls">
-                <input type="file" class="attached" name="image">
+                <input type="file" class="form-control" name="image">
               </div>
             </div>
             <br>

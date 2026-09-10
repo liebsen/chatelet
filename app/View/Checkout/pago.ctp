@@ -5,9 +5,9 @@ $this->set('short_header', 'Checkout');
 $this->set('short_header_text', '<i class="gi gi-shopping_cart mr-1"></i> Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
-echo $this->Html->css('checkout.css?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));	
-echo $this->Html->script('pago.js?v=' . $version['ver'],array('inline' => false));
+$this->Html->css('checkout.css?v=' . $version['ver'], array('block' => 'css'));
+$this->Html->script('cart.js?v=' . $version['ver'], array('block' => 'script'));	
+$this->Html->script('pago.js?v=' . $version['ver'],array('block' => 'script'));
 echo $this->element('checkout-params');
 
 $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total']);
@@ -38,7 +38,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 		<input type="hidden" name="payment_dues" value="1" />	
 		<div class="flex-row pt-4">
 			<div class="flex-col gap-05">
-				<span class="text-muted">¿Cómo querés pagar tu compra? Seleccioná un método de pago para realizar esta compra</span>
+				<p>¿Cómo querés pagar tu compra? Seleccioná un método de pago para realizar esta compra</p>
 				<!--div>
 		    	<span class="text-sm">Total a pagar <span class="calc_total"></span>.  Seleccioná un método de pago para realizar esta compra</span>
 		    </div-->
@@ -106,7 +106,7 @@ $filter_legends = $this->App->filter_legends($legends, $cart_totals['grand_total
 
 <script type="text/javascript">
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
   $('#pago_form').on('submit', function(event) {
     event.preventDefault();
     const formData = $(this).serialize();

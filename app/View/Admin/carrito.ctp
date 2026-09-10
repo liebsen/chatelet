@@ -1,7 +1,7 @@
 <?php
-  echo $this->Html->script('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->css('bootstrap-datepicker', array('inline' => false));
-  echo $this->Html->script('admin-carrito', array('inline' => false));
+  $this->Html->script('bootstrap-datepicker', array('block' => 'script'));
+  $this->Html->css('bootstrap-datepicker', array('block' => 'script'));
+  $this->Html->script('admin-carrito', array('block' => 'script'));
   echo $this->element('admin/menu'); 
 ?>
 <div class="block-section">
@@ -16,7 +16,7 @@
           <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
             <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Mostrar texto en carrito cuando no se alcance el precio de envío gratis'); ?></label>
+              <label class="control-label" for="columns-text"><?php echo __('Activar texto en carrito cuando no se alcance el precio de envío gratis'); ?></label>
               <div class="form-group">
                 <input type="checkbox" name="data[display_text_shipping_min_price]" value="1" id="toggle2" class="toggle-checkbox"<?=@$settings['display_text_shipping_min_price'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle2" class="toggle-label"></label>

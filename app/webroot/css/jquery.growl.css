@@ -9,7 +9,8 @@
 #growls.default {
   background-color: transparent;
   top: 0.5rem;
-  right: 0.75rem;
+  left: 0;
+  right: 0;
   min-width: calc(100vw - 2rem); 
 }
 #growls.tl {
@@ -47,12 +48,12 @@
   opacity: 0.99;
   filter: alpha(opacity=99);
   position: relative;
-  margin-bottom: 0.5rem;
-  margin-left: 0.5rem;
+	margin: auto;
   top: 0;
-  border-radius: 5px;
-  border: 1px solid #c5c5c5;
+  border-radius: 15px;
+  border: none;
   transition: all 1s ease-in-out; 
+  box-shadow: 0 2px 2px #00000020;
 }
 .growl.growl-incoming {
   top: -20rem;
@@ -74,30 +75,27 @@
   padding: 1.75rem;
 }
 .growl.growl-default .growl-title {
-  border-color: #c5c5c5;
 }
 .growl.growl-default {
   padding: 1.5rem;
   color: #c5c5c5;
-  background-color: white; 
+  background-color: #f4f4f6;
 }
 .growl.growl-error .growl-title {
-  border-color: #a94442;
 }
 .growl.growl-error {
-  color: #a94442;
-  background-color: white; 
+  color: white;
+  background-color: deeppink; 
 }
 .growl.growl-notice .growl-title{
-  border-color: #888;
 }
 .growl.growl-notice {
   color: #888;
   background-color: white; 
 }
 .growl.growl-warning {
-  color: #fcbc4c;
-  background-color: white; 
+  color: white;
+  background-color: deeppink; 
 }
 .growl.growl-success {
   color: green;
@@ -106,24 +104,22 @@
 .growl .growl-close {
   cursor: pointer;
   position: absolute;
-  right: 0.75rem;
-  top: 0.25rem;
+	right: 1rem;
+	top: 0;
   font-size: 2rem;
   color: #c5c5c5;
   line-height: 1;
   font-weight: normal;
 }
 .growl .growl-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1;
-  text-transform: uppercase;
   font-weight: 800;
   margin-bottom: 0.5rem;
 }
 .growl .growl-message {
   font-size: 1rem;
   font-weight: 300;
-  text-transform: uppercase;
   line-height: 1.25; 
 }
 @media screen and (min-width: 769px) {

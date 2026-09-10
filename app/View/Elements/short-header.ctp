@@ -7,7 +7,7 @@
     </div>
     <div class="is-flex-center gap-1 navbar-right text-center m-auto">
       <?php if ($short_header_link) :?>
-        <a href="<?php echo $short_header_link ?>" class="<?php echo $short_header_classname ?? '' ?>" style="position: relative; top: -1px">
+        <a href="<?php echo $short_header_link ?>" class="<?php echo $short_header_classname ?? 'text-theme' ?>">
           <span class="text-sm"><?php echo $short_header_text ?? 'Seguir comprando' ?></span>
         </a>
       <?php endif ?>

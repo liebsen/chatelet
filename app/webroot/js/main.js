@@ -6,6 +6,21 @@ let fakeshown = 0
 let growlTimeout = 15000
 const log = false
 
+function getStore(key){
+	return localStorage[key] && localStorage[key] != 'undefined' ? JSON.parse(localStorage[key]) : {}
+}
+
+function getStoreAttr(key, prop){
+	const json = localStorage[key] && localStorage[key] != 'undefined' ? JSON.parse(localStorage[key]) : {}
+	return json[prop] || '';
+}
+
+function saveStore(key, prop, value){
+	var json = getStore(key)
+	json[prop] = value;
+	localStorage[key] = JSON.stringify(json)
+}
+
 function insertAtCursor(el, text) {
   const start = el.selectionStart;
   const end = el.selectionEnd;
@@ -184,7 +199,7 @@ $(function () {
     flash.remove();
   });
   // Toggle Side content
-  /*body.toggleClass('hide-side-content');*/
+  /*body.toggleClass('show-sidebar');*/
 
   if (typeof $.fn.datepicker != 'undefined'){ 
     $('.datepicker').each(function(i,e){
@@ -213,7 +228,7 @@ $(function () {
   $('.toggle-block').change(function(e){
     const block = $(this).data('block')
     const className = $(this).data('class') || 'd-disable'
-    if($(e.target).is(':checked')) {
+    if($(this).is(':checked')) {
       $(block).removeClass(className)
     } else {
       $(block).addClass(className)
@@ -221,7 +236,6 @@ $(function () {
   })
 
   $(document).on('click','.toggle-click', function(e){
-  //$('.toggle-click').click(function(e){
     const func = $(this).data('func')
     if(window[func]) {
     	console.log('func',func)
@@ -281,20 +295,27 @@ $(function () {
     $(this).parent().find($(this).data('target')).toggleClass('d-none')
   })
 
-  $('#toggle-side-content').click(function(){ 
-    if($('body').hasClass('hide-side-content')){
-      $('#page-sidebar.collapse').collapse('hide');
-      localStorage.sidebar = 0
-    } else {
-      $('#page-sidebar.collapse').collapse('show');
-      localStorage.sidebar = 1
-    }
-    $('body').toggleClass('hide-side-content');
+  $('#toggle-sidebar-button').mousedown(function(){ 
+  	$('#toggle-sidebar.collapse').toggleClass('in');
+    $('body').toggleClass('show-sidebar');
+    localStorage.sidebar = $('#toggle-sidebar.collapse').hasClass('in')
   });
 
-  if(localStorage.sidebar == 1 && $(window).width() > 991) {
-    $('#toggle-side-content').trigger('click')
+  if($(window).width() < 992) {
+    //$('#toggle-sidebar').removeClass('in')
+    //$('body').removeClass('show-sidebar');
+  } else {
+  	if(localStorage.sidebar != 'false') {
+	    $('#toggle-sidebar').addClass('in remove-transition')
+	    $('#page-content').addClass('remove-transition')
+	    $('body').addClass('show-sidebar');
+  	}
   }
+
+  /*if(localStorage.sidebar == 'true') {
+    $('#toggle-sidebar').addClass('in')
+    $('body').addClass('show-sidebar');
+  }*/
 
   $('.form-box').each(function(i,e){
     $(e).append(`<span class="form-box-handle"><i class="gi gi-more_windows"></i></span>`)

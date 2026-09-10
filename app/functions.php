@@ -1,5 +1,16 @@
 <?php
 
+function unique_by_value(array $array, string $key): array {
+  $unique = [];
+  foreach ($array as $item) {
+      // Use the value of $key as the new index
+      $index = $item[$key];
+      // Use '??' to keep the first occurrence (if you want the last, use direct assignment)
+      $unique[$index] = $unique[$index] ?? $item;
+  }
+  return array_values($unique); // Re-index to 0, 1, 2...
+}
+
 function render_google_article_schema($headline, $author_name, $date_published, $image_url) {
   $schema = [
     '@context' => 'https://schema.org',
@@ -16,7 +27,8 @@ function render_google_article_schema($headline, $author_name, $date_published, 
   // JSON_UNESCAPED_SLASHES and JSON_UNESCAPED_UNICODE keep the output clean
   $json = json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
   
-  echo '<script type="application/ld+json">' . "\n" . $json . "\n" . '</script>';
+  echo '<script type="
+  ">' . "\n" . $json . "\n" . '</script>';
 }
 /*
 render_google_article_schema(
@@ -69,7 +81,7 @@ function read_file($file, $lines) {
 
 function word_limit($str, $at=4) {
   if(!strlen(trim($str))) {
-    return 'Sin nombre';
+    return '&mdash;';
   }
   $parts = array_filter(array_values(explode(' ', trim($str))));
   if(count($parts) <= $at) {
@@ -465,44 +477,47 @@ function parse_medal($i) {
 	return (string) $medal. ' ('.$i.')';
 }
 
-function email_fix_images($html){
-	// 1. Create a DOM Document and load the HTML
+/* fix img width styles and register clicks */
+function email_fix_style_links($html, $click_id = 0, $click_origin = '', $site_url = ''){
 	$dom = new DOMDocument();
-	// Use LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD to prevent adding html/body wrappers
 	@$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
-	// 2. Find all <img> tags
 	$images = $dom->getElementsByTagName('img');
+	$links = $dom->getElementsByTagName('a');
 
-	// 3. Loop through each image and update the style attribute
 	foreach ($images as $img) {
-	    // Get existing styles if they exist
-	    $existingStyle = $img->getAttribute('style');
-	    
-	    // Define the new style you want to add
-	    //$newStyle = 'width: 100%; max-width: 100%; height: auto;';
-	    $newStyle = 'max-width: 100%; height: auto;';
-	    
-	    // Combine existing and new styles cleanly
-	    if (!empty($existingStyle)) {
-	        // Ensure the existing style ends with a semicolon
-	        $combinedStyle = rtrim($existingStyle, '; ') . '; ' . $newStyle;
-	    } else {
-	        $combinedStyle = $newStyle;
-	    }
-	    
-	    // Apply the updated style back to the element
-	    $img->setAttribute('style', $combinedStyle);
+    $existingStyle = $img->getAttribute('style');
+    $newStyle = 'max-width: 100%; height: auto;';
+    if (!empty($existingStyle)) {
+      $combinedStyle = rtrim($existingStyle, '; ') . '; ' . $newStyle;
+    } else {
+      $combinedStyle = $newStyle;
+    }
+    $img->setAttribute('style', $combinedStyle);
 	}
 
-	// 4. Output the updated HTML
+	foreach ($links as $a) {
+    $existingHref = $a->getAttribute('href');
+    $parsedUrl = parse_url($existingHref);
+    $settingsUrl = parse_url($click_url);
+    \d("parsedUrl",$parsedUrl);
+    $newHref = $existingHref . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin;
+    if(strstr($parsedUrl->host, $settingsUrl->host) === false) {
+    	$newHref = $site_url . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin . '&redirect=' . $existingHref;
+    }
+    $a->setAttribute('href', $newHref);
+	}
+
 	$updatedHtml = $dom->saveHTML();
 	return $updatedHtml;
 }
 
-function parse_email($html, $data) {
+function parse_email($html, $data, $click_id = 0, $click_origin = 'none', $site_url = '') {
+	$parsedHtml = !empty($click_id) ? 
+		\email_fix_style_links($html, $click_id, $click_origin, $site_url) : 
+		$html;
 	$str = \parse_template(
-		\email_fix_images($html), 
+		$parsedHtml,
 		$data
 	);
 	return $str;

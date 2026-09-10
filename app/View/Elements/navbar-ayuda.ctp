@@ -44,24 +44,24 @@
 
   #optionsHelp > a { 
     display: inline-block; 
-    padding: 0.35rem 0.75rem;
+    padding: 0.25rem 0.75rem;
     font-weight: 300;
     text-transform: uppercase;
     transition: all 1s ease-in-out;
   }
 
   #optionsHelp > a.active {
-	  border-bottom: 4px solid hotpink;
+	  border-bottom: 4px solid deeppink;
 	  border-radius: 10px;
-	  font-weight: 700;
-	  color: hotpink;    
+	  font-weight: 500;
+	  color: deeppink;    
   }
 
   #optionsHelp.mobile > a.active {
     position: relative;
     transition: background 1s ease-out;
-    border-bottom: 4px solid hotpink;
-    color: hotpink;
+    border-bottom: 4px solid deeppink;
+    color: deeppink;
   }
 
   @media(min-width: 992px){
@@ -69,9 +69,10 @@
       position: absolute; 
       left:0; 
       right: 0; 
-      top: 8rem;
+      top: 8.5rem;
       padding: 1.5rem;
       z-index: 9;
+      background-color: #f4f4f6;
     }
     #optionsHelp.top-fixed { 
       top: 4rem; 
@@ -83,7 +84,7 @@
   </style>
 
   <script type="text/javascript">
-    $(function () {
+    document.addEventListener("DOMContentLoaded", function() {
       document.querySelectorAll("#optionsHelp a").forEach((e) => {
         e.classList.remove('active')
       })

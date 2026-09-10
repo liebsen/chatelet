@@ -49,8 +49,12 @@ echo $this->Session->flash();
 	</div>
 </section>
 
+<footer>
+	<?php echo $this->element('signature') ?>
+</footer>
+
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 	    $('#password_form').on('submit', function(event) {
 	        event.preventDefault();
 	        const formData = $(this).serialize();

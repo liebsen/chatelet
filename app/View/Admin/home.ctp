@@ -1,10 +1,10 @@
 <?php 
-echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false));
-// echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('home-compose.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->css('home-compose.css?v=' . $version['ver'], array('inline' => false));
-// echo $this->Html->script('admin-home.js?v=' . $version['ver'], array('inline'=>false));
-// $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));
+$this->Html->script('handlebars-v2.0.0',array('inline'=>false));
+// $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->script('home-compose.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->css('home-compose.css?v=' . $version['ver'], array('block' => 'css'));
+// $this->Html->script('admin-home.js?v=' . $version['ver'], array('inline'=>false));
+// $this->Html->script('ckeditor/ckeditor.js', array('block' => 'script'));
 echo $this->element('admin/menu');
 ?>
 
@@ -16,7 +16,7 @@ echo $this->element('admin/menu');
 		  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>
 			<div class="control-group">
 				<div class="controls">
-					<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[splash]']" data-progress=".progress_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+					<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[splash]']" data-progress=".progress_newsletter" data-url="<?php $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 					Imagen. Tamaño recomendado 1920x1080 o 720x1600
 					<input type="hidden" name="data[splash]" value="<?php echo $slider['Home']['splash'] ?>" />
 				</div>

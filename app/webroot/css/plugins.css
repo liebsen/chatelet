@@ -3903,8 +3903,10 @@ floating
 */
 
 .animation-floating {
+	position: relative;
+	top: -1px;
     animation-name: floating;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
     animation-iteration-count: infinite;
 }
 
@@ -3913,7 +3915,7 @@ floating
         transform: translateY(0%);
     }
     50% {
-        transform: translateY(8%);
+        transform: translateY(2px);
     }
     100% {
         transform: translateY(0%);

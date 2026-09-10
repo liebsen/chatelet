@@ -1,7 +1,7 @@
 <?php
-  echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->element('admin/menu');
+$this->Html->script('ckeditor/ckeditor', array('block' => 'script'));
+$this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
+echo $this->element('admin/menu');
 ?>
 <div class="block-section">
 <div class="block-tabs">
@@ -46,7 +46,7 @@
           <div class="control-group">
             <label class="control-label" for=""><?=__('Seleccione una imagen de Banner')?></label>
             <div class="controls">
-              <input class="form-control" type="file" class="attached" name="image">
+              <input class="form-control" type="file" name="image">
             </div>
           </div>          
         </div>

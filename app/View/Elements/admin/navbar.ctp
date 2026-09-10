@@ -70,7 +70,7 @@
                 line-height: 1.25;
                 font-size: 14px; 
                 font-weight: 600;
-                color: #a5a5a5;
+                color: #2C2C2C;
                 font-weight: 500;
                 height: 100%;             
             }
@@ -80,15 +80,25 @@
                 }
             }
         </style>
-
-        <script>
-        window.baseUrl  = "<?=Router::url('/',true)?>";
-        </script>
+				<script type="text/javascript">
+					let loadedFonts = []
+					window.baseUrl  = "<?=Router::url('/',true)?>";
+					function loadFont(font){
+						if(loadedFonts[font]) return false
+						const filename = 'https://fonts.googleapis.com/css?family='+encodeURIComponent(font)+':300,400,500,600,700,800,900,1000';
+						var link = document.createElement('link');
+					  link.rel = 'stylesheet';
+					  link.type = 'text/css';
+					  link.href = filename;
+					  loadedFonts.push(font)
+					  document.getElementsByTagName('head')[0].appendChild(link);
+					}
+				</script>
     </head>
 
     <!-- Body -->
     <!-- In the PHP version you can set the following options from the config file -->
-    <!-- Add the class .hide-side-content to <body> to hide side content by default -->
+    <!-- Add the class .show-sidebar to <body> to hide side content by default -->
     <?php
     $body_classes = '';
 
@@ -101,6 +111,8 @@
     if ($template['side_content']) {
         $body_classes .= ' ' . $template['side_content'];
     }
+
+    //$body_classes .= 'show-sidebar';
     ?>
     <body<?php if ($body_classes) { echo ' class="' . $body_classes . '"'; } ?>>
 
@@ -114,6 +126,12 @@
                     <!-- Sidebar Toggle Buttons (Desktop & Tablet) -->
                     <div class="col-sm-12 is-flex-center">
                         <ul class="navbar-nav-custom pull-left">
+                            <li class="section-toggle">
+                                <a href="javascript:void(0)" id="toggle-sidebar-button" class="collapsed text-white" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                            </li>
+                            <li class="divider-vertical"></li>
                             <!-- Desktop Button (Visible only on desktop resolutions) -->
                             <li class="mini-profile">
                                 <!-- Mini Profile -->
@@ -127,19 +145,6 @@
                         <ul class="nav navbar-nav navbar-right">
                             <!-- Divider -->
 
-                            <!--li class="dropdown dropdown-theme-options pull-right">
-                                <a href="<?=$this->Html->url(array('controller'=>'admin','action'=>'logout'))?>" class="dropdown-toggle">
-                                    <i class="gi gi-exit"></i> 
-                                    Salir
-                                </a>
-                            </li>
-
-                            <li class="dropdown dropdown-theme-options">
-                                <a href="/" target="_blank">
-                                    <i class="gi gi-home"></i> 
-                                    Tienda
-                                </a>
-                            </li-->
                             <?php if (!empty($h1)): ?>
                             <li class="section-indicator">
                                 <a href="#" class="text-white">
@@ -148,35 +153,10 @@
                                 </a>
                             </li>
                                 <?php endif ?>
-                            <li class="divider-vertical"></li>                                
-                            <li class="section-toggle">
-                                <a href="javascript:void(0)" id="toggle-side-content" class="collapsed text-white" data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar">
-                                    <i class="fa fa-bars"></i>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                     <!-- END Sidebar Toggle Buttons -->
                 </div>
-                <!-- END div#row -->
-                <!--div id="navbar" class="visible-sm visible-xs collapse" aria-expanded="false" style="height: 0px;">
-                  <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div-->
             </header>
             <!-- END Header -->

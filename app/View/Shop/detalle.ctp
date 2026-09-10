@@ -1,12 +1,14 @@
 <?php
+echo $this->Session->flash();
 
-echo $this->Html->script('product.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('detalle.js?v=' . $version['ver'], array('inline' => false));
-
+$this->Html->script('vendor/jquery.touchSwipe.min', array('block' => 'script'));
+$this->Html->script('product', array('block' => 'script'));
+$this->Html->script('detalle', array('block' => 'script'));
+$this->Html->script('carousel-swipe.js?v='.$version['ver'], array('block' => 'script'));
 if($cloudzoom) {
-  echo $this->Html->script('wow.min');
-  echo $this->Html->script('cloudzoom.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->Html->css('cloudzoom.css?v=' . $version['ver'], array('inline' => false));
+  $this->Html->script('wow.min', array('block' => 'script'));
+  $this->Html->script('cloudzoom', array('block' => 'script'));
+  $this->Html->css('cloudzoom', array('block' => 'css'));
 }
 
 /*
@@ -23,11 +25,11 @@ disableOnScreenWidth:0,
 touchStartDelay:0,
 */
 
-echo $this->Session->flash();
 ?>
 <script>
   var itemData = <?=json_encode($product, JSON_PRETTY_PRINT)?>;
   var colorImages = <?=json_encode($colorImages, JSON_PRETTY_PRINT)?>;
+  var stockCount = <?=json_encode($stock_count, JSON_PRETTY_PRINT)?>;
   window.isGiftCard = <?=(int)$isGiftCard?>;
 </script>
 <section id="main">
@@ -36,7 +38,7 @@ echo $this->Session->flash();
       <div class="row">
       <?php if(!empty($colorImages)):?>
         <div class="col-md-6 p-0 d-flex flex-md-column flex-md-center justify-content-end align-items-start bg-light">
-          <div class="p-0">
+          <div class="product-thumblist p-0">
             <ul id="ul-moreviews" class="m-0">
             <?php if (!empty($colorImages[0]['images']) && count(array_filter($colorImages[0]['images'])) > 1): $ppp=0; ?>
             <?php foreach ($colorImages[0]['images'] as $key => $value) : ?>
@@ -70,7 +72,7 @@ echo $this->Session->flash();
             ?>
 
             <?php if ($number_ribbon) :?>
-                <div class="ribbon large top-left small"><span<?php echo $ribbon_style ?>><?= $number_ribbon ?>% OFF</span></div>
+                <div class="ribbon large top-left small animation-fadeIn delay2"><span<?php echo $ribbon_style ?>><?= $number_ribbon ?>% OFF</span></div>
             <?php endif ?>
             <?php if ($product['promo'] !== '') :?>
                 <div class="ribbon large"><span><?= $product['promo'] ?></span></div>
@@ -120,7 +122,7 @@ echo $this->Session->flash();
                     'action' => 'add'
                 ),
                 'id' => 'productForm',
-                'data-url' => Router::url(array( 'action' => 'stock' )),
+                'data-url' => Router::url(array( 'action' => 'product_stock' )),
                 'data-article' => $product['article']
             ));
         ?>
@@ -149,7 +151,7 @@ echo $this->Session->flash();
           <?php endif;?>
           <?php if (!$isGiftCard): ?>
               <!--h2>Color</h2-->
-              <div class="card card-border">
+              <div class="card-border">
                 <div class="animation-fadeIn animation-both w-100">
                   <div class="article-tools pt-4">
                     <!--div class="color-options d-flex justify-content-start align-items-start gap-15" data-toggle="buttons"-->
@@ -171,7 +173,7 @@ echo $this->Session->flash();
                                           break;
                                       }
                                   }
-                                  echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].(strlen($image[0])?$image[0]:'default.jpg').')"></div>';
+                                  echo '<div class="color-option color-img" style="background-image: url('.$settings['upload_url'].$image[0].')"></div>';
                               } else {
                                 // echo '<div class="color-option" style="background-color: '. $color['variable'] .';"></div>';
                               }
@@ -197,7 +199,7 @@ echo $this->Session->flash();
                   <p class="pt-3 stock-block">
                     <span class="text-muted">Stock</span>
                     <span id="stock_container">
-                      <span class="text-warning">(Elegí color y talle)</span>
+                      <span class="text-theme text-bolder">(Elegí color y talle)</span>
                     </span>
                   </p>
                   <div>
@@ -224,10 +226,10 @@ echo $this->Session->flash();
                     </div>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-items-center gap-05 w-100">
-                    <a href="#" id="comprar" class="btn btn-chatelet dark buy agregar-carro min-w-20">Comprar</a>
-                    <a href="#" id="agregar-carro" class="btn btn-chatelet add agregar-carro min-w-20">Agregar al carrito</a>
+                    <a href="#" id="comprar" class="btn btn-chatelet dark buy agregar-carro min-w-18">Comprar</a>
+                    <a href="#" id="agregar-carro" class="btn btn-chatelet dark add agregar-carro min-w-18">Agregar al carrito</a>
                     <?php if(!empty($cart)):?>
-                    <a href="/carrito" class="btn btn-chatelet w-100">Ir al carrito</a>
+                    <a href="/carrito" class="btn btn-chatelet min-w-18">Ir al carrito</a>
                     <?php endif ?>
                   </div>                        
                 </div>
@@ -263,98 +265,10 @@ echo $this->Session->flash();
         <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
           <div class="row">
               <?php
-              foreach($all_but_me as $alt_product):
-                  $alt_product = $alt_product['Product'];
-                  $stock = (!empty($alt_product['stock_total']))?(int)$alt_product['stock_total']:0;
-                  $alt_product_name =$alt_product['name'];
-                  $url = $this->Html->url(array(
-                          'controller' => 'shop',
-                          'action' => 'detalle',
-                          $alt_product['id'],
-                          $alt_product['category_id'],
-                          strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $alt_product['name']))),
-
-                      )
-                  );
-
-          $number_ribbon = 0;
-				  if (!empty($alt_product['old_price']) && round($alt_product['old_price']) != round($alt_product['price'])){
-				    $number_ribbon = round((1 - $alt_product['price'] / $alt_product['old_price']) * 100);
-				  }          
-        	if (!empty($alt_product['discount_label_show'])){
-        		$number_ribbon = (int)@$alt_product['discount_label_show'];
-        	}
-          if (!empty($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
-            $number_ribbon = (int) @$alt_product['mp_discount'];
-          }
-          if (!empty($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
-            $number_ribbon = (int) @$alt_product['bank_discount'];
-          }
-          $discount_flag = (@$alt_product['category_id']!='134' && !empty($number_ribbon))?'<div class="discount-flag">'.$number_ribbon.'% OFF</div>':'';
-          $promo_ribbon = (!empty($item['promo']))?'<div class="ribbon"><span>'.$item['promo'].'</span></div>':'';
-
-
-              if(!$stock){ ?>
-               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">
-                  <a href="<?php echo $url ?>">
-                      <?php if (!empty(intval($alt_product['discount_label_show']))) :?>
-                          <div class="ribbon small"><span><?= $alt_product['discount_label_show'] ?>% OFF</span></div>
-                      <?php endif ?>
-                      <?php if ($alt_product['promo'] !== '') :?>
-                          <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
-                      <?php endif ?>
-                      <img src="<?php echo Router::url('/').'images/agotado3.png' ?>" class="out_stock" />
-                      <div class="product-image" style="background-image: url('<?php echo $settings['upload_url'] . $alt_product['img_url'] ?>')" alt=""></div>
-                      <div class="product-info">
-                          <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                          <div class="name" origin="3"><?= $alt_product_name ?></div>
-                          <?php if($stock): ?>
-                          <div class="price-list"><?= \price_format(ceil($alt_product['price'])) ?></div>
-                        <?php endif ?>
-                      </div>
-                  </a>
-              </div>
-              <?php }else{ ?>
-
-                <div data-id="<?=$alt_product['id']?>" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 add-no-stock">
-                  <a href="<?php echo $url ?>">
-                      <div class="ribbon-container">
-<?php 
-$number_ribbon = 0;
-    $ribbon_style = '';
-
-    if(!empty($alt_product['ribbon_color'])) {
-      $ribbon_style = ' style="background-color:'.$alt_product['ribbon_color'].'"';
-    }
-if (!empty($alt_product['old_price']) && round($alt_product['old_price']) != round($alt_product['price'])){
-  $number_ribbon = round((1 - $alt_product['price'] / $alt_product['old_price']) * 100);
-}	 
-if (!empty($alt_product['discount_label_show'])){
-	$number_ribbon = (int) @$alt_product['discount_label_show'];
-}
-if (!empty($alt_product['mp_discount']) && $alt_product['mp_discount'] > $number_ribbon){
-	$number_ribbon = (int) @$alt_product['mp_discount'];
-}
-if (!empty($alt_product['bank_discount']) && $alt_product['bank_discount'] > $number_ribbon){
-	$number_ribbon = (int) @$alt_product['bank_discount'];
-}
-?><?php 
-                      if (!empty($number_ribbon)) :?>
-                          <div class="ribbon top-left small sp1"><span<?=$ribbon_style?>><?= $number_ribbon ?>% OFF</span></div>
-                      <?php endif ?>
-                      <?php if ($alt_product['promo'] !== '') :?>
-                          <div class="ribbon"><span><?= $alt_product['promo'] ?></span></div>
-                      <?php endif ?>
-                      <div class="product-image posnum-<?= $category['Category']['posnum'] ?>" style="background-image: url('<?php echo $settings['upload_url'] . $alt_product['img_url'] ?>')" alt=""></div>
-                      </div>
-                      <div class="product-info">
-                          <!--h3 class="article-related-title"><?php echo $alt_product['name'] ?></h3-->
-                          <div class="name" origin="4"><?= $alt_product_name ?></div>
-                          <?= $this->App->show_prices_dues($legends, $settings, $alt_product, $alt_product) ?>
-                      </div>
-                  </a>
-              </div>
-             <?php }endforeach; ?>
+				      foreach ($all_but_me as $product) {
+				        echo $this->App->tile($product['Product'], $settings, 1, $legends, $category);
+				      } 
+				      ?>
           </div>
         </div>
       </div>
@@ -429,6 +343,7 @@ gtag('event', 'view_item', {
 
 <script>
 window.baseUrl = "<?=Router::url('/',true)?>";
+
 // check stock
 function checkStock(i){
     var item = $(product_list[i]);
@@ -453,7 +368,7 @@ function checkStock(i){
    });
 }
 window.product_list = new Array();
-$(function(){
+document.addEventListener("DOMContentLoaded", function() {
   /*
     $('.add-no-stock').each(function(i,item){
         product_list[i] = item;

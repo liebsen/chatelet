@@ -5,8 +5,8 @@
       </span>
       <div class="subscribe-form d-flex flex-column justify-content-start align-items-center gap-05 max-25 m-auto">
         <span class="text-center">
-          <h5 class="text-uppercase"><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h5>
-          <p class="text-uppercase text-sm">Enterate de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
+          <h3><i class="gi gi-bell mr-1"></i> Estemos <strong>conectadas</strong></h3>
+          <p class="text-sm">Enterate de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
         </span>
         <span>
         <?php echo $this->Form->create('Subscribe', array(
@@ -42,7 +42,7 @@
       </div>    
       <div class="subscribe-success max-25 m-auto d-none-i">
         <span class="subscribe-text text-center">
-          <h3 class="text-uppercase">¡Ya estamos <strong>conectadas</strong>!</h3>
+          <h3>¡Ya estamos <strong>conectadas</strong>!</h3>
           <h1><i class="gi gi-flash text-warning"></i></h1>
           <div class="d-flex align-items-center mb-4">
             <p class="text-theme">A partir de ahora ya formas parte de nuestra comunidad y te enviaremos información exclusiva de nuestras novedades, descuentos y beneficios exclusivos solo para clientas</p>
@@ -56,7 +56,7 @@
       </div>
       <div class="subscribe-error max-25 m-auto d-none-i">
         <span class="subscribe-text text-center">
-          <h4 class="text-uppercase">Error al suscribir</h4>
+          <h4>Error al suscribir</h4>
           <p>Hubo un error al procesar esta página y no pudimos suscribirte, intenta nuevamente en unos instantes o <a href="/contacto">contactanos</a></p>
           <p class="text-center">
             <a class="text-link" onclick="subscribe_retry()">Subscribirme con otra cuenta</a>
@@ -83,6 +83,11 @@
       color: white;
     }
 
+    .subscribe-box .form-control {
+    	border-color: hotpink;
+    	box-shadow: none;
+    } 
+
     .subscribe-box p {
     	color: white;
     }
@@ -90,10 +95,6 @@
     .subscribe-box i {
     	color: white!important;
     }
-
-    .subscribe-box .ico-times::before {
-      color: darkred;
-    } 
 
     @media(min-width: 768px) {
       .subscribe-box { 
@@ -115,7 +116,7 @@
         height: 4px;
         width: 5rem;
         margin: auto;
-        background-color: lightcoral;
+        background-color: #f4f4f6;
         border-radius: 4px;
       }
     }
@@ -154,11 +155,22 @@
       }, 500)
     }
 
-    $(document).ready(function() {
+    function subscribe_hide(){
+      $('.subscribe-box').removeClass('delay3')
+      $('.subscribe-box').fadeOut(500)
+      $('.btn-subscribe').removeClass('d-none-i')    	
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
       const subscription_release = localStorage.subscription_release || 'undefined'
       
-      if(!subscription_release || subscription_release == 'undefined') {
-        $('.subscribe-box').removeClass('d-none-i')
+      if(
+      	!subscription_release || 
+      	subscription_release == 'undefined'
+      ) {
+      	if(!window.location.pathname.includes('carrito') && !window.location.pathname.includes('checkout')) {
+        	$('.subscribe-box').removeClass('d-none-i')
+        }
       } else {
         $('.btn-subscribe').removeClass('d-none-i')
       }
@@ -170,10 +182,13 @@
       })
 
       $('.corner-pin').on('click', function(e) {
-        e.preventDefault()
-        $('.subscribe-box').removeClass('delay3')
-        $('.subscribe-box').fadeOut(500)
-        $('.btn-subscribe').removeClass('d-none-i')
+      	subscribe_hide()
+      })
+
+      $('body').on('click', function(e) {
+      	if($(e.target).parents('.subscribe-box').length)
+      		return false;
+      	subscribe_hide()
       })
 
       $('.btn-subscribe').on('click', function(e) {

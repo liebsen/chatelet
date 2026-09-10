@@ -7,7 +7,7 @@
 
 <script type="text/javascript">
 	
-	$(function () {
+	document.addEventListener("DOMContentLoaded", function() {
 
 	  $('.sidebar-backdrop, .btn-close-sidebar').click((e) => {
 	    if($('nav.sidebar-expanded').length) {

@@ -1,7 +1,7 @@
-<?php echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php echo $this->Html->script('admin-index.js?v=' . $version['ver'], array('inline'=>false)) ?>
-<?php // $this->Html->script('ckeditor/ckeditor.js', array('inline' => false));?>
+<?php $this->Html->script('handlebars-v2.0.0',array('block' => 'script')) ?>
+<?php $this->Html->script('custom-tabs.js?v=' . $version['ver'], array('block' => 'script')); ?>
+<?php $this->Html->script('admin-index.js?v=' . $version['ver'], array('block' => 'script')) ?>
+<?php // $this->Html->script('ckeditor/ckeditor.js', array('block' => 'script'));?>
 
 <div class="block">
 	<div class="block-content">
@@ -29,7 +29,7 @@
 	        <div class="tab-pane pane-splash active">
 		        <!--h4 class="sub-header">Pantalla inicial <span class="counter_newsletter hide"></span></h4-->
 		        <p>Una pantalla forzada al inicio. Splash es la primera imagen que se verá en la pantalla mientras esté cargando la home.</p>
-						<div class="control-group w-100 bg-theme is-rounded-md" style="min-height: 260px;">
+						<div class="control-group w-100 bg-theme" style="min-height: 260px;">
 							<div class="controls w-100">
 								<script id="image_thumb_newsletter" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 									<span class="image-item image-{{orientation}}">	
@@ -46,7 +46,7 @@
 					  <progress class="progress_newsletter hide w-100" value="50" max="100">0%</progress>
 						<div class="control-group">
 							<div class="controls">
-								<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-progress=".progress_newsletter" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+								<input type="file" class="form-control" id="HomeImgPopupNewsletter" data-input="[name='data[img_popup_newsletter]']" data-progress=".progress_newsletter" data-url="<?php $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
 								Imagen. Tamaño recomendado 1920x1080 o 720x1600
 								<input type="hidden" name="data[img_popup_newsletter]" value="<?php echo $p['Home']['img_popup_newsletter'] ?>" />
 							</div>
@@ -55,7 +55,7 @@
 	        <div class="tab-pane pane-slider">
 		        <!--h4 class="sub-header">Slider </h4-->
 		        <p>Es el carrusel principal de la home que se ve al cerrar el splash. </p>
-						<div class="control-group w-100 bg-theme is-rounded-md" style="min-height: 260px;">
+						<div class="control-group w-100 bg-theme" style="min-height: 260px;">
 							<div class="controls w-100">
 								<script id="image_thumb" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
 									<li class="image-item image-{{orientation}}">
@@ -77,7 +77,7 @@
 							<progress class="progress_slider hide w-100" value="50" max="100">0%</progress>
 							<div class="control-group">
 							<div class="controls">
-								<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-progress=".progress_slider" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>Imagen y video. Tamaño recomendado 1920x1080 o 720x1600
+								<input type="file" class="form-control" id="upload" data-input="[name='data[img_url]']" data-progress=".progress_slider" data-url="<?php $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>Imagen y video. Tamaño recomendado 1920x1080 o 720x1600
 								<input type="hidden" name="data[img_url]" value="<?php echo $p['Home']['img_url'] ?>" />
 							</div>
 						</div>		        

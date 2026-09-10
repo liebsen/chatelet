@@ -15,7 +15,7 @@
       mouseDrag = false;  
   
   function init() {
-    window.document.body.insertAdjacentHTML( 'afterbegin', '<div class="draggable-saved"><i class="fa fa-thumbs-o-up fa-lg"></i></div>' );
+    window.document.body.insertAdjacentHTML( 'afterbegin', '<div class="draggable-saved"><i class="fa fa-thumbs-o-up"></i></div>' );
     bindMouse();
   }
   
@@ -90,8 +90,9 @@
       let currIndex = Array.from(tbody.children).indexOf(currRow)
       row1 = currIndex > index ? currRow : row
       row2 = currIndex > index ? row : currRow;
+      console.log('row1, row2', row1, row2)
       tbody.insertBefore(row1, row2);
-    }, 250)
+    }, 100)
   }
     
   function moveRow(x, y) {

@@ -71,7 +71,7 @@
                 font-family: var(--font-family), Verdana, Arial, Sans-Serif!important;
                 line-height: 1;
                 font-size: 15px; 
-                color: #a5a5a5;
+                color: #2C2C2C;
                 font-weight: 300;
                 min-height: 100dvh;
                 background-color: #333;
@@ -111,7 +111,7 @@
                         </a>
                     </li>
                 </ul-->
-                <h3 class="text-center text-white mt-0">ADMINISTRADOR</h3>
+                <!--h3 class="text-center text-white mt-0">ADMINISTRADOR</h3-->
                 <p class="notification text-white">Ingresa tus credenciales para continuar</p>
                 <div class="tab-content is-rounded bg-translucid">
                     <div class="tab-pane pane-index active" id="login-form-tab">
@@ -239,7 +239,7 @@
 .login-btn {
   z-index: 1000;
   position: absolute;
-  top: 250px;
+  top: calc(50dvh - 5.35rem);
   left: 50%;
   display: flex;
   justify-content: center;
@@ -349,7 +349,7 @@ body.login .form-group {
         </style>
         <!-- Javascript code only for this page -->
         <script>
-            $(function(){
+            document.addEventListener("DOMContentLoaded", function() {
                 if ( ! $('body').hasClass('no-animation') ) {
                     var timeout = 0;
 
@@ -374,12 +374,13 @@ body.login .form-group {
         </script>
 
         <script type="text/javascript">
-            $(function(){
-                $('button[type="submit"]').prop('disabled', false)
-                var timeout = 0
-            $('#login_form').submit(function(e) {
-            	 	$('button[type="submit"]').text('Espere...')
-                $('button[type="submit"]').prop('disabled', true)
+            document.addEventListener("DOMContentLoaded", function() {
+              const submit_btn = $('button[type="submit"]');
+              submit_btn.prop('disabled', false)
+              var timeout = 0
+            	$('#login_form').submit(function(e) {
+            	 	submit_btn.text('Espere...')
+                submit_btn.prop('disabled', true)
 
                 e.preventDefault();
                 if($('#password').length){
@@ -400,8 +401,10 @@ body.login .form-group {
                           title: 'Error al iniciar sesión',
                           message: res.errors
                       });
-
-                      $('button[type="submit"]').prop('disabled',false)
+                      setTimeout(function(){
+				                submit_btn.prop('disabled', false)
+				                submit_btn.text('Volver a intentar')	
+			                }, 3000)
                       return false;
                     } else {
                       $.growl.notice({
@@ -416,17 +419,16 @@ body.login .form-group {
                     }
                   })
                   .fail(function() {
-                        $('button[type="submit"]').prop('disabled', false)
-                        $('button[type="submit"]').text('Iniciar sesión')
+			                submit_btn.prop('disabled', false)
+			                submit_btn.text('Volver a intentar')	
                       $.growl.error({
                           title: 'Error al inciar sesión',
                           message: 'Por favor verifica los datos introducidos e intenta de nuevo'
                       });
                   });
-
-              }, 500)
-              return false;
-            });
+	              }, 500)
+	              return false;
+	            });
             // $("#registro_form").bootstrapValidator('validate');      
             })
         </script>        

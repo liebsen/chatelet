@@ -1,16 +1,32 @@
 <?php
-  echo $this->Html->script('ckeditor/ckeditor', array('inline' => false));
+  $this->Html->script('ckeditor/ckeditor', array('block' => 'script'));
   #echo $this->Html->script('category', array('inline' => false));
-  echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->Html->script('category_sizes.js?v=' . $version['ver'], array('inline' => false));
-  echo $this->element('admin/menu');
+  $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->Html->script('vendor/sweetalert.min', array('block' => 'script'));
+  $this->Html->css('sweetalert', array('block' => 'css'));
+  $this->Html->script('category_sizes.js?v=' . $version['ver'], array('block' => 'script'));
+  $this->element('admin/menu');
+  $styles = array_map(fn($item) => array(
+		'text' => $item['Category']['text'], 
+		'style' => json_decode($item['Category']['text_style']))
+	, $parents);
 ?>
+<script type="text/javascript">
+	const styles = <?=json_encode(
+		array_values(
+			array_filter(
+				array_map(fn($item) => $item['text'] && $item['style'] ? $item : null, $styles)
+			)
+		)
+	)?>;
+</script>
 <div class="block-section">
   <div class="block-tabs">
     <!--div class="block-title">
       <h4><?php 
-        echo (isset($cat)) ? __('Editar Categoria') : __('Agregar Categoria');
-      ?></h4>
+        echo (isset($category)) ? __('Editar Categoria') : __('Agregar Categoria');
+      ?></h4>	
     </div-->
     <div class="tab-content">
       <form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
@@ -19,210 +35,133 @@
           if (isset($this->request->pass[1])) {
             echo '<input type="hidden" name="data[id]" value="'. htmlspecialchars($this->request->pass[1]) .'" />';
           }
-        ?>
+        ?>				<?php echo $this->element('admin/category-preview')?>
+
         <div class="row">
           <div class="col-md-6">
-            	
-            <h4 class="sub-header">Estado</h4>
             <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
+              <label class="control-label" for="toggle"><?php echo __('Visible'); ?></label>
               <div class="form-group">
-                <input type="checkbox" name="data[visible]" value="1" id="toggle" class="toggle-checkbox"<?= $cat['Category']['visible'] == '1' ? ' checked' : '' ?>>
+                <input type="checkbox" name="data[visible]" value="1" id="toggle" class="toggle-checkbox"<?= $category['Category']['visible'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle" class="toggle-label"></label>
               </div>
             </div>
-            <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Aplica descuentos por Tarjeta'); ?></label>
-              <div class="form-group">
-                <input type="checkbox" name="data[mp_discount_enable]" value="1" id="toggle-mp_discount" class="toggle-checkbox toggle-block" data-block=".mp-discount" data-class="d-none" <?= $cat['Category']['mp_discount_enable'] == '1' ? ' checked' : '' ?>>
-                <label for="toggle-mp_discount" class="toggle-label"></label>
-              </div>
-            </div>
-            <div class="control-group mp-discount <?= empty($cat['Category']['mp_discount_enable']) ? 'd-none' : '' ?>">
-              <label class="control-label" for="columns-text"><?php echo __('Descuento por Tarjeta'); ?></label>
-              <div class="controls">
-                <input  class="form-control w-100" type="number" name="data[mp_discount]" value="<?= !empty($cat) ? $cat['Category']['mp_discount'] : '0' ?>">
-              </div>
-              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Tarjeta si hubiera.</small>
-            </div>
-
-            <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Activar descuentos por Banco'); ?></label>
-              <div class="form-group">
-                <input type="checkbox" name="data[bank_discount_enable]" value="1" id="toggle-bank_discount" class="toggle-checkbox toggle-block" data-block=".bank-discount" data-class="d-none" <?= $cat['Category']['bank_discount_enable'] == '1' ? ' checked' : '' ?>>
-                <label for="toggle-bank_discount" class="toggle-label"></label>
-              </div>
-            </div>
-            <div class="control-group bank-discount <?= empty($cat['Category']['bank_discount_enable']) ? 'd-none' : '' ?>">
-              <label class="control-label" for="columns-text"><?php echo __('Descuento por Banco'); ?></label>
-              <div class="controls">
-                <input  class="form-control w-100" type="number" name="data[bank_discount]" value="<?= !empty($cat) ? $cat['Category']['bank_discount'] : '0' ?>">
-              </div>
-              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Transferencia si hubiera.</small>
-            </div>          	
-            <h4 class="sub-header">Nombre</h4>
-            <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Nombre Principal'); ?></label>
-              <div class="controls">
-                <input class="form-control w-100" type="text" id="" name="data[name]" value="<?php echo (isset($cat)) ? $cat['Category']['name'] : ''; ?>" required>
-              </div>
-            </div>
+	          <div class="control-group">
+	            <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>
+	            <div class="controls">
+	              <input class="form-control w-100" type="text" id="" name="data[name]" value="<?=$category['Category']['name'] ?? ''; ?>" required>
+	            </div>
+	          </div>
+	          <hr>
             <div class="form-box bg-info-outline">
-              <h4 class="sub-header"><?=__('Propiedades')?></h4>
-              <p><?=__('Selecciona como deseas ver tu categoría')?></p>            
-              <div class="control-group">
-                <label class="control-label" for="alternatename"><?php echo __('Activar Nombre Alternativo'); ?></label>
-                <div class="form-group">
-                  <input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".show-alternate" data-class="d-none" <?= $cat['Category']['alternate_toggle'] == '1' ? ' checked' : '' ?>>
-                  <label for="alternatename" class="toggle-label"></label>
-                  <!--input type="checkbox" id="alternatename" name="data[alternate_toggle]" value="1" <?php echo (isset($cat)) && $cat['Category']['alternate_toggle'] == 1 ? 'checked' : ''; ?>/-->
-                </div>
-                <div class="control-group show-alternate<?= $cat['Category']['alternate_toggle'] == '1' ? '' : ' d-none' ?>">
-	                <label class="control-label" for="alternatename"><?php echo __('Nombre Alternativo'); ?></label>
-                  <div class="controls alternate_name_block">
-                    <input class="form-control w-100" type="text" id="alternate_name_target" name="data[alternate_name]" value="<?php echo (isset($cat)) ? $cat['Category']['alternate_name'] : ''; ?>">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="control-group">
-                <label class="control-label" for="columns-text"><?php echo __('Ancho de columna'); ?></label>
-                <div class="controls">
-                  <select class="form-control" name="data[colsize]">
-                    <option value="6"<?= empty($cat['Category']['colsize']) ? ' selected' : '' ?>>Auto</option>
-                    <!--option value="2"<?= @$cat['Category']['colsize'] == '2' ? ' selected' : '' ?>>16.66%</option-->
-                    <option value="20"<?= @$cat['Category']['colsize'] == '20' ? ' selected' : '' ?>>20%</option>
-                    <option value="3"<?= @$cat['Category']['colsize'] == '3' ? ' selected' : '' ?>>25%</option>
-                    <option value="4"<?= @$cat['Category']['colsize'] == '4' ? ' selected' : '' ?>>33%</option>
-                    <option value="40"<?= @$cat['Category']['colsize'] == '40' ? ' selected' : '' ?>>40%</option>
-                    <option value="6"<?= @$cat['Category']['colsize'] == '6' ? ' selected' : '' ?>>50%</option>
-                    <option value="60"<?= @$cat['Category']['colsize'] == '60' ? ' selected' : '' ?>>60%</option>
-                    <option value="8"<?= @$cat['Category']['colsize'] == '8' ? ' selected' : '' ?>>66%</option>
-                    <option value="9"<?= @$cat['Category']['colsize'] == '9' ? ' selected' : '' ?>>75%</option>
-                    <option value="80"<?= @$cat['Category']['colsize'] == '80' ? ' selected' : '' ?>>80%</option>
-                    <option value="12"<?= @$cat['Category']['colsize'] == '12' ? ' selected' : '' ?>>100%</option>
-                  </select>              
-                </div>
-                <small class="text-muted">Seleccioná el ancho de columna para esta categoría (solo para dispositivos de escritorio y smart-tv).</small>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="columns-text"><?php echo __('Posición de la imagen para todos los productos. '); ?></label>
-                <div class="controls">
-                  <select class="form-control" name="data[posnum]">
-                    <option value="1"<?= empty($cat['Category']['posnum']) ? ' selected' : '' ?>>Auto</option>
-                    <option value="2"<?= @$cat['Category']['posnum'] == '2' ? ' selected' : '' ?>>Arriba</option>
-                    <option value="3"<?= @$cat['Category']['posnum'] == '3' ? ' selected' : '' ?>>Abajo</option>
-                  </select>              
-                </div>
-                <small class="text-muted">Seleccioná la posición para las imágenes de los productos. Selecciona <b>Arriba</b> para ver rostros, <a>Abajo</a> para ver los zapatos</small>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="columns-text"><?php echo __('Alineación del texto dentro de la imagen'); ?></label>
-                <div class="controls">
-                  <select class="form-control" name="data[alignnum]">
-                    <option value="0"<?= empty($cat['Category']['alignnum']) ? ' selected' : '' ?>>Centro</option>
-                    <option value="1"<?= @$cat['Category']['alignnum'] == '1' ? ' selected' : '' ?>>Izquierda</option>
-                    <option value="2"<?= @$cat['Category']['alignnum'] == '2' ? ' selected' : '' ?>>Derecha</option>
-                    <option value="3"<?= @$cat['Category']['alignnum'] == '3' ? ' selected' : '' ?>>Arriba</option>
-                    <option value="4"<?= @$cat['Category']['alignnum'] == '4' ? ' selected' : '' ?>>Abajo</option>
-                    <option value="5"<?= @$cat['Category']['alignnum'] == '5' ? ' selected' : '' ?>>Arriba/Izquierda</option>
-                    <option value="6"<?= @$cat['Category']['alignnum'] == '6' ? ' selected' : '' ?>>Arriba/Derecha</option>
-                    <option value="7"<?= @$cat['Category']['alignnum'] == '7' ? ' selected' : '' ?>>Abajo/Izquierda</option>
-                    <option value="8"<?= @$cat['Category']['alignnum'] == '8' ? ' selected' : '' ?>>Abajo/Derecha</option>
-                  </select>              
-                </div>
-                <small class="text-muted">Seleccioná la posición para el texto dentro de las imágenes del shop.</small>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="columns-text"><?php echo __('Color Burbuja'); ?></label>
-                <div class="controls">
-                  <input type="color" id="ribbon_color" name="data[ribbon_color]" value="<?=@$cat['Category']['ribbon_color']??'#333' ?>">
-                </div>
-                <small class="text-muted">Seleccioná color de burbuja para esta categoría. <span class="text-info is-clickable" onclick="$('#ribbon_color').val('')">Resetear</span></small>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label" for="columns-text"><?php echo __('Ordenar'); ?></label>
-                <div class="controls">
-                  <input  class="form-control w-100" type="number" name="data[ordernum]" value="<?= !empty($cat) ? $cat['Category']['ordernum'] : '100' ?>">
-                </div>
-                <small class="text-muted">Seleccioná el orden de prioridad para esta categoría</small>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-6"> 
-            <div class="form-box bg-info-outline">
-              <h4 class="sub-header"><?=__('Talles')?></h4>
-              <p><?=__('Indica talle original y su conversión correspondiente (ej: 7 => S)')?></p>            
-            <?php foreach($sizes as $s => $size):?>
-              <div class="control-group flex-nowrap flex-row gap-05">
-                <select class="form-control" disabled>
-                	<option value="" selected><?=sprintf('%03d', $size['CategorySize']['code'])?></option>
-              	</select>
-                <input type="text" class="form-control" value="<?=$size['CategorySize']['name']?>" disabled>
-                <button class="btn-delete-size btn-danger form-control flex-1" data-id="<?=$size['CategorySize']['id']?>"><i class="fa fa-trash-o"></i></button>
-             	</div>
-            <?php endforeach ?>
-              <div class="size-create-item">
-              	<div class="control-group flex-nowrap flex-row gap-05">
-	                <select class="form-control" name="sizes[code][]" data-change="1">
-	                	<option value="">Código de talle</option>
-	                <?php for($i=7; $i<21; $i++):?>
-	                	<option value="<?=$i?>"><?=sprintf('%03d', $i)?></option>
-	                <?php endfor?>
-	              	</select>
-	                <input type="text" class="form-control" name="sizes[name][]" placeholder="Nombre talle" value="" data-change="1">
-	                <button class="btn-remove-size btn-danger form-control flex-1"><i class="fa fa-trash-o"></i></button>
+              <h4 class="sub-header"><?=__('Descuentos')?></h4>
+              <p><?=__('Establece descuentos')?></p>    
+	            <div class="control-group">
+	              <label class="control-label" for="columns-text"><?php echo __('Aplica descuentos por Tarjeta'); ?></label>
+	              <div class="form-group">
+	                <input type="checkbox" name="data[mp_discount_enable]" value="1" id="toggle-mp_discount" class="toggle-checkbox toggle-block" data-block=".mp-discount" data-class="d-none" <?= $category['Category']['mp_discount_enable'] == '1' ? ' checked' : '' ?>>
+	                <label for="toggle-mp_discount" class="toggle-label"></label>
 	              </div>
-             	</div>            
-            <div class="sizes-create-area"></div>
-            <button class="btn btn-success btn-create-size"><i class="gi gi-circle_plus"></i></button>
-            </div>    
-
-            <div class="form-box bg-info-outline<?=empty($cat['Category']['id']) ? ' d-disable' : ''?>">
+	            </div>
+	            <div class="control-group mp-discount <?= empty($category['Category']['mp_discount_enable']) ? 'd-none' : '' ?>">
+	              <label class="control-label" for="columns-text"><?php echo __('Descuento por Tarjeta'); ?></label>
+	              <div class="controls">
+	                <input  class="form-control w-100" type="number" name="data[mp_discount]" value="<?= !empty($category) ? $category['Category']['mp_discount'] : '0' ?>">
+	              </div>
+	              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Tarjeta si hubiera.</small>
+	            </div>
+	            <div class="control-group">
+	              <label class="control-label" for="columns-text"><?php echo __('Activar descuentos por Banco'); ?></label>
+	              <div class="form-group">
+	                <input type="checkbox" name="data[bank_discount_enable]" value="1" id="toggle-bank_discount" class="toggle-checkbox toggle-block" data-block=".bank-discount" data-class="d-none" <?= $category['Category']['bank_discount_enable'] == '1' ? ' checked' : '' ?>>
+	                <label for="toggle-bank_discount" class="toggle-label"></label>
+	              </div>
+	            </div>
+	            <div class="control-group bank-discount <?= empty($category['Category']['bank_discount_enable']) ? 'd-none' : '' ?>">
+	              <label class="control-label" for="columns-text"><?php echo __('Descuento por Banco'); ?></label>
+	              <div class="controls">
+	                <input  class="form-control w-100" type="number" name="data[bank_discount]" value="<?= !empty($category) ? $category['Category']['bank_discount'] : '0' ?>">
+	              </div>
+	              <small class="text-muted">Seleccioná el porcentaje de descuento. Si lo dejas en blanco se aplicará el descuento general de Transferencia si hubiera.</small>
+	            </div>
+	          </div>
+            <div class="form-box bg-info-outline<?=empty($category['Category']['id']) ? ' d-disable' : ''?>">
               <h4 class="sub-header"><?=__('Imágenes')?></h4>
               <p><?=__('Carga tus imágenes para esta categoría')?></p>
               <div class="control-group">
-                <label class="control-label" for=""><?=__('Seleccione una imagen de banner para esta categoría')?></label>
-                <?php if(!empty($cat['Category']['banner_url'])):?>
-                  
-                  <img src="<?php echo $settings['upload_url'].$cat['Category']['banner_url']?>" width="300">
+                <label class="control-label" for=""><?=__('Imagen principal')?></label>
+                <?php if(!empty($category['Category']['img_url'])):?>
+                  <a href="javascript:void(0)" class="<?=empty($category['Category']['id'])?'':'btn-preview'?>">
+                  	<img class="img-rounded" src="<?php echo $settings['upload_url'].$category['Category']['img_url']?>" width="300">
+                	</a>
                 <?php endif ?>
                 <div class="controls">
-                  <input class="form-control" type="file" class="attached" name="banner">
+                  <input class="form-control" type="file" name="image">
                 </div>
               </div>
 
               <div class="control-group">
-                <label class="control-label" for=""><?=__('Seleccione una imagen de listado para esta categoría')?></label>
-                <?php if(!empty($cat['Category']['img_url'])):?>
-                  
-                  <img src="<?php echo $settings['upload_url'].$cat['Category']['img_url']?>" width="300">
+                <label class="control-label" for=""><?=__('Banner')?></label>
+                <?php if(!empty($category['Category']['banner_url'])):?>
+                  <img src="<?php echo $settings['upload_url'].$category['Category']['banner_url']?>" width="300">
                 <?php endif ?>
                 <div class="controls">
-                  <input  class="form-control" type="file" class="attached" name="image">
+                  <input class="form-control" type="file" name="banner">
                 </div>
               </div>
+
               <div class="control-group">
                 <label class="control-label" for=""><?=__('Seleccione una imagen de Talles')?></label>
-                <?php if(!empty($cat['Category']['size'])):?>
+                <?php if(!empty($category['Category']['size'])):?>
                   
-                  <img src="<?php echo $settings['upload_url'].$cat['Category']['size']?>" width="300">
+                  <img src="<?php echo $settings['upload_url'].$category['Category']['size']?>" width="300">
                 <?php endif ?>
                 <div class="controls">
-                  <input  class="form-control" type="file" class="attached" name="size">
+                  <input  class="form-control" type="file" name="size">
                 </div>
               </div>
             </div>
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-box bg-info-outline">
+              <h4 class="sub-header"><?=__('Talles')?></h4>
+              <p><?=__('Indica talle original y su conversión correspondiente (ej: 7 => S)')?></p>
+              <div class="d-flex flex-column gap-05">
+	            <?php foreach($sizes as $s => $size):?>
+	              <div class="control-group d-flex flex-nowrap flex-row gap-05">
+	                <select class="form-control" disabled>
+	                	<option value="" selected><?=sprintf('%03d', $size['CategorySize']['code'])?></option>
+	              	</select>
+	                <input type="text" class="form-control" value="<?=$size['CategorySize']['name']?>" disabled>
+	                <button class="btn btn-delete-size btn-danger form-control flex-1" data-id="<?=$size['CategorySize']['id']?>"><i class="fa fa-trash-o"></i></button>
+	             	</div>
+	            <?php endforeach ?>
+	              <div class="size-create-item d-flex flex-column gap-05">
+	              	<div class="control-group d-flex flex-nowrap flex-row gap-05">
+		                <select class="form-control" name="sizes[code][]" data-change="1">
+		                	<option value="">Código de talle</option>
+		                <?php for($i=7; $i<21; $i++):?>
+		                	<option value="<?=$i?>"><?=sprintf('%03d', $i)?></option>
+		                <?php endfor?>
+		              	</select>
+		                <input type="text" class="form-control" name="sizes[name][]" placeholder="Nombre talle" value="" data-change="1">
+		                <button class="btn btn-remove-size btn-danger form-control flex-1"><i class="fa fa-trash-o"></i></button>
+		              </div>
+	             	</div>          
+	            	<div class="sizes-create-area d-flex flex-column gap-05"></div>
+	            </div>
+	            <div class="pt-2">
+	            	<button class="btn btn-success btn-create-size"><i class="gi gi-circle_plus"></i></button>
+	            </div>
+            </div>
           </div>                
         </div>      
-                       
+
         <div class="form-actions">
-          <a href="/admin/categorias" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> Atrás</a>
-          <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
+          <a href="/admin/categorias" class="btn btn-info preview-toggle"><i class="fa fa-chevron-left mr-1"></i> <span class="ml-1">Atrás</span></a>
+          <button type="reset" class="btn btn-danger preview-toggle" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
+          <button type="button" class="btn btn-warning btn-preview<?=empty($category['Category']['id'])?'  d-none':''?>" title="Previsualizar categoría"><i class="gi gi-font"></i> <span class="ml-1">Diseñar</span></button>
           <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
         </div>
       </form>

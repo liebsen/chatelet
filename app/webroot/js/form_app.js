@@ -7,7 +7,6 @@ function getFormData(form) {
   var data = new FormData();
   for (var i=0; i<form.length; i++) {
     var e = form[i]
-    //console.log(e.name)
     if(
       e.type == 'hidden' || 
       ($(e).data('change') || $(e).data('force')) && 
@@ -32,7 +31,7 @@ $(document).ready(function() {
     $('[type="submit"]').prop('disabled', false)
     if($(elem).attr('type') == 'file') {
       const matches = $(elem).attr('name').match(/\[(.*?)\]/)
-      if(matches[1]) {
+      if(matches && matches[1]) {
         const tempUrl = URL.createObjectURL(elem.files[0])
         $(`#${matches[1]}`).attr('src', tempUrl);
       }
@@ -50,7 +49,7 @@ $(document).ready(function() {
             contentType: false,  // Mandatory: let browser set the correct multipart/form-data boundary
             success: function(res) {
               $.growl.notice({
-                title: 'OK',
+                title: 'Hecho',
                 message: res.message || 'La tarea fue ejecutada exitosamente'
               });
             },
@@ -90,14 +89,13 @@ $(document).ready(function() {
           }, 100)
         } else {
           $.growl.notice({
-            title: 'OK',
+            title: 'Hecho',
             message: res.message
           });
           if(res.lastid) {
             $('input[name="data[id]"]').val(res.lastid)
           }
           const cb = $('input[name="cb"]').val()
-          console.log('cb',cb)
           if(cb && window[cb]) {
           	window[cb](res)
           }

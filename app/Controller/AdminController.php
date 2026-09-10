@@ -1166,7 +1166,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     }
 
 		$this->set('logistics_images', $logistics_images);
-		$this->set('list_payments', [
+		/*$this->set('list_payments', [
 	    '' => "CBU/Alias",
 	    'credit_card' => "Crédito",
 	    'debit_card' => "Débito",
@@ -1179,7 +1179,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    'approved' => "Aprobado",
 	    'processing' => "Procesando...",
 	    'rejected' => "Rechazado",
-		]);
+		]);*/
 
 		$this->set('shipping_price_min',$this->Setting->findById('shipping_price_min'));
 		$this->set('logistics',$logistics);
@@ -1785,10 +1785,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 				'icon' 		=> 'gi gi-tags',
 				'url'		=> '/admin/categorias',
 			),
-			'Crear' => array(
+			/*'Crear' => array(
 				'icon' 		=> 'gi gi-circle_plus',
 				'url'		=> '/admin/categorias/add',
-			),
+			),*/
 			'Compositor' => array(
 				'icon' 		=> 'gi gi-magic',
 				'url'		=> '/admin/categorias/compose',
@@ -1814,47 +1814,51 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 
 	    break;
     	case 'add':
-    	    if ($this->request->is('POST')){
-		        $this->autoRender = false;
-		        $this->RequestHandler->respondAs('application/json');
+  	    if ($this->request->is('POST')){
+	        $this->autoRender = false;
+	        $this->RequestHandler->respondAs('application/json');
 
-		        $data = $this->request->data;
-		        $data['alternate_name'] = $data['alternate_name'] ?? '';
-		        
-		        $file_real_name = null;
-		        if(!empty($this->request->params['form']['image']['name'])){
-		          $file_real_name = $this->save_file($this->request->params['form']['image']);
-		        }
+	        $data = $this->request->data;
 
-		        $file_size = null;
-		        if(!empty($this->request->params['form']['size']['name'])){
-		          $file_size = $this->save_file($this->request->params['form']['size']);
-		        }
+			    if(!empty($data['text_style'])) {
+			    	$data['text_style'] = json_encode($data['text_style']);
+			    }
+	        
+	        $file_real_name = null;
+	        if(!empty($this->request->params['form']['image']['name'])){
+	          $file_real_name = $this->save_file($this->request->params['form']['image']);
+	        }
 
-		        if($file_real_name){
-		          $data['img_url'] = $file_real_name;
-		        }
-		        
-		        if($file_size){
-		          $data['size'] = $file_size;
-		        }
+	        $file_size = null;
+	        if(!empty($this->request->params['form']['size']['name'])){
+	          $file_size = $this->save_file($this->request->params['form']['size']);
+	        }
 
-		        $this->Category->save($data);
-				    $this->Session->setFlash(
-				      'Módulo Shop actualizado',
-				      'default',
-				      array('class' => 'hidden notice')
-				    );
-				    return json_encode(
-				    	array(
-				    		'success' => true,
-				    		'redirect' => '/admin/categorias'
-				    	)
-				    );
-  			} else {
-    			return $this->render('categorias-detail');
-    		}
-    		break;
+	        if($file_real_name){
+	          $data['img_url'] = $file_real_name;
+	        }
+	        
+	        if($file_size){
+	          $data['size'] = $file_size;
+	        }
+
+	        $this->Category->save($data);
+			    $this->Session->setFlash(
+			      'Módulo Shop actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'redirect' => '/admin/categorias/'.$data['id']
+			    	)
+			    );
+			} else {
+  			return $this->render('categorias-detail');
+  		}
+  		break;
+
     	case 'delete':
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
@@ -1876,11 +1880,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    );
 	    	}
     		break;
+
     	case 'edit':
     		if ($this->request->is('post')) {
     			$this->autoRender = false;
     			$this->RequestHandler->respondAs('application/json');
     			$data = $this->request->data;
+
+			    if(!empty($data['text_style'])) {
+			    	$data['text_style'] = json_encode($data['text_style']);
+			    }
+
 	        $file_real_name = null;
 	        if(!empty($this->request->params['form']['image']['name'])){
             $file_real_name = $this->save_file($this->request->params['form']['image']);
@@ -1904,7 +1914,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	          $data['banner_url'] = $file_real_name1;
 	        }
 
-	        $data['alternate_toggle'] = $data['alternate_toggle'] ?? 0;
+	        // $data['alternate_toggle'] = $data['alternate_toggle'] ?? 0;
 
 	        if($file_size){	
 	          $data['size'] = $file_size;
@@ -1977,22 +1987,56 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			    	)
 			    );
     		} else {
-	    		$cat = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
+	    		$category = $this->Category->find('first', array('conditions' => array('id' => $this->request->pass[1])));	
+	    		$parents = $this->Category->find('all', array('conditions' => array('visible' => 1)));
+
+			    if(!empty($category['Category']['text_style'])) {
+			    	$temp = json_decode($category['Category']['text_style']);
+			    	//$cat['Category']['parsed_style'] = $temp;
+			    	$category['Category']['text_style'] = $temp;
+			    }
+
 	    		$sizes = $this->CategorySize->find('all', array(
 	    			'conditions' => array('category_id' => $this->request->pass[1]),
 	    			'order' => ['CategorySize.code ASC']
-	    		));	
+	    		));
 
+	    		$families = [
+	    			'DynaPuff', 
+	    			'Montserrat', 
+	    			'Basic', 
+	    			'Fira Sans', 
+	    			'Antonio', 
+	    			'Grandstander', 
+	    			'DM Sans', 
+	    			'Jura', 
+	    			#'Arizonia', 
+	    			'Shantell Sans', 
+	    			'Playpen Sans',
+	    			'Comic Relief', 
+	    			'Kablammo', 
+	    			#'Supermercado One', 
+	    			'National Park', 
+	    			'Varela Round', 
+	    			'Nunito', 
+	    			'Poppins', 
+	    			'Fredoka', 
+	    			#'Itim', 
+	    			#'Patrick Hand', 
+	    			#'Indie Flower'
+	    		];
 	    		$navs = array();
-    			$navs[$cat['Category']['name']] = array(
+    			$navs[$category['Category']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
-						'url'		=> '/admin/categorias/edit/'.$cat['Category']['id'],
+						'url'		=> '/admin/categorias/edit/'.$category['Category']['id'],
 					);
     			#\d("navs",$navs);
 					$this->set('navs', $navs);
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
-	    		$this->set('cat', $cat);
+	    		$this->set('families', $families);
+	    		$this->set('category', $category);
+	    		$this->set('parents', $parents);
 	    		$this->set('sizes', $sizes);
 	    		return $this->render('categorias-detail');
     		}
@@ -2863,7 +2907,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    			),
 	    			false,
 	    			false
+<<<<<<< HEAD
 					);					
+=======
+					);
+>>>>>>> origin/staging
 	    	}
 		  }
       return json_encode(['success' => true]);
@@ -3427,7 +3475,7 @@ ORDER BY u.id DESC;';
     ) {
       $response = array(
         'success' => false,
-        'errors' => 'Solo los administradores generales puede realizar esta acción'
+        'errors' => 'Solo los administradores pueden realizar esta acción'
       );
 
       return json_encode($response);    
@@ -3437,6 +3485,10 @@ ORDER BY u.id DESC;';
 			'Banners' => array(
 				'icon' 		=> 'fa fa-shirtsinbulk',
 				'url'		=> '/admin/banners',
+			),
+			'Configuración' => array(
+				'icon' 		=> 'gi gi-cogwheel',
+				'url'		=> '/admin/banners/config',
 			),
 			'Nuevo Banner' => array(
 				'icon' 		=> 'gi gi-circle_plus',
@@ -3452,6 +3504,41 @@ ORDER BY u.id DESC;';
 		$this->set('h1', $h1);
     $this->loadModel('Banner');
     switch ($action) {
+
+    	case 'config': 
+
+    		if ($this->request->is('POST')){
+					$this->RequestHandler->respondAs('application/json');
+					$this->autoRender = false;
+    			
+					$data = $this->request->data;
+
+					foreach($data as $id => $value) {
+						$this->Setting->save(
+							array(
+								'id' => $id, 
+								'value' => $value
+							)
+						);
+					}
+
+			    $this->Session->setFlash(
+			      'Módulo Banners actualizado',
+			      'default',
+			      array('class' => 'hidden notice')
+			    );		        
+
+			    return json_encode(
+			    	array(
+			    		'success' => true,
+			    		'message' => 'Módulo Banners actualizado'
+			    	)
+			    );
+				}
+				
+				return $this->render('banners-config');
+    		break;
+
     	case 'add':
     	    if ($this->request->is('POST')){
 		        $this->autoRender = false;
@@ -3477,9 +3564,10 @@ ORDER BY u.id DESC;';
 				    return json_encode(
 				    	array(
 				    		'success' => true,
-				    		'redirect' => '/admin/banners'
+				    		'message' => 'Módulo Banners actualizado'
 				    	)
 				    );
+
 
 		        // return $this->redirect(array('action'=>'banners'));
   			} else {
@@ -3490,7 +3578,6 @@ ORDER BY u.id DESC;';
 	    	if ($this->request->is('post')) {
 	    		$this->autoRender = false;
 					$this->RequestHandler->respondAs('application/json');
-
 	    		$this->Banner->delete($this->request->data['id']);
 			    $this->Session->setFlash(
 			      'Módulo Banners actualizado',
@@ -4710,7 +4797,7 @@ ORDER BY u.id DESC;';
 
 	public function bank() {
 		$h1 = array(
-			'name' => 'CBU/Alias',
+			'name' => 'Bancos',
 			'icon' => 'gi gi-bank'
 		);
 

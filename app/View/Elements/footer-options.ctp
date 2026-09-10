@@ -1,6 +1,6 @@
 <?php echo $this->element('particular-email') ?>
   <div class="options">
-    <div class="p-1">
+    <div>
       <h5 class="text-uppercase">Colección</h5>
       <ul>
       <?php
@@ -28,7 +28,7 @@
     <?php
     if (!empty($lookBook)){ ?>
 
-    <div class="p-1">
+    <div>
       <h5 class="text-uppercase">LookBook</h5>
       <ul>
     <?php foreach ($lookBook as $item) {
@@ -50,7 +50,7 @@
         
     <?php } ?>
 
-    <div class="p-1">
+    <div>
       <h5 class="text-uppercase">Información</h5>
       <ul>
         <li>
@@ -63,7 +63,7 @@
       </ul>
     </div>
 
-    <div class="p-1">
+    <div>
       <!--  <a href="mailto:sueldos@chatelet.com.ar"><h4>Trabaja con nosotros</h4></a>-->
         <h5 class="text-uppercase">Empresa</h5>
         <ul>

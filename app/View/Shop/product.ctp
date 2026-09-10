@@ -1,6 +1,7 @@
 <?php 
 echo $this->Session->flash();
-?>
+$this->Html->script('vendor/jquery.touchSwipe.min', array('block' => 'script'));
+$this->Html->script('carousel-swipe.js?v='.$version['ver'], array('block' => 'script'));?>
 <script>
 function updateSrcTo(obj){
   obj.src = $(obj).attr('url-copy');
@@ -48,9 +49,11 @@ function updateSrcTo(obj){
 }
 </style>
 <?php if(!empty($category['banner_url'])): ?>
+	<?php if(!empty($category['text_style']->font_family)):?>
+<script type="text/javascript">loadFont('<?=$category['text_style']->font_family?>');</script>
+<?php endif ?>
 <div id="headabrigos">
-  <div class="img-resp is-main" style="background-image:url(<?php echo $settings['upload_url'].$category['banner_url'] ?>)">
-    <!--h1 class="name_shop delay2 animation-pullUp animation-both"><?php echo $category['name']; ?></h1-->
+  <div class="img-resp is-main posnum-<?=$category['posnum'] ?? 'auto' ?>" style="background-image:url(<?php echo $settings['upload_url'].$category['banner_url'] ?>)">
   </div>  
 </div>
 <?php endif ?>
@@ -93,7 +96,7 @@ function updateSrcTo(obj){
       } 
     } else {
       foreach ($categories as $category) {
-        echo $this->App->tile($category['Category'], $settings);
+        echo $this->App->tile($category, $settings);
       }
     }
   ?>
@@ -103,7 +106,7 @@ function updateSrcTo(obj){
                     <ul>
                         <?php
                             foreach ($categories as $category) {
-                                $category = $category['Category'];
+                                $category = $category;
                                 $slug =  str_replace(' ',
                                 '-',strtolower($category['name']));
                         if (strpos($slug, 'trajes')!==false){
@@ -153,6 +156,7 @@ function updateSrcTo(obj){
 </section>
 <script>
 window.baseUrl = "<?=Router::url('/',true)?>";
+
 // check stock
 function checkStock(i){
   var item = $(product_list[i]);

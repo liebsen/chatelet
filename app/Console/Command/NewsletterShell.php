@@ -266,10 +266,14 @@ class NewsletterShell extends AppShell {
           (object) array_merge(
           	(array) $schedule['User'], 
           	(array) $schedule['Coupon']
-          )
+          ),
+          $schedule['NewsletterScheduleItem']['id'],
+          'email',
+	        $this->settings['site_url']
         );
       }
 
+      var_dump($parsed_body);
       $schedule['Newsletter']['parsed_body'] = $parsed_body;
       $schedule['NewsletterList']['filter_type'] = $filter_type;
 
@@ -472,7 +476,7 @@ class NewsletterShell extends AppShell {
     }
 
     if($log) {
-    	var_dump(array('config(1)'=>$config));
+    	var_dump(array('config'=>$config));
     }
 
     $email->config($config);
@@ -491,6 +495,7 @@ class NewsletterShell extends AppShell {
       'newsletter_text' => $this->settings['newsletter_text_enable'] == '1' ? 
         $this->settings['newsletter_text'] : 
         null,
+      'unsubscribe_id' => $data['NewsletterScheduleItem']['id'],
       'skip_header' => $skip_header,
       'cdn_url' => 'https://chatelet.com.ar/files/uploads/',
       'self_link' => implode('/', 
@@ -503,20 +508,21 @@ class NewsletterShell extends AppShell {
     );
 
     if($this->simulate) {
-      $message = $email->template('newsletter', 'default')
+      $parts = $email->template('newsletter', 'default')
         ->emailFormat('html')
         ->viewVars($viewVars)
         ->send(null, true);
 
+      $message = implode('',$parts);
       echo "\n[email] " . $data['User']['email'] . '(' .$data['Newsletter']['title'] .'-'.$data['NewsletterList']['name'] .')';
 
       if($this->showmail) {
-        var_dump(array('message(1)'=>$message));
+        var_dump(array('email'=>$message));
       }
 
       return array(
         'sent' => $this->update,
-        'message' => \email_fix_images($message),
+        'message' => $message,
       );
     }
 

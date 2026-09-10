@@ -1,11 +1,11 @@
-<?php // echo $this->Html->script('admin-delete', array('inline' => false));
-echo $this->element('admin/menu');
-echo $this->Html->css('draggable-table', array('inline' => false));
-echo $this->Html->script('draggable-table', array('inline' => false));
-echo $this->Html->css('/Vendor/DataTables/datatables.min.css', array('inline' => false));
-echo $this->Html->script('/Vendor/DataTables/datatables.min.js', array('inline' => false));
-echo $this->Html->script('admin-categories.js?v=' . $version['ver'], array('inline' => false));
-echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inline' => false)); 
+<?php $this->Html->script('admin-delete', array('block' => 'script'));
+$this->element('admin/menu');
+$this->Html->css('draggable-table', array('block' => 'css'));
+$this->Html->script('draggable-table', array('block' => 'script'));
+$this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
+$this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
+$this->Html->script('admin-categories.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 'script')); 
 ?>
 
 <!-- discount-layer -->
@@ -48,159 +48,167 @@ echo $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('inlin
 </div>
 
 <div class="block-section">
-<div class="block-tabs">
-	<div class="tab-content">
-		<p class="collapse alert alert-success result-message">...</p>
-
-<!-- end discount-layer -->
-<!-- start template -->
-
-		<table id="categorias-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/category">
-			<thead>
-				<tr>
-					<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
-					<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
-					<th class="hidden-phone hidden-tablet"><?php echo __('Ancho'); ?></th> 
-					<th class="hidden-phone hidden-tablet"><?php echo __('Posición'); ?></th> 
-					<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
-					<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th>    
-					<th class="text-center hidden-phone"><?php echo __('Descuento Tarjeta'); ?></th>        
-					<th class="text-center hidden-phone"><?php echo __('Descuento Banco'); ?></th>
-					<th class="span1 text-center"><i class="gi gi-flash"></i></th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($cats as $key => $category): ?>
-				<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
+	<div class="block-tabs">
+		<div class="tab-content">
+			<p class="collapse alert alert-success result-message">...</p>
+			<table id="categorias-datatables" class="table table-bordered table-hover draggable-table" data-url="/admin/ordernum/category">
+				<thead>
+					<tr>
+						<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
+						<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
+						<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
+						<!--th class="text-center hidden-phone"><?php echo __('Texto'); ?></th>        
+						<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th-->    
+						<th class="text-center hidden-phone"><?php echo __('%OFF Tarjeta'); ?></th>        
+						<th class="text-center hidden-phone"><?php echo __('%OFF Banco'); ?></th>
+						<th class="span1 text-center"><i class="gi gi-flash"></i></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($cats as $key => $category): ?>
+<?php if(!empty($category['Category']['text_style'])) {
+	$temp = @json_decode($category['Category']['text_style']);
+	$category['Category']['text_style'] = $temp;
+	if(!empty($category['Category']['text_style']->font_family) && !in_array($category['Category']['text_style']->font_family, $loaded_fonts)) {
+		?><script type="text/javascript">loadFont('<?=$category['Category']['text_style']->font_family?>');</script><?php 
+		$loaded_fonts[]= $category['Category']['text_style']->font_family;
+	}
+} ?>
+					<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
 						<td align="center">
 							<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
-						</td>				
-					<td>
-						<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
-	            <div class="d-flex justify-content-start align-items-center gap-1">
-	              <img src="<?=$settings['upload_url']. $category['Category']['img_url']?>" height="100" />
-							  <span><?=$category['Category']['name']?></span>
-	            </div>
-						</a>
-					</td>
-					<td>
-						<?php if(empty(@$category['Category']['colsize'])) echo '<span class="text-muted">Auto</span>' ?>
-						<?php if(@$category['Category']['colsize'] == '20') echo '20%' ?>
-						<?php if(@$category['Category']['colsize'] == '3') echo '25%' ?>
-						<?php if(@$category['Category']['colsize'] == '4') echo '33%' ?>
-						<?php if(@$category['Category']['colsize'] == '40') echo '40%' ?>
-						<?php if(@$category['Category']['colsize'] == '6') echo '50%' ?>
-						<?php if(@$category['Category']['colsize'] == '60') echo '60%' ?>
-						<?php if(@$category['Category']['colsize'] == '80') echo '80%' ?>
-						<?php if(@$category['Category']['colsize'] == '12') echo '100%' ?>
-					</td>
-					<td>
-						<?php if(empty(@$category['Category']['posnum'])) echo '<span class="text-muted">Auto</span>' ?>
-						<?php if(@$category['Category']['posnum'] == '1') echo '<span class="text-muted">Auto</span>' ?>
-						<?php if(@$category['Category']['posnum'] == '2') echo 'Arriba' ?>
-						<?php if(@$category['Category']['posnum'] == '3') echo 'Abajo' ?>
-					</td>
-					<td>          
-						<?php
-							if(!empty($category['Category']['img_url'])){
-								echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
-							}
-						?>     
-					</td> 
-					<td>          
-						<?php
-							if(!empty($category['Category']['size'])){
-								echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['size'] ."''>LINK</a>";
-							}
-						?>     
-					</td>
-					<td>
-						<?php
-							if(
-								!empty($category['Category']['mp_discount_enable'])
-							){
-								echo '<i class="fa fa-check text-success"></i> ' . ($category['Category']['mp_discount'] ?? '');
-							} else {
-								echo '<i class="fa fa-ban text-danger"></i>';
-							}
-						?>     
-					</td> 
-					<td>
-						<?php
-							if(
-								!empty($category['Category']['bank_discount_enable'])
-							){
-								echo '<i class="fa fa-check text-success"></i> ' . ($category['Category']['bank_discount'] ?? '');
-							} else {
-								echo '<i class="fa fa-ban text-danger"></i>';
-							}
-						?>     
-					</td> 
-					<td>
-						<div class="btn-group d-flex flex-nowrap">
-							<!--a 
-								href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
-								data-toggle="tooltip" 
-								title="Ver en la tienda (Nuevo tab)" 
-								target="_blank"
-								class="btn btn-info" 
-								data-original-title="Editar">
-								<i class="fa fa-eye"></i>
-							</a--> 
-							<a 
-								href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
-								data-toggle="tooltip" 
-								title="Editar" 
-								class="btn btn-success" 
-								data-original-title="Editar">
-								<i class="fa fa-edit"></i>
+						</td>
+						<td>
+							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
+								<span><?=$category['Category']['name']?></span>
 							</a>
-							<a 
-								href="#"
-								title="Establecer descuento por transferencia"
-								class="btn btn-info" 
-								onclick="showLayer(event,'discount','bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
-								<i class="gi gi-bank"></i>
+						</td>
+						<td>
+							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id'],'#' => 'preview'))?>">
+	              <div class="category-content posnum-<?=$category['Category']['posnum'] ?? 'auto' ?>" style="background-image: url('<?php echo $settings['upload_url'].$category['Category']['img_url']?>')">
+	                <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
+	                  <div class="category-image alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>">  
+	                  	<?php if($category['Category']['show_text'] == '1'):?>
+	                    <span style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
+	                    	<?php if($category['Category']['show_name'] == '1'):?>
+	                      <span class="text-uppercase"><?=$category['Category']['name']?></span>
+	                      <?php endif ?>
+	                      <span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: 0.5;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><span class="font-preview"><?=\word_limit($category['Category']['text'], 10)?></span></span>
+	                    </span>
+	                  	<?php endif ?>
+	                  </div>
+	                </a>
+	              </div>
 							</a>
-							<a 
-								href="#"
-								class="btn btn-warning" 
-								title="Establecer descuento por mercadopago"
-								onclick="showLayer(event,'discount','mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
-								<i class="gi gi-credit_card"></i>
-							</a>
-							<a 
-								href="#" 
-								data-toggle="tooltip" 
-								title="" 
-								class="btn btn-danger deletebutton" 
-								data-original-title="Eliminar" 
-								data-id="<?=$category['Category']['id']?>" 
-								data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 
-								data-delurl="<?=$this->Html->url(array('action'=>'categorias', 'delete'))?>" 
-								data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
-								<i class="fa fa-trash-o"></i>
-							</a>
-						</div> 
-					</td>
-				</tr>
-			<?php endforeach ?>
-			</tbody>
-		</table>
+						</td>
+						<!--td>          
+							<?php
+								if(!empty($category['Category']['img_url'])){
+									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
+								}
+							?>     
+						</td> 
+						<td>          
+							<?php
+								if(!empty($category['Category']['size'])){
+									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['size'] ."''>LINK</a>";
+								}
+							?>     
+						</td-->
+						<td>
+							<?php
+								if(
+									!empty($category['Category']['mp_discount_enable'])
+								){
+									echo '<i class="fa fa-check text-success"></i> ' . ($category['Category']['mp_discount'] ?? '');
+								} else {
+									echo '<i class="fa fa-ban text-danger"></i>';
+								}
+							?>     
+						</td> 
+						<td>
+							<?php
+								if(
+									!empty($category['Category']['bank_discount_enable'])
+								){
+									echo '<i class="fa fa-check text-success"></i> ' . ($category['Category']['bank_discount'] ?? '');
+								} else {
+									echo '<i class="fa fa-ban text-danger"></i>';
+								}
+							?>     
+						</td> 
+						<td>
+							<div class="btn-group d-flex flex-nowrap">
+								<!--a 
+									href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
+									data-toggle="tooltip" 
+									title="Ver en la tienda (Nuevo tab)" 
+									target="_blank"
+									class="btn btn-info" 
+									data-original-title="Editar">
+									<i class="fa fa-eye"></i>
+								</a--> 
+								<a 
+									href="<?=$this->Html->url(
+										array(
+											'action' => 'categorias', 
+											'edit', 
+											$category['Category']['id'],
+											'#' => 'preview'
+										)
+									)?>"
+									data-toggle="tooltip" 
+									title="Editar contenido" 
+									class="btn btn-info"><i class="gi gi-font"></i>
+								</a>
+								<a 
+									href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>" 
+									data-toggle="tooltip" 
+									title="Editar" 
+									class="btn btn-success" 
+									data-original-title="Editar">
+									<i class="fa fa-edit"></i>
+								</a>
+								<a 
+									href="#"
+									title="Establecer descuento por transferencia"
+									class="btn btn-info" 
+									onclick="showLayer(event,'discount','bank',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
+									<i class="gi gi-bank"></i>
+								</a>
+								<a 
+									href="#"
+									class="btn btn-warning" 
+									title="Establecer descuento por mercadopago"
+									onclick="showLayer(event,'discount','mp',<?= @$category['Category']['id'] ?>, '<?= @$category['Category']['name'] ?>')">
+									<i class="gi gi-credit_card"></i>
+								</a>
+								<a 
+									href="#" 
+									data-toggle="tooltip" 
+									title="" 
+									class="btn btn-danger deletebutton" 
+									data-original-title="Eliminar" 
+									data-id="<?=$category['Category']['id']?>" 
+									data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 
+									data-delurl="<?=$this->Html->url(array('action'=>'categorias', 'delete'))?>" 
+									data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
+									<i class="fa fa-trash-o"></i>
+								</a>
+							</div> 
+						</td>
+					</tr>
+				<?php endforeach ?>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
-</div>
-
 
 <div class="form-actions category-actions" data-url="/admin/batch_categorias/">
-    <span class="selection-count"></span>
-    <button class="disableselection btn btn-warning btn-adjust" type="button"><i class="fa fa-eye-slash mr-1"></i>Desactivar</button>
-    <button class="removeselection btn btn-danger btn-adjust" type="button"><i class="fa fa-close mr-1"></i>Eliminar</button>
-    <button class="enableselection btn btn-success btn-adjust" type="button"><i class="fa fa-check mr-1"></i> Activar</button>
+  <span class="selection-count"></span>
+  <button class="toggle-selection disableselection btn btn-warning d-none" type="button"><i class="fa fa-eye-slash"></i><span class="ml-1">Desactivar</span></button>
+  <button class="toggle-selection removeselection btn btn-danger d-none" type="button"><i class="fa fa-close"></i><span class="ml-1">Eliminar</span></button>
+  <button class="toggle-selection enableselection btn btn-success d-none" type="button"><i class="fa fa-check"></i> <span class="ml-1">Activar</span></button>
+  <a href="/admin/categorias/add" class="btn btn-success" type="button"><i class="fa fa-magic"></i> <span class="ml-1">Crear</span></a>
 </div>
-
-<style type="text/css">
-	.category-actions {
-		transform: translateY(100rem);
-	}
-</style>

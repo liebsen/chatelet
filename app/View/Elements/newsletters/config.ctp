@@ -1,6 +1,6 @@
-<?php #echo $this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
-<?php echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); ?>
-<?php #echo $this->Html->script('newsletter-config.js?v=' . $version['ver'], array('inline' => false)); ?>
+<?php #$this->Html->script('handlebars-v2.0.0',array('inline'=>false)) ?>
+<?php $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script')); ?>
+<?php #$this->Html->script('newsletter-config.js?v=' . $version['ver'], array('block' => 'script')); ?>
 	<form action="" method="post" id="form_app" class="form-inline">
 	  <input type="hidden" name="x_coord" id="x_coord">
 	  <input type="hidden" name="y_coord" id="y_coord">			

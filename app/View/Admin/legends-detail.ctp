@@ -1,5 +1,5 @@
 <?php 
-echo $this->Html->script('form_app.js?v=' . $version['ver'], array('inline' => false)); 
+$this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script')); 
 echo $this->element('admin/menu');
 ?>
 <div class="block-section">

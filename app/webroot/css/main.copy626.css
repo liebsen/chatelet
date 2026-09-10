@@ -2783,7 +2783,7 @@ header.navbar .navbar-brand {
   background-color: #2196f3;
 }
 
-#toggle-side-content > i {
+#toggle-sidebar > i {
   margin: 0 0.75rem;
   font-size: 1.5rem;
 }
@@ -3676,19 +3676,19 @@ a.thumbnail-borderless,
   }
 
   /* Hide Side Content */
-  .hide-side-content #page-sidebar {
+  .show-sidebar #page-sidebar {
       /*display: none !important;*/
       left: -30rem;
   }
 
-  .hide-side-content #pre-page-content,
-  .hide-side-content #page-content,
-  .hide-side-content #page-content + footer {
+  .show-sidebar #pre-page-content,
+  .show-sidebar #page-content,
+  .show-sidebar #page-content + footer {
       margin: 0;
       border-left: none;
   }
 
-  .hide-side-content .affix {
+  .show-sidebar .affix {
       margin-left: 0 !important;
   }
   .is-rounded-md {

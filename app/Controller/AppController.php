@@ -138,6 +138,15 @@ class AppController extends Controller
     $this->loadModel('Setting');
     $this->loadModel('Stat');
 
+		if(!empty($this->request->query('schedule_item') || !empty($this->request->query('uid')))) {
+			$uid = $this->request->query('schedule_item') ?? $this->request->query('uid');
+			$this->addClick($uid, $this->request->query('click_origin'));
+		}
+
+    if(!empty($this->request->query('redirect'))) {
+    	return $this->redirect($this->request->query('redirect'));
+    }
+
     //CakeLog::write('debug', 'beforeFilter executed for ' . $this->name . 'Controller::' . $this->action);
     $this->Auth->allow();
     $this->set('loggedIn', $this->Auth->loggedIn());
@@ -224,13 +233,20 @@ class AppController extends Controller
     $this->settings = $settings;
     $this->set('settings', $settings);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/staging
     $site_title = $this->settings['site_title'];
     $site_description = $this->settings['site_description'];
 
     $this->set('site_title', $site_title);
     $this->set('site_description', $site_description);
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/staging
     $keys = ["upload_url", "upload_local", "site_url"];
 
     foreach($keys as $key)

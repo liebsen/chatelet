@@ -59,6 +59,11 @@
       <tr>
         <td align="center" style="padding: 8px; color: #aaaaaa">
           <small style="font-size: 12px">&copy; <?php echo date('Y',time()); ?> Châtelet &mdash; Todos los derechos reservados</small>
+<?php if(!empty($unsubscribe_id)):?>
+					<small>
+						<a href="<?="{$site_url}/newsletter/unsubscribe/{$unsubscribe_id}"?>" style="font-size: 12px; padding-top: 10px">Deseo desuscribirme de este Newsletter</a>
+					</small>          
+<?php endif ?>
         </td>
       </tr>
     </table>

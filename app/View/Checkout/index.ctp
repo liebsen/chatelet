@@ -20,7 +20,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 		<div class="animation-fadeIn delay">
 			<div class="is-flex flex-column-sm justify-content-center align-items-start gap-1">
 			<?php if ($loggedIn): ?>
-				<div class="card is-rounded p-4 p-md-5 max-25">
+				<div class="card-is-rounded p-4 p-md-5 max-25">
 					<div class="card-body">
 						<div class="d-flex flex-column justify-content-start align-items-center gap-05">
 							<h4 class="text-uppercase">Estás conectada como <?php echo $user['name'] ?? 'Invitada'; ?></h4>
@@ -36,7 +36,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 					</div>
 				</div>
 			<?php else : ?>
-				<div class="card max-25">
+				<div class="card light max-25">
 					<div class="card-body p-md-5 is-bordered">
 						<h4 class="text-uppercase text-center">Ya soy clienta</h4>
 						<p>Ingresa con tu cuenta Châtelet, si no recordás la clave presiona Olvidé contraseña.</p>
@@ -59,12 +59,12 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 			      <hr>
 						<div class="d-flex flex-column justify-content-center align-items-center gap-05 pb-4">			      
 			      	<input type="submit" class="btn btn-chatelet dark w-100" value="Iniciar sesión" />
-			        <a class="btn btn-chatelet w-100" href="/shop/recuperar_acceso?redirect=/checkout">Olvidé la contraseña</a>
+			        <a class="btn btn-chatelet dark w-100" href="/shop/recuperar_acceso?redirect=/checkout">Olvidé la contraseña</a>
 			      </div>
 			      <?php echo $this->Form->end(); ?>
 					</div>
 				</div>
-				<div class="card max-25 bg-light-desktop">
+				<div class="card light max-25">
 					<div class="card-body p-md-5">
 						<h4 class="text-uppercase text-center">Soy nueva</h4>
 						<p>Ingresá tu email para continuar con tu compra, lo usaremos para notificarte de la compra.</p>
@@ -98,7 +98,7 @@ echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false
 	<?php echo $this->element('checkout-footer') ?>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 			localStorage.setItem('continue_shopping_url', window.location.pathname)
 
 	    $('.btn-register').on('click', function(event) {

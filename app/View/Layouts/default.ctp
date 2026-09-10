@@ -23,6 +23,6 @@
 	if(!$short) {
 		echo $this->element('footer');
 	}
-
-	echo $this->element('bottom');
+	
 	echo $this->element('sidebar');
+	echo $this->element('bottom');

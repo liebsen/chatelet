@@ -11,8 +11,36 @@
 <?php endif ?>
 
   <?php
-    echo $this->fetch('script');
-  ?>
 
+    //echo $this->Html->script('jquery-1.11.1.min');
+    //echo $this->Html->script('jquery-1.11.1.min');
+  	echo $this->Html->script('vendor/jquery.min');
+    echo $this->Html->script('vendor/modernizr-2.8.3.min.js');
+    #echo $this->Html->script('bootstrap');
+    echo $this->Html->script('vendor/bootstrap.min');
+    echo $this->Html->script('jquery.growl');
+    echo $this->Html->script('bootstrap-select.min');
+    echo $this->Html->script('bootstrapValidator.min');
+    echo $this->Html->script('plugins');
+    echo $this->Html->script('chatelet');
+
+    if(!empty($user['id']) && $_SERVER['REQUEST_SCHEME'] === 'https' ) { 
+      echo $this->Html->script('webpush.js?v='.$version['ver'], array('inline' => false));
+    }
+
+    echo $this->fetch('script');
+
+  ?>
+    <script>
+    	document.addEventListener("DOMContentLoaded", function() {
+	      $.ajaxSetup({
+	        cache:false,
+	        dataType: "json",
+	        xhrFields: {
+	          withCredentials: true
+	        },
+	      });
+	    })
+    </script>
   </body>
 </html>

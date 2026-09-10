@@ -361,6 +361,14 @@ class ShopController extends AppController {
 		if (!empty($all_stock)){
 			foreach ($all_stock as $row){
 				$record = [];
+
+				var_dump(
+					array(
+						'id'=>'general_stock',
+						'row'=>$row
+					)
+				);
+
 				// echo "------\n".json_encode($row,true);
 				$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
 				//echo "article_id: ".$article_id;
@@ -369,9 +377,9 @@ class ShopController extends AppController {
 					// CakeLog::write('debug',"exists article_id: ".json_encode($article_id));
 					if ($row['cod_articulo'] === $article_id.'.0000'){
 
-						$toUpdate = array(
-							'Product.stock_total' => (int)$row['cantidad']
-						);
+						#$toUpdate = array(
+							#'Product.stock_total' => (int)$row['cantidad']
+						#);
 						$replaceNames = false;
 						// update article name
 						if ($replaceNames){
@@ -411,8 +419,6 @@ class ShopController extends AppController {
 					$record['article_id'] = $article_id;
 					$record['cod_articulo'] = $row['cod_articulo'];
 					$record['stock'] = (int)$row['cantidad'];
-					//$record['desc'] = (string)$row['Descripcion'];
-					//CakeLog::write('debug',"Saving: ".json_encode($record));
 					$success = $this->StockCount->save($record);
 					if (!$success){
 						echo "\r\nFailed to save";
@@ -519,6 +525,50 @@ class ShopController extends AppController {
 		return json_encode((string) $stock);
 	}
 
+	public function product_stock($product_id, $article = null,$size_number = null,$color_code = null,$list_code = null){
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+		$stock = 0;
+		$list_code = $this->settings['list_code'];
+		$stock_min = $this->settings['stock_min'];
+
+		if(!empty($article) && !empty($color_code) && !empty($size_number) ){
+			// CakeLog::write('debug','article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code);
+
+			$this->loadModel('StockCount');
+			$stock_count = $this->StockCount->find('first', 
+				array(
+					'conditions' => array(
+						'cod_articulo' => $article.'.'.$size_number.$color_code
+					)
+				)
+			);
+
+			if(!empty($stock_count['StockCount']['stock'])) {
+				$stock = $stock_count['StockCount']['stock'];
+			}
+		} elseif (!empty($article)) {
+			$stock = 1;
+		}
+
+		/* store event */
+		$this->loadModel('Stat');
+
+		$this->Stat->save(array(
+			'id' => null,
+      'tag' => 'variant-select',
+      'user_id' => $this->Auth->user('id') ?? 1,
+      'product_id' => $product_id,
+      'context' => json_encode(array(
+      	'size_number' => $size_number,
+      	'color_code' => $color_code,
+      ))
+    ));
+
+		// CakeLog::write('debug','stock: article: '.$article.' | size: '.$size_number.' | color_code: '.$color_code.' | list_code: '.$list_code . ':' . $stock);
+		return json_encode((string) $stock);
+	}
+
 	public function check_stock($product_id){
 		$this->autoRender = false;
 		$this->SQL = $this->Components->load('SQL');
@@ -578,7 +628,8 @@ class ShopController extends AppController {
 					'category_id' => $category_id,
 					'visible' => 1,
 				],
-				'order' => ['Product.ordernum ASC']
+				'order' => ['Product.ordernum ASC'],
+				'limit' => 10 // *******
 			]);
 
 			if (empty($products)){ 
@@ -587,6 +638,7 @@ class ShopController extends AppController {
 
 			foreach ($products as &$product) {
 				$product['Product']['stock'] = 0;
+				$all_colors = array();
 				if (
 					isset($product['Product']['discount']) && 
 					$product['Product']['discount'] !== $product['Product']['price'] && 
@@ -599,6 +651,30 @@ class ShopController extends AppController {
 				if(!empty($product['Product']['article'])){
 					$product['Product']['stock'] = 1;
 				}
+
+				$find_colors = $this->ProductProperty->find('all', 
+					array(
+						'conditions' => array(
+							'type' => 'color',
+							'product_id' => $product['Product']['id']
+						),
+						'limit' => 5
+					)
+				);
+
+				foreach($find_colors as $data_color) {
+					$colors = array_filter(
+						array_values(
+							explode(';', $data_color['ProductProperty']['images'])
+						)
+					);
+
+					$current = current($colors);
+					if(!empty($current)) {
+						array_push($all_colors, $current);
+					}
+				}
+				$product['Product']['colors'] = $all_colors;
 			}
 
 
@@ -611,12 +687,27 @@ class ShopController extends AppController {
 	    }
 
 			//rsort($products);
+
+			if(!empty($category['text_style'])) {
+	    	$temp = @json_decode($category['text_style']);
+	    	$category['text_style'] = $temp;
+			}
+
       $this->set('category',$category);
 			$this->set('products', $products);
+<<<<<<< HEAD
 		} else {
 	    if(!empty($product['name'])) {
 	    	$site_title = $product['name'];
 	    	$site_description = $product['desc'];
+=======
+	    if(!empty($category['name'])) {
+	    	$site_title = $category['name'];
+	    	$site_description = $category['name'];
+
+				$this->set('site_title', $site_title);		
+				$this->set('site_description', $site_description);		
+>>>>>>> origin/staging
 	    }
 		}
 
@@ -728,12 +819,8 @@ class ShopController extends AppController {
 			throw new NotFoundException();
 		}
 
-		if(!empty($this->request->query('schedule_item') || !empty($this->request->query('uid')))) {
-			$uid = $this->request->query('schedule_item') ?? $this->request->query('uid');
-			$this->addClick($uid, $this->request->query('click_origin'));
-		}
-
 		$this->loadModel('Legend');
+		$this->loadModel('StockCount');
     $legends = $this->Legend->find('all', [
       'conditions' => ['enabled' => 1, 'title <>' => ''],
       'order' => ['Legend.dues ASC']
@@ -742,10 +829,12 @@ class ShopController extends AppController {
 		$category = $this->Category->findById($category_id);
 		$name_categories = @$category['Category']['name'];
 		$isGiftCard=false;
-        if (strpos(strtolower($name_categories),'gift')!==FALSE){
-        	$isGiftCard=true;
-        }
+    if (strpos(strtolower($name_categories),'gift')!==FALSE){
+    	$isGiftCard=true;
+    }
 		$properties = $this->ProductProperty->findAllByProductId($product_id);
+		$stocks = $this->StockCount->find('all', array('conditions' => array( 'article_id' => $product['Product']['article'])));
+
 		$sizes = array();
 		$colors = array();
 		foreach ($properties as $property) {
@@ -779,7 +868,23 @@ class ShopController extends AppController {
 		  $sizes[0]['label'] = "Talle único";
 		}
 
+		$stock_count = array();
+		foreach($colors as $color) {
+			foreach($sizes as $size) {
+				$code = $size['variable'].$color['code'];
+				$available = 0;
+				foreach($stocks as $stock){
+					if(
+						strtolower($stock['StockCount']['cod_articulo']) == strtolower($product['Product']['article'].'.'.$code)
+					) {
+						$available = $stock['StockCount']['stock'];
+					}
+				}
+				$stock_count[$code] = $available;
+			} 
+		}
 
+		$this->set('stock_count',$stock_count);
 
 		$cloudzoom = false;
 		$unique_size = "11";
@@ -815,25 +920,55 @@ class ShopController extends AppController {
 				'Product.stock_total > ' => 0
       ],     
 			'order' => ['Product.ordernum ASC'],
-      'limit' => 1000
+      'limit' => 10
     ]);
-
 		foreach ($all_but_me as &$item) {
 			if (isset($item['Product']['discount']) && $item['Product']['discount']) {
 				$item['Product']['old_price'] = $item['Product']['price'];
 				$item['Product']['price'] = $item['Product']['discount'];
 			}
+
 			$item['Product']['stock'] = 0;
+
 			if(!empty($item['Product']['article'])){
 				$item['Product']['stock'] = 1;
 			}
+
+			$find_colors = $this->ProductProperty->find('all', 
+				array(
+					'conditions' => array(
+						'type' => 'color',
+						'product_id' => $item['Product']['id']
+					),
+					'limit' => 5
+				)
+			);
+			$all_colors = array();
+
+			foreach($find_colors as $data_color) {
+				$colors = array_filter(
+					array_values(
+						explode(';', $data_color['ProductProperty']['images'])
+					)
+				);
+				$current = current($colors);
+				if(!empty($current)) {
+					array_push($all_colors, $current);
+				}
+			}
+			$item['Product']['colors'] = $all_colors;
 		}
 
 		if (isset($product['Product']['discount']) && $product['Product']['discount']) {
 			$product['Product']['old_price'] = $product['Product']['price'];
 			$product['Product']['price'] = $product['Product']['discount'];
 		}
-		
+
+		if(!empty($category['Category']['text_style'])) {
+    	$temp = @json_decode($category['Category']['text_style']);
+    	$category['Category']['text_style'] = $temp;
+		}
+				
     // $this->set('details',$details);
 		$this->set('category_id',$category_id);
     $this->set('name_categories',$name_categories);
@@ -854,7 +989,10 @@ class ShopController extends AppController {
 			$this->set('site_description', $site_description);		
     }
 
+<<<<<<< HEAD
 		//$this->set('schema', $schema);
+=======
+>>>>>>> origin/staging
 		$this->set('legends', $legends);
 		$this->set('all_but_me', $all_but_me);
 	}

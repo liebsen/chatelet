@@ -1,8 +1,8 @@
 <?php
 	echo $this->Session->flash();
-	echo $this->Html->css('carrito.css?v=' . $version['ver'], array('inline' => false));
-	echo $this->Html->script('cart.js?v=' . $version['ver'], array('inline' => false));
-	echo $this->Html->script('carrito.js?v=' . $version['ver'], array('inline' => false));
+	$this->Html->css('carrito.css?v=' . $version['ver'], array('block' => 'css'));
+	$this->Html->script('cart.js?v=' . $version['ver'], array('block' => 'script'));
+	$this->Html->script('carrito.js?v=' . $version['ver'], array('block' => 'script'));
 	echo $this->element('checkout-modal');
 	$payment_methods = [
 		'bank' => 'transferencia',
@@ -32,7 +32,7 @@
       <h1 class="h1">¿Seguro deseas eliminar<br><span class="prod_name text-theme"></span><br> del carrito?</h1>
       <div class="form-group">
       	<button type="button" class="btn btn-light" onclick="layerClose('remove-item')">Cancelar</button>
-        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet dark" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
+        <button type="button" id="carrito-remove-btn" class="btn btn-chatelet" onclick="removeCart()" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>">Eliminar</button>
       </div>
     </div>
   </div>
@@ -99,7 +99,7 @@
 							//echo '<div onclick="askremoveCart(this, \''.$product['name'].'\')" class="carrito-remove animation-fadeIn delay" title="Eliminar del carrito">';
 								//echo '<span class="glyphicon glyphicon-remove"></span>';
 
-						/*echo $this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
+						/*$this->Html->link('<span class="glyphicon glyphicon-remove"></span>',
 							array(
 								'controller' => 'carrito',
 								'action' => 'remove',
@@ -340,7 +340,7 @@
 <input type="hidden" id="total" value="<?= $total ?>">
 <?php endif;?>
 <script>
-	$(function(){
+	document.addEventListener("DOMContentLoaded", function() {
 	<?php if(!empty($text_shipping_min_price) && !$freeShipping): ?>
 			setTimeout(() => {
 				onWarningAlert('<i class="fa fa-magic"></i> Más beneficios','<?= $text_shipping_min_price ?>', 15000)
