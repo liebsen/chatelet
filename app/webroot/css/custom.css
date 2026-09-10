@@ -969,6 +969,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 .pay_method {
 	font-size: 10px;
+	line-height: 1.5;
 	font-weight: 1000;
 	background-color: lightgray;
 	color: #888;
@@ -1963,7 +1964,7 @@ span.out{
 .add-no-stock {
   position: relative;
   padding: 5px;
-  min-height: 32rem!important;
+  min-height: 26rem!important;
   @media(max-width: 400px) {
   	width: 50%;
   }
