@@ -76,14 +76,13 @@ body > section {
 	margin: 4px;
 	background-color: deeppink;
 }
+
 .carousel-indicators {
-	bottom: 30px!important;
 	display: flex;
-	left: auto;
 	background-color: #fff6;
 	border-radius: 1rem;
   margin: auto;
-  position: relative;
+  position: absolute;
   width: fit-content;
 }
 

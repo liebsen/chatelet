@@ -21,11 +21,11 @@
 <!-- Controls -->
 <?php if(count($images) > 1):?>
 
-<a class="left carousel-control is-transparent" href="#carousel" role="button" data-slide="prev">
+<a href="#" class="left carousel-control" data-target="#carousel" role="button" data-slide="prev">
   <span class="arrow arrow-left" aria-hidden="true"><i class="hi hi-chevron-left"></i></span>
   <span class="sr-only">Previous</span>
 </a>
-<a class="right carousel-control is-transparent" href="#carousel" role="button" data-slide="next">
+<a href="#" class="right carousel-control" data-target="#carousel" role="button" data-slide="next">
   <span class="arrow arrow-right" aria-hidden="true"><i class="hi hi-chevron-right"></i></span>
   <span class="sr-only">Next</span>
 </a>
