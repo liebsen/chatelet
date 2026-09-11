@@ -189,7 +189,7 @@ class AppHelper extends Helper {
     #\d("count colors", count($item['colors']));
 
     if(count($item['colors'])) {
-    	$content.= '<div id="carousel" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
+    	$content.= '<div id="item_carousel" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
     	$content.= '<div class="carousel-inner" role="listbox">';
     	#$content.= '<a class="item active" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
     	foreach($item['colors'] as $i => $img) {
@@ -202,7 +202,7 @@ class AppHelper extends Helper {
 				$content.= '<ol class="carousel-indicators">';
 
 			  foreach($item['colors'] as $i => $img) {
-			    $content.= '<li data-target="#carousel" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
+			    $content.= '<li data-target="#item_carousel" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
 			  }
 
 				$content.= '</ol>';

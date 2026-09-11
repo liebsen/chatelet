@@ -78,6 +78,7 @@ $(function(){
 				e = e.replaceAll(orientation, state)
 			}
 			if(!e.includes('desktop-') && !e.includes('mobile-')) {
+				console.log('a(2)', e)
 				e = 'mobile-' + e
 			}
 			return e
@@ -173,6 +174,7 @@ $(function(){
 
 				var images 	= input.val();
 				images 		= images.split(';');
+				console.log('a(3)', data)
 				images.push('mobile-' + data);
 				input.val( images.join(';') );
 				drawImages(images);
@@ -641,6 +643,8 @@ $(function(){
 		var url 	= me.data('url');
 		var progress = $(me.data('progress'));
 		var input 	= $(me.data('input'));
+
+		console.log('a(1)',url)
 		
 		progress.removeClass('hide')
 		var valid_types = {

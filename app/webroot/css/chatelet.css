@@ -52,7 +52,6 @@ body > section {
 	animation-delay: 0.5s;
 }
 
-
 .carousel-inner {
 	height: 100%;
 }
@@ -76,6 +75,7 @@ body > section {
 	margin: 4px;
 	background-color: deeppink;
 }
+
 .carousel-indicators {
 	bottom: 30px!important;
 	display: flex;
