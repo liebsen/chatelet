@@ -78,7 +78,7 @@ $(function(){
 			})
 			.success(function(data) {
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
 
@@ -91,7 +91,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
 	if($("[name='data[image_bannershop]']").val() !== undefined){
@@ -168,7 +168,7 @@ $(function(){
 			})
 			.success(function(data) {
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
 
@@ -181,7 +181,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
   if($("[name='data[image_menushop]']").val() !== undefined){
@@ -259,7 +259,7 @@ $(function(){
 			})
 			.success(function(data) {
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
 
@@ -272,7 +272,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
   

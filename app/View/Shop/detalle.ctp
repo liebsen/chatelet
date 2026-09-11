@@ -183,15 +183,13 @@ touchStartDelay:0,
                       ?>
                     </div>
                     <div class="size-options row" data-toggle="buttons">
-                    <!--div class="size-options d-flex justify-content-start align-items-start gap-1 pt-2" data-toggle="buttons"-->
-                      <!--option value="">Talle</option-->
                       <?php
                           foreach ($sizes as $i => $size) {
                             echo '<label class="btn btn-option">';
                             echo '<input type="radio" name="size" value="'. $size['variable'] .'">';
                             echo "<small class='color-text text-bolder'>".ucfirst($size['label'])."</small>";
                             echo '</label>';
-                              // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
+                            // echo '<option value="'. ucfirst($size['variable']) .'">Talle '. ucfirst($size['variable']) .'</option>';
                           }
                       ?>                    
                     </div>
