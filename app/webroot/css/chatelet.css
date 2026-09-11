@@ -1008,15 +1008,32 @@ select.form-control{
   margin: auto;
   display: flex!important;
   max-width: 10.25rem;
-  height: 40px;
-  border: 1px solid #888;  
-	border-radius: 5px;
+	height: 46px;
+	border-radius: 30px;
+	background-color: deeppink;
+	input {
+		border: none;
+		box-shadow: none;
+		background-color: lightpink;
+		color: deeppink;
+		font-weight: 1000;
+		height: 100%;
+	}
+  .input-group-addon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-width: 45px;
+		position: relative;
+		top: -1px;
+		span {
+			font-size: 1.5rem;
+			color: white;
+		}
+	}	
 }
 
-.carrito-selector .input-group-addon {
-	flex: 1;
-	min-width: 45px;
-}
+.carrito-selector
 
 .carrito-selector input {
 	background-color: transparent!important;
