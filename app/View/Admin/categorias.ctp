@@ -55,8 +55,8 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 				<thead>
 					<tr>
 						<th class="text-center hidden-phone"><input type="checkbox" name="checksAll" /></th>
+						<th class="hidden-phone hidden-tablet"><?php echo __('#'); ?></th>    
 						<th class="text-center hidden-phone"><?php echo __('Nombre'); ?></th>        
-						<th class="hidden-phone hidden-tablet"><?php echo __('Imagen'); ?></th>    
 						<!--th class="text-center hidden-phone"><?php echo __('Texto'); ?></th>        
 						<th class="hidden-phone hidden-tablet"><?php echo __('Talle'); ?></th-->    
 						<th class="text-center hidden-phone"><?php echo __('%OFF Tarjeta'); ?></th>        
@@ -78,11 +78,7 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 						<td align="center">
 							<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
 						</td>
-						<td>
-							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
-								<span><?=$category['Category']['name']?></span>
-							</a>
-						</td>
+
 						<td>
 							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id'],'#' => 'preview'))?>">
 	              <div class="category-content posnum-<?=$category['Category']['posnum'] ?? 'auto' ?>" style="background-image: url('<?php echo $settings['upload_url'].$category['Category']['img_url']?>')">
@@ -95,12 +91,20 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 	                      <?php endif ?>
 	                      <span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: 0.5;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><span class="font-preview"><?=\word_limit($category['Category']['text'], 10)?></span></span>
 	                    </span>
+											<span class="badge"><?=$category['Category']['id']?></span>	                    
 	                  	<?php endif ?>
 	                  </div>
 	                </a>
 	              </div>
 							</a>
 						</td>
+
+						<td>
+							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
+								<span><?=$category['Category']['name']?></span>
+							</a>
+						</td>
+
 						<!--td>          
 							<?php
 								if(!empty($category['Category']['img_url'])){
