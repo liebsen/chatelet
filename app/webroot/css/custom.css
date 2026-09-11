@@ -1294,7 +1294,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 
 #main .caract label.btn.active .color-text {
 	border-bottom-color: deeppink;	
-	color: deeppink;
+	color: deeppink!important;
 }
 
 #main .caract .color-block { display: none }

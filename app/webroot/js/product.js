@@ -54,7 +54,7 @@ function pideStock(obj){
 			// onWarningAlert('Consultando stock','Un momento por favor...')
 	    stock_cont.html(stock_v);
 	    const count = window.stockCount[size_number+color_code] || 0
-			if(count < min_stock){
+			if(count <= min_stock){
 				stock_cont.html( stock_0 );
 			} else {
 				stock_cont.html(stock);				
@@ -90,8 +90,7 @@ function updateSizes(obj){
 	$('.size-options label').each(function(i,e){
 		const size = $(e).find('input[type="radio"]').val()
 		const stock = window.stockCount[size+code] || 0
-		//console.log(code,stock,min_stock)
-		if(stock < min_stock) {
+		if(stock <= min_stock) {
 			$(e).addClass('disabled')
 		} else {
 			$(e).removeClass('disabled')
