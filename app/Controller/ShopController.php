@@ -356,24 +356,18 @@ class ShopController extends AppController {
 		$this->loadModel('StockCount');
 		$this->loadModel('Product');
 		$all_stock = $this->SQL->general_stock();
-		$prod_saved = 0;
+		$prods = array();
+		$prod_saved = array();
 		if (!empty($all_stock)){
 			foreach ($all_stock as $row){
 				$record = [];
-
-				var_dump(
-					array(
-						'id'=>'general_stock',
-						'row'=>$row
-					)
-				);
-
 				// echo "------\n".json_encode($row,true);
 				$article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
-				//echo "article_id: ".$article_id;
+				$prods[]=$article_id;
+				//echo "article_id(exists?) ".$article_id;
 				$existArticle = $this->Product->findByArticle($article_id);
 				if (!empty($existArticle)){
-					// CakeLog::write('debug',"exists article_id: ".json_encode($article_id));
+					//CakeLog::write('debug',"exists article_id: ".json_encode($article_id));
 					if ($row['cod_articulo'] === $article_id.'.0000'){
 
 						#$toUpdate = array(
@@ -383,7 +377,6 @@ class ShopController extends AppController {
 						// update article name
 						if ($replaceNames){
 							$details_name = $this->SQL->product_name_by_article($article_id);
-							CakeLog::write('debug',"die_general_stock(details): ".json_encode($details_name));
 						}
 							// update article stock
 						if($replaceNames){
@@ -404,9 +397,10 @@ class ShopController extends AppController {
 								),
 								array('Product.article' => $article_id)
 							);
+							//CakeLog::write('debug',"die_general_stock(ok): ".json_encode(['id' => $article_id]));
 						}
-						echo "article_id updated: ".$article_id;
-						$prod_saved++;
+						//echo "article_id updated: ".$article_id;
+						$prod_saved[]=$article_id;
 						//CakeLog::write('debug',"Detail(updated): ".json_encode($article_id));
 					}
 					$exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
@@ -426,7 +420,10 @@ class ShopController extends AppController {
 				//	echo "\r\nArticle {$article_id} not needed";
 				}
 			}
-			CakeLog::write('debug',"die_general_stock(prod_saved): ".json_encode($prod_saved));
+			var_dump(array(
+				'prods' => $prods,
+				'saved' => $prod_saved
+			));
 		}else{
 			echo "\r\nGeneral stock response is empty.";
 		}
