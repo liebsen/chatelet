@@ -628,7 +628,7 @@ class ShopController extends AppController {
 					'visible' => 1,
 				],
 				'order' => ['Product.ordernum ASC'],
-				'limit' => 10 // *******
+				'limit' => 100
 			]);
 
 			if (empty($products)){ 
