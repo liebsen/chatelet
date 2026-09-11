@@ -173,7 +173,8 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .input-group-addon,
   .btn-chatelet.dark,  
   .price_strong,
-  .name {
+  .name,
+  #main .caract label.btn .color-text {
     color: whitesmoke!important;
   }
   .form-control:focus {
