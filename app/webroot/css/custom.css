@@ -316,7 +316,6 @@ label input[type=checkbox]:disabled + .label-text:before {
   position: relative; 
   transition: none!important;
   z-index: 10;
-	outline: 1px solid pink;  
   transition: background 0.25s ease-in-out;
 }
 
@@ -390,6 +389,10 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
 
 .text-theme {
   font-family: var(--font-family)!important;
+}
+
+#maincarousel {
+	background-color: #e7e7e7;
 }
 
 @media (max-width: 440px) {
@@ -855,12 +858,11 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .category-item-container {
-	padding: 6px 0;
+	padding: 6px 20px;
 }
 
 .category-item {
-	padding: 5px 3px;
-	padding-top: 0;
+	padding: 5px 6px;
 }
 
 /*.category-item-container {
@@ -872,6 +874,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   background-repeat: no-repeat;
   transition: all 0.5s ease-in;
   border-collapse: collapse;
+  background-color: #e7e7e7;
 }
 
 .category-item:hover {
@@ -1968,7 +1971,7 @@ span.out{
 .add-no-stock {
   position: relative;
   padding: 5px;
-  min-height: 26rem!important;
+  min-height: 29rem!important;
   @media(max-width: 400px) {
   	width: 50%;
   }
