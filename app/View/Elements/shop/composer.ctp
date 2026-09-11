@@ -9,7 +9,7 @@
 	}
 </script>
     <div class="wrapper-fluid">
-      <div class="row m-0">
+      <div class="row">
         <div class="col-xs-12 draggable-table">
           <div class="row category-item-container">
           <?php foreach($categories as $category): ?>
