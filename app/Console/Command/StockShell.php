@@ -59,7 +59,7 @@ class StockShell extends AppShell {
                 array('Product.article' => $article_id)
               );
             }
-            echo "\n" . $article_id . " (OK)";
+            echo "\r\n" . $article_id . " (updated)";
             $prod_saved[]= $article_id;
           }
           $exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
@@ -68,24 +68,30 @@ class StockShell extends AppShell {
           } else {
             $this->StockCount->create();
           }
+
+          $stock = (int) $row['cantidad'];
           $record['article_id'] = $article_id;
           $record['cod_articulo'] = $row['cod_articulo'];
-          $record['stock'] = (int)$row['cantidad'];
+          $record['stock'] = $stock;
           $success = $this->StockCount->save($record);
+          echo "\r\n" . $article_id . " (stock) " . $stock;
           if (!$success){
             echo "\r\nFailed to save";
           }
         } else {
         	$prod_ignore[]= $article_id;
+        	echo "\r\n" . $article_id . " (ignored)";
           //  echo "\r\nArticle {$article_id} not needed";
         }
       }
 
-			var_dump(array(
-				'prod_saved' => count($prod_saved),
-				'prod_all' => count($prod_all),
-				'prod_ignore' => count($prod_ignore)
-			));
+			/*var_dump(
+				array(
+					'prod_saved' => $prod_saved,
+					'prod_all' => $prod_all,
+					'prod_ignore' => $prod_ignore
+				)
+			);*/
     }else{
       echo "\r\nGeneral stock response is empty.";
     }
