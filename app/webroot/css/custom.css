@@ -858,11 +858,11 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 }
 
 .category-item-container {
-	padding: 6px 20px;
+	padding: 5px 19px;
 }
 
 .category-item {
-	padding: 5px 6px;
+	padding: 5px;
 }
 
 /*.category-item-container {
