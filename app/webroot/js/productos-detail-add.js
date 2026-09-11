@@ -103,7 +103,7 @@ $(document).ready(function() {
 		var checked = $('.category_radio:checked').length;
 
 		if (checked === 0) {
-			alert('Debe seleccionar una categoría');
+			swal('Error','Debe seleccionar una categoría');
 			return false;
 		}
 
@@ -136,7 +136,7 @@ $(document).ready(function() {
 			}
 			return true;
 		}else{
-			alert('El numero de articulo no existe o no tiene stock.');
+			swal('Error','El numero de articulo no existe o no tiene stock.');
 			return false;
 		}
 	});
@@ -151,9 +151,9 @@ $(document).ready(function() {
 			me = $(this);
 
 		if (searching) return;
-		if (!lis_code) return alert('Por favor, ingrese un codigo de lista');
-		if (!lis_code2) return alert('Por favor, ingrese un codigo de lista de descuento');
-		if (!product_code) return alert('Por favor, ingrese un codigo de producto');
+		if (!lis_code) return swal('Error','Por favor, ingrese un codigo de lista');
+		if (!lis_code2) return swal('Error','Por favor, ingrese un codigo de lista de descuento');
+		if (!product_code) return swal('Error','Por favor, ingrese un codigo de producto');
 
 
 		url = [url, product_code, lis_code, lis_code2].join('/');
@@ -164,7 +164,7 @@ $(document).ready(function() {
 				if ($.isArray(res.results) && !res.results.length) {
 					searching = false;
 					me.text('Buscar').removeClass('btn-info');
-					return alert('No se encontro el producto buscado');
+					return swal('Error','No se encontro el producto buscado');
 				}
 				var product = res.results[0];
 				var color = res.colors.Color;
@@ -201,7 +201,7 @@ $(document).ready(function() {
 				addDetails( product.details );
 			})
 			.fail (function(e) {
-				alert('Hubo un problema al tratar de traer el producto');
+				swal('Error','Hubo un problema al tratar de traer el producto');
 				me.text('Buscar').removeClass('btn-info');
 				searching = false;
 			});
@@ -246,7 +246,7 @@ $(document).ready(function() {
 			alias = $("input[name='"+ref+"']").val();
 		}
 		if(alias==""){
-			alert('Debe ingresar un alias');
+			swal('Error','Debe ingresar un alias');
 			return false;
 		}
 		$(this).parent().find("progress").show();
@@ -280,7 +280,7 @@ $(document).ready(function() {
 			.success(function(data) {
 				$(auxThis).parent().find("progress").hide();
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
 				if($(auxThis).parent().find("#ListUploaded")!=null){
@@ -295,7 +295,7 @@ $(document).ready(function() {
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	};
 	$('.upload_color_image').on('change', changeHandler);

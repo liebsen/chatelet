@@ -166,8 +166,9 @@ $(function(){
 				}
 			})
 			.success(function(data) {
+				progress.addClass('hide')
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
 
@@ -180,7 +181,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
 
@@ -252,14 +253,14 @@ $(function(){
 			})
 			.success(function(data) {
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Hecho','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.', 'success');
 					return false;
 				}
                 
         var images_one 	= input.val();
 				images_one 		= images_one.split(';');
 				if(images_one.length > 8){
-					alert('Solo se permiten 8 imágenes por modulo');
+					swal('Error','Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_one.push(data);
@@ -271,7 +272,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
   
@@ -343,7 +344,7 @@ $(function(){
 			})
 			.success(function(data) {
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
                 
@@ -351,7 +352,7 @@ $(function(){
 				images_two 		= images_two.split(';');
 
 				if(images_two.length > 8){
-					alert('Solo se permiten 8 imágenes por modulo');
+					swal('Error','Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_two.push(data);
@@ -363,7 +364,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
   
@@ -434,7 +435,7 @@ $(function(){
 			})
 			.success(function(data) {
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
                 
@@ -442,7 +443,7 @@ $(function(){
 				images_three 		= images_three.split(';');
 
 				if(images_three.length > 8){
-					alert('Solo se permiten 8 imágenes por modulo');
+					swal('Error','Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_three.push(data);
@@ -454,7 +455,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
   
@@ -565,7 +566,7 @@ $(function(){
 			})
 			.success(function(data) {
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
                 
@@ -573,7 +574,7 @@ $(function(){
 				images_four 		= images_four.split(';');
 
 				if(images_four.length > 8){
-					alert('Solo se permiten 8 imágenes por modulo');
+					swal('Error','Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_four.push(data);
@@ -585,7 +586,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
 	//drawImagesFour( $("[name='data[img_url_four]']").val().split(';') );
@@ -642,7 +643,6 @@ $(function(){
 		var progress = $(me.data('progress'));
 		var input 	= $(me.data('input'));
 		
-		progress.removeClass('hide')
 		var valid_types = {
 			'image/jpeg': true,
 			'image/jpg': true,
@@ -651,6 +651,7 @@ $(function(){
 		fd.append('data[file]', this.files[0]);
 
 		if (valid_types[this.files[0].type]) {
+			progress.removeClass('hide')
 			$.ajax({
 				url: url,
 				data: fd,
@@ -675,8 +676,9 @@ $(function(){
 				}
 			})
 			.success(function(data) {
+				progress.addClass('hide')
 				if(data == 'fail'){
-					alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+					swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 					return false;
 				}
                 
@@ -684,7 +686,7 @@ $(function(){
 				images_newsletter 		= images_newsletter.split(';');
 
 				if(images_newsletter.length > 8){
-					alert('Solo se permiten 8 imágenes por modulo');
+					swal('Error','Solo se permiten 8 imágenes por modulo');
 					return false;
 				}else{
 					images_newsletter.push('mobile-' + data);
@@ -696,7 +698,7 @@ $(function(){
 			me.val('');
 		} else {
 			me.val('');
-			alert('Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
+			swal('Error','Tipo de archivo incorrecto. Podes subir archivos JPG y JPEG.');
 		}
 	});
 

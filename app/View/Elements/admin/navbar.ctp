@@ -25,10 +25,12 @@
 
         <!-- Stylesheets -->
         <?php
-            echo $this->Html->css('bootstrap');
-            echo $this->Html->css('jquery.growl.css?v=' . $version['ver']);
-            echo $this->Html->css('main.css?v=' . $version['ver']);
-            echo $this->Html->css('plugins');
+            $this->Html->css('bootstrap', array('block' => 'css'));
+            $this->Html->css('jquery.growl.css?v=' . $version['ver'], array('block' => 'css'));
+            $this->Html->css('main.css?v=' . $version['ver'], array('block' => 'css'));
+            $this->Html->css('plugins', array('block' => 'css'));
+					  $this->Html->script('vendor/sweetalert.min', array('block' => 'script'));
+					  $this->Html->css('sweetalert', array('block' => 'css'));
 
             // echo $this->Html->css('animate.css?v=' . $version['ver']);
             // echo $this->Html->css('font-awesome.min');

@@ -27,7 +27,7 @@
         $('#lat').val(results[0].geometry.location.lat());
         $('#lng').val(results[0].geometry.location.lng());
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        swal('Error','Geocode was not successful for the following reason: ' + status);
       }
     });
   }

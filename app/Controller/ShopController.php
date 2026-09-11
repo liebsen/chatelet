@@ -349,7 +349,7 @@ class ShopController extends AppController {
     return $this->response;
 	}
 
-
+	/* 
 	public function die_general_stock(){
 		$this->autoRender = false;
 		$this->SQL = $this->Components->load('SQL');
@@ -434,6 +434,9 @@ class ShopController extends AppController {
 		$categories = $this->Category->find('all');
 		var_dump($categories);die;
 	}
+
+	*/
+
   /**
    * function to clear all cache data
    * by default accessible only for admin

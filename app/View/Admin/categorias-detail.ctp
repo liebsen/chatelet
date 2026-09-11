@@ -3,8 +3,6 @@
   #echo $this->Html->script('category', array('inline' => false));
   $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
   $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script'));
-  $this->Html->script('vendor/sweetalert.min', array('block' => 'script'));
-  $this->Html->css('sweetalert', array('block' => 'css'));
   $this->Html->script('category_sizes.js?v=' . $version['ver'], array('block' => 'script'));
   $this->element('admin/menu');
   $styles = array_map(fn($item) => array(
