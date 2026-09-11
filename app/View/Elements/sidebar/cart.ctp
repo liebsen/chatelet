@@ -34,7 +34,7 @@
         </a>
       </div>
       <div class="d-flex justify-content-start align-center flex-column min-w-7">
-        <h5 class="item-title mb-1" style="max-width: 6rem"><?php echo $product['name'] ?></h5>
+        <h5 class="item-title mb-1" style="max-width: 6rem; min-width: 100%;"><?php echo $product['name'] ?></h5>
       <?php if (!empty($product['color_code']) && $product['color_code'] != 'undefined') : ?>
         <span class="text-sm">Color: <span color-code="<?php echo $product['color_code'] ?>"><?php echo $product['alias'] ?></span>
         </span>

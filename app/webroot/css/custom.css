@@ -990,7 +990,6 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   color: #888;
   font-weight: 1000;
   white-space: nowrap; 
-  font-size: 14px;
 }
 
 #listShop a .hover {
@@ -2188,9 +2187,6 @@ span.out{
   font-weight: 700;
 }
 
-.cost_total-container .price {
-  color: deeppink;
-}
 .cost_total {
 }
 

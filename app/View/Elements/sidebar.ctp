@@ -86,6 +86,11 @@ nav.sidebar-expanded {
 	align-items: space-around;
 	gap: 0.5rem;
   width: 100%;
+  .btn {
+  	padding: 0.5rem;
+  	font-weight: 1000;
+  	font-size: 80%;
+  }
 }
 	
 </style>
