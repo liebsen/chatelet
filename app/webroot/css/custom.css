@@ -1051,7 +1051,7 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 .bxc > div {
   background-color: hotpink; 
 }
-#productOptions { padding: 5px 0; }
+#productOptions { padding: 5px; }
 #productOptions nav li { border-bottom: 1px solid rgba(194, 194, 194, 0.27); padding: 1rem; }
 #productOptions nav li a { 
   line-height: 1.75; 
