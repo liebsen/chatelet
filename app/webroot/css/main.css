@@ -552,8 +552,8 @@ background-color: #e8ffa8!important;
 
 #primary-nav > ul > li > a .fa {
 	position: relative;
-	top: 2px;
-	font-size: 1.5rem;
+	top: 1px;
+	font-size: 20px;
 }
 
 #primary-nav li a:focus {
@@ -577,9 +577,9 @@ background-color: #e8ffa8!important;
 
 #primary-nav a > i {
   min-width: 26px;
-	font-size: 14px;
+	font-size: 20px;
 	position: relative;
-	top: 2px;  
+	top: -3px;  
   text-align: center;
   background-color: transparent;
   border: none;
@@ -4381,7 +4381,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
   .loader-18 { background-image: url('../img/loading.gifs/loading18@2x.gif'); }
   .loader-19 { background-image: url('../img/loading.gifs/loading19@2x.gif'); }
   .loader-20 { background-image: url('../img/loading.gifs/loading20@2x.gif'); }
-}
+}*/
+
 .treeview ul{
   padding:5px 0 5px 10px;
   list-style: none outside;
@@ -4409,7 +4410,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .treeview ul.level3 li div{
   background: #eeeeee;
-}*/
+}
 
 .update-countdown {
 	font-family: monospace;
