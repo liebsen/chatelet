@@ -1,6 +1,6 @@
 
     <div class="wrapper-fluid">
-      <div class="row m-0">
+      <div class="row">
         <div class="col-xs-12">
           <div class="row category-item-container">
           <?php $loaded_fonts = []; foreach($categories as $category): ?>
