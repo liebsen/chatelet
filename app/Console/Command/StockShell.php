@@ -59,7 +59,7 @@ class StockShell extends AppShell {
                 array('Product.article' => $article_id)
               );
             }
-            echo "saved:".$article_id;
+            echo "\n" . $article_id . " (OK)";
             $prod_saved[]= $article_id;
           }
           $exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
@@ -82,9 +82,9 @@ class StockShell extends AppShell {
       }
 
 			var_dump(array(
-				'prod_saved' => $prod_saved,
-				'prod_all' => $prod_all,
-				'prod_ignore' => $prod_ignore
+				'prod_saved' => count($prod_saved),
+				'prod_all' => count($prod_all),
+				'prod_ignore' => count($prod_ignore)
 			));
     }else{
       echo "\r\nGeneral stock response is empty.";

@@ -101,7 +101,6 @@ class SQLComponent extends Component {
 	}
 
 	public function general_stock(){
-		var_dump("-----general_stock(1)----");
 		try {
 			echo "\r\nstock:query init;";
 			$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
