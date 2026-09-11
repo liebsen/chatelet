@@ -26,11 +26,14 @@ class StockShell extends AppShell {
     $this->SQL = $collection->load('SQL');
     $all_stock = $this->SQL->general_stock();
     $prod_saved = array();
+    $prod_all = array();
+    $prod_ignore = array();
     if (!empty($all_stock)){
       foreach ($all_stock as $row){
         $record = [];
         $article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
         $existArticle = $this->Product->findByArticle($article_id);
+        $prod_all[]= $article_id;
         if (!empty($existArticle)){
           if ($row['cod_articulo'] === $article_id.'.0000'){
             $replaceNames = false;
@@ -56,7 +59,7 @@ class StockShell extends AppShell {
                 array('Product.article' => $article_id)
               );
             }
-            echo "saved:".$article_id;
+            echo "\n" . $article_id . " (OK)";
             $prod_saved[]= $article_id;
           }
           $exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
@@ -68,15 +71,21 @@ class StockShell extends AppShell {
           $record['article_id'] = $article_id;
           $record['cod_articulo'] = $row['cod_articulo'];
           $record['stock'] = (int)$row['cantidad'];
-          var_dump("here saves", $record);
-          // $success = $this->StockCount->save($record);
+          $success = $this->StockCount->save($record);
           if (!$success){
             echo "\r\nFailed to save";
           }
         } else {
+        	$prod_ignore[]= $article_id;
           //  echo "\r\nArticle {$article_id} not needed";
         }
       }
+
+			var_dump(array(
+				'prod_saved' => count($prod_saved),
+				'prod_all' => count($prod_all),
+				'prod_ignore' => count($prod_ignore)
+			));
     }else{
       echo "\r\nGeneral stock response is empty.";
     }
