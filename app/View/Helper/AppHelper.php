@@ -201,7 +201,7 @@ class AppHelper extends Helper {
     	if(count($item['colors'])){
 				$content.= '<ol class="carousel-indicators">';
 
-			  foreach($item['colors'] as $i => $img) {
+			  foreach($item['colors'] + 1 as $i => $img) {
 			    $content.= '<li data-target="#carousel" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
 			  }
 
