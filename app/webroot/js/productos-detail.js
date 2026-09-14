@@ -131,8 +131,8 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.product-sort').change(function() {
-		const ref = $(this)
+	$('.product-trigger-sort').click(function() {
+		const ref = $(this).find('.product-sort')
 		$('.product-sort').each(function(i,e){
 			console.log('a(0)',i,e)
 			console.log('a(1)',$(e).prop('id'), ref.prop('id'))

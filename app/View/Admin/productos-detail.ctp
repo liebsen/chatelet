@@ -204,7 +204,7 @@
                                 '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                                 '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
 
-																'<div class="form-group d-flex m-0">
+																'<div class="form-group d-flex m-0 product-trigger-sort">
 																	<div class="controls flex-1">
 																		<input type="checkbox" name="props['. $index .'][sort]" value="1" id="toggle_'. $index .'" class="toggle-checkbox product-sort" ' . ($sort == 1 ? 'checked' : '') . '>
 																		<label for="toggle_'. $index .'" class="toggle-label"></label>
