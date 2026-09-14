@@ -205,8 +205,8 @@
                                 '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
 
 																'<div class="form-group m-0">
-																	<div class="controls">
-																		<input type="checkbox" name="props['. $index .'][sort]" value="1" id="toggle_'. $index .'" class="toggle-checkbox product-sort" ' . ($sort == 1 ? 'checked' : '') . '>
+																	<div class="controls d-flex">
+																		<input type="checkbox flex-1" name="props['. $index .'][sort]" value="1" id="toggle_'. $index .'" class="toggle-checkbox product-sort" ' . ($sort == 1 ? 'checked' : '') . '>
 																		<label for="toggle_'. $index .'" class="toggle-label"></label>
 																	</div>
 																	<label class="control-label" for="toggle_'. $index .'">Imagen principal</label>
