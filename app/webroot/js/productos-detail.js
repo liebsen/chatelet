@@ -133,8 +133,8 @@ $(document).ready(function() {
 
 	$('.product-sort').change(function() {
 		const ref = $(this)
-		$('.product-sort').each(function(e,i){
-			console.log('a(0)',e,i)
+		$('.product-sort').each(function(i,e){
+			console.log('a(0)',i,e)
 			console.log('a(1)',$(e).prop('id'), ref.id)
 			if($(e).prop('id') != ref.id) {
 				console.log('a(2)',$(e).prop('id'))
@@ -142,7 +142,7 @@ $(document).ready(function() {
 			}
 		})
 	})
-	
+
 	var searching = false;
 
 	$('#buscar').click(function() {
