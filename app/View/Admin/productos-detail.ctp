@@ -204,12 +204,12 @@
                                 '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                                 '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
 
-																'<div class="form-group d-flex m-0 product-trigger-sort">
+																'<div class="form-group d-flex m-0">
 																	<div class="controls flex-1">
-																		<input type="checkbox" name="props['. $index .'][sort]" value="1" id="toggle_'. $index .'" class="toggle-checkbox product-sort" ' . ($sort == 1 ? 'checked' : '') . '>
-																		<label for="toggle_'. $index .'" class="toggle-label"></label>
+																		<input type="checkbox" name="props['. $index .'][sort]" value="1" id="toggle_'. $index .'" class="toggle-checkbox toggle-sort" ' . ($sort == 1 ? 'checked' : '') . '>
+																		<label for="toggle_'. $index .'" class="toggle-label product-sort"></label>
 																	</div>
-																	<label class="control-label" for="toggle_'. $index .'">Imagen principal</label>
+																	<label class="control-label">Imagen principal</label>
 																</div>' . 
 
                                 '<select class="form-control code_sel" name="props['. $index .'][code]">'.$options.'</select>'.

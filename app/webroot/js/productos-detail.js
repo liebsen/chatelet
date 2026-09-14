@@ -131,15 +131,14 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.product-trigger-sort').click(function(e) {
-		e.preventDefault()
-		e.stopPropagation()
-		const ref = $(this).find('.product-sort')
-		console.log('product-trigger-sort(click)',ref.prop('id'))
-		$('.product-sort').each(function(i,e){
+	$('.product-sort').click(function() {
+		const ref = $(this).prev()
+		$('.toggle-sort').each(function(i,e){
+			console.log('a(0)',i,e)
+			console.log('a(1)',$(e).prop('id'), ref.prop('id'))
 			if($(e).prop('id') != ref.prop('id')) {
-				console.log('product-sort(click)',$(e).prop('id'))
-				$(e).click()
+				console.log('a(2)',$(e).prop('id'))
+				$(e).trigger('click')
 			}
 		})
 	})
