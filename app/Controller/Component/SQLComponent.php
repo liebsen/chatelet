@@ -223,7 +223,7 @@ class SQLComponent extends Component {
 	}
 
 	public function productsByLisCod($prod_cod, $lis_cod) {
-		CakeLog::write('debug', 'productsByLisCod(row):'.json_encode(array('prod_cod'=>$prod_cod,'lis_cod'=>$lis_cod)));
+		//CakeLog::write('debug', 'productsByLisCod(row):'.json_encode(array('prod_cod'=>$prod_cod,'lis_cod'=>$lis_cod)));
 		$results = array();
 		if (empty($lis_cod) || empty($prod_cod)) return $results;
 

@@ -61,9 +61,9 @@
             <br />
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Código de producto'); ?></label>
-              <div class="controls">
+              <div class="controls d-flex flex-column gap-05">
                 <input type="text" class="form-control" id="prod_cod" value="<?php echo (isset($prod)) ? $prod['Product']['cod_chatelet'] : ''; ?>">
-                <button type="button" id="buscar" class="btn btn-sm btn-default" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
+                <button type="button" id="buscar" class="btn btn-sm btn-success" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
               </div>
             </div>
             <br />

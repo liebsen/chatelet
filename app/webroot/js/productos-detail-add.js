@@ -150,13 +150,10 @@ $(document).ready(function() {
 			url = $(this).data('url'),
 			me = $(this);
 
-			console.log(url, lis_code, lis_code2, product_code)
-
 		if (searching) return;
 		if (!lis_code) return swal('Error','Por favor, ingrese un codigo de lista');
 		if (!lis_code2) return swal('Error','Por favor, ingrese un codigo de lista de descuento');
 		if (!product_code) return swal('Error','Por favor, ingrese un codigo de producto');
-
 
 		url = [url, product_code, lis_code, lis_code2].join('/');
 		searching = true;

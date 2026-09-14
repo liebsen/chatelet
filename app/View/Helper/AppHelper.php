@@ -191,11 +191,11 @@ class AppHelper extends Helper {
     if(count($item['colors'])) {
     	$content.= '<div id="carousel" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
     	$content.= '<div class="carousel-inner" role="listbox">';
-    	#$content.= '<a class="item active" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
+    	$content.= '<a class="item active" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
     	foreach($item['colors'] as $i => $img) {
-    		$active = $i ? '' : ' active';
+    		// $active = $i ? '' : ' active';
     		#$content.= '<a class="item '.$active.'" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
-    		$content.= '<a href="'.$url.'" class="item'.$active.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
+    		$content.= '<a href="'.$url.'" class="item" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
     	}
     	$content.= '</div>';
     	if(count($item['colors'])>1){
