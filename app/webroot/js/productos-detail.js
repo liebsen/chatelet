@@ -138,7 +138,9 @@ $(document).ready(function() {
 			console.log('a(1)',$(e).prop('id'), ref.prop('id'))
 			if($(e).prop('id') != ref.prop('id')) {
 				console.log('a(2)',$(e).prop('id'))
-				$(e).trigger('click')
+				if($(e).is(':checked')) {
+					$(e).trigger('click')
+				}
 			}
 		})
 	})
