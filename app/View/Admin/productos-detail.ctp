@@ -64,8 +64,10 @@
 	                <input type="text" class="form-control" id="prod_cod" value="<?php echo (isset($prod)) ? $prod['Product']['cod_chatelet'] : ''; ?>">
 	              </div>
 	            </div>
-	            <button type="button" id="buscar" class="btn btn-sm btn-success" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
 	          </div>
+	          <div class="control-group">
+	            <button type="button" id="buscar" class="btn btn-sm btn-success" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
+						</div>
 	          <hr>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Activar Descuento? (0 o vacio para ignorar)'); ?></label>
@@ -172,6 +174,7 @@
                         $type = $prop['ProductProperty']['type'];
                         $alias = str_replace(' ', '_', $prop['ProductProperty']['alias']);
                         $variable = $prop['ProductProperty']['variable'];
+                        $sort = $prop['ProductProperty']['sort'];
                         $id = $prop['ProductProperty']['id'];
                         $product_id = $prop['ProductProperty']['product_id'];
                         $imagesArr = (!empty($prop['ProductProperty']['images']))?explode(';',$prop['ProductProperty']['images']):array();
@@ -194,12 +197,19 @@
                                 '<div class="colorSelector" style="opacity:0">'.
                                   '<div style="background-color: '. $variable .';"></div>'.
                                 '</div>'.
-                               '<input type="hidden" name="props['. $index .'][variable]" value="'. $variable .'" class="form-control variable" required var/>'.
-                               '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
-                               '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
-                               '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
-                               '<select class="form-control code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
-                               '<span class="alias_cont"><input class="form-control" type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="form-control changed variable" required placeholder="AA, 02, etc..."/></span>'.
+                                '<input type="hidden" name="props['. $index .'][variable]" value="'. $variable .'" class="form-control variable" required var/>'.
+                                '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
+                                '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
+                                '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
+
+																'<div class="form-group">
+																	<input type="checkbox" name="props['. $index .'][sort]" value="1" id="toggle" class="toggle-checkbox" ' . ($sort == 1 ? 'checked' : '') . '>
+																	<label for="toggle" class="toggle-label"></label>
+																</div>' . 
+
+
+                                '<select class="form-control code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
+                                '<span class="alias_cont"><input class="form-control" type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="form-control changed variable" required placeholder="AA, 02, etc..."/></span>'.
                                 '<div class="right">'.
                                   '<a class="btn btn-danger remove-item" data-count="'.$index.'">Borrar</a>'.
                                 '</div>'.
