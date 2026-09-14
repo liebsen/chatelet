@@ -134,10 +134,7 @@ $(document).ready(function() {
 	$('.product-sort').click(function() {
 		const ref = $(this).prev()
 		$('.toggle-sort').each(function(i,e){
-			console.log('a(0)',i,e)
-			console.log('a(1)',$(e).prop('id'), ref.prop('id'))
 			if($(e).prop('id') != ref.prop('id')) {
-				console.log('a(2)',$(e).prop('id'))
 				if($(e).is(':checked')) {
 					$(e).trigger('click')
 				}

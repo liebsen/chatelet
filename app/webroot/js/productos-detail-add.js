@@ -141,15 +141,13 @@ $(document).ready(function() {
 		}
 	});
 
-
-	$('.product-sort').change(function() {
-		const ref = $(this)
-		$('.product-sort').each(function(e,i){
-			console.log('a(0)',e,i)
-			console.log('a(1)',$(e).prop('id'), ref.id)
-			if($(e).prop('id') != ref.id) {
-				console.log('a(2)',$(e).prop('id'))
-				$(e).val('0')
+	$('.product-sort').click(function() {
+		const ref = $(this).prev()
+		$('.toggle-sort').each(function(i,e){
+			if($(e).prop('id') != ref.prop('id')) {
+				if($(e).is(':checked')) {
+					$(e).trigger('click')
+				}
 			}
 		})
 	})
