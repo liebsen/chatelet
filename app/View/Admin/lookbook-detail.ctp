@@ -56,12 +56,10 @@
                         '</li>';
                 ?>
               </ul>
-             
-              <button type="button" class="add-item" data-type="producto">Agregar</button>
+              <button type="button" class="btn btn-success add-item" data-type="producto">Agregar</button>
             </div>
           </div>
-          <br />          
-     
+          <br />
         </div>                
       </div>      
       <br />               
