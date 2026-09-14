@@ -223,6 +223,7 @@ class SQLComponent extends Component {
 	}
 
 	public function productsByLisCod($prod_cod, $lis_cod) {
+		CakeLog::write('debug', 'productsByLisCod(row):'.json_encode(array('prod_cod'=>$prod_cod,'lis_cod'=>$lis_cod)));
 		$results = array();
 		if (empty($lis_cod) || empty($prod_cod)) return $results;
 
@@ -232,16 +233,16 @@ class SQLComponent extends Component {
 				c.descripcion AS colorPrenda,
 				al.LisCod AS listaPrecio,
 				al.Precio
-			FROM   Art a INNER JOIN
-				   ArtLis al ON a.ArtCod = al.ArtCod INNER JOIN
-				   Color c ON RIGHT(a.ArtCod, 2) = c.Codigo
+			FROM Art a INNER JOIN
+				ArtLis al ON a.ArtCod = al.ArtCod INNER JOIN
+				Color c ON RIGHT(a.ArtCod, 2) = c.Codigo
 			WHERE  (al.LisCod = '".$lis_cod."') AND (a.ArtCod LIKE '".$prod_cod."%')
 		");
 		$stmt->execute();
 		$results = array();
 		
 		while ($row = $stmt->fetch()) {
-			CakeLog::write('debug', 'productsByLisCod(row):'.json_encode($row));
+			//CakeLog::write('debug', 'productsByLisCod(row):'.json_encode($row));
 			unset($row['0']);
 			unset($row['1']);
 			unset($row['2']);
@@ -253,7 +254,7 @@ class SQLComponent extends Component {
 			$results[] = $row;
 		}
 		unset($stmt);
-		CakeLog::write('debug', 'productsByLisCod(results):'.json_encode($results));
+		//CakeLog::write('debug', 'productsByLisCod(results):'.json_encode($results));
 		return $results;
 	}
 
