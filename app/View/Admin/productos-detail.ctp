@@ -194,7 +194,7 @@
                                 '<div class="colorSelector" style="opacity:0">'.
                                   '<div style="background-color: '. $variable .';"></div>'.
                                 '</div>'.
-                               '<input type="hidden" name="props['. $index .'][variable]" value="'. $variable .'" class="variable" required var/>'.
+                               '<input type="hidden" name="props['. $index .'][variable]" value="'. $variable .'" class="form-control variable" required var/>'.
                                '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
                                '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                                '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.

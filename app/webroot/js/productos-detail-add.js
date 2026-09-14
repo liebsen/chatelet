@@ -30,7 +30,7 @@ $(document).ready(function() {
 	          '<div class="right">' +
 	            '<a class="btn btn-xs btn-danger remove-item" data-count="'+count+'">Borrar</a>' +
 	          '</div>' +
-	          '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
+	          '<input type="file" class="form-control upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
 	          '<progress id="progress" hidden></progress>' +
               '<ul id="ListUploaded" class="list-inline" data-ref="props['+ count +'][alias]" data-count="'+count+'"></ul>' +
 	        '</li>')

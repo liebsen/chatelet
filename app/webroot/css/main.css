@@ -2281,7 +2281,7 @@ pre, code {
   border: none;
   margin: 0;
   padding: 1rem;
-  min-height: calc(100dvh - 117px);
+  min-height: calc(100dvh - 125px);
 }
 
 .list-group-hero > a > li {

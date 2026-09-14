@@ -314,9 +314,9 @@ label input[type=checkbox]:disabled + .label-text:before {
   margin: 0; 
   padding: 1rem 2rem;
   position: relative; 
-  transition: none!important;
   z-index: 10;
   transition: background 0.25s ease-in-out;
+	box-shadow: 0 0 5px #00000022;  
 }
 
 .navbar-chatelet .navbar-toggle { 

@@ -12,16 +12,12 @@
 <?php if($viewComponent != 'index'):?>
 <?php echo $this->element('admin/menu'); ?>
 <?php endif ?>
-	      <div class="tab-content<?=$viewComponent == 'index' ? ' bg-ocean' : ''?>">
+	      <div class="tab-content p-0 <?=$viewComponent == 'index' ? ' bg-ocean' : ''?>">
 					<div class="tab-pane pane-<?= $pane ?> active">
 <?php echo $this->element('application/' . $viewComponent) ?>
 					</div>
 	     	</div>
 		  </div>		  
 		</div>
-    <div class="form-actions">
-      <a href="javascript:history.go(-1)" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Atrás</span></a>
-      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario" disabled><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
-    </div>
 	</div>
 <?php echo $this->Form->end(); ?>
