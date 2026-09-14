@@ -62,10 +62,11 @@
 	              <label class="control-label" for="columns-text"><?php echo __('Código de producto'); ?></label>
 	              <div class="controls d-flex flex-column gap-05">
 	                <input type="text" class="form-control" id="prod_cod" value="<?php echo (isset($prod)) ? $prod['Product']['cod_chatelet'] : ''; ?>">
-	                <button type="button" id="buscar" class="btn btn-sm btn-success" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
 	              </div>
 	            </div>
+	            <button type="button" id="buscar" class="btn btn-sm btn-success" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
 	          </div>
+	          <hr>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Activar Descuento? (0 o vacio para ignorar)'); ?></label>
               <small>Este descuento no se mostrará actualizado hasta ejecutar el boton "Sincronizar Descuentos"</small>
