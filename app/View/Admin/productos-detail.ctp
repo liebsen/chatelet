@@ -35,38 +35,37 @@
         <div class="row">
           <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
-            <div class="control-group">
-              <label class="control-label" for="columns-text">
-              <?php echo __('Código de lista de precios'); ?></label>
-              <div class="controls">  
-               <?php if(!empty($list_code)){ ?>  
-                <input type="number" class="form-control" name="list_code" id="lis_cod" value="<?php echo @$list_code ?>"/>
-               <?php }else{ ?>
-                <input type="text" class="form-control" id="lis_cod" />
-               <?php } ?>
-              </div>
-            </div>
-            <br />
-            <div class="control-group">  
-              <label class="control-label" for="columns-text">
-              <?php echo __('Código de lista de precios con Descuento'); ?></label>
-              <div class="controls">  
-               <?php if(!empty($list_code)){ ?>  
-                <input type="number" class="form-control" name="list_code_desc" id="lis_cod2" value="<?php echo @$list_code_desc ?>"/>
-               <?php }else{ ?>
-                <input type="text" class="form-control" id="lis_cod2" />
-               <?php } ?>
-              </div>
-            </div>
-            <br />
-            <div class="control-group">
-              <label class="control-label" for="columns-text"><?php echo __('Código de producto'); ?></label>
-              <div class="controls d-flex flex-column gap-05">
-                <input type="text" class="form-control" id="prod_cod" value="<?php echo (isset($prod)) ? $prod['Product']['cod_chatelet'] : ''; ?>">
-                <button type="button" id="buscar" class="btn btn-sm btn-success" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
-              </div>
-            </div>
-            <br />
+            <div class="d-flex gap-05">
+	            <div class="control-group">
+	              <label class="control-label" for="columns-text">
+	              <?php echo __('Código de lista de precios'); ?></label>
+	              <div class="controls">  
+	               <?php if(!empty($list_code)){ ?>  
+	                <input type="number" class="form-control" name="list_code" id="lis_cod" value="<?php echo @$list_code ?>"/>
+	               <?php }else{ ?>
+	                <input type="text" class="form-control" id="lis_cod" />
+	               <?php } ?>
+	              </div>
+	            </div>
+	            <div class="control-group">  
+	              <label class="control-label" for="columns-text">
+	              <?php echo __('Código de lista de precios con Descuento'); ?></label>
+	              <div class="controls">  
+	               <?php if(!empty($list_code)){ ?>  
+	                <input type="number" class="form-control" name="list_code_desc" id="lis_cod2" value="<?php echo @$list_code_desc ?>"/>
+	               <?php }else{ ?>
+	                <input type="text" class="form-control" id="lis_cod2" />
+	               <?php } ?>
+	              </div>
+	            </div>
+	            <div class="control-group">
+	              <label class="control-label" for="columns-text"><?php echo __('Código de producto'); ?></label>
+	              <div class="controls d-flex flex-column gap-05">
+	                <input type="text" class="form-control" id="prod_cod" value="<?php echo (isset($prod)) ? $prod['Product']['cod_chatelet'] : ''; ?>">
+	                <button type="button" id="buscar" class="btn btn-sm btn-success" data-url="<?php echo $this->Html->url(array('controller' => 'admin', 'action' => 'get_product')) ?>">Buscar</button>
+	              </div>
+	            </div>
+	          </div>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Activar Descuento? (0 o vacio para ignorar)'); ?></label>
               <small>Este descuento no se mostrará actualizado hasta ejecutar el boton "Sincronizar Descuentos"</small>
@@ -190,7 +189,7 @@
                         }
 
                         if ($type == 'color') {
-                          echo '<li class="list-group-item">'.
+                          echo '<li class="list-group-item d-flex flex-column gap-05">'.
                                 '<div class="colorSelector" style="opacity:0">'.
                                   '<div style="background-color: '. $variable .';"></div>'.
                                 '</div>'.
@@ -228,7 +227,7 @@
                         $id = $prop['ProductProperty']['id'];
                         $product_id = $prop['ProductProperty']['product_id'];
                         if ($type == 'size') {
-                          echo '<li class="list-group-item">'.
+                          echo '<li class="list-group-item d-flex flex-column gap-05">'.
                                '<input type="text" class="form-control" name="props['. $index .'][variable]" value="'. $variable .'" var required />'.
                                '<input type="hidden" name="props['. $index .'][id]" value="'. $id .'" />'.
                                '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'" />'.

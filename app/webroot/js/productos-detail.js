@@ -23,7 +23,7 @@ $(document).ready(function() {
 		}
 
 		list.append(
-			$('<li class="list-group-item">' +
+			$('<li class="list-group-item d-flex flex-column gap-05">' +
 			  extrafields +
              '<input type="hidden" name="props['+ count +'][type]" value="'+ type +'" />'+
 	          '<div class="right">' +
