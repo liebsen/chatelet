@@ -212,7 +212,7 @@
                     }
                   ?>
                 </ul>
-                <button type="button" class="add-item" data-type="color">Agregar</button>
+                <button type="button" class="btn btn-success add-item" data-type="color">Agregar</button>
               </div>
             </div>
             <br />
@@ -242,7 +242,7 @@
                     }
                   ?>
                 </ul>
-                <button type="button" class="add-item" data-type="size">Agregar</button>
+                <button type="button" class="btn btn-success add-item" data-type="size">Agregar</button>
               </div>
             </div>
             <br />
@@ -264,7 +264,7 @@
             </div>
             <br />
             <?php echo $this->element('product_images') ?>
-          </div>                
+          </div>
         </div>      
         <br />               
         <div class="form-actions">

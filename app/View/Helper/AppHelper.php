@@ -170,22 +170,35 @@ class AppHelper extends Helper {
     $content= '<div class="ribbon-container">';
     $content.= $discount_flag . $promo_ribbon;
 
+    /*if($item['colors'] > 1) {
+    	$content.= '<div class="ribbon bottom-left small"><span'.$ribbon_style.'>'.$item['colors'].' colores</span></div>';
+    }*/
+
+		#\d("show_colors",['id' => $item['id'], 'colors' => $item['colors']]);
+
+    /*if (empty($item['with_thumb'])){
+      $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . $item['img_url'] .'" />';
+    }else{
+      $content.= '<img class="img-responsive contain-xs"  src="'. $settings['upload_url'] . 'thumb_'.$item['img_url'] .'" url-copy="'.$settings['upload_url'] . $item['img_url'].'" onError=updateSrcTo(this) />';
+    }*/
+
+    #\d("count colors", count($item['colors']));
+
     if(count($item['colors'])) {
     	$content.= '<div id="carousel" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
     	$content.= '<div class="carousel-inner" role="listbox">';
-    	$content.= '<a class="item active" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
-
+    	#$content.= '<a class="item active" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$item['img_url'].'\')"></a>';
     	foreach($item['colors'] as $i => $img) {
-    		$content.= '<a href="'.$url.'" class="item" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
+    		$active = $i ? '' : ' active';
+    		#$content.= '<a class="item '.$active.'" href="'.$url.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
+    		$content.= '<a href="'.$url.'" class="item'.$active.'" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
     	}
-
     	$content.= '</div>';
-
-    	if(count($item['colors'])){
+    	if(count($item['colors'])>1){
 				$content.= '<ol class="carousel-indicators">';
-				$content.= '<li data-target="#carousel" data-slide-to="0" class="active"></li>';
+
 			  foreach($item['colors'] as $i => $img) {
-			    $content.= '<li data-target="#carousel" data-slide-to="'.($i+1).'"></li>';
+			    $content.= '<li data-target="#carousel" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
 			  }
 
 				$content.= '</ol>';
@@ -201,6 +214,7 @@ class AppHelper extends Helper {
     if ($isProduct){
       $content.='<span class="hide">'. '<small>'. $item['desc'] .'</small>'. '</span>';
     }
+
 
     $item_name = $item['name'];
     $priceStr = '';
