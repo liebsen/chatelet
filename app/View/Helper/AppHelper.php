@@ -198,7 +198,7 @@ class AppHelper extends Helper {
     		$content.= '<a href="'.$url.'" class="item" style="background-image: url(\''.$settings['upload_url'].$img.'\')"></a>';
     	}
     	$content.= '</div>';
-    	if(count($item['colors'])>1){
+    	if(count($item['colors'])){
 				$content.= '<ol class="carousel-indicators">';
 
 			  foreach($item['colors'] as $i => $img) {

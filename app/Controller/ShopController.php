@@ -669,7 +669,7 @@ class ShopController extends AppController {
 					);
 
 					$current = current($colors);
-					if(!empty($current)) {
+					if(!empty($current) && $current != $product['Product']['image']) {
 						array_push($all_colors, $current);
 					}
 				}
