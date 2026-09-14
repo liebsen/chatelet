@@ -657,6 +657,7 @@ class ShopController extends AppController {
 							'type' => 'color',
 							'product_id' => $product['Product']['id']
 						),
+						'order' => ['ProductProperty.sort DESC'], 
 						'limit' => 5
 					)
 				);

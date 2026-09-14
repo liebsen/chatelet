@@ -202,11 +202,11 @@
                                 '<input type="hidden" name="props['. $index .'][type]" value="'. $type .'"/>'.
                                 '<input type="hidden" name="props['. $index .'][product_id]" value="'. $product_id .'" />'.
 
-																'<div class="form-group">
-																	<input type="checkbox" name="props['. $index .'][sort]" value="1" id="toggle" class="toggle-checkbox" ' . ($sort == 1 ? 'checked' : '') . '>
+																'<div class="form-group m-0">
+																	<label class="control-label" for="toggle_'. $index .'">Imagen principal</label>
+																	<input type="checkbox" name="props['. $index .'][sort]" value="1" id="toggle_'. $index .'" class="toggle-checkbox" ' . ($sort == 1 ? 'checked' : '') . '>
 																	<label for="toggle" class="toggle-label"></label>
 																</div>' . 
-
 
                                 '<select class="form-control code_sel" name="props['. $index .'][code]">'.$options.'</select>'.
                                 '<span class="alias_cont"><input class="form-control" type="text" name="props['. $index .'][alias]" value="'.$prop['ProductProperty']['alias'].'" class="form-control changed variable" required placeholder="AA, 02, etc..."/></span>'.
