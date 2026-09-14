@@ -131,7 +131,9 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.product-trigger-sort').click(function() {
+	$('.product-trigger-sort').click(function(e) {
+		e.preventDefault()
+		e.stopPropagation()
 		const ref = $(this).find('.product-sort')
 		console.log('product-trigger-sort(click)',ref.prop('id'))
 		$('.product-sort').each(function(i,e){
