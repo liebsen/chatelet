@@ -141,7 +141,6 @@ $(document).ready(function() {
 		}
 	});
 
-	var searching = false;
 
 	$('.product-sort').change(function() {
 		const ref = $(this)
@@ -154,6 +153,9 @@ $(document).ready(function() {
 			}
 		})
 	})
+
+	var searching = false;	
+
 	$('#buscar').click(function() {
 		var product_code = $('#prod_cod').val(),
 			lis_code = $('#lis_cod').val(),
