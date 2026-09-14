@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var count = $('.list-group').find('li').length;
 	var addItem = function( me , list , type ){
 			count = $('.list-group').find('li').length;
-			extrafields = '<input type="text" class="variable" name="props['+ count +'][variable]" required var />';
+			extrafields = '<input type="text" class="form-control variable" name="props['+ count +'][variable]" required var />';
 
 		// Comment this if you are uncommenting the (search for) "block #21"
 		if (type === 'color') {
@@ -10,7 +10,7 @@ $(document).ready(function() {
                             '<div style="background-color: #ffffff;"></div>'+
                           '</div>'+
                           '<input type="hidden" class="variable" name="props['+ count +'][variable]" value="#ffffff" class="variable" required />'+
-                          '<span class="alias_cont"><input type="text" class="variable" name="props['+ count +'][alias]" value="" class="variable" alias required placeholder="AA, 02, etc..."/></span>';
+                          '<span class="alias_cont"><input type="text" class="form-control variable" name="props['+ count +'][alias]" value="" class="variable" alias required placeholder="AA, 02, etc..."/></span>';
 			$('#colors_select_base').find('select').attr('name', 'props['+ count +'][code]');
 			var select_base = $('#colors_select_base').html();
 			extrafields += select_base;
