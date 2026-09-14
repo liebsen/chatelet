@@ -236,9 +236,8 @@ class SQLComponent extends Component {
 			FROM Art a 
 			INNER JOIN ArtLis al ON a.ArtCod = al.ArtCod 
 			INNER JOIN Color c ON RIGHT(a.ArtCod, 2) = c.Codigo
-			WHERE  (al.LisCod LIKE '".$prod_cod."%') AND (a.ArtCod = '".$lis_cod."')
+			WHERE  (al.LisCod = '".$lis_cod."') AND (a.ArtCod LIKE '".$prod_cod."%')
 		");
-		// WHERE  (al.LisCod = '".$lis_cod."') AND (a.ArtCod LIKE '".$prod_cod."%')
 		$stmt->execute();
 		$results = array();
 		
