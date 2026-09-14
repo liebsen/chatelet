@@ -133,9 +133,10 @@ $(document).ready(function() {
 
 	$('.product-trigger-sort').click(function() {
 		const ref = $(this).find('.product-sort')
+		console.log('product-trigger-sort(click)',ref.prop('id'))
 		$('.product-sort').each(function(i,e){
 			if($(e).prop('id') != ref.prop('id')) {
-				console.log('trigger(click)',$(e).prop('id'))
+				console.log('product-sort(click)',$(e).prop('id'))
 				$(e).click()
 			}
 		})
