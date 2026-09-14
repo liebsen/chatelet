@@ -200,9 +200,9 @@ class AppHelper extends Helper {
     	$content.= '</div>';
     	if(count($item['colors'])){
 				$content.= '<ol class="carousel-indicators">';
-
-			  foreach($item['colors'] + 1 as $i => $img) {
-			    $content.= '<li data-target="#carousel" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
+				$content.= '<li data-target="#carousel" data-slide-to="0" class="active"></li>';
+			  foreach($item['colors'] as $i => $img) {
+			    $content.= '<li data-target="#carousel" data-slide-to="'.($i+1).'"></li>';
 			  }
 
 				$content.= '</ol>';
