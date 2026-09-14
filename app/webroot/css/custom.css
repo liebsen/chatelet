@@ -1072,6 +1072,10 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
 #productOptions a.btBig span { font-size: 27px; }
 #productOptions a.btBig span { font-size: 27px; }
 
+#productOptions .product-list {
+	display: flex;
+	flex-wrap: wrap;
+}
 
 /*#productOptions .product-list a {  
   width: 100%; 
