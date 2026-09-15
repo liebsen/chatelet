@@ -43,7 +43,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<label class="" >Imagen general del shop </label>
+					<label class="">Imagen general del shop </label>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="control-group"> 
@@ -73,7 +73,7 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-					<label class="">Imagen del menu shop
+					<label class="">Imagen del menu shop</label>
 					<div class="row">
 						<div class="col-xs-12">                                       
 							<div class="control-group"> 
