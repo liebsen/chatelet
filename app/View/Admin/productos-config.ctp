@@ -137,6 +137,7 @@
 				</div>
 			</div>
 			<button class="btn btn-success" name="execute_discounts" value="yes" type="submit">Actualizar etiquetas de descuento</button>
+			<a href="/admin/productos" class="btn btn-info"><i class="fa fa-chevron-left"> <span class="ml-1">Volver</span> </a>
 		</form>
 	</div>
 </div>
