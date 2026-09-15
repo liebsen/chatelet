@@ -310,7 +310,7 @@ class AdminController extends AppController {
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? $product_id;
 		return json_encode(
-			'folder' => $folder
+			array('folder' => $folder)
 		);
 
 		//$result = exec("/var/www/".$folder."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
