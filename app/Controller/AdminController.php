@@ -315,9 +315,7 @@ class AdminController extends AppController {
 		$domain = 'chatelet';
 		$env = count($host_parts) > 2 ? $domain.'-'.$subdomain : $domain;
 		//$result = exec("/var/www/".$env."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
-		$result = shell_exec("/var/www/".$env."/app/Console/cake stock -q --include=".$prod_id." 2>&1");
-
-		return json_encode($result);
+		return shell_exec("/var/www/".$env."/app/Console/cake stock -q --include=".$prod_id." 2>&1");
 	}
 
 	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
