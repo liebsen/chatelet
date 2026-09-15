@@ -401,7 +401,7 @@ class AdminController extends AppController {
 				'status' => "success", 
 				'save_updated' => $save_updated,
 				'save_failed' => $save_failed,
-				'message' => 'Variantes actualizadas: ' . count($save_updated) . '. Con errores: ' . count($save_failed)
+				'message' => 'Stock actualizado. Variantes: ' . count($save_updated) . '. Errores: ' . count($save_failed)
 			)
 		);
 	}

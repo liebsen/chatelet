@@ -22,7 +22,7 @@ $(document).ready(function() {
           //called when complete
         },
         success: function(data, textStatus, xhr) {
-        	swal('Hecho', data.message)
+        	swal(title, data.message)
         },
         error: function(xhr, textStatus, errorThrown) {
         	console.log(xhr, textStatus, errorThrown)
