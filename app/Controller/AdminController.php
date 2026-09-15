@@ -359,14 +359,6 @@ class AdminController extends AppController {
 
 				$cod_articulo = $article.'.'.$size.$color;
 
-				\d("product_stock", array(
-			  	'article' => $article,
-			  	'size' => $size,
-			  	'color' => $color,
-			  	'list_code' => $this->settings['list_code'],
-			  	'stock_min' => $this->settings['stock_min']
-				));
-
 			  $stock = $this->SQL->product_stock(
 			  	$article,
 			  	$size,
@@ -374,6 +366,15 @@ class AdminController extends AppController {
 			  	$this->settings['list_code'],
 			  	$this->settings['stock_min']
 			  );
+
+				\d("product_stock", array(
+			  	'article' => $article,
+			  	'size' => $size,
+			  	'color' => $color,
+			  	'list_code' => $this->settings['list_code'],
+			  	'stock_min' => $this->settings['stock_min'],
+			  	'stock' => $stock
+				));
 
 	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
 	      $record = array();
@@ -384,9 +385,10 @@ class AdminController extends AppController {
 	        $this->StockCount->create();
 	      }
 
-	      $record['article_id'] = $article_id;
+	      $record['article_id'] = $article;
 	      $record['cod_articulo'] = $cod_articulo;
 	      $record['stock'] = $stock;
+	      \d("record",$record);
 	      $success = $this->StockCount->save($record);
 	      if (!$success){
 	      	$save_failed[] = $cod_articulo;
