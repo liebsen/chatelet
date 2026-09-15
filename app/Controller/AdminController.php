@@ -306,11 +306,6 @@ class AdminController extends AppController {
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? 0;
 
-		\d("props", array(
-				'data' => $data,
-				'prod_id' => $prod_id,
-		));
-
 		$this->loadModel('Product');
 		$this->loadModel('ProductProperty');
 		$this->loadModel('StockCount');
@@ -350,9 +345,6 @@ class AdminController extends AppController {
 		$article = $prod['Product']['article'];
 		$variations = array();
 		$save_failed = array();
-		\d("props", array(
-				'product_id' => $prod_id,
-		));
 
 		foreach($sizes as $size) {
 			foreach($colors as $color) {
@@ -367,22 +359,7 @@ class AdminController extends AppController {
 			  	$this->settings['stock_min']
 			  );
 
-				\d("product_stock", array(
-			  	'article' => $article,
-			  	'size' => $size,
-			  	'color' => $color,
-			  	'list_code' => $this->settings['list_code'],
-			  	'stock_min' => $this->settings['stock_min'],
-			  	'stock' => $stock
-				));
-
 	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
-
-	      \d("exists", array(
-	      	'cod_articulo' => $cod_articulo,
-	      	'exists' => $exists
-	      ));
-
 	      $record = array();
 
 	      if (!empty($exists)){
@@ -394,7 +371,6 @@ class AdminController extends AppController {
 	      $record['article_id'] = $article;
 	      $record['cod_articulo'] = $cod_articulo;
 	      $record['stock'] = $stock;
-	      \d("record",$record);
 	      $success = $this->StockCount->save($record);
 	      if (!$success){
 	      	$save_failed[] = $cod_articulo;
