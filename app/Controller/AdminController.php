@@ -305,7 +305,12 @@ class AdminController extends AppController {
 		$this->autoRender = false;
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? 0;
-		
+
+		\d("props", array(
+				'data' => $data,
+				'prod_id' => $prod_id,
+		));
+				
 		$this->loadModel('Product');
 		$this->loadModel('ProductProperty');
 		$this->loadModel('StockCount');
