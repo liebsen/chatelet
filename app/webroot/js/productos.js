@@ -13,6 +13,7 @@ $(document).ready(function() {
 			closeOnConfirm: true,   
 			showLoaderOnConfirm: true,
 		}, function() {
+			swal.close()
       $.ajax({
         url: urlback,
         type: 'POST',
@@ -24,6 +25,7 @@ $(document).ready(function() {
         	swal('Hecho', data.message)
         },
         error: function(xhr, textStatus, errorThrown) {
+        	console.log(xhr, textStatus, errorThrown)
         	swal('Error', xhr.message)
           //called when there is an error
         }

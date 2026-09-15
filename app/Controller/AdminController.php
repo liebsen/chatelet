@@ -307,7 +307,7 @@ class AdminController extends AppController {
 		$this->loadModel('StockCount');
 
 		$prod = $this->Product->findById($prod_id);
-		$variants_updated = array();
+		$save_updated = array();
 
 		if(!empty($prod)) {
 			return json_encode(
@@ -319,7 +319,7 @@ class AdminController extends AppController {
 		}
 
 		$this->SQL = $this->Components->load('SQL');
-		
+
 		$sizes = $this->ProductProperty->find('all', 
 			array(
 				'conditions' => array(
@@ -340,11 +340,19 @@ class AdminController extends AppController {
 
 		$article = $prod['Product']['article'];
 		$variations = array();
-
+		$save_failed = array();
 		foreach($sizes as $size) {
 			foreach($colors as $color) {
 
 				$cod_articulo = $article.'.'.$size.$color;
+
+				\d("product_stock", array(
+			  	'article' => $article,
+			  	'size' => $size,
+			  	'color' => $color,
+			  	'list_code' => $this->settings['list_code'],
+			  	'stock_min' => $this->settings['stock_min']
+				));
 
 			  $stock = $this->SQL->product_stock(
 			  	$article,
@@ -355,7 +363,7 @@ class AdminController extends AppController {
 			  );
 
 	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
-	      $record  =array();
+	      $record = array();
 
 	      if (!empty($exists)){
 	        $record['id'] = $exists['StockCount']['id'];
@@ -363,16 +371,14 @@ class AdminController extends AppController {
 	        $this->StockCount->create();
 	      }
 
-	      //$stock = (int) $row['cantidad'];
 	      $record['article_id'] = $article_id;
 	      $record['cod_articulo'] = $cod_articulo;
 	      $record['stock'] = $stock;
 	      $success = $this->StockCount->save($record);
-	      echo "\r\n" . $row['cod_articulo'] . " (stock) " . $stock;
 	      if (!$success){
-	        echo "\r\nFailed to save";
+	      	$save_failed[] = $cod_articulo;
 	      } else {
-	      	$variants_updated++;
+	      	$save_updated[] = $cod_articulo;
 	      }
 		  }
 		}
@@ -380,7 +386,9 @@ class AdminController extends AppController {
 		return json_encode(
 			array(
 				'status' => "success", 
-				'variants_updated' => $variants_updated 
+				'save_updated' => $save_updated,
+				'save_failed' => $save_failed,
+				'message' => 'Variantes actualizadas: ' . count($save_updated) . '. Con errores: ' . count($save_failed)
 			)
 		);
 	}
