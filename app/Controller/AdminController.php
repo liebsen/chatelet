@@ -311,6 +311,7 @@ class AdminController extends AppController {
 		$prod_id = $data['id'] ?? $product_id;
 		return json_encode(
 			array(
+				'server' => $_SERVER,
 				'host' => $host,
 				'subdomain' => $subdomain,
 				'folder' => $folder
