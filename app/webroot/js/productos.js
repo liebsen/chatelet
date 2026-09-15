@@ -15,7 +15,7 @@ $(document).ready(function() {
 		}, function() {
 			swal.close()
       $.ajax({
-        url: urlback,
+        url: url,
         type: 'POST',
         data: 'id='+id,
         complete: function(xhr, textStatus) {
