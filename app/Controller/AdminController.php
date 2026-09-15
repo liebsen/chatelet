@@ -306,11 +306,15 @@ class AdminController extends AppController {
 
 		$host = parse_url($_SERVER['HTTP_HOST'], PHP_URL_HOST);
 		$subdomain = explode('.', $host)[0];
-		$folder = 'chatelet-'.$subdomain;
+		$folder = 'chatelet'.(!empty($subdomain) ? '-'.$subdomain:'');
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? $product_id;
 		return json_encode(
-			array('folder' => $folder)
+			array(
+				'host' => $host,
+				'subdomain' => $subdomain,
+				'folder' => $folder
+			)
 		);
 
 		//$result = exec("/var/www/".$folder."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
