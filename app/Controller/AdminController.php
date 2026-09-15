@@ -301,11 +301,15 @@ class AdminController extends AppController {
 	}
 
 	public function update_product_stock($product_id = 0) {
+
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? $product_id;
+
+		\d("update_product_stock",$prod_id);
+
 		$host_parts = explode('.', $_SERVER['HTTP_HOST']);
 		$subdomain = $host_parts[0];
 		$domain = 'chatelet';
@@ -2520,6 +2524,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function productos($action = null) {
+		$start_stock_product = $this->Session->consume('StartStockProduct');
+
+		if(!empty($start_stock_product)) {
+			$this->update_product_stock($start_stock_product);
+		}
+
 		$this->loadModel('Category');
 		$this->SQL = $this->Components->load('SQL');
 
@@ -2586,13 +2596,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        }
 	        	$this->ProductProperty->saveMany($data['props']);
 	        }
+	        
+	        $this->Session->write('StartStockProduct', $saved['Product']['id']);
 
 	        return $this->redirect(
 	        	array(
-	        		'action' => 'productos',
-	        		'?' => array(
-	        			'stock_sync' => $saved['Product']['id']
-	        		)
+	        		'action' => 'productos'
 	        	)
 	        );
   			} else {

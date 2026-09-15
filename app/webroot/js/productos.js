@@ -73,15 +73,4 @@ $(document).ready(function() {
 			start_stock_sync(url, id, title, btn, icon)
     })
   })
-
-  const params = new URL(window.location.href)
-	if(params.searchParams.get('stock_sync')) {
-  	const btn = $('#update_stock_'+params.searchParams.get('stock_sync'))
-  	const icon = btn.find('i').first()
-    var id = btn.attr('data-id'),
-	  	url = btn.attr('data-url'),
-	  	title = btn.attr('data-title'),
-	  	text = btn.attr('data-text');
-  	start_stock_sync(url, id, title, btn, icon)
-  }
 })
