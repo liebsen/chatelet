@@ -118,14 +118,16 @@ class StockShell extends AppShell {
 
 		$message = 'Stock actualizado. Variantes: ' . count($save_updated) . '. Errores: ' . count($save_failed);		
 
-		return json_encode(
+		echo json_encode(
 			array(
 				'status' => "success", 
 				'save_updated' => $save_updated,
 				'save_failed' => $save_failed,
 				'message' => $message
 			)
-		);  	
+		);
+		
+		$this->_stop();	
   }
 
   private function stock_all(){
