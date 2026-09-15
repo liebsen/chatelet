@@ -40,6 +40,20 @@ $(document).ready(function() {
     })		
 	}
 
+  $('input[type="checkbox"]').click(function(){
+  	var checked = false
+  	$('input[type="checkbox"]').each(function(i,e){
+  		if($(e).is(':checked')) {
+  			checked = true
+  		}
+  	})
+  	if(checked) {
+  		$('.selection-block').removeClass('hide')
+  	} else {
+  		$('.selection-block').addClass('hide')
+  	}
+  })
+
   $('.update-stock').click(function(){                
   	const btn = $(this)
   	const icon = $(this).find('i').first()

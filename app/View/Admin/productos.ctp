@@ -98,19 +98,24 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
 		</tbody>
 	</table>
   <div class="form-actions" data-url="/admin/batch_productos/">
-	  <span class="selection-count"></span>	
-	  <button class="enableselection btn btn-success btn-adjust" type="button">
-	  	<i class="fa fa-eye"></i>
-	  	<span>Activar</span>
-	  </button>
-	  <button class="disableselection btn btn-warning btn-adjust" type="button">
-	  	<i class="fa fa-eye-slash"></i>
-	  	<span>Desactivar</span>
-	  </button>
-	  <button class="removeselection btn btn-danger btn-adjust" type="button">
-	  	<i class="fa fa-trash-o"></i>
-	  	<span>Eliminar</span>
-	  </button>
+  	<div class="hide selection-block">
+		  <span class="selection-count"></span>	
+		  <button class="enableselection btn btn-success btn-adjust" type="button">
+		  	<i class="fa fa-eye"></i>
+		  	<span>Activar</span>
+		  </button>
+		  <button class="disableselection btn btn-warning btn-adjust" type="button">
+		  	<i class="fa fa-eye-slash"></i>
+		  	<span>Desactivar</span>
+		  </button>
+		  <button class="removeselection btn btn-danger btn-adjust" type="button">
+		  	<i class="fa fa-trash-o"></i>
+		  	<span>Eliminar</span>
+		  </button>
+		</div>
+  	<a class="btn btn-success" href="/admin/productos/config">
+  		<i class="fa fa-cog"></i> <span class="ml-1">Opciones</span>
+  	</a>
   	<a class="btn btn-success" href="/admin/productos/add">
   		<i class="fa fa-magic"></i> <span class="ml-1">Nuevo</span>
   	</a>

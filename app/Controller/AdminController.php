@@ -2602,11 +2602,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function productos($action = null) {
-
-		if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
-			return false;
-		}
-		
 		$this->loadModel('Category');
 		$this->SQL = $this->Components->load('SQL');
 

@@ -24,16 +24,23 @@ $(document).ready(function() {
 
 		list.append(
 			$('<li class="list-group-item d-flex flex-column gap-05">' +
-			  extrafields +
-             '<input type="hidden" name="props['+ count +'][type]" value="'+ type +'" />'+
-	          '<div class="right">' +
-	            '<a class="btn btn-xs btn-danger remove-item" data-count="'+count+'">Borrar</a>' +
-	          '</div>' +
-	          '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
-	          '<progress id="progress" hidden></progress>' +
-              '<ul id="ListUploaded" class="list-inline" data-ref="props['+ count +'][alias]" data-count="'+count+'"></ul>' +
-	        '</li>')
-        );
+					'<div class="form-group d-flex m-0">' +
+						'<div class="controls flex-1">' +
+							'<input type="checkbox" name="props['+ count +'][sort]" value="1" id="toggle_'+ count +'" class="toggle-checkbox toggle-sort">' +
+							'<label for="toggle_'+ count +'" class="toggle-label product-sort"></label>' +
+						'</div>' +
+						'<label class="control-label">Imagen principal</label>' +
+					'</div>' + extrafields +
+	        '<input type="hidden" name="props['+ count +'][type]" value="'+ type +'" />'+
+	        '<div class="right">' +
+	          '<a class="btn btn-xs btn-danger remove-item" data-count="'+count+'">Borrar</a>' +
+	        '</div>' +
+	        '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
+	        '<progress id="progress" hidden></progress>' +
+	          '<ul id="ListUploaded" class="list-inline" data-ref="props['+ count +'][alias]" data-count="'+count+'"></ul>' +
+	       '</li>')
+    );
+
 		$('.upload_color_image').on('change', changeHandler);
         initPicker();
 	}
@@ -74,6 +81,17 @@ $(document).ready(function() {
 		$('#color').empty();
 		$('#size').empty();
 	}
+
+	$(document).on('click', '.product-sort', function() {
+		const ref = $(this).prev()
+		$('.toggle-sort').each(function(i,e){
+			if($(e).prop('id') != ref.prop('id')) {
+				if($(e).is(':checked')) {
+					$(e).trigger('click')
+				}
+			}
+		})
+	})
 
 	$(document).on('click', '.remove-item', function() {
 		var me = $(this);
@@ -131,16 +149,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.product-sort').click(function() {
-		const ref = $(this).prev()
-		$('.toggle-sort').each(function(i,e){
-			if($(e).prop('id') != ref.prop('id')) {
-				if($(e).is(':checked')) {
-					$(e).trigger('click')
-				}
-			}
-		})
-	})
+
 
 	var searching = false;
 
