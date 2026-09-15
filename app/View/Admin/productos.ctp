@@ -14,6 +14,46 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
 
 <?php if(!empty($start_stock_product)):?>
 	<script type="text/javascript">
+		function start_stock_sync(url, id, title, btn, icon){
+			$.growl.notice({
+				title: title,
+				message: 'Se solicitó actualización de stock',
+			});
+
+			if(btn.attr('data-sync')) {
+				return false
+			}
+			icon.addClass('fa-spin')
+			btn.removeClass('btn-success')
+			btn.addClass('btn-warning')
+			btn.attr('data-sync', 1)
+			swal.close()
+	    $.ajax({
+	      url: url,
+	      type: 'POST',
+	      data: 'id='+id,
+	      complete: function(xhr, textStatus) {
+	        //called when complete
+	        icon.removeClass('fa-spin')
+					btn.removeClass('btn-warning')
+					btn.addClass('btn-success')
+					btn.attr('data-sync', 0)
+					$.growl.notice({
+						title: title,
+						message: 'Actualización de stock completada con éxito',
+					});				
+	      },
+	      success: function(data, textStatus, xhr) {
+	      	swal(title, data.message)
+	      },
+	      error: function(xhr, textStatus, errorThrown) {
+	      	console.log(xhr, textStatus, errorThrown)
+	      	swal('Error', xhr.message)
+	        //called when there is an error
+	      }
+	    })		
+		}
+
 		document.addEventListener('DOMContentLoaded', function() {
 			var stock_id = '<?=$start_stock_product?>';
 	  	const btn = $('#update_stock_'+stock_id)
