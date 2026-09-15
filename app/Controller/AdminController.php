@@ -304,6 +304,7 @@ class AdminController extends AppController {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$this->loadModel('Product');
+		$this->loadModel('ProductProperty');
 		$this->loadModel('StockCount');
 
 		$prod = $this->Product->findById($prod_id);
