@@ -343,13 +343,12 @@ class AdminController extends AppController {
 		$variations = array();
 		$save_failed = array();
 		\d("props", array(
-			'sizes' => $sizes,
-			'colors' => $colors
+				'product_id' => $prod_id,
 		));
-		
+
 		foreach($sizes as $size) {
 			foreach($colors as $color) {
-				
+
 				$cod_articulo = $article.'.'.$size.$color;
 
 				\d("product_stock", array(
