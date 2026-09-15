@@ -300,11 +300,11 @@ class AdminController extends AppController {
 		return $sale;		
 	}
 
-	public function update_product_stock() {
+	public function update_product_stock($product_id = 0) {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 		$data = $this->request->data;
-		$prod_id = $data['id'] ?? 0;
+		$prod_id = $data['id'] ?? $product_id;
 
 		$this->loadModel('Product');
 		$this->loadModel('ProductProperty');
@@ -380,12 +380,20 @@ class AdminController extends AppController {
 		  }
 		}
 
+		$message = 'Stock actualizado. Variantes: ' . count($save_updated) . '. Errores: ' . count($save_failed);
+
+    $this->Session->setFlash(
+      'El stock del producto - ' . $prod['Product']['name'] . ' - se actualizó correctamente',
+      'default',
+      array('class' => 'hidden notice')
+    );  		
+
 		return json_encode(
 			array(
 				'status' => "success", 
 				'save_updated' => $save_updated,
 				'save_failed' => $save_failed,
-				'message' => 'Stock actualizado. Variantes: ' . count($save_updated) . '. Errores: ' . count($save_failed)
+				'message' => $message
 			)
 		);
 	}
@@ -2594,6 +2602,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function productos($action = null) {
+
+		if($_SERVER['REMOTE_ADDR'] == '127.0.0.1') {
+			return false;
+		}
+		
 		$this->loadModel('Category');
 		$this->SQL = $this->Components->load('SQL');
 
@@ -2605,7 +2618,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->set('image_prodshop',$this->settings['image_prodshop']);
     $this->set('list_code_desc',$this->settings['list_code_desc']);
 
-        //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
+    //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
     
 		$navs = array(
 			'Productos' => array(
@@ -2640,6 +2653,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
   	    if ($this->request->is('POST')){
 	        $this->autoRender = false;
 	        $data = $this->request->data;
+	        $data['id'] = null;
 
 	        $file_real_name = null;
 	        if(!empty($this->request->params['form']['image']['name'])){
@@ -2647,11 +2661,11 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        }
 
 	        if($file_real_name){
-	            $data['img_url'] = $file_real_name;
+	          $data['img_url'] = $file_real_name;
 	        }
-					$data['with_thumb']=1;
-	        $this->Product->save($data);
 
+					$data['with_thumb']=1;
+	        $saved = $this->Product->save($data);
 
 	        if(!empty($data['props'])) {
 		        foreach ($data['props'] as &$prop) {
@@ -2660,7 +2674,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        	$this->ProductProperty->saveMany($data['props']);
 	        }
 
-	        return $this->redirect(array('action'=>'productos'));
+	        return $this->redirect(
+	        	array(
+	        		'action' => 'productos',
+	        		'?' => array(
+	        			'stock_sync' => $saved['Product']['id']
+	        		)
+	        	)
+	        );
   			} else {
   				$this->loadModel('Category');
 			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
