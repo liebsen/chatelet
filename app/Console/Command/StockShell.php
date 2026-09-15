@@ -43,7 +43,6 @@ class StockShell extends AppShell {
   }
 
   private function stock_product($prod_id){
-  	echo "\r\n stock_product " . $prod_id;
   	$collection = new ComponentCollection();
 		$this->SQL = $collection->load('SQL');
 		$prod = $this->Product->findById($prod_id);
@@ -57,7 +56,7 @@ class StockShell extends AppShell {
 				)
 			);
 		}
-		echo "\r\n stock_product (1)";
+
 		$sizes = $this->ProductProperty->find('all', 
 			array(
 				'conditions' => array(
@@ -66,7 +65,6 @@ class StockShell extends AppShell {
 				)
 			)
 		);
-		echo "\r\n stock_product (2)";
 
 		$colors = $this->ProductProperty->find('all', 
 			array(
@@ -80,9 +78,7 @@ class StockShell extends AppShell {
 		$article = $prod['Product']['article'];
 		$variations = array();
 		$save_failed = array();
-		echo "\r\n stock_product (3)";
 		foreach($sizes as $size) {
-			echo "\r\n stock_product (4)". $size['ProductProperty']['variable'];
 			foreach($colors as $color) {
 
 				$cod_articulo = $article.'.'.$size['ProductProperty']['variable'].$color['ProductProperty']['code'];
@@ -126,18 +122,14 @@ class StockShell extends AppShell {
 				'message' => $message
 			)
 		);
-		
+
 		$this->_stop();	
   }
 
   private function stock_all(){
-  	echo "\n stock_all";
     $collection = new ComponentCollection();
     $this->SQL = $collection->load('SQL');
     $all_stock = $this->SQL->general_stock();
-    //$prod_saved = array();
-    //$prod_all = array();
-    //$prod_ignore = array();
     if (!empty($all_stock)){
       foreach ($all_stock as $row){
         $record = [];
@@ -191,9 +183,7 @@ class StockShell extends AppShell {
           	echo "\r\n" . $row['cod_articulo'] . " (stock) " . $stock;	
           }
         } else {
-        	//$prod_ignore[]= $article_id;
         	echo "\r\n" . $row['cod_articulo'] . " (ignored)";
-          //  echo "\r\nArticle {$article_id} not needed";
         }
       }
     } else {
