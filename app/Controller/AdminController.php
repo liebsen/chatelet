@@ -2524,12 +2524,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	}
 
 	public function productos($action = null) {
-		$start_stock_product = $this->Session->consume('StartStockProduct');
-
-		if(!empty($start_stock_product)) {
-			$this->update_product_stock($start_stock_product);
-		}
-
 		$this->loadModel('Category');
 		$this->SQL = $this->Components->load('SQL');
 

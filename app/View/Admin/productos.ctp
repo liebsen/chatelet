@@ -1,4 +1,5 @@
 <?php 
+$start_stock_product = $this->Session->consume('StartStockProduct');
 $this->Html->script('handlebars-v2.0.0',array('block' => 'script'));
 $this->Html->script('image_prodshop', array('block' => 'script')); 
 $this->Html->script('admin-delete', array('block' => 'script')); 
@@ -10,6 +11,23 @@ $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'
 $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
 //echo $this->element('admin/menu');
 ?>
+
+<?php if(!empty($start_stock_product)):?>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			var stock_id = '<?=$start_stock_product?>';
+	  	const btn = $('#update_stock_'+stock_id)
+	  	if(btn.length) {
+		  	const icon = btn.find('i').first()
+		    var id = btn.attr('data-id'),
+			  	url = btn.attr('data-url'),
+			  	title = btn.attr('data-title'),
+			  	text = btn.attr('data-text');
+		  	start_stock_sync(url, id, title, btn, icon)
+		  }
+	  }
+  </script>
+<?php endif ?>
 
 <p class="collapse alert alert-success result-message">...</p>
 
