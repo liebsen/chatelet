@@ -377,6 +377,12 @@ class AdminController extends AppController {
 				));
 
 	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
+
+	      \d("exists", array(
+	      	'cod_articulo' => $cod_articulo,
+	      	'exists' => $exists
+	      ));
+
 	      $record = array();
 
 	      if (!empty($exists)){
