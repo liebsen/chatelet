@@ -357,12 +357,12 @@ class AdminController extends AppController {
 		foreach($sizes as $size) {
 			foreach($colors as $color) {
 
-				$cod_articulo = $article.'.'.$size.$color;
+				$cod_articulo = $article.'.'.$size['ProductProperty']['variable'].$color['ProductProperty']['code'];
 
 			  $stock = $this->SQL->product_stock(
 			  	$article,
-			  	$size,
-			  	$color,
+			  	$size['ProductProperty']['variable'],
+			  	$color['ProductProperty']['code'],
 			  	$this->settings['list_code'],
 			  	$this->settings['stock_min']
 			  );
