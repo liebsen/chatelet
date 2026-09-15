@@ -12,6 +12,7 @@ class StockShell extends AppShell {
     'Stat',
     'User', 
     'Product', 
+    'ProductProperty', 
     'Sale', 
     'SaleProduct',
     'StockCount'
@@ -22,6 +23,100 @@ class StockShell extends AppShell {
   private $items = array();
   
   public function main() {
+		if(!empty($include)) {
+			return \d("include",$include);
+			//return $this->stock_product($include);
+		}
+
+		return \d("all");
+
+		//return $this->stock_all();
+  }
+
+  private function stock_product($prod_id){
+  	$collection = new ComponentCollection();
+		$this->SQL = $collection->load('SQL');
+		$prod = $this->Product->findById($prod_id);
+		$save_updated = array();
+
+		if(empty($prod)) {
+			return json_encode(
+				array(
+					'status' => "error", 
+					'message' => 'No se encontró el producto' 
+				)
+			);
+		}
+
+		$sizes = $this->ProductProperty->find('all', 
+			array(
+				'conditions' => array(
+					'product_id' => $prod_id,
+					'type' => 'size'
+				)
+			)
+		);
+
+		$colors = $this->ProductProperty->find('all', 
+			array(
+				'conditions' => array(
+					'product_id' => $prod_id,
+					'type' => 'color'
+				)
+			)
+		);
+
+		$article = $prod['Product']['article'];
+		$variations = array();
+		$save_failed = array();
+
+		foreach($sizes as $size) {
+			foreach($colors as $color) {
+
+				$cod_articulo = $article.'.'.$size['ProductProperty']['variable'].$color['ProductProperty']['code'];
+
+			  $stock = $this->SQL->product_stock(
+			  	$article,
+			  	$size['ProductProperty']['variable'],
+			  	$color['ProductProperty']['code'],
+			  	$this->settings['list_code'],
+			  	$this->settings['stock_min']
+			  );
+
+	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
+	      $record = array();
+
+	      if (!empty($exists)){
+	        $record['id'] = $exists['StockCount']['id'];
+	      } else {
+	        $this->StockCount->create();
+	      }
+
+	      $record['article_id'] = $article;
+	      $record['cod_articulo'] = $cod_articulo;
+	      $record['stock'] = $stock;
+	      $success = $this->StockCount->save($record);
+	      if (!$success){
+	      	$save_failed[] = $cod_articulo;
+	      } else {
+	      	$save_updated[] = $cod_articulo;
+	      }
+		  }
+		}
+
+		$message = 'Stock actualizado. Variantes: ' . count($save_updated) . '. Errores: ' . count($save_failed);		
+
+		return json_encode(
+			array(
+				'status' => "success", 
+				'save_updated' => $save_updated,
+				'save_failed' => $save_failed,
+				'message' => $message
+			)
+		);  	
+  }
+
+  private function stock_all(){
     $collection = new ComponentCollection();
     $this->SQL = $collection->load('SQL');
     $all_stock = $this->SQL->general_stock();
@@ -94,9 +189,8 @@ class StockShell extends AppShell {
 			);*/
     }else{
       echo "\r\nGeneral stock response is empty.";
-    }
+    }  	
   }
-
   public function load_settings(){
     $tags = [];        
     $settings = $this->Setting->find('all');

@@ -52,6 +52,7 @@ function unselectAll(){
     check.prop('checked', false)
   }
   $("input:checkbox[name=checksAll]").prop('checked', false)
+  $('.selection-block').addClass('hide')
   checkIds = []
   updateMessage()
 }

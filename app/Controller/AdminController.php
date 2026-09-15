@@ -303,99 +303,18 @@ class AdminController extends AppController {
 	public function update_product_stock($product_id = 0) {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
+
+		$host = parse_url($_SERVER['HTTP_HOST'], PHP_URL_HOST);
+		$subdomain = explode('.', $host)[0];
+		$folder = 'chatelet-'.$subdomain;
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? $product_id;
-
-		$this->loadModel('Product');
-		$this->loadModel('ProductProperty');
-		$this->loadModel('StockCount');
-
-		$prod = $this->Product->findById($prod_id);
-		$save_updated = array();
-
-		if(empty($prod)) {
-			return json_encode(
-				array(
-					'status' => "error", 
-					'message' => 'No se encontró el producto' 
-				)
-			);
-		}
-
-		$this->SQL = $this->Components->load('SQL');
-
-		$sizes = $this->ProductProperty->find('all', 
-			array(
-				'conditions' => array(
-					'product_id' => $prod_id,
-					'type' => 'size'
-				)
-			)
-		);
-
-		$colors = $this->ProductProperty->find('all', 
-			array(
-				'conditions' => array(
-					'product_id' => $prod_id,
-					'type' => 'color'
-				)
-			)
-		);
-
-		$article = $prod['Product']['article'];
-		$variations = array();
-		$save_failed = array();
-
-		foreach($sizes as $size) {
-			foreach($colors as $color) {
-
-				$cod_articulo = $article.'.'.$size['ProductProperty']['variable'].$color['ProductProperty']['code'];
-
-			  $stock = $this->SQL->product_stock(
-			  	$article,
-			  	$size['ProductProperty']['variable'],
-			  	$color['ProductProperty']['code'],
-			  	$this->settings['list_code'],
-			  	$this->settings['stock_min']
-			  );
-
-	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
-	      $record = array();
-
-	      if (!empty($exists)){
-	        $record['id'] = $exists['StockCount']['id'];
-	      } else {
-	        $this->StockCount->create();
-	      }
-
-	      $record['article_id'] = $article;
-	      $record['cod_articulo'] = $cod_articulo;
-	      $record['stock'] = $stock;
-	      $success = $this->StockCount->save($record);
-	      if (!$success){
-	      	$save_failed[] = $cod_articulo;
-	      } else {
-	      	$save_updated[] = $cod_articulo;
-	      }
-		  }
-		}
-
-		$message = 'Stock actualizado. Variantes: ' . count($save_updated) . '. Errores: ' . count($save_failed);
-
-    $this->Session->setFlash(
-      'El stock del producto - ' . $prod['Product']['name'] . ' - se actualizó correctamente',
-      'default',
-      array('class' => 'hidden notice')
-    );  		
-
 		return json_encode(
-			array(
-				'status' => "success", 
-				'save_updated' => $save_updated,
-				'save_failed' => $save_failed,
-				'message' => $message
-			)
+			'folder' => $folder
 		);
+
+		//$result = exec("/var/www/".$folder."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
+		//return json_encode($result);
 	}
 
 	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
