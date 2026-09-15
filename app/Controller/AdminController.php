@@ -304,10 +304,13 @@ class AdminController extends AppController {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
-		$subdomain = explode('.', $_SERVER['HTTP_HOST'])[0];
-		$folder = 'chatelet'.(!empty($subdomain) ? '-'.$subdomain:'');
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? $product_id;
+		$host_parts = explode('.', $_SERVER['HTTP_HOST']);
+		$subdomain = $host_parts[0];
+		$domain = 'chatelet';
+		$folder = count($host_parts) > 2 ? $domain.'-'.$subdomain : $domain;
+		
 		return json_encode(
 			array(
 				'subdomain' => $subdomain,
