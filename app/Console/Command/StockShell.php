@@ -66,6 +66,7 @@ class StockShell extends AppShell {
 				)
 			)
 		);
+		echo "\r\n stock_product (2)";
 
 		$colors = $this->ProductProperty->find('all', 
 			array(
@@ -79,8 +80,9 @@ class StockShell extends AppShell {
 		$article = $prod['Product']['article'];
 		$variations = array();
 		$save_failed = array();
-
+		echo "\r\n stock_product (3)";
 		foreach($sizes as $size) {
+			echo "\r\n stock_product (4)". $size['ProductProperty']['variable'];
 			foreach($colors as $color) {
 
 				$cod_articulo = $article.'.'.$size['ProductProperty']['variable'].$color['ProductProperty']['code'];
