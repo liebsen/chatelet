@@ -21,16 +21,25 @@ class StockShell extends AppShell {
   private $response = array();
   private $total = 0;
   private $items = array();
-  
+
+  public function getOptionParser() {
+    $parser = parent::getOptionParser(); 
+    $parser->addOption('include', array(
+      'short' => 's',
+      'help' => 'Specify product ids',
+      'default' => 'all'
+    ));
+    return $parser;
+  }
+
   public function main() {
-		if(!empty($include)) {
-			return \d("include",$include);
-			//return $this->stock_product($include);
+  	$include = $this->params['include']; 
+  
+		if(is_numeric($include)) {
+			return $this->stock_product($include);
 		}
 
-		return \d("all");
-
-		//return $this->stock_all();
+		return $this->stock_all();
   }
 
   private function stock_product($prod_id){
