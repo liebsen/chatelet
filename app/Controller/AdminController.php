@@ -300,9 +300,12 @@ class AdminController extends AppController {
 		return $sale;		
 	}
 
-	public function update_product_stock($prod_id = null) {
+	public function update_product_stock() {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
+		$data = $this->request->data;
+		$prod_id = $data['id'] ?? 0;
+		
 		$this->loadModel('Product');
 		$this->loadModel('ProductProperty');
 		$this->loadModel('StockCount');
