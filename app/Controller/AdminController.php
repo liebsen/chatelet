@@ -2622,6 +2622,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'name' => 'Productos',
 			'icon' => 'gi gi-shirt'
 		);
+
 		$this->set('h1', $h1);
 		$this->set('navs', $navs);		
 
@@ -2629,7 +2630,12 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->set('colors',$colors);
     $this->loadModel('Product');
     $this->loadModel('ProductProperty');
+
   	switch ($action) {
+			case 'config':
+				return $this->render('productos-config');
+				break;
+
     	case 'add':
   	    if ($this->request->is('POST')){
 	        $this->autoRender = false;
@@ -2700,7 +2706,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 
-
 	    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 	    		$this->set('prod', $prod);
 
@@ -2722,8 +2727,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$this->loadModel('Season');
 					$temps = $this->Season->find('all');
 					$this->set('temps', $temps);
-		    		return $this->render('productos-detail');
-	    		}
+		    	return $this->render('productos-detail');
+	    	}
     		break;
     }
 
