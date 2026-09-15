@@ -136,10 +136,13 @@
 					</div>
 				</div>
 			</div>
-			<button class="btn btn-success" name="execute_discounts" value="yes" type="submit">Actualizar etiquetas de descuento</button>
+			<button class="btn btn-success" name="execute_discounts" value="yes" type="submit">
+				<i class="fa fa-tags"></i> 
+				<span class="ml-1">Actualizar etiquetas de descuento</span>
+			</button>
 		</form>
 	</div>
   <div class="form-actions">
-		<a href="/admin/productos" class="btn btn-info"><i class="fa fa-chevron-left"> <span class="ml-1">Volver</span> </a>
+		<a href="/admin/productos" class="btn btn-info"><i class="fa fa-chevron-left"></i> <span class="ml-1">Volver</span> </a>
 	</div>
 </div>
