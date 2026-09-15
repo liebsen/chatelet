@@ -43,6 +43,7 @@ class StockShell extends AppShell {
   }
 
   private function stock_product($prod_id){
+  	echo "\r\n stock_product " . $prod_id;
   	$collection = new ComponentCollection();
 		$this->SQL = $collection->load('SQL');
 		$prod = $this->Product->findById($prod_id);
@@ -56,7 +57,7 @@ class StockShell extends AppShell {
 				)
 			);
 		}
-
+		echo "\r\n stock_product (1)";
 		$sizes = $this->ProductProperty->find('all', 
 			array(
 				'conditions' => array(
@@ -126,6 +127,7 @@ class StockShell extends AppShell {
   }
 
   private function stock_all(){
+  	echo "\n stock_all";
     $collection = new ComponentCollection();
     $this->SQL = $collection->load('SQL');
     $all_stock = $this->SQL->general_stock();
@@ -178,9 +180,11 @@ class StockShell extends AppShell {
           $record['cod_articulo'] = $row['cod_articulo'];
           $record['stock'] = $stock;
           $success = $this->StockCount->save($record);
-          echo "\r\n" . $row['cod_articulo'] . " (stock) " . $stock;
+          
           if (!$success){
             echo "\r\nFailed to save";
+          } else {
+          	echo "\r\n" . $row['cod_articulo'] . " (stock) " . $stock;	
           }
         } else {
         	//$prod_ignore[]= $article_id;
@@ -188,18 +192,13 @@ class StockShell extends AppShell {
           //  echo "\r\nArticle {$article_id} not needed";
         }
       }
-
-			/*var_dump(
-				array(
-					'prod_saved' => $prod_saved,
-					'prod_all' => $prod_all,
-					'prod_ignore' => $prod_ignore
-				)
-			);*/
-    }else{
+    } else {
       echo "\r\nGeneral stock response is empty.";
-    }  	
+    }
+
+    return true;
   }
+
   public function load_settings(){
     $tags = [];        
     $settings = $this->Setting->find('all');
