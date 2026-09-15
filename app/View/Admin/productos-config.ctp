@@ -8,15 +8,15 @@
 			<div class="d-flex flex-nowrap gap-05">
 				<div>
 					<label class="" for="stock_min">Stock Mínimo:</label>
-					<input type="number" class="form-control" id="stock_min" name="stock_min" value="<?php echo @$stock_min ?>" required style="width:80px;text-align:center"/>
+					<input type="number" class="form-control" id="stock_min" name="stock_min" value="<?php echo @$stock_min ?>" required/>
 				</div>
 				<div>
 					<label class="" for="list_code">Código de Lista:</label>
-					<input type="number" class="form-control" id="list_code" name="list_code" value="<?php echo @$list_code ?>" required style="width:80px;text-align:center"/>
+					<input type="number" class="form-control" id="list_code" name="list_code" value="<?php echo @$list_code ?>" required/>
 				</div>
 				<div>
 					<label class="" for="list_code_desc">Código de Lista Descuento:</label>
-					<input type="number" class="form-control" id="list_code_desc" name="list_code_desc" value="<?php echo @$list_code_desc ?>" style="width:80px;text-align:center"/>
+					<input type="number" class="form-control" id="list_code_desc" name="list_code_desc" value="<?php echo @$list_code_desc ?>"/>
 				</div>
 			</div>
 			<div>
@@ -28,7 +28,7 @@
 				<div class="col-xs-12">
 					<label class="" for="more_list_code_desc">Código de Lista Descuento:</label>
 					<div class="d-flex flex-center gap-05">
-						<input type="number" class="form-control" id="more_list_code_desc" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>" style="width:80px;text-align:center"/>
+						<input type="number" class="form-control" id="more_list_code_desc" name="more_list_code_desc[]" value="<?php echo @$more_list_code_desc[$i] ?>"/>
 						<select class="form-control" name="rubro[]" id="rubro_<?=$i?>">
 							<option value="0">Select Category</option>
 							<?php foreach ($cats as $cat): ?>
@@ -75,26 +75,26 @@
 				<div class="col-xs-12">
 					<label class="">Imagen del menu shop
 					<div class="row">
-					<div class="col-xs-12">                                       
-						<div class="control-group"> 
-							<label class="control-label"><span class="counter_two"></span></label>
-							<div class="controls">
-								<input type="file" class="form-control" id="uploadkari" data-input="[name='image_menushop']" data-count=".counter_two" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
-						    <input type="hidden" name="image_menushop" value="<?php echo (!empty( @$image_menushop )) ? @$image_menushop : null ; ?>" /> <?php echo (!empty( @$image_menushop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_menushop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
+						<div class="col-xs-12">                                       
+							<div class="control-group"> 
+								<label class="control-label"><span class="counter_two"></span></label>
+								<div class="controls">
+									<input type="file" class="form-control" id="uploadkari" data-input="[name='image_menushop']" data-count=".counter_two" data-url="<?php echo $this->Html->url(array( 'action' => 'save_file_admin' ),true) ?>"/>
+							    <input type="hidden" name="image_menushop" value="<?php echo (!empty( @$image_menushop )) ? @$image_menushop : null ; ?>" /> <?php echo (!empty( @$image_menushop )) ? "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'].@$image_menushop."''>VER IMAGEN ACTUAL</a>" : null; ?> 
+								</div>
 							</div>
-						</div>
-						<br />
-						<div class="control-group">
-							<label class="control-label"></label>
-							<div class="controls">
-								<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
-									<span style="margin-top:10px;margin-bottom:10px;">	
-										<img src="{{image_two}}" width="100"/> 
-										<a href="#" class="delete_image_two" data-input="[name='image_menushop']" data-file="{{file_two}}">X</a>
+							<div class="control-group">
+								<label class="control-label"></label>
+								<div class="controls">
+									<script id="image_thumb_two" type="text/x-handlebars-template" data-url="<?php echo $settings['upload_url'] ?>">
+										<span style="margin-top:10px;margin-bottom:10px;">	
+											<img src="{{image_two}}" width="100"/> 
+											<a href="#" class="delete_image_two" data-input="[name='image_menushop']" data-file="{{file_two}}">X</a>
+										</span>
+									</script>
+									<span id="images_two">
 									</span>
-								</script>
-								<span id="images_two">
-								</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -137,7 +137,9 @@
 				</div>
 			</div>
 			<button class="btn btn-success" name="execute_discounts" value="yes" type="submit">Actualizar etiquetas de descuento</button>
-			<a href="/admin/productos" class="btn btn-info"><i class="fa fa-chevron-left"> <span class="ml-1">Volver</span> </a>
 		</form>
+	</div>
+  <div class="form-actions">
+		<a href="/admin/productos" class="btn btn-info"><i class="fa fa-chevron-left"> <span class="ml-1">Volver</span> </a>
 	</div>
 </div>

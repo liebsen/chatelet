@@ -120,6 +120,4 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
   		<i class="fa fa-magic"></i> <span class="ml-1">Nuevo</span>
   	</a>
 	</div>
-</div>	
-
 </div>
