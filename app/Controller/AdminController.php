@@ -310,7 +310,7 @@ class AdminController extends AppController {
 				'data' => $data,
 				'prod_id' => $prod_id,
 		));
-				
+
 		$this->loadModel('Product');
 		$this->loadModel('ProductProperty');
 		$this->loadModel('StockCount');
@@ -318,7 +318,7 @@ class AdminController extends AppController {
 		$prod = $this->Product->findById($prod_id);
 		$save_updated = array();
 
-		if(!empty($prod)) {
+		if(empty($prod)) {
 			return json_encode(
 				array(
 					'status' => "error", 
