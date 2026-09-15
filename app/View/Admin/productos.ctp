@@ -25,7 +25,7 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
 			  	text = btn.attr('data-text');
 		  	start_stock_sync(url, id, title, btn, icon)
 		  }
-	  }
+	  })
   </script>
 <?php endif ?>
 
