@@ -6,11 +6,19 @@ $(document).ready(function() {
 
 		// Comment this if you are uncommenting the (search for) "block #21"
 		if (type === 'color') {
-			extrafields = '<div class="colorSelector" style="opacity:0">'+
-                            '<div style="background-color: #ffffff;"></div>'+
-                          '</div>'+
-                          '<input type="hidden" class="variable" name="props['+ count +'][variable]" value="#ffffff" required />'+
-                          '<span class="alias_cont"><input type="text" class="form-control variable" name="props['+ count +'][alias]" value="" alias required placeholder="AA, 02, etc..."/></span>';
+			extrafields = '<div class="form-group d-flex m-0">' +
+				'<div class="controls flex-1">' +
+					'<input type="checkbox" name="props['+ count +'][sort]" value="1" id="toggle_'+ count +'" class="toggle-checkbox toggle-sort">' +
+					'<label for="toggle_'+ count +'" class="toggle-label product-sort"></label>' +
+				'</div>' +
+				'<label class="control-label">Imagen principal</label>' +
+			'</div>' +  
+			'<div class="colorSelector" style="opacity:0">'+
+				'<div style="background-color: #ffffff;"></div>'+
+			'</div>'+
+			'<input type="hidden" class="variable" name="props['+ count +'][variable]" value="#ffffff" required />'+
+			'<span class="alias_cont"><input type="text" class="form-control variable" name="props['+ count +'][alias]" value="" alias required placeholder="AA, 02, etc..."/></span>';
+
 			$('#colors_select_base').find('select').attr('name', 'props['+ count +'][code]');
 			var select_base = $('#colors_select_base').html();
 			extrafields += select_base;
@@ -23,14 +31,7 @@ $(document).ready(function() {
 		}
 
 		list.append(
-			$('<li class="list-group-item d-flex flex-column gap-05">' +
-					'<div class="form-group d-flex m-0">' +
-						'<div class="controls flex-1">' +
-							'<input type="checkbox" name="props['+ count +'][sort]" value="1" id="toggle_'+ count +'" class="toggle-checkbox toggle-sort">' +
-							'<label for="toggle_'+ count +'" class="toggle-label product-sort"></label>' +
-						'</div>' +
-						'<label class="control-label">Imagen principal</label>' +
-					'</div>' + extrafields +
+			$('<li class="list-group-item d-flex flex-column gap-05">' + extrafields +
 	        '<input type="hidden" name="props['+ count +'][type]" value="'+ type +'" />'+
 	        '<div class="right">' +
 	          '<a class="btn btn-xs btn-danger remove-item" data-count="'+count+'">Borrar</a>' +
