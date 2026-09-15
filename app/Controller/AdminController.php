@@ -309,17 +309,10 @@ class AdminController extends AppController {
 		$host_parts = explode('.', $_SERVER['HTTP_HOST']);
 		$subdomain = $host_parts[0];
 		$domain = 'chatelet';
-		$folder = count($host_parts) > 2 ? $domain.'-'.$subdomain : $domain;
-		
-		return json_encode(
-			array(
-				'subdomain' => $subdomain,
-				'folder' => $folder
-			)
-		);
+		$env = count($host_parts) > 2 ? $domain.'-'.$subdomain : $domain;
+		$result = exec("/var/www/".$env."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
 
-		//$result = exec("/var/www/".$folder."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
-		//return json_encode($result);
+		return json_encode($result);
 	}
 
 	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
