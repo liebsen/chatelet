@@ -300,6 +300,91 @@ class AdminController extends AppController {
 		return $sale;		
 	}
 
+	public function update_product_stock($prod_id = null) {
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+		$this->loadModel('Product');
+		$this->loadModel('StockCount');
+
+		$prod = $this->Product->findById($prod_id);
+		$variants_updated = array();
+
+		if(!empty($prod)) {
+			return json_encode(
+				array(
+					'status' => "error", 
+					'message' => 'No se encontró el producto' 
+				)
+			);
+		}
+
+		$this->SQL = $this->Components->load('SQL');
+		
+		$sizes = $this->ProductProperty->find('all', 
+			array(
+				'conditions' => array(
+					'product_id' => $prod_id,
+					'type' => 'size'
+				)
+			)
+		);
+
+		$colors = $this->ProductProperty->find('all', 
+			array(
+				'conditions' => array(
+					'product_id' => $prod_id,
+					'type' => 'color'
+				)
+			)
+		);
+
+		$article = $prod['Product']['article'];
+		$variations = array();
+
+		foreach($sizes as $size) {
+			foreach($colors as $color) {
+
+				$cod_articulo = $article.'.'.$size.$color;
+
+			  $stock = $this->SQL->product_stock(
+			  	$article,
+			  	$size,
+			  	$color,
+			  	$this->settings['list_code'],
+			  	$this->settings['stock_min']
+			  );
+
+	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
+	      $record  =array();
+
+	      if (!empty($exists)){
+	        $record['id'] = $exists['StockCount']['id'];
+	      } else {
+	        $this->StockCount->create();
+	      }
+
+	      //$stock = (int) $row['cantidad'];
+	      $record['article_id'] = $article_id;
+	      $record['cod_articulo'] = $cod_articulo;
+	      $record['stock'] = $stock;
+	      $success = $this->StockCount->save($record);
+	      echo "\r\n" . $row['cod_articulo'] . " (stock) " . $stock;
+	      if (!$success){
+	        echo "\r\nFailed to save";
+	      } else {
+	      	$variants_updated++;
+	      }
+		  }
+		}
+
+		return json_encode(
+			array(
+				'status' => "success", 
+				'variants_updated' => $variants_updated 
+			)
+		);
+	}
+
 	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;

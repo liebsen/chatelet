@@ -25,15 +25,15 @@ class StockShell extends AppShell {
     $collection = new ComponentCollection();
     $this->SQL = $collection->load('SQL');
     $all_stock = $this->SQL->general_stock();
-    $prod_saved = array();
-    $prod_all = array();
-    $prod_ignore = array();
+    //$prod_saved = array();
+    //$prod_all = array();
+    //$prod_ignore = array();
     if (!empty($all_stock)){
       foreach ($all_stock as $row){
         $record = [];
         $article_id = substr($row['cod_articulo'],0,strpos($row['cod_articulo'],'.'));
         $existArticle = $this->Product->findByArticle($article_id);
-        $prod_all[]= $article_id;
+        //$prod_all[]= $article_id;
         if (!empty($existArticle)){
           if ($row['cod_articulo'] === $article_id.'.0000'){
             $replaceNames = false;
@@ -41,7 +41,7 @@ class StockShell extends AppShell {
             if ($replaceNames){
               $details_name = $this->SQL->product_name_by_article($article_id);
             }
-              // update article stock
+           	// update article stock
             if($replaceNames){
               $this->Product->updateAll(
                 array(
@@ -59,8 +59,8 @@ class StockShell extends AppShell {
                 array('Product.article' => $article_id)
               );
             }
-            echo "\r\n" . $article_id . " (updated)";
-            $prod_saved[]= $article_id;
+            echo "\r\n" . $row['cod_articulo'] . " (updated)";
+            //$prod_saved[]= $article_id;
           }
           $exists = $this->StockCount->findByCodArticulo($row['cod_articulo']);
           if (!empty($exists)){
@@ -74,13 +74,13 @@ class StockShell extends AppShell {
           $record['cod_articulo'] = $row['cod_articulo'];
           $record['stock'] = $stock;
           $success = $this->StockCount->save($record);
-          echo "\r\n" . $article_id . " (stock) " . $stock;
+          echo "\r\n" . $row['cod_articulo'] . " (stock) " . $stock;
           if (!$success){
             echo "\r\nFailed to save";
           }
         } else {
-        	$prod_ignore[]= $article_id;
-        	echo "\r\n" . $article_id . " (ignored)";
+        	//$prod_ignore[]= $article_id;
+        	echo "\r\n" . $row['cod_articulo'] . " (ignored)";
           //  echo "\r\nArticle {$article_id} not needed";
         }
       }

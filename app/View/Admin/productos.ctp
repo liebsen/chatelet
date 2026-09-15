@@ -3,6 +3,7 @@ $this->Html->script('handlebars-v2.0.0',array('block' => 'script'));
 $this->Html->script('image_prodshop', array('block' => 'script')); 
 $this->Html->script('admin-delete', array('block' => 'script')); 
 $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->script('productos.js?v=' . $version['ver'], array('block' => 'script'));
 $this->Html->css('draggable-table', array('block' => 'css'));
 $this->Html->script('draggable-table', array('block' => 'script'));
 $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
@@ -82,30 +83,41 @@ echo $this->element('admin/menu');
 					<td>
 						<div class="btn-group d-flex flex-nowrap">
 							<a 
-							href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>" 
-							data-toggle="tooltip" 
-							title="" 
-							class="btn btn-success" 
-							data-original-title="Editar">
-							<i class="fa fa-edit"></i>
-						</a>             
-						<a 
-						href="#" 
-						data-toggle="tooltip" 
-						title="" 
-						class="btn btn-danger deletebutton" 
-						data-original-title="Eliminar" 
-						data-id="<?=$product['Product']['id']?>" 
-						data-url-back="<?=$this->Html->url(array('action'=>'productos'))?>" 
-						data-delurl="<?=$this->Html->url(array('action'=>'productos', 'delete'))?>" 
-						data-msg="<?=__('¿Eliminar producto?')?>"                   
-						>
-						<i class="fa fa-trash-o"></i>
-					</a>
-				</div> 
-			</td>
-		</tr>
-		<?php endforeach ?>
+								href="javascript:void(0)" 
+								data-toggle="tooltip" 
+								title="Actualizar Stock" 
+								class="btn btn-success update-stock"
+								data-id="<?=$product['Product']['id']?>" 
+								data-title="<?=$product['Product']['name']?>"
+								data-text="¿Estas seguro que deseas actualizar el stock de este producto?"
+								data-url="/admin/update_product_stock"
+								data-original-title="Actualizar Stock">
+								<i class="fa fa-refresh"></i>
+							</a>
+							<a 
+								href="<?=$this->Html->url(array('action'=>'productos','edit',$product['Product']['id']))?>" 
+								data-toggle="tooltip" 
+								title="" 
+								class="btn btn-success" 
+								data-original-title="Editar">
+								<i class="fa fa-edit"></i>
+							</a>             
+							<a 
+								href="#" 
+								data-toggle="tooltip" 
+								title="" 
+								class="btn btn-danger deletebutton" 
+								data-original-title="Eliminar" 
+								data-id="<?=$product['Product']['id']?>" 
+								data-url-back="<?=$this->Html->url(array('action'=>'productos'))?>" 
+								data-delurl="<?=$this->Html->url(array('action'=>'productos', 'delete'))?>" 
+								data-msg="<?=__('¿Eliminar producto?')?>">
+								<i class="fa fa-trash-o"></i>
+							</a>
+						</div> 
+					</td>
+				</tr>
+			<?php endforeach ?>
 		</tbody>
 	</table>
 </div>
