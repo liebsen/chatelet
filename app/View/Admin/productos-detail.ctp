@@ -278,7 +278,7 @@
 	              </div>
 	            </div-->
 	            <br />
-	            <?php // echo $this->element('product_images') ?>
+	            <?php echo $this->element('product_images') ?>
 	          </div>
 	        </div>      
 	        <br />               
