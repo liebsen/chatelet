@@ -27,7 +27,7 @@
                 	<?php if($category['Category']['show_text'] == '1'):?>
                   <span class="p-1 text-catalog" style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
                   	<?php if($category['Category']['show_name'] == '1'):?>
-                    <span class="text-uppercase"><?=$category['Category']['name']?></span>
+                    <span class="text-uppercase text-stroke name-catalog"><?=$category['Category']['name']?></span>
                     <?php endif ?>
                     <span class="p-1 p-catalog text-stroke" style="font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_weight'] ?? '300'?>;font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;line-height: <?=$category['Category']['text_style']->line_height ?? '1'?>;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
                   </span>

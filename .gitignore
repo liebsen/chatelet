@@ -3,7 +3,6 @@
 .phpintel
 /app/Config/database.php
 /app/tmp
-/app/version
 /app/webroot/files
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins

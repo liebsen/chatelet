@@ -949,6 +949,16 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   letter-spacing: -0.025rem;
 }
 
+.name-catalog {
+	font-size: 1rem;
+	-webkit-text-stroke: 2px #333;
+	color: white;
+	font-weight: 500;
+	@media(max-width: 550px) {
+		font-size: 1.5rem;
+	}
+}
+
 .p-catalog {
 	cursor: pointer;
 	display: block!important;
