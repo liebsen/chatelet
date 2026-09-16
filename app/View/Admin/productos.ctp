@@ -1,5 +1,4 @@
 <?php 
-$start_stock_product = $this->Session->consume('StartStockProduct');
 $this->Html->script('handlebars-v2.0.0',array('block' => 'script'));
 $this->Html->script('image_prodshop', array('block' => 'script')); 
 $this->Html->script('admin-delete', array('block' => 'script')); 

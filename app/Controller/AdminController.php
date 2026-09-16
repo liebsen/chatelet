@@ -301,7 +301,6 @@ class AdminController extends AppController {
 	}
 
 	public function update_product_stock($product_id = 0) {
-
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
 
@@ -343,7 +342,7 @@ class AdminController extends AppController {
 
 		foreach ($products as &$product) {
 			$details = $this->SQL->product_price_by_list($prod_cod,$lis_cod,$lis_cod2);
-	    //CakeLog::write('debug', 'details:'.json_encode($details));
+	    CakeLog::write('debug', 'details:'.json_encode($details));
 
     	$product['nombre'] = $details['nombre'];
     	$product['descripcion'] = $details['Descripcion'];
@@ -2587,9 +2586,9 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		        	$prop['product_id'] = $this->Product->id;
 		        }
 	        	$this->ProductProperty->saveMany($data['props']);
-	        }
-	        
-	        $this->Session->write('StartStockProduct', $saved['Product']['id']);
+	        }	
+
+	        $this->update_product_stock($saved['Product']['id']);
 
 	        return $this->redirect(
 	        	array(
