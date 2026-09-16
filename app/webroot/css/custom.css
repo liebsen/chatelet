@@ -1068,7 +1068,16 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   position: relative;
   left: 7px;  
 }
-#productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; border-radius: 1rem; }
+#productOptions a.btBig { 
+	border: 4px dashed #6663;
+	/*border: 2px solid #e7e7e7; */
+	color: #6e6e6e; 
+	display: block; 
+	font-size: 1.75rem; 
+	padding: 240px 0; 
+	text-align: center; 
+	border-radius: 1rem; 
+}
 #productOptions a.btBig span { font-size: 27px; }
 #productOptions a.btBig span { font-size: 27px; }
 
