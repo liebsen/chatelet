@@ -18,6 +18,7 @@ class StockShell extends AppShell {
     'StockCount'
   );
 
+  private $settings = array();
   private $response = array();
   private $total = 0;
   private $items = array();
@@ -33,6 +34,8 @@ class StockShell extends AppShell {
   }
 
   public function main() {
+		$this->settings = $this->load_settings();
+
   	$include = $this->params['include']; 
   
 		if(is_numeric($include)) {
