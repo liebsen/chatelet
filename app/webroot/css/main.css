@@ -3564,10 +3564,13 @@ background-color: #45a049; /* Darker green on hover */
 }
 
 .name-catalog {
-	font-size: 1.5rem;
-	-webkit-text-stroke: 3px #393939;
+	font-size: 1rem;
+	-webkit-text-stroke: 2px #333;
 	color: white;
-	font-weight: 1000;
+	font-weight: 500;
+	@media(max-width: 550px) {
+		font-size: 1.5rem;
+	}
 }
 
 /*.name-catalog {
