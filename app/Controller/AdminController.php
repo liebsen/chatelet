@@ -2645,10 +2645,10 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$this->set('prod', $prod);
 
 	    		$navs = array();
-    			$navs[$prod['Product']['name']] = array(
+    			/*$navs[$prod['Product']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/productos/edit/'.$cat['Product']['id'],
-					);
+					);*/
 					$this->set('navs', $navs);
   				$this->loadModel('Category');
 			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
@@ -2685,8 +2685,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
   			'Product.*, Category.name'
   		),
   		'order' => array( 
-  			'Product.category_id ASC',
-  			'Product.ordernum ASC' 
+  			'Product.id DESC'
   		)
   	));
 

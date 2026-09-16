@@ -79,7 +79,6 @@ class StockShell extends AppShell {
 		);
 
 		$article = $prod['Product']['article'];
-		$variations = array();
 		$save_failed = array();
 		foreach($sizes as $size) {
 			foreach($colors as $color) {

@@ -102,12 +102,9 @@ class SQLComponent extends Component {
 
 	public function general_stock(){
 		try {
-			echo "\r\nstock:query init;";
 			$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
-			echo "\r\nstock:query prepared;";
 			$stmt->execute();
-			echo "\r\nstock:query executed;";
-			$ret= (array)$stmt->fetchAll();
+			$ret= (array) $stmt->fetchAll();
 			return $ret;
 		}catch (Exception $e) {
 			echo "\r\nError with general stock: ".$e->getMessage();
@@ -121,7 +118,7 @@ class SQLComponent extends Component {
 			'colors' 	=> array(),
 		);
 
-		$colors 		= $this->new_colors();
+		$colors = $this->new_colors();
 		$color_codes	= Hash::extract($colors,'{n}.code');
 
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='{$article}', @cod_lista='{$list_code}', @minimo='0';");
@@ -130,7 +127,7 @@ class SQLComponent extends Component {
 		while ($row = $stmt->fetch()) {
 			if( !empty($row['codigo']) ) {
 				$params = explode('.', $row['codigo']);
-				if( count($params) == 2 && $params[1] != '0000' && strlen($params[1]) == 4 ) {
+				if(count($params) == 2 && $params[1] != '0000' && strlen($params[1]) == 4) {
 					$size_number 	= substr($params[1], 0 , 2);
 					$color_code 	= substr($params[1], 2 , 2);
 
