@@ -270,13 +270,13 @@
 	              </div>
 	            </div>
 	            <br />          
-	            <!--h4>Imagen principal</h4>
+	            <h4>Imagen principal</h4>
 	            <div class="control-group">
 	              <label class="control-label" for=""></label>
 	              <div class="controls">
 	                <input type="file" class="form-control" name="image">
 	              </div>
-	            </div-->
+	            </div>
 	            <br />
 	            <?php echo $this->element('product_images') ?>
 	          </div>
