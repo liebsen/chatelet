@@ -87,7 +87,7 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 	                  	<?php if($category['Category']['show_text'] == '1'):?>
 	                    <span style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
 	                    	<?php if($category['Category']['show_name'] == '1'):?>
-	                      <span class="text-uppercase"><?=$category['Category']['name']?></span>
+	                      <span class="text-uppercase text-stroke name-catalog"><?=$category['Category']['name']?></span>
 	                      <?php endif ?>
 	                      <span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: 0.5;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><span class="font-preview"><?=\word_limit($category['Category']['text'], 10)?></span></span>
 	                    </span>
