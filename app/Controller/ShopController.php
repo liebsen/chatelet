@@ -657,6 +657,7 @@ class ShopController extends AppController {
 							'type' => 'color',
 							'product_id' => $product['Product']['id']
 						),
+						'order' => ['ProductProperty.sort DESC'], 
 						'limit' => 5
 					)
 				);
@@ -1190,7 +1191,8 @@ class ShopController extends AppController {
 
 			$results = array_merge(array_reverse($results1), $results2);
 
-			foreach ($results as &$item) {
+			foreach ($results as $i => &$item) {
+				$all_colors = array();
 				if (!empty($item['Product']['discount'])) {
 					$item['Product']['old_price'] = $item['Product']['price'];
 					$item['Product']['price'] = $item['Product']['discount'];
@@ -1199,9 +1201,35 @@ class ShopController extends AppController {
 				if(!empty($item['Product']['article'])){
 					$item['Product']['stock'] = 1;
 				}
+
+				$find_colors = $this->ProductProperty->find('all', 
+					array(
+						'conditions' => array(
+							'type' => 'color',
+							'product_id' => $item['Product']['id']
+						),
+						'order' => ['ProductProperty.sort DESC'], 
+						'limit' => 5
+					)
+				);
+
+				foreach($find_colors as $data_color) {
+					$colors = array_filter(
+						array_values(
+							explode(';', $data_color['ProductProperty']['images'])
+						)
+					);
+					$current = current($colors);
+
+					if(!empty($current)) {
+						array_push($all_colors, $current);
+					}
+				}
+				$item['Product']['colors'] = $all_colors;				
 			}
 		}
 
+		\d('results',$results);
 		$this->set('q', $q);
 		$this->set('results', $results);
 

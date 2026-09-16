@@ -2281,7 +2281,7 @@ pre, code {
   border: none;
   margin: 0;
   padding: 1rem;
-  min-height: calc(100dvh - 117px);
+  min-height: calc(100dvh - 125px);
 }
 
 .list-group-hero > a > li {
@@ -4384,7 +4384,9 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }*/
 
 .treeview ul{
-  padding:5px 0 5px 10px;
+  padding:5px 10px;
+  border-radius: 1rem;
+  background: #e7e7e7;  
   list-style: none outside;
   margin:0;
 }
@@ -4402,7 +4404,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .treeview ul li div div.tools{
   float: right;
 }
-.treeview ul.level1 li div{
+.treeview ul li div{
+	padding: 5px;
+}
+/*.treeview ul.level1 li div{
   background: #b1b1b1;
 }
 .treeview ul.level2 li div{
@@ -4410,7 +4415,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .treeview ul.level3 li div{
   background: #eeeeee;
-}
+}*/
+
 
 .update-countdown {
 	font-family: monospace;
@@ -4553,6 +4559,9 @@ margin-top: 1rem!important;
 }
 .mt-8 {
 margin-top: 1.5rem!important;
+}
+.mb-2 {
+margin-bottom: 0.5rem!important;
 }
 .mb-4 {
 margin-bottom: 1rem!important;

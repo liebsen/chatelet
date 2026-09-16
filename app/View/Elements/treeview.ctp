@@ -12,7 +12,7 @@ function generate_list($array, $sel, $parent = '', $level = 1,$prod){
 
       //if ($value['Category']['parent_id']==$parent)
       //{
-        $li = '<li><div>';
+        $li = '<li><div for="category_radio_'.$value['Category']['id'].'">';
          
         $li .= ($level != 4)? '<i class=" gi gi-circle_plus treeaction" data-child="level'.($level + 1).'"></i>' : '';
         $li .= '<span>';

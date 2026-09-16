@@ -261,7 +261,7 @@ touchStartDelay:0,
         </div>
 
         <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
-          <div class="row">
+          <div class="row w-100">
               <?php
 				      foreach ($all_but_me as $product) {
 				        echo $this->App->tile($product['Product'], $settings, 1, $legends, $category);

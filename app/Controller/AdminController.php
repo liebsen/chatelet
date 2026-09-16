@@ -300,6 +300,23 @@ class AdminController extends AppController {
 		return $sale;		
 	}
 
+	public function update_product_stock($product_id = 0) {
+		$this->RequestHandler->respondAs('application/json');
+		$this->autoRender = false;
+
+		$data = $this->request->data;
+		$prod_id = $data['id'] ?? $product_id;
+
+		#\d("update_product_stock",$prod_id);
+
+		$host_parts = explode('.', $_SERVER['HTTP_HOST']);
+		$subdomain = $host_parts[0];
+		$domain = 'chatelet';
+		$env = count($host_parts) > 2 ? $domain.'-'.$subdomain : $domain;
+		//$result = exec("/var/www/".$env."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
+		return shell_exec("/var/www/".$env."/app/Console/cake stock -q --include=".$prod_id." 2>&1");
+	}
+
 	public function get_product($prod_cod = null, $lis_cod = null , $lis_cod2 = null) {
 		$this->RequestHandler->respondAs('application/json');
 		$this->autoRender = false;
@@ -307,10 +324,11 @@ class AdminController extends AppController {
 		$prod_parts = explode('.', $prod_cod);
 		$products = $this->SQL->productsByLisCod($prod_parts[0], $lis_cod);
 		$color = array();
-		CakeLog::write('debug', 'prod_cod: '.json_encode($prod_cod));
+		/*CakeLog::write('debug', 'prod_cod: '.json_encode($prod_cod));
 		CakeLog::write('debug', 'lis_cod: '.json_encode($lis_cod));
 		CakeLog::write('debug', 'lis_cod2: '.json_encode($lis_cod2));
-		CakeLog::write('debug', 'get_product: '.json_encode($products));
+		CakeLog::write('debug', 'get_product: '.json_encode($products));*/
+		
 		// CakeLog::write('error', $full_now.' '.$full_end);
 		if (!empty($prod_parts[1])) {
 			$color_id = substr($prod_parts[1], -2);
@@ -324,7 +342,7 @@ class AdminController extends AppController {
 
 		foreach ($products as &$product) {
 			$details = $this->SQL->product_price_by_list($prod_cod,$lis_cod,$lis_cod2);
-	    CakeLog::write('debug', 'details:'.json_encode($details));
+	    //CakeLog::write('debug', 'details:'.json_encode($details));
 
     	$product['nombre'] = $details['nombre'];
     	$product['descripcion'] = $details['Descripcion'];
@@ -2514,7 +2532,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->set('image_prodshop',$this->settings['image_prodshop']);
     $this->set('list_code_desc',$this->settings['list_code_desc']);
 
-        //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
+    //create table discount_lists (id int unsigned auto_increment primary key, item_index int unsigned, category_id int(10) unsigned not null, list_code varchar(30) not null,updated_at date);
     
 		$navs = array(
 			'Productos' => array(
@@ -2531,6 +2549,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 			'name' => 'Productos',
 			'icon' => 'gi gi-shirt'
 		);
+
 		$this->set('h1', $h1);
 		$this->set('navs', $navs);		
 
@@ -2538,11 +2557,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     $this->set('colors',$colors);
     $this->loadModel('Product');
     $this->loadModel('ProductProperty');
+
   	switch ($action) {
+			case 'config':
+				return $this->render('productos-config');
+				break;
+
     	case 'add':
   	    if ($this->request->is('POST')){
 	        $this->autoRender = false;
 	        $data = $this->request->data;
+	        $data['id'] = null;
 
 	        $file_real_name = null;
 	        if(!empty($this->request->params['form']['image']['name'])){
@@ -2550,20 +2575,26 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	        }
 
 	        if($file_real_name){
-	            $data['img_url'] = $file_real_name;
+	          $data['img_url'] = $file_real_name;
 	        }
-					$data['with_thumb']=1;
-	        $this->Product->save($data);
 
+					$data['with_thumb']=1;
+	        $saved = $this->Product->save($data);
 
 	        if(!empty($data['props'])) {
 		        foreach ($data['props'] as &$prop) {
 		        	$prop['product_id'] = $this->Product->id;
 		        }
 	        	$this->ProductProperty->saveMany($data['props']);
-	        }
+	        }	
 
-	        return $this->redirect(array('action'=>'productos'));
+	        $this->update_product_stock($saved['Product']['id']);
+
+	        return $this->redirect(
+	        	array(
+	        		'action' => 'productos'
+	        	)
+	        );
   			} else {
   				$this->loadModel('Category');
 			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
@@ -2609,15 +2640,14 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 	    		$hasId = array_key_exists(1, $this->request->pass);
 	    		if (!$hasId) break;
 
-
 	    		$prod = $this->Product->find('first', array('conditions' => array('id' => $this->request->pass[1])));
 	    		$this->set('prod', $prod);
 
 	    		$navs = array();
-    			$navs[$prod['Product']['name']] = array(
+    			/*$navs[$prod['Product']['name']] = array(
 						'icon' 		=> 'gi gi-edit',
 						'url'		=> '/admin/productos/edit/'.$cat['Product']['id'],
-					);
+					);*/
 					$this->set('navs', $navs);
   				$this->loadModel('Category');
 			    $cats = $this->Category->find('all',['order' => ['Category.ordernum ASC']]);
@@ -2631,8 +2661,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 					$this->loadModel('Season');
 					$temps = $this->Season->find('all');
 					$this->set('temps', $temps);
-		    		return $this->render('productos-detail');
-	    		}
+		    	return $this->render('productos-detail');
+	    	}
     		break;
     }
 
@@ -2654,8 +2684,7 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
   			'Product.*, Category.name'
   		),
   		'order' => array( 
-  			'Product.category_id ASC',
-  			'Product.ordernum ASC' 
+  			'Product.id DESC'
   		)
   	));
 

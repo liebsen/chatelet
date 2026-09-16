@@ -314,9 +314,9 @@ label input[type=checkbox]:disabled + .label-text:before {
   margin: 0; 
   padding: 1rem 2rem;
   position: relative; 
-  transition: none!important;
   z-index: 10;
   transition: background 0.25s ease-in-out;
+	box-shadow: 0 0 5px #00000022;  
 }
 
 .navbar-chatelet .navbar-toggle { 
@@ -408,9 +408,7 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   .navbar-nav { 
     flex-direction: row;
   }
-	.add-no-stock {
-    min-height: 32rem!important;
-  }
+
   body.top-fixed .navbar-collapse.collapse {
     top: 3px;
   }
@@ -1068,10 +1066,23 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   position: relative;
   left: 7px;  
 }
-#productOptions a.btBig { border: 2px solid #e7e7e7; color: #6e6e6e; display: block; font-size: 1.75rem; padding: 240px 0; text-align: center; border-radius: 1rem; }
+#productOptions a.btBig { 
+	border: 4px dashed #6663;
+	/*border: 2px solid #e7e7e7; */
+	color: #6e6e6e; 
+	display: block; 
+	font-size: 1.75rem; 
+	padding: 240px 0; 
+	text-align: center; 
+	border-radius: 1rem; 
+}
 #productOptions a.btBig span { font-size: 27px; }
 #productOptions a.btBig span { font-size: 27px; }
 
+#productOptions .product-list {
+	display: flex;
+	flex-wrap: wrap;
+}
 
 /*#productOptions .product-list a {  
   width: 100%; 
@@ -1970,7 +1981,6 @@ span.out{
 .add-no-stock {
   position: relative;
   padding: 5px;
-  min-height: 29rem!important;
   @media(max-width: 400px) {
   	width: 50%;
   }

@@ -157,15 +157,11 @@ class AppHelper extends Helper {
 			}
 		} 
 
-    if (
-    	$mp_discount > $number_ribbon 
-    ){
+    if ($mp_discount > $number_ribbon){
       $number_ribbon = (int) $mp_discount;
     }
 
-    if (
-    	$bank_discount > $number_ribbon
-    ){
+    if ($bank_discount > $number_ribbon){
       $number_ribbon = (int) @$bank_discount;
     }
 

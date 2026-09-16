@@ -2,15 +2,23 @@ $(document).ready(function() {
 	var count = $('.list-group').find('li').length;
 	var addItem = function( me , list , type ){
 			count = $('.list-group').find('li').length;
-			extrafields = '<input type="text" class="variable" name="props['+ count +'][variable]" required var />';
+			extrafields = '<input type="text" class="form-control variable" name="props['+ count +'][variable]" required var />';
 
 		// Comment this if you are uncommenting the (search for) "block #21"
 		if (type === 'color') {
-			extrafields = '<div class="colorSelector" style="opacity:0">'+
-                            '<div style="background-color: #ffffff;"></div>'+
-                          '</div>'+
-                          '<input type="hidden" class="variable" name="props['+ count +'][variable]" value="#ffffff" class="variable" required />'+
-                          '<span class="alias_cont"><input type="text" class="variable" name="props['+ count +'][alias]" value="" class="variable" alias required placeholder="AA, 02, etc..."/></span>';
+			extrafields = '<div class="form-group d-flex m-0">' +
+				'<div class="controls flex-1">' +
+					'<input type="checkbox" name="props['+ count +'][sort]" value="1" id="toggle_'+ count +'" class="toggle-checkbox toggle-sort">' +
+					'<label for="toggle_'+ count +'" class="toggle-label product-sort"></label>' +
+				'</div>' +
+				'<label class="control-label">Imagen principal</label>' +
+			'</div>' +  
+			'<div class="colorSelector" style="opacity:0">'+
+				'<div style="background-color: #ffffff;"></div>'+
+			'</div>'+
+			'<input type="hidden" class="variable" name="props['+ count +'][variable]" value="#ffffff" required />'+
+			'<span class="alias_cont"><input type="text" class="form-control variable" name="props['+ count +'][alias]" value="" alias required placeholder="AA, 02, etc..."/></span>';
+
 			$('#colors_select_base').find('select').attr('name', 'props['+ count +'][code]');
 			var select_base = $('#colors_select_base').html();
 			extrafields += select_base;
@@ -23,17 +31,17 @@ $(document).ready(function() {
 		}
 
 		list.append(
-			$('<li class="list-group-item">' +
-			  extrafields +
-             '<input type="hidden" name="props['+ count +'][type]" value="'+ type +'" />'+
-	          '<div class="right">' +
-	            '<a class="btn btn-xs btn-danger remove-item" data-count="'+count+'">Borrar</a>' +
-	          '</div>' +
-	          '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
-	          '<progress id="progress" hidden></progress>' +
-              '<ul id="ListUploaded" class="list-inline" data-ref="props['+ count +'][alias]" data-count="'+count+'"></ul>' +
-	        '</li>')
-        );
+			$('<li class="list-group-item d-flex flex-column gap-05">' + extrafields +
+	        '<input type="hidden" name="props['+ count +'][type]" value="'+ type +'" />'+
+	        '<div class="right">' +
+	          '<a class="btn btn-xs btn-danger remove-item" data-count="'+count+'">Borrar</a>' +
+	        '</div>' +
+	        '<input type="file" class="upload_color_image" name="color_image" data-alias="" data-ref="props['+ count +'][alias]" data-count="'+count+'">' +
+	        '<progress id="progress" hidden></progress>' +
+	          '<ul id="ListUploaded" class="list-inline" data-ref="props['+ count +'][alias]" data-count="'+count+'"></ul>' +
+	       '</li>')
+    );
+
 		$('.upload_color_image').on('change', changeHandler);
         initPicker();
 	}
@@ -74,6 +82,17 @@ $(document).ready(function() {
 		$('#color').empty();
 		$('#size').empty();
 	}
+
+	$(document).on('click', '.product-sort', function() {
+		const ref = $(this).prev()
+		$('.toggle-sort').each(function(i,e){
+			if($(e).prop('id') != ref.prop('id')) {
+				if($(e).is(':checked')) {
+					$(e).trigger('click')
+				}
+			}
+		})
+	})
 
 	$(document).on('click', '.remove-item', function() {
 		var me = $(this);
@@ -130,6 +149,8 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+
+
 
 	var searching = false;
 

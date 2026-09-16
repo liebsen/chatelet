@@ -82,14 +82,14 @@ class SQLComponent extends Component {
 
 	//EXAMPLE: I5005/03/02/173
 	public function product_stock($article,$size_number,$color_code,$list_code,$stock_min){
-		#CakeLog::write('debug', 'product_stock(exec):'.json_encode("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$stock_min';"));
+		//CakeLog::write('debug', 'product_stock(exec):'.json_encode("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$stock_min';"));
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='$article', @cod_lista='$list_code', @minimo='$stock_min';");
 		$stmt->execute();
 
 		while ($row = $stmt->fetch()) {
-			#CakeLog::write('debug', 'product_stock(row):'.json_encode($row));
 			if(!empty($row['codigo'])){
 				$params = explode('.', $row['codigo']);
+
 				if(!empty($params[1]) && ($params[1] != '0000') && $params[1] == ($size_number.$color_code)){
 					#CakeLog::write('debug', 'product_stock(row)'.json_encode($row));
 					return $row['stock'];
@@ -102,12 +102,9 @@ class SQLComponent extends Component {
 
 	public function general_stock(){
 		try {
-			echo "\r\nstock:query init;";
 			$stmt = $this->conn->prepare("EXEC pa_stock_todos;");
-			echo "\r\nstock:query prepared;";
 			$stmt->execute();
-			echo "\r\nstock:query executed;";
-			$ret= (array)$stmt->fetchAll();
+			$ret= (array) $stmt->fetchAll();
 			return $ret;
 		}catch (Exception $e) {
 			echo "\r\nError with general stock: ".$e->getMessage();
@@ -121,7 +118,7 @@ class SQLComponent extends Component {
 			'colors' 	=> array(),
 		);
 
-		$colors 		= $this->new_colors();
+		$colors = $this->new_colors();
 		$color_codes	= Hash::extract($colors,'{n}.code');
 
 		$stmt = $this->conn->prepare("EXEC pa_datos_articulo @cod_articulo='{$article}', @cod_lista='{$list_code}', @minimo='0';");
@@ -130,7 +127,7 @@ class SQLComponent extends Component {
 		while ($row = $stmt->fetch()) {
 			if( !empty($row['codigo']) ) {
 				$params = explode('.', $row['codigo']);
-				if( count($params) == 2 && $params[1] != '0000' && strlen($params[1]) == 4 ) {
+				if(count($params) == 2 && $params[1] != '0000' && strlen($params[1]) == 4) {
 					$size_number 	= substr($params[1], 0 , 2);
 					$color_code 	= substr($params[1], 2 , 2);
 
@@ -223,6 +220,7 @@ class SQLComponent extends Component {
 	}
 
 	public function productsByLisCod($prod_cod, $lis_cod) {
+		//CakeLog::write('debug', 'productsByLisCod(row):'.json_encode(array('prod_cod'=>$prod_cod,'lis_cod'=>$lis_cod)));
 		$results = array();
 		if (empty($lis_cod) || empty($prod_cod)) return $results;
 
@@ -232,16 +230,16 @@ class SQLComponent extends Component {
 				c.descripcion AS colorPrenda,
 				al.LisCod AS listaPrecio,
 				al.Precio
-			FROM   Art a INNER JOIN
-				   ArtLis al ON a.ArtCod = al.ArtCod INNER JOIN
-				   Color c ON RIGHT(a.ArtCod, 2) = c.Codigo
+			FROM Art a 
+			INNER JOIN ArtLis al ON a.ArtCod = al.ArtCod 
+			INNER JOIN Color c ON RIGHT(a.ArtCod, 2) = c.Codigo
 			WHERE  (al.LisCod = '".$lis_cod."') AND (a.ArtCod LIKE '".$prod_cod."%')
 		");
 		$stmt->execute();
 		$results = array();
 		
 		while ($row = $stmt->fetch()) {
-			CakeLog::write('debug', 'productsByLisCod(row):'.json_encode($row));
+			//CakeLog::write('debug', 'productsByLisCod(row):'.json_encode($row));
 			unset($row['0']);
 			unset($row['1']);
 			unset($row['2']);
@@ -253,7 +251,7 @@ class SQLComponent extends Component {
 			$results[] = $row;
 		}
 		unset($stmt);
-		CakeLog::write('debug', 'productsByLisCod(results):'.json_encode($results));
+		//CakeLog::write('debug', 'productsByLisCod(results):'.json_encode($results));
 		return $results;
 	}
 
