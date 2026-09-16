@@ -1,14 +1,16 @@
 
 <div class="d-flex cat-preview preview-toggle d-none gap-1">
   <div class="shop-preview posnum-<?=$category['Category']['posnum'] ?? 'auto' ?> alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>" style="background-image: url(<?= $settings['upload_url'].$category['Category']['img_url']?>); background-repeat: no-repeat; background-size: cover;">
-  	<div class="texts-block animation-both animation-fadeIn <?=$category['Category']['show_text'] == '1' ? '' : 'd-none'?>" style="color: <?=@$category['Category']['text_style']->color ?? 'white'?>">
+  	<div class="animation-both animation-fadeIn" style="color: <?=@$category['Category']['text_style']->color ?? 'white'?>">
   		<span class="name-catalog text-uppercase text-stroke <?=$category['Category']['show_name'] == '1' ? '' : 'd-none'?>"><?=$category['Category']['name']?></span>
-  		<span class="p-catalog text-stroke trigger-style" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px;font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: <?=$category['Category']['text_style']->line_height ?? '1'?>;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
+  		<span class="catalog-block <?=$category['Category']['show_text'] == '1' ? '' : 'd-none'?>">
+  			<span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px;font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: <?=$category['Category']['text_style']->line_height ?? '1'?>;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><?=$category['Category']['text']?></span>
+  		</span>
   	</div>
     <div class="shop-preview-tb d-flex flex-column flex-center">
       <label class="control-label" for="show_text"><span class="text-white text-stroke text-selected"><?php echo __('Activar Texto')?></span></label>
       <div class="form-group">
-        <input type="checkbox" name="data[show_text]" value="1" id="show_text" class="toggle-checkbox toggle-block" data-block=".texts-block" data-class="d-none"<?=$category['Category']['show_text'] == '1' ? ' checked' : '' ?>>
+        <input type="checkbox" name="data[show_text]" value="1" id="show_text" class="toggle-checkbox toggle-block" data-block=".catalog-block" data-class="d-none"<?=$category['Category']['show_text'] == '1' ? ' checked' : '' ?>>
         <label for="show_text" class="toggle-label"></label>
       </div>
     </div>

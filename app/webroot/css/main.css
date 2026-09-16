@@ -3564,12 +3564,19 @@ background-color: #45a049; /* Darker green on hover */
 }
 
 .name-catalog {
+	font-size: 1.5rem;
+	-webkit-text-stroke: 3px #393939;
+	color: white;
+	font-weight: 1000;
+}
+
+/*.name-catalog {
 	cursor: pointer;
   text-shadow: 0 0 3px #00000008;
   font-size: 1.5rem;
   line-height: 1;
   letter-spacing: -0.025rem;
-}
+}*/
 
 .p-catalog {
 	position: relative;
