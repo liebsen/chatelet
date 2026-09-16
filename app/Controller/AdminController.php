@@ -308,7 +308,7 @@ class AdminController extends AppController {
 		$data = $this->request->data;
 		$prod_id = $data['id'] ?? $product_id;
 
-		\d("update_product_stock",$prod_id);
+		#\d("update_product_stock",$prod_id);
 
 		$host_parts = explode('.', $_SERVER['HTTP_HOST']);
 		$subdomain = $host_parts[0];
