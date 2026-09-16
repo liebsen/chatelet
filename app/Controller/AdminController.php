@@ -312,7 +312,7 @@ class AdminController extends AppController {
 		$host_parts = explode('.', $_SERVER['HTTP_HOST']);
 		$subdomain = $host_parts[0];
 		$domain = 'chatelet';
-		$env = count($host_parts) > 2 ? $domain.'-'.$subdomain : $domain;
+		$env = count($host_parts) > 3 ? $domain.'-'.$subdomain : $domain;
 		//$result = exec("/var/www/".$env."/app/Console/cake stock --include=".$prod_id." > /dev/null 2>&1 &");
 		return shell_exec("/var/www/".$env."/app/Console/cake stock -q --include=".$prod_id." 2>&1");
 	}
