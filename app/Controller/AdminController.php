@@ -342,7 +342,7 @@ class AdminController extends AppController {
 
 		foreach ($products as &$product) {
 			$details = $this->SQL->product_price_by_list($prod_cod,$lis_cod,$lis_cod2);
-	    CakeLog::write('debug', 'details:'.json_encode($details));
+	    //CakeLog::write('debug', 'details:'.json_encode($details));
 
     	$product['nombre'] = $details['nombre'];
     	$product['descripcion'] = $details['Descripcion'];
