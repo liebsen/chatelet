@@ -156,7 +156,7 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
 		</tbody>
 	</table>
   <div class="form-actions" data-url="/admin/batch_productos/">
-  	<div class="hide selection-block">
+  	<div class="hide selection-block mb-2">
 		  <span class="selection-count"></span>	
 		  <button class="enableselection btn btn-success btn-adjust" type="button">
 		  	<i class="fa fa-eye"></i>

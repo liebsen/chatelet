@@ -81,6 +81,7 @@ body > section {
   position: absolute;
   left: 0;
   right: 0;
+  bottom: 10px;
 	display: flex;
 	background-color: #00000040;
 	border-radius: 1rem;

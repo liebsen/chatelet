@@ -91,6 +91,9 @@ class StockShell extends AppShell {
 			  	$this->settings['stock_min']
 			  );
 
+			  \d("article",$article);
+			  \d("stock",$stock);
+
 	      $exists = $this->StockCount->findByCodArticulo($cod_articulo);
 	      $record = array();
 
