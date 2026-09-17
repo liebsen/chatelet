@@ -171,11 +171,7 @@ class AppHelper extends Helper {
     $content.= $discount_flag . $promo_ribbon;
 
     if(count($item['colors'])) {
-<<<<<<< HEAD
-    	$content.= '<div id="item_carousel" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
-=======
     	$content.= '<div id="carousel-'.$item['id'].'" class="carousel slide product-image numpos-'.$category['posnum'].'" data-interval="false" data-ride="carousel" data-pause="true">';
->>>>>>> origin/staging
     	$content.= '<div class="carousel-inner" role="listbox">';
     	foreach($item['colors'] as $i => $img) {
     		$active = $i ? '' : ' active';
@@ -186,11 +182,7 @@ class AppHelper extends Helper {
 				$content.= '<ol class="carousel-indicators">';
 
 			  foreach($item['colors'] as $i => $img) {
-<<<<<<< HEAD
-			    $content.= '<li data-target="#item_carousel" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
-=======
 			    $content.= '<li data-target="#carousel-'.$item['id'].'" data-slide-to="'.$i.'" class="'.($i == 0 ? 'active' : '').'"></li>';
->>>>>>> origin/staging
 			  }
 				$content.= '</ol>';
 			}
