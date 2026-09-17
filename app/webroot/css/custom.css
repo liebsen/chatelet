@@ -1306,6 +1306,9 @@ footer ul li { margin-bottom: 5px;  max-width: 15rem; }
   #main .caract label.btn .color-option.color-img {
     min-height: 15rem;
   }
+	#productOptions a.btBig-container {
+		padding-left: 0;
+	}  
 }
 
 #main .caract label.btn.active {

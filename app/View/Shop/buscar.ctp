@@ -31,7 +31,7 @@ $this->Html->script('carousel-swipe.js?v='.$version['ver'], array('block' => 'sc
       </form>
       <div class="container-list">
 	      <div class="row">
-	        <div class="col-md-3 desktop">
+	        <div class="col-md-3 btBig-container desktop">
             <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'index')) ?>" class="btBig">
               volver <br>al <span>SHOP</span>
             </a>
