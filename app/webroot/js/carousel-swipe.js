@@ -17,12 +17,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		  excludedElements: "label, button, input, select, textarea, .noSwipe"		  
 		});
 		$(this).hover(function(){
-			const that = $(this)
+			const t = $(this)
 			carouselInterval = setInterval(function(){
-				that.carousel('next');	
+				t.carousel('next');	
 			}, carouselTimeout)
 		  $(this).carousel('next');
 		},function(){
+			clearInterval(carouselInterval)
+		});
+		$(this).find('.carousel-indicators').hover(function(){
 			clearInterval(carouselInterval)
 		});
 	})

@@ -59,10 +59,6 @@ function addToCart(data, redirect) {
           resolve()
         } else {
           reject()
-          /*$.growl.error({
-            title: 'Ocurrió un error al agregar el producto al carrito',
-            message: res.message || 'Por favor, intentá nuevamente en unos instantes'
-          });*/
         }
       })
       .fail(function(error) {
@@ -162,7 +158,6 @@ function number_format(number, decimals, dec_point, thousands_point) {
     throw new TypeError("number is not valid: " + number);
   }*/
 
-
   try {
     if (!decimals) {
       var len = number.toString().split('.').length;
@@ -196,7 +191,6 @@ function strtoFloat(text) {
 function calcDues (total) {
   $('.dues-select-option').each(function(e){
     const option = $(e).data('json')
-    // console.log('dues-select-option:data', option)
     const dues = Number(option.dues)
     const interest = Number(option.interest) || 0
     const monto = total * (1 + interest / 100)
@@ -206,7 +200,6 @@ function calcDues (total) {
 
 function handleTotals (total) {
   if($('.calc_total').text().replace("$ ", "") != total) {
-    // console.log('handleTotals', total)
     $('.calc_total').text( '$ ' + formatNumber(total) )
   }
 }
@@ -313,7 +306,6 @@ function searchProds(q) {
     data: {q: q, p: searchPage, s: searchPageSize},
     success: function (data) {
       let str = ''
-
       $('.search-more').html('')
       $.each(data.results, function(key, item) {    
         let strLegends = ''
@@ -741,8 +733,6 @@ $(document).ready(function() {
 			language: 'es'
 		});
 	}
-	
-	//$('.selectpicker').selectpicker();
 
 	$('.btn-logout').click(function(e) {
 		e.preventDefault()
@@ -764,5 +754,5 @@ $(document).ready(function() {
 
   setTimeout(() => {
     sendBeacon('page-view')
-  },1000)
+  }, 3000)
 });
