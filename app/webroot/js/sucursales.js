@@ -38,13 +38,12 @@ $(document).ready(function() {
 		console.log('data', sucursal)
 		map.flyTo({
 	    center: [sucursal.lng, sucursal.lat],
-	    zoom: 12,
+	    zoom: 15,
 	    essential: true
 		});		
 		/*setTimeout(function(){
 			$('.custom-marker-'+sucursal.id).trigger('click')
 		}, 1000)*/
-		
 		window.scrollTo(0,0)
 		return false;
 	});	

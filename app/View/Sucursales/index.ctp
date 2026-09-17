@@ -6,14 +6,14 @@ $this->Html->script('sucursales.js?v=' . $version['ver'], array('block' => 'scri
 $this->Html->script('https://api.mapbox.com/mapbox-gl-js/v3.30.0/mapbox-gl.js', array('block' => 'script'));
 ?>
 
-<section class="wrapper-fluid map animation-fadeIn animation-both delay">
+<section class="wrapper-fluid map bg-light animation-fadeIn animation-both delay">
   <div class="col-xs-12 col-md-3">
     <div class="animation-fadeIn slow">
       <h1>Nuestras<br>sucursales</h1>
     </div>
   </div>
 
-  <div class="col-xs-12 col-md-9">
+  <div class="col-xs-12 col-md-9 p-0">
     <div id="map-canvas" class="sucursales" data-url="<?=$this->Html->url(array( 'controller' => 'api' , 'action' => 'sucursales' )) ?>"></div>
   </div>
 </section>
@@ -79,7 +79,7 @@ function initialize(address) {
   #location .col-md-12 { 
   	padding-left: 150px; 
   	padding-right: 150px; 
-  	padding-top: 60px; 
+  	padding-top: 30px; 
   	padding-bottom: 60px; 
   }
   #location .col-md-12 h3 { 
@@ -95,11 +95,10 @@ function initialize(address) {
   	float: left;
   	width: 100%; 
   	height: 100%; 
-  	padding-bottom: 45px;
+  	padding-bottom: 30px;
   }
   #location .col-md-12 ul li { 
   	float: left; 
-  	min-height: 63px; 
   	/*font-size: 18px;*/
   	font-weight: 300; 
   	min-width: 25%; 
