@@ -57,7 +57,7 @@ $(document).ready(function() {
 
   $('.btn-templates-editor').click(function(){
   	$(this).toggleClass('btn-warning')
-  	$(this).toggleClass('btn-light')
+  	$(this).toggleClass('btn-info')
     CKEDITOR.instances.newsletter.execCommand('maximize');
   })
 

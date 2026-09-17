@@ -17,15 +17,11 @@ $(document).ready(function() {
 				if ($.isArray(response)) {
 					$.each(response, function(i, data){
 						const sucursal = data.Store
-					  const marker = new mapboxgl.Marker({
-					  	className: 'custom-marker-'+sucursal.id,
-					  	color: "deeppink"
-					  })
+					  const marker = new mapboxgl.Marker({color: "deeppink"})
 					    .setLngLat([sucursal.lng, sucursal.lat])
 					    .addTo(map);
 						const popup = new mapboxgl.Popup()
 					  .setHTML('<div style="overflow: hidden; padding: 0.5rem; min-width: 300px"><img src="/img/logo.png" width=105><h4 style="margin-bottom:0;margin-top:0.5rem">'+ sucursal.name + '</h4>'+ (sucursal.takeaway == '1' ? '<br /><span class="text-chatelet"><i class="fa fa-shopping-bag"></i> Takeaway</span><br />' : '') + '<br><p><i class="fa fa-map-pin"></i>' + sucursal.address + '<br /><i class="fa fa-phone"></i>' + sucursal.phone + '<br /><i class="fa fa-whatsapp"></i>' + sucursal.whatsapp + '<br />' + '</p></div>');
-					  //.setHTML('<h3>New York City</h3><p>The most populous city in the United States.</p>');
 						marker.setPopup(popup);
 					})
 				}
@@ -41,9 +37,6 @@ $(document).ready(function() {
 	    zoom: 15,
 	    essential: true
 		});		
-		/*setTimeout(function(){
-			$('.custom-marker-'+sucursal.id).trigger('click')
-		}, 1000)*/
 		window.scrollTo(0,0)
 		return false;
 	});	
