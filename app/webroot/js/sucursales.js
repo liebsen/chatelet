@@ -1,20 +1,13 @@
 $(document).ready(function() {
-	var map,
-		geocoder,
-		markers = window.markers = {};
+  const map = new mapboxgl.Map({
+    accessToken: 'pk.eyJ1IjoiY29zbWljYmVhbXMiLCJhIjoiY211NWtqaWV1MDE5ZDJ3cThlZGduNjVjOCJ9.sNvuP7Uo6PIWpQrmKx2mcA',
+    container: 'map-canvas', // container ID
+    center: [-58.5297722, -34.6121795], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+    zoom: 9 // starting zoom
+  });
 
 	function initialize() {
-		if (!google) return
-		var mapOptions = {
-			zoom: 11,
-			center: new google.maps.LatLng(-34.6121795, -58.5297722),
-			mapTypeId: 'roadmap'
-		},
-		hostname = window.location.protocol + '//' + window.location.hostname;
-		hostname += '/' + window.location.pathname.split('/')[1];
-		geocoder = new google.maps.Geocoder();
-		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-		$.ajax( {
+		$.ajax({
 			url: $('.sucursales').data('url'),
 			method: 'GET',
 			error: function(xhr, status, error) {
@@ -24,62 +17,36 @@ $(document).ready(function() {
 				if ($.isArray(response)) {
 					$.each(response, function(i, data){
 						const sucursal = data.Store
-						const marker = new google.maps.Marker({
-			        map: map,
-			        // icon: '/img/marker3.png',
-			        draggable: true,
-              animation: google.maps.Animation.DROP,
-			        position: new google.maps.LatLng(sucursal.lat, sucursal.lng),
-				    })
-						const infowindow = new google.maps.InfoWindow({
-							content: '<div style="overflow: hidden; padding: 0.5rem; min-width: 300px"><img src="/img/logo.png" width=105><h4 style="margin-bottom:0;margin-top:0.5rem">'+ sucursal.name + '</h4>'+ (sucursal.takeaway == '1' ? '<br /><span class="text-chatelet"><i class="fa fa-shopping-bag"></i> Takeaway</span><br />' : '') + '<br><p><i class="fa fa-map-pin"></i>' + sucursal.address + '<br /><i class="fa fa-phone"></i>' + sucursal.phone + '<br /><i class="fa fa-whatsapp"></i>' + sucursal.whatsapp + '<br />' + '</p></div>'
-						})
-						var open = false
-						var close = function(){
-							infowindow.close();
-						}
-						var toggle = function() {
-							for(var i in markers) {
-								markers[i].close()
-							}
-							if (!open) {
-								infowindow.open(map, marker);
-							  const newCoords = new google.maps.LatLng(sucursal.lat, sucursal.lng);
-							  map.panTo(newCoords); 
-							  map.setZoom(16);
-							}
-							open = !open;
-						};
-						google.maps.event.addListener(marker, 'click', function() {
-							toggle();
-						});
-						markers[sucursal.id] = { toggle, close, sucursal };
-					});
-				}else{ 
-					console.error('no array');
+					  const marker = new mapboxgl.Marker({
+					  	className: 'custom-marker-'+sucursal.id,
+					  	color: "deeppink"
+					  })
+					    .setLngLat([sucursal.lng, sucursal.lat])
+					    .addTo(map);
+						const popup = new mapboxgl.Popup()
+					  .setHTML('<div style="overflow: hidden; padding: 0.5rem; min-width: 300px"><img src="/img/logo.png" width=105><h4 style="margin-bottom:0;margin-top:0.5rem">'+ sucursal.name + '</h4>'+ (sucursal.takeaway == '1' ? '<br /><span class="text-chatelet"><i class="fa fa-shopping-bag"></i> Takeaway</span><br />' : '') + '<br><p><i class="fa fa-map-pin"></i>' + sucursal.address + '<br /><i class="fa fa-phone"></i>' + sucursal.phone + '<br /><i class="fa fa-whatsapp"></i>' + sucursal.whatsapp + '<br />' + '</p></div>');
+					  //.setHTML('<h3>New York City</h3><p>The most populous city in the United States.</p>');
+						marker.setPopup(popup);
+					})
 				}
 			}
-		});
-	}
-
-	function geocodeCbk(results, status, id, location, infoContent) {
-		if (status == google.maps.GeocoderStatus.OK) {
-
-		}
+		})
 	}
 
 	$('.sucursal').click(function() {
-		var id = $(this).data('sucursal');
-
-		if (!markers[id]) return false;
-
-		markers[id].toggle();
-
+		const sucursal = $(this).data();
+		console.log('data', sucursal)
+		map.flyTo({
+	    center: [sucursal.lng, sucursal.lat],
+	    zoom: 12,
+	    essential: true
+		});		
+		/*setTimeout(function(){
+			$('.custom-marker-'+sucursal.id).trigger('click')
+		}, 1000)*/
+		
 		window.scrollTo(0,0)
 		return false;
-	});
-    
-	if (google) {
-		google.maps.event.addDomListener(window, 'load', initialize);
-	}
-});
+	});	
+	initialize()
+})

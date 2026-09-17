@@ -245,21 +245,19 @@ touchStartDelay:0,
   <div class="wrapper">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
-        <?php
-            $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
-              if (strpos($slug, 'trajes')!==false){
-                $slug = 'trajes-de-bano';
-              }
-
-        ?>
+        <div class="col-md-3 btBig-container desktop">
+<?php
+  $slug =  str_replace(' ','-',strtolower($category['Category']['name']));
+  if (strpos($slug, 'trajes')!==false){
+    $slug = 'trajes-de-bano';
+  }
+?>
             <a href="<?php echo router::url(array('controller' => 'tienda', 'action' => 'productos',
                              $slug)) ?>" class="btBig">
               volver <br>
                al  <span>SHOP</span>
             </a>
         </div>
-
         <div class="col-md-9 product-list posnum-<?=@$category['Category']['posnum'] ?>">
           <div class="row w-100">
               <?php
@@ -275,25 +273,24 @@ touchStartDelay:0,
 </section>
 
 <div class="modal fade" tabindex="-1" id="myModal2" role="dialog">
-    <div class="content">
-        <a class="close" data-dismiss="modal">
-            <span></span>
-            <span></span>
-        </a>
-
-        <?php if (empty($category['Category']['size'])): ?>
-        <div class="table">
-            <img src="/talles.jpg" style="max-width: 100%;max-height:100%;height:auto:width:100%" />    
-            </div>
-        <?php else: ?>
-            <div align="center" class="centered">
-                <img src="<?=$settings['upload_url']?><?=$category['Category']['size']?>" style="max-width:100%" border="0" />
-            </div>
-        <?php endif; ?>
-
+  <div class="content">
+    <a class="close" data-dismiss="modal">
+      <span></span>
+      <span></span>
+    </a>
+    <?php if (empty($category['Category']['size'])): ?>
+    <div class="table">
+      <img src="/talles.jpg" style="max-width: 100%;max-height:100%;height:auto:width:100%" />    
     </div>
-</div><!-- /.modal -->
-<style>
+  <?php else: ?>
+    <div align="center" class="centered">
+      <img src="<?=$settings['upload_url']?><?=$category['Category']['size']?>" style="max-width:100%" border="0" />
+    </div>
+  <?php endif; ?>
+  </div>
+</div>
+
+<style type="text/css">
 	#main .price_strong {
 		font-size: 1.5rem;
 	}
@@ -306,74 +303,69 @@ touchStartDelay:0,
 	  background: rgba(255,255,255,0.5);
 	  color: #999;
 	}
-</style>
-<style>
-div.cloudzoom-black {
-    display: none !important;
-}
-div.cloudzoom-black:nth-child(3) {
-    display: none !important;
-}
-div.cloudzoom-black:nth-child(2) {
-    display: none !important;
-}
+	div.cloudzoom-black {
+	    display: none !important;
+	}
+	div.cloudzoom-black:nth-child(3) {
+	    display: none !important;
+	}
+	div.cloudzoom-black:nth-child(2) {
+	    display: none !important;
+	}
 </style>
 
-<script>
-/* @Analytics: detail */
-fbq('track', 'ViewContent')
-gtag('event', 'view_item', {
-  "items": [
-    {
-      'id': '<?php echo $product['id'];?>',
-      'name': '<?php echo $product['article'];?>',
-      "list_name": "Product detail",
-      'brand': '<?php echo $product['name'];?>',
-      'category': '<?php echo $category['Category']['name'];?>',
-      "list_position": 1,
-      "quantity": 1,
-      'price': '<?php echo $product['discount'];?>'
-    }
-  ]
-})
-</script>
+<script type="text/javascript">
+	/* @Analytics: detail */
+	fbq('track', 'ViewContent')
+	gtag('event', 'view_item', {
+	  "items": [
+	    {
+	      'id': '<?php echo $product['id'];?>',
+	      'name': '<?php echo $product['article'];?>',
+	      "list_name": "Product detail",
+	      'brand': '<?php echo $product['name'];?>',
+	      'category': '<?php echo $category['Category']['name'];?>',
+	      "list_position": 1,
+	      "quantity": 1,
+	      'price': '<?php echo $product['discount'];?>'
+	    }
+	  ]
+	})
 
+	window.baseUrl = "<?=Router::url('/',true)?>";
 
-<script>
-window.baseUrl = "<?=Router::url('/',true)?>";
-
-// check stock
-function checkStock(i){
-    var item = $(product_list[i]);
-    var product_id = $(item).data('id') || $(item).attr('data-id');
-    var $html = '<img src="' + baseUrl + 'images/agotado3.png" class="out_stock" />';
-     $.ajax({
-        type: "GET",
-        url: baseUrl + 'shop/check_stock/' + product_id,
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function(stock){
-            if (stock=='empty'){
-                $(item).prepend($html);
-            }else{
-                console.log(product_id + ' in stock')
-            }
-            $(item).find('.verifying-stock').remove();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-        }
-   });
-}
-window.product_list = new Array();
-document.addEventListener("DOMContentLoaded", function() {
-  /*
-    $('.add-no-stock').each(function(i,item){
-        product_list[i] = item;
-        setTimeout(function(){
-            checkStock(i);
-        }, 500*i);
-    })
-    */
-})
+	// check stock
+	function checkStock(i){
+	    var item = $(product_list[i]);
+	    var product_id = $(item).data('id') || $(item).attr('data-id');
+	    var $html = '<img src="' + baseUrl + 'images/agotado3.png" class="out_stock" />';
+	     $.ajax({
+	        type: "GET",
+	        url: baseUrl + 'shop/check_stock/' + product_id,
+	        processData: false,
+	        contentType: false,
+	        cache: false,
+	        success: function(stock){
+	            if (stock=='empty'){
+	                $(item).prepend($html);
+	            }else{
+	                console.log(product_id + ' in stock')
+	            }
+	            $(item).find('.verifying-stock').remove();
+	        },
+	        error: function (jqXHR, textStatus, errorThrown) {
+	        }
+	   });
+	}
+	window.product_list = new Array();
+	document.addEventListener("DOMContentLoaded", function() {
+	  /*
+	    $('.add-no-stock').each(function(i,item){
+	        product_list[i] = item;
+	        setTimeout(function(){
+	            checkStock(i);
+	        }, 500*i);
+	    })
+	    */
+	})
 </script>
