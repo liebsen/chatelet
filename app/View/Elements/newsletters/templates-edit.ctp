@@ -221,10 +221,6 @@
       <i class="fa fa-chevron-left"></i> 
       <span class="ml-1">Atrás</span>
     </a>
-    <span class="btn btn-warning btn-templates-editor">
-      <i class="gi gi-font"></i> 
-      <span class="ml-1">Diseñar</span>
-    </span>
     <span class="btn btn-warning btn-templates-elements w-auto">
       <i class="fa fa-key"></i> 
       <!--span class="ml-1"></span-->
@@ -246,6 +242,15 @@
       <i class="fa fa-check"></i> 
       <span class="ml-1">Guardar</span>
     </button>
+    <span class="btn btn-warning btn-templates-editor">
+      <i class="gi gi-font"></i> 
+      <span class="ml-1">Diseñar</span>
+    </span>    
   </div>
 
+  <style type="text/css">
+  	.form-actions.fullscreen > .btn:not(.btn-templates-editor) {
+  		display: none;
+  	}
+  </style>
 <?php echo $this->Form->end(); ?>
