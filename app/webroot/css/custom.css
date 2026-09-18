@@ -1342,7 +1342,7 @@ ul#ul-moreviews li.dontResize img {
 .map { 
   display: flex; 
   overflow: hidden; 
-  min-height: calc(100dvh - 200px);
+  min-height: calc(100dvh - 136px);
 }
 
 .map .col-md-3 { 
