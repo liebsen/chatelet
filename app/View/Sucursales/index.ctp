@@ -30,7 +30,7 @@ $this->Html->script('https://api.mapbox.com/mapbox-gl-js/v3.30.0/mapbox-gl.js', 
         echo '<h4 class="sucursal text-chatelet is-clickable" data-sucursal="'. $store['id'] .'" data-lat="'.$store['lat'].'" data-lng="'.$store['lng'].'">'. $store['name'] .'</h4>';
         echo '<h3></h3>';  
         echo '<ul>';      
-        echo '<li><a class="sucursal is-clickable text-nowrap" data-sucursal="'. $store['id'] .'" data-lat="'.$store['id'].'" data-lng="'.$store['lng'].'"><i class="fa fa-map-pin mr-2"></i>'. $store['address'] .'</a></li>';
+        echo '<li><a class="sucursal is-clickable text-nowrap" data-sucursal="'. $store['id'] .'" data-lat="'.$store['lat'].'" data-lng="'.$store['lng'].'"><i class="fa fa-map-pin mr-2"></i>'. $store['address'] .'</a></li>';
         foreach($phone_arr as $phone_str){
           echo '<li><a href="tel:'.$phone_str.'"><i class="fa fa-lg fa-phone mr-2"></i>'.$phone_str.'</a></li>';
         }

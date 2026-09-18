@@ -668,7 +668,7 @@ class NewsletterComponent extends Component {
         $response = array(
           'success' => true,
           'message' => 'Tu Lista se actualizó correctamente',
-          //'redirect' => Router::reverse($redirect),
+          'redirect' => Router::reverse($redirect),
           'lastid' => $NewsletterList->id,
         );
 
