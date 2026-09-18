@@ -115,6 +115,7 @@
 							class="btn btn-sm btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
+							data-name="<?=$schedule['NewsletterSchedule']['id']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Campaña?')?>"                   
@@ -213,18 +214,20 @@
 						</div>
 					</td>
 					<td>
-						<a 
-							href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
-							data-toggle="tooltip" 
-							title="Editar lista" 
-						>
-							<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=\word_limit($schedule['NewsletterList']['name'])?> </span>
-						</a>
-<?php if(!empty(!empty($schedule['list_total']))):?>
-						<span class="badge badge-info">
-						 <?=$schedule['list_total']?>
-						</span>
-<?php endif ?>
+						<div class="d-flex flex-start flex-wrap gap-25">
+							<a 
+								href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
+								data-toggle="tooltip" 
+								title="Editar lista" 
+							>
+								<span class="badge badge-<?=!empty($schedule['list_total']) ? 'info' : 'danger'?>"><?=\word_limit($schedule['NewsletterList']['name'])?> </span>
+							</a>
+	<?php if(!empty(!empty($schedule['list_total']))):?>
+							<span class="badge badge-info">
+							 <?=$schedule['list_total']?>
+							</span>
+	<?php endif ?>
+						</div>
 					</td>
 					<td>
 						<div class="d-flex flex-start flex-wrap gap-25">
@@ -293,6 +296,7 @@
 								class="btn btn-sm btn-danger deletebutton" 
 								data-original-title="Eliminar" 
 								data-id="<?=$schedule['NewsletterSchedule']['id']?>" 
+								data-name="<?=$schedule['NewsletterSchedule']['id']?>" 
 								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
 								data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
 								data-msg="<?=__('¿Eliminar Campaña?')?>"                   

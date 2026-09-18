@@ -25,6 +25,7 @@ function generate_list($array, $sel, $parent = '', $level = 1,$prod){
           $li .= '<a href="categories/edit/'.$value['Category']['id'].'" class="btn btn-small btn-warning"><i class="icon-cog"></i> Editar</a>';
           $li .= '<a class="btn btn-small btn-danger deletebutton" 
                     data-id="'.$value['Category']['id'].'"
+                    data-name="'.$value['Category']['name'].'" 
                     data-url-back="'.Router::url( "/", true ).'categories/index"
                     data-delurl="'.Router::url( "/", true ).'categories/delete"
                     data-msg="'.__('¿Eliminar categoria?').'"

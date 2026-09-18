@@ -49,6 +49,7 @@
 						class="btn btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$legend['Legend']['id']?>" 
+						data-name="<?=$legend['Legend']['title']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'legends'))?>" 
 						data-delurl="<?=$this->Html->url(array('action'=>'legends', 'delete'))?>" 
 						data-msg="¿Eliminar leyenda?"

@@ -46,6 +46,7 @@
 						class="btn btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$menu['id']?>" 
+						data-name="<?=$menu['name']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'admin_menu'))?>" 
 						data-delurl="<?=$this->Html->url(array('action'=>'admin_menu', 'delete'))?>" 
 						data-msg="¿Eliminar categoría? Precaución: Se borrarán los productos que estén contenidos en esta categoría."                   

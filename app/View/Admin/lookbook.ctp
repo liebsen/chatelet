@@ -39,6 +39,7 @@
 							class="btn btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$lookbook['LookBooks']['id']?>" 
+							data-name="<?=$lookbook['LookBooks']['name']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'lookbook'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'lookbook', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Look Book?')?>" >

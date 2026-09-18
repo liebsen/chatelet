@@ -73,6 +73,7 @@
 						class="btn btn-sm btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$coupon['Coupon']['id']?>" 
+						data-name="<?=$coupon['Coupon']['code']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'cupones'))?>" 
 						data-delurl="<?=$this->Html->url(array('action'=>'cupones', 'delete'))?>" 
 						data-msg="<?=__('¿Eliminar cupon?')?>"                   

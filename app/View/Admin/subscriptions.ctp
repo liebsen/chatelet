@@ -47,6 +47,7 @@
 							class="btn btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$subscription['Subscription']['id']?>" 
+							data-name="<?=$subscription['Subscription']['name']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'subscriptions'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'subscriptions', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Newsletter?')?>"                   

@@ -53,9 +53,10 @@
 							class="btn btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$menu['Menu']['id']?>" 
+							data-name="<?=$menu['Menu']['name']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'menu'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'menu', 'delete'))?>" 
-							data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria."                   
+							data-msg="¿Eliminar menú?"                   
 							>
 							<i class="fa fa-trash-o"></i>
 						</a>
