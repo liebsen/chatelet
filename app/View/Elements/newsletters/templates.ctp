@@ -175,7 +175,7 @@
 						<?php endif ?>						
 					</td>
 					<td data-order="<?=strtotime($newsletter['Newsletter']['modified'])?>">
-						<span class="badge text-capitalize" title="<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
+						<span class="badge" title="<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
 					</td>
 					<td>
 						<div class="d-flex flex-center flex-nowrap gap-25">   
