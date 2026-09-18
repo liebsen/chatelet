@@ -56,7 +56,14 @@ function setRelation(action, data, target, type, cb) {
 		formData.userIds.push(item.id)
 	})
 
-  if(confirm(`Por favor confirma para ${action == 'add' ? 'agregar' : 'eliminar'} ${formData.key == 'all' ? 'todos los registros' : formData.userIds.length + ' registro' + (formData.userIds.length > 1 ? 's' : '')}`)) {
+	swal({   
+		title: "Agregar a la lista",   
+		text: `Por favor confirma para ${action == 'add' ? 'agregar' : 'eliminar'} ${formData.key == 'all' ? 'todos los registros' : formData.userIds.length + ' registro' + (formData.userIds.length > 1 ? 's' : '')}`,   
+		type: "warning",
+		showCancelButton: true,   
+		closeOnConfirm: true,   
+		showLoaderOnConfirm: true,
+	}, function() {
     $.post('/admin/relation_' + action, {
       data: formData
     }).success(function(res) {
@@ -91,7 +98,7 @@ function setRelation(action, data, target, type, cb) {
         queue: false,
       });
     });
-  }  
+	})
 }
 
 function updateRelationCount(type, target, count){
@@ -205,8 +212,6 @@ $(document).on('click', '.relations-add', function(e){
   
   $(`.${tData.type}-container > .label`).removeClass('is-enabled')
 
-  console.log('a(2)',data.length)
-
   setRelation('add', data, target, tData.type, updateRelationCount)
 })
 
@@ -223,7 +228,6 @@ $(document).on('click', '.relations-remove', function(e){
       data.push($(e).data())
     })
   }
-  console.log("data(1)",data)
   setRelation('remove', data, target, tData.type, updateRelationCount)
 })
 

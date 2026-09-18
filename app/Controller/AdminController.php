@@ -2814,10 +2814,13 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$this->RequestHandler->respondAs('application/json');
     if ($this->request->is('POST')) {
     	$data = $this->request->data;
+    		\d("relation_add(1)",$data['key']);
+    		\d("relation_add(2)",$data);
+    		\d("relation_add(3)",$data);
 
-    	\d("data(count)",count($data));
-    	if($data[0]['key'] == 'all') { // if list partition is on, then parentId will be especially treated 
-    		$model = ClassRegistry::init($data[0]['model']);
+    	if($data['key'] == 'all') { // if list partition is on, then parentId will be especially treated 
+    		$model = ClassRegistry::init($data['model']);
+    		\d("relation_add(model)",$model);
 
     		// assume user for now
     		$this->loadModel('User');
@@ -2826,17 +2829,17 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     		// its all so truncate first
     		$model->deleteAll(
     			array(
-	      		$data[0]['source'] . '_id' => $data[0]['parentId'],
+	      		$data['source'] . '_id' => $data['parentId'],
     			),
     			false,
     			false
     		);
 
     		# check if will be partition
-    		$parent_id = $data[0]['parentId'];
+    		$parent_id = $data['parentId'];
     		$lists_count = 2;
-    		$audience_max = $data[0]['audienceMax'] ?? 0;
-    		$template = $this->NewsletterList->find('first', array('conditions' => array('id' => $data[0]['parentId'])));
+    		$audience_max = $data['audienceMax'] ?? 0;
+    		$template = $this->NewsletterList->find('first', array('conditions' => array('id' => $data['parentId'])));
 
     		$name = $template['NewsletterList']['name'];
 				unset($template['NewsletterList']['id']);
@@ -2867,8 +2870,8 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
     			array_push($saves, 
     				array(
 		      		'id' => null,
-		      		$data[0]['type'] . '_id' => $item['User']['id'],
-		      		$data[0]['source'] . '_id' => $parent_id,
+		      		$data['type'] . '_id' => $item['User']['id'],
+		      		$data['source'] . '_id' => $parent_id,
 		      	)
     			);
     		}
