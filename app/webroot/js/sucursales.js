@@ -21,7 +21,7 @@ $(document).ready(function() {
 					    .setLngLat([sucursal.lng, sucursal.lat])
 					    .addTo(map);
 						const popup = new mapboxgl.Popup()
-					  .setHTML('<div style="overflow: hidden; padding: 0.5rem; min-width: 300px"><img src="/img/logo.png" width=105><h4 style="margin-bottom:0;margin-top:0.5rem">'+ sucursal.name + '</h4>'+ (sucursal.takeaway == '1' ? '<br /><span class="text-chatelet"><i class="fa fa-shopping-bag"></i> Takeaway</span><br />' : '') + '<br><p><i class="fa fa-map-pin"></i>' + sucursal.address + '<br /><i class="fa fa-phone"></i>' + sucursal.phone + '<br /><i class="fa fa-whatsapp"></i>' + sucursal.whatsapp + '<br />' + '</p></div>');
+					  .setHTML('<p style="min-width: 200px"><h5 style="margin-bottom: 0.5rem; margin-left: 0.5rem">'+ sucursal.name + '</h5><i class="fa fa-map-pin"></i>' + sucursal.address + '<br /><i class="fa fa-phone"></i>' + sucursal.phone + '<br /><i class="fa fa-whatsapp"></i>' + sucursal.whatsapp + (sucursal.takeaway == '1' ? '<br /><br /><span class="text-chatelet"><i class="fa fa-shopping-bag"></i> Takeaway</span><br />' : '') + '</p>');
 						marker.setPopup(popup);
 					})
 				}
