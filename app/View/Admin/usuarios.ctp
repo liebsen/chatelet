@@ -85,6 +85,7 @@
 						class="btn btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$user['User']['id']?>" 
+						data-name="<?=$user['User']['name']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'usuarios'))?>" 
 						data-delurl="<?=$this->Html->url(array('action'=>'usuarios', 'delete'))?>" 
 						data-msg="<?=__('¿Eliminar usuario?')?>"                   

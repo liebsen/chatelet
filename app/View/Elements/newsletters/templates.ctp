@@ -106,6 +106,7 @@
 							class="btn btn-sm btn-danger deletebutton" 
 							data-original-title="Eliminar" 
 							data-id="<?=$newsletter['Newsletter']['id']?>" 
+							data-name="<?=$newsletter['Newsletter']['title']?>" 
 							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Plantilla?')?>"                   
@@ -166,13 +167,15 @@
 						</span>
 					</td>
 					<td>
-						<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><i class="gi gi-shirt"></i> <?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
-						<?php if(!empty($newsletter['Coupon']['code'])):?>
-							<a 
-							href="<?=$this->Html->url(array('action'=>'cupones', 'edit', $newsletter['Coupon']['id']))?>" title="<?= $newsletter['Coupon']['info']?>. Válido desde <?= $newsletter['Coupon']['date_from']?> hasta <?= $newsletter['Coupon']['date_until']?>">
-								<span class="badge badge-warning badge-coupon"><i class="fa fa-ticket"></i> <?= $newsletter['Coupon']['code']?></span>
-							</a>
-						<?php endif ?>						
+						<div class="d-flex flex-center flex-nowrap gap-25">   
+							<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><i class="gi gi-shirt"></i> <?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
+							<?php if(!empty($newsletter['Coupon']['code'])):?>
+								<a 
+								href="<?=$this->Html->url(array('action'=>'cupones', 'edit', $newsletter['Coupon']['id']))?>" title="<?= $newsletter['Coupon']['info']?>. Válido desde <?= $newsletter['Coupon']['date_from']?> hasta <?= $newsletter['Coupon']['date_until']?>">
+									<span class="badge badge-warning badge-coupon"><i class="fa fa-ticket"></i> <?= $newsletter['Coupon']['code']?></span>
+								</a>
+							<?php endif ?>
+						</div>
 					</td>
 					<td data-order="<?=strtotime($newsletter['Newsletter']['modified'])?>">
 						<span class="badge" title="<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
@@ -234,6 +237,7 @@
 								class="btn btn-sm btn-danger deletebutton" 
 								data-original-title="Eliminar" 
 								data-id="<?=$newsletter['Newsletter']['id']?>" 
+								data-name="<?=$newsletter['Newsletter']['title']?>" 
 								data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'templates'))?>" 
 								data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'templates', 'delete'))?>" 
 								data-msg="<?=__('¿Eliminar Plantilla?')?>"                   

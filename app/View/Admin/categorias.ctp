@@ -194,9 +194,10 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 									class="btn btn-danger deletebutton" 
 									data-original-title="Eliminar" 
 									data-id="<?=$category['Category']['id']?>" 
+									data-name="Advertencia: Se borraran los productos que esten contenidos en esta categoria: <?=$category['Category']['name']?>" 
 									data-url-back="<?=$this->Html->url(array('action'=>'categorias'))?>" 
 									data-delurl="<?=$this->Html->url(array('action'=>'categorias', 'delete'))?>" 
-									data-msg="¿Eliminar categoria? Precación: Se borraran los productos que esten contenidos en esta categoria.">
+									data-msg="¿Eliminar categoria?">
 									<i class="fa fa-trash-o"></i>
 								</a>
 							</div> 

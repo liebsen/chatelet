@@ -1,13 +1,14 @@
 $(document).ready(function() {
   $('.deletebutton').click(function(){                
     var id          = $(this).attr('data-id'),
+  	title     = $(this).attr('data-name'),
   	urlback     = $(this).attr('data-url-back'),
   	delurl      = $(this).attr('data-delurl'),
   	msg         = $(this).attr('data-msg');            
 
 		swal({   
-			title: "Eliminar",   
-			text: msg,   
+			title: msg,
+			text: title || id,   
 			type: "warning",
 			showCancelButton: true,   
 			closeOnConfirm: true,   

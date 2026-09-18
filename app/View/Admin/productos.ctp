@@ -85,7 +85,8 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
 								title="" 
 								class="btn btn-danger deletebutton" 
 								data-original-title="Eliminar" 
-								data-id="<?=$product['Product']['id']?>" 
+								data-id="<?=$product['Product']['id']?>"
+								data-name="<?=$product['Product']['name']?>"  
 								data-url-back="<?=$this->Html->url(array('action'=>'productos'))?>" 
 								data-delurl="<?=$this->Html->url(array('action'=>'productos', 'delete'))?>" 
 								data-msg="<?=__('¿Eliminar producto?')?>">

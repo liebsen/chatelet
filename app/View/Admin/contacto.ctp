@@ -50,6 +50,7 @@
 						class="btn btn-danger deletebutton" 
 						data-original-title="Eliminar" 
 						data-id="<?=$contact['Contact']['id']?>" 
+						data-name="<?=$contact['Contact']['name']?>" 
 						data-url-back="<?=$this->Html->url(array('action'=>'contacto'))?>" 
 						data-delurl="<?=$this->Html->url(array('action'=>'contacto', 'delete'))?>" 
 						data-msg="<?=__('¿Eliminar mensaje?')?>"                   

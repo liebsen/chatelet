@@ -69,7 +69,8 @@
                   </a>
                   <a  href="javascript:void(0)" 
                       class="badge badge-danger deletebutton"
-                      data-id="<?=$image?>"                                           
+                      data-id="<?=$image?>"
+                      data-name="<?=$image?>"
                       data-url-back="<?=$this->here?>"
                       data-delurl="<?=$this->Html->url(array('action'=>'catalogo','deleteimg'))?>"
                       data-msg="<?=__('¿Eliminar imagen?')?>">
