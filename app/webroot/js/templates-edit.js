@@ -56,6 +56,7 @@ $(document).ready(function() {
   })
 
   $('.btn-templates-editor').click(function(){
+  	$('.form-actions').toggleClass('fullscreen')
   	$(this).toggleClass('btn-warning')
   	$(this).toggleClass('btn-info')
     CKEDITOR.instances.newsletter.execCommand('maximize');

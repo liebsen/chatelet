@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 	var carouselInterval = 0
-	var carouselTimeout = 2000
+	var carouselTimeout = 3000
 	$('#productOptions .carousel').each(function(){
 		$(this).swipe({
 		  swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
