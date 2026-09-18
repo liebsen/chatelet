@@ -240,7 +240,7 @@ function readable_tag_color($tag) {
 }
 
 
-function readable_time_ago($timestamp, $short = false) {
+function readable_time_ago($timestamp, $short = true) {
   $current_date = time();
   $date = strtotime($timestamp);
   $asc = $current_date > $date;
@@ -261,16 +261,16 @@ function readable_time_ago($timestamp, $short = false) {
     $span = "ahora";
     $skipprep = true;
   } elseif ($diff < 60) {
-    $span = $diff == 1 ? "1 seg" : $diff . " segs";
+    $span = $diff . " seg";
   } elseif ($diff < (3600 - 60)) {
     $minutes = round($diff / 60);
-    $span = $minutes == 1 ? "1 min" : $minutes . " mins";
+    $span = $minutes . " min";
   } elseif ($diff < (86400 - 3600)) {
     $hours = round($diff / 3600);
-    $span = $hours == 1 ? "1 hora" : $hours . " hs";
+    $span = $hours . " h";
   } elseif ($diff < 2592000) { // 30 days
     $days = round($diff / 86400);
-    $span = $days == 1 ? "1 día" : $days . " días";
+    $span = $days . " d";
     if($days == 1) {
       $span = $asc ? "ayer" : 'mañana';
       $skipprep = true;
@@ -279,14 +279,14 @@ function readable_time_ago($timestamp, $short = false) {
       $skipprep = true;
     } else {
       $weeks = round($diff / 604800);
-      $span = $weeks == 1 ? "1 semana" : $weeks . " semanas";
+      $span = $weeks . " sem";
     }
   } elseif ($diff < 31536000) { // 365 days
     $months = round($diff / 2592000);
-    $span = $months == 1 ? "1 mes" : $months . " meses";
+    $span = $months . " m";
   } else {
     $years = round($diff / 31536000);
-    $span = $years == 1 ? "1 año" : $years . " años";
+    $span = $years . " a";
   }
   if($short) {
     return $span;

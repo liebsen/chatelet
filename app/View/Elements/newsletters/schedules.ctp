@@ -21,7 +21,7 @@
 						style="background-image: url('<?=\extract_jpeg_url($schedule['Newsletter']['body'])?>')"
 						title="Ver detalles de campaña">
 						<span class="badge">#<?=$schedule['NewsletterSchedule']['id']?></span>
-						<span class="badge text-capitalize"><?=\readable_time_ago($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')?> </span></span>
+						<span class="badge"><?=\readable_time_ago($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00')?> </span></span>
 					</a>
 					<div class="card-text">
 						<span class="badge badge-<?=$schedule['rowclass']?>"><?=$schedule['status']?>
@@ -56,7 +56,7 @@
 						>						
 							<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total'].')' : ''?></span>
 						</a>
-						<div class="is-flex flex-start gap-05">
+						<div class="d-flex flex-start flex-wrap gap-25">
 							<?php if($schedule['Newsletter']['send_email'] == '1'):?>
 							<span class="badge badge-success is-rounded" title="Emails enviados">
 								<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
@@ -174,41 +174,43 @@
 <?php endif ?>
 					</td>
 					<td>
-						<a 
-							href="<?=$this->Html->url(
-								array(
-									'action' => 'newsletters', 
-									'templates', 
-									'edit', 
-									$schedule['Newsletter']['id'],
-								)
-							)?>"
-							data-toggle="tooltip" 
-							title="Editar contenido" 
-						>
-							<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>"><?=\word_limit($schedule['Newsletter']['title'])?></span>
-						</a>
-<?php if(!empty(!empty($schedule['prod_total']))):?>
-						<span class="badge badge-success">
-						 <?=$schedule['prod_total']?>
-						</span>
-<?php endif ?>
-						<a 
-							href="<?=$this->Html->url(
-								array(
-									'action' => 'newsletters', 
-									'templates', 
-									'edit', 
-									$schedule['Newsletter']['id'],
-									'#' => 'editor',
-								)
-							)?>" 
-							data-toggle="tooltip" 
-							title="Editar plantilla" 
-							class="badge badge-info" 
-						>
-							<i class="gi gi-font"></i>
-						</a>
+						<div class="d-flex flex-start flex-wrap gap-25">
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'action' => 'newsletters', 
+										'templates', 
+										'edit', 
+										$schedule['Newsletter']['id'],
+									)
+								)?>"
+								data-toggle="tooltip" 
+								title="Editar contenido" 
+							>
+								<span class="badge badge-<?=!empty($schedule['prod_total']) ? 'success' : 'light'?>"><?=\word_limit($schedule['Newsletter']['title'])?></span>
+							</a>
+	<?php if(!empty(!empty($schedule['prod_total']))):?>
+							<span class="badge badge-success">
+							 <?=$schedule['prod_total']?>
+							</span>
+	<?php endif ?>
+							<a 
+								href="<?=$this->Html->url(
+									array(
+										'action' => 'newsletters', 
+										'templates', 
+										'edit', 
+										$schedule['Newsletter']['id'],
+										'#' => 'editor',
+									)
+								)?>" 
+								data-toggle="tooltip" 
+								title="Editar plantilla" 
+								class="badge badge-info" 
+							>
+								<i class="gi gi-font"></i>
+							</a>
+						</div>
 					</td>
 					<td>
 						<a 
@@ -225,7 +227,7 @@
 <?php endif ?>
 					</td>
 					<td>
-						<div class="is-flex flex-start gap-05">
+						<div class="d-flex flex-start flex-wrap gap-25">
 							<?php if($schedule['Newsletter']['send_email'] == '1'):?>
 							<span class="badge badge-success is-rounded" title="Emails enviados">
 								<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
