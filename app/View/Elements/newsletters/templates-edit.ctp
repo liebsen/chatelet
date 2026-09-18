@@ -242,7 +242,7 @@
       <i class="fa fa-check"></i> 
       <span class="ml-1">Guardar</span>
     </button>
-    <span class="btn btn-warning btn-templates-editor">
+    <span class="btn btn-info btn-templates-editor">
       <i class="gi gi-font"></i> 
       <span class="ml-1">Diseñar</span>
     </span>    
