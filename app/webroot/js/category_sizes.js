@@ -162,10 +162,11 @@ $(document).ready(function() {
 		saveStore('textStyle', 'shadow_color', $(this).val())
 	});
   $('.btn-preview').click(function(e){
+  	$('.form-actions').toggleClass('fullscreen')
   	$('.cat-preview').toggleClass('fs')
   	$('.preview-toggle').toggleClass('d-none')
   	$(this).toggleClass('btn-warning')
-  	$(this).toggleClass('btn-light')
+  	$(this).toggleClass('btn-info')
   })
   $('select[name="data[posnum]"]').change(function(e){
 		$('.shop-preview').removeClass(function(index, className) {
