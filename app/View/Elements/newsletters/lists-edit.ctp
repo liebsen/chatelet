@@ -21,9 +21,10 @@ echo $this->Form->create(null, array(
       <p>Configura el alcance para esta Lista</p>
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
-          <label class="control-label" for="toggle">Activo</label>
           <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$list['NewsletterList']['enabled'] == '1' ? ' checked' : (!empty($list['NewsletterList']['id']) ? '' : ' data-change="1" checked')?>>
-          <label for="toggle" class="toggle-label"></label>
+          <label for="toggle" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Activo'); ?></span>
+          </label>
         </div>
 <?php if(!empty($list_users)): ?>
         <a href="javascript:void(0)" onclick="$('.table-main:not(.table-users)').hide();$('.table-users').toggle()">
@@ -190,21 +191,24 @@ echo $this->Form->create(null, array(
   </div>
 <?php echo $this->Form->end(); ?>
 <div id="relations-add-dialog" class="d-none">
+  <div class="controls d-flex flex-start gap-05">
+    <input type="checkbox" name="toggle_split" value="0" id="toggle_split" class="toggle-checkbox">
+    <label for="toggle_split" class="toggle-label toggle-split toggle-click" data-func="toggle_click_focus">
+    	<span class="toggle-text">Segmentar lista</span>
+    </label>
+  </div>
   <div class="controls flex-1">
-    <!--label class="control-label" for="">Deseas agrupar la audiencia</label-->
-    <input type="checkbox" name="toggle_split" value="0" id="toggle_reset" class="toggle-checkbox">
-    <label for="toggle_split" class="toggle-label toggle-split toggle-click" data-func="toggle_click_focus"></label>
-    <small class="text-muted toggle-split-desc">Si activas esta opción se crearán varios grupos de acuerdo a la cantidad que desees.</small>
-    <div class="toggle-split-area d-none">
+    <div class="toggle-split-area text-left d-none">
       <label class="control-label" for="title">Tamaño de los segmentos</label>
+      <small class="text-muted toggle-split-desc">Si activas esta opción se crearán varios grupos de acuerdo a la cantidad que desees.</small>
       <div class="controls">
         <input type="number" name="data[filter][audienceMax]" class="form-control relation-audience-max" placeholder="1000" value="<?=$list['NewsletterList']['filter']->filter->audienceMax ?? ''?>" required />
       </div>
       <small class="text-muted">Es el tamaño máximo de cuentas que contendrá cada lista nueva.</small>
-    </div><hr>
+    </div>
   </div>
-  <div class="control-group d-flex justify-content-end">
-    <button class="btn btn-success relations-add btn-persist" data-key="all" data-type="user" data-model="NewsletterUser" data-source="list" data-parent-id="<?= $list['NewsletterList']['id'] ?>" title="Pulsa aquí para agregar todos a la lista"><i class="fa fa-check mr-1"></i> Agregar todos</button>
+  <div class="control-group d-flex justify-content-end d-none">
+    <button class="btn btn-success relations-add relations-add-dialog-all btn-persist" data-key="all" data-type="user" data-model="NewsletterUser" data-source="list" data-parent-id="<?= $list['NewsletterList']['id'] ?>" data-process="1" title="Pulsa aquí para agregar todos a la lista"><i class="fa fa-check mr-1"></i> Agregar todos</button>
   </div>
 </div>
 

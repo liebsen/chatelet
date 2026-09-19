@@ -65,25 +65,26 @@
 		      	<h4 class="sub-header">Configuración extra</h4>
 		      	<p>Establece las características generales de todos las campañas.</p>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Logo del encabezado'); ?></label>
 							<div class="form-group">
 								<input type="checkbox" name="data[newsletter_show_header]" value="1" id="toggle_header" class="toggle-checkbox"<?=@$settings['newsletter_show_header'] == '1' ? ' checked' : '' ?>>
-								<label for="toggle_header" class="toggle-label"></label>
+								<label for="toggle_header" class="toggle-label"><?php echo __('Logo del encabezado'); ?></label>
 							</div>
 		        </div>
 		        <div class="control-group">
-		          <label class="control-label" for="columns-text"><?php echo __('Redes sociales'); ?></label>
 							<div class="form-group">
 								<input type="checkbox" name="data[newsletter_show_social]" value="1" id="toggle_social" class="toggle-checkbox"<?=@$settings['newsletter_show_social'] == '1' ? ' checked' : '' ?>>
-								<label for="toggle_social" class="toggle-label"></label>
+								<label for="toggle_social" class="toggle-label">
+									<span class="toggle-text"><?php echo __('Redes sociales'); ?></span>
+								</label>
 							</div>
 		        </div>
 		        <div class="control-group">
 			        <div class="control-group">
-								<label class="control-label" for="toggle-text"><?php echo __('Aviso general'); ?></label>
 								<div class="form-group">
 									<input type="checkbox" name="data[newsletter_text_enable]" value="1" id="toggle-text" class="toggle-checkbox toggle-block" data-block=".newslettertext"<?=@$settings['newsletter_text_enable'] == '1' ? ' checked' : '' ?>>
-									<label for="toggle-text" class="toggle-label"></label>
+									<label for="toggle-text" class="toggle-label">
+										<span class="toggle-text"><?php echo __('Aviso general'); ?></span>
+									</label>
 								</div>
 			        </div>
 		          <div class="controls newslettertext<?=@$settings['newsletter_text_enable'] == '1' ? '' : ' d-disable'?>">
@@ -169,24 +170,27 @@
               </div>
             </div>
 		        <div class="control-group">
-							<label class="control-label" for="columns-text"><?php echo __('Tls'); ?></label>
 							<div class="form-group">
 								<input type="checkbox" name="data[newsletter_tls]" value="1" id="toggle-tls" class="toggle-checkbox"<?=@$settings['newsletter_tls'] == '1' ? ' checked' : '' ?>>
-								<label for="toggle-tls" class="toggle-label"></label>
+								<label for="toggle-tls" class="toggle-label">
+									<span class="toggle-text"><?php echo __('TLS'); ?></span>
+								</label>
 							</div>
 		        </div>
 		        <div class="control-group">
-							<label class="control-label" for="columns-text"><?php echo __('Ssl'); ?></label>
 							<div class="form-group">
 								<input type="checkbox" name="data[newsletter_ssl]" value="1" id="toggle-ssl" class="toggle-checkbox"<?=@$settings['newsletter_ssl'] == '1' ? ' checked' : '' ?>>
-								<label for="toggle-ssl" class="toggle-label"></label>
+								<label for="toggle-ssl" class="toggle-label">
+									<span class="toggle-text"><?php echo __('SSL'); ?></span>
+								</label>
 							</div>
 		        </div>
 		        <div class="control-group">
-							<label class="control-label" for="columns-text"><?php echo __('Log'); ?></label>
 							<div class="form-group">
 								<input type="checkbox" name="data[newsletter_log]" value="1" id="toggle-log" class="toggle-checkbox"<?=@$settings['newsletter_log'] == '1' ? ' checked' : '' ?>>
-								<label for="toggle-log" class="toggle-label"></label>
+								<label for="toggle-log" class="toggle-label">
+									<span class="toggle-text"><?php echo __('LOG'); ?></span>
+								</label>
 							</div>
 		        </div>
 		      </div>

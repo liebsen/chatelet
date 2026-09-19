@@ -726,6 +726,7 @@ background-color: #e8ffa8!important;
   flex-direction: column;
   justify-content: center;
   align-items: self-start;
+	margin-bottom: 0.5rem;
 }
 
 .block .block {
@@ -3162,7 +3163,7 @@ background-color: #fff;
   height: 40px;
 }
 
-form label:not(.switch-scale > span > label):not(.toggle-label),
+form label:not(.switch-scale > span > label),
 form .control-label:not(.switch-scale > span > label) {
   cursor: pointer;
   text-transform: uppercase;
@@ -3384,6 +3385,9 @@ background-color: #45a049; /* Darker green on hover */
   display: none; /* Hide the default checkbox */
 }
 
+.toggle-split-area {
+	padding-top: 0.75rem;
+}
 .toggle-label {
   /* Style the track */
   display: block;
@@ -3409,6 +3413,13 @@ background-color: #45a049; /* Darker green on hover */
   transition: transform 0.4s; /* Smooth sliding animation */
 }
 
+.toggle-text {
+	white-space: nowrap;
+  display: flex;
+  padding-left: 5rem;
+  min-height: 34px;
+  align-items: center;
+}
 /* Change background color and slide the thumb when checked */
 .toggle-checkbox:checked + .toggle-label {
   background-color: var(--toggle-color); /* Blue when "on" */
@@ -3913,7 +3924,8 @@ a.thumbnail-borderless,
 .controls small {
   display: block;
   width: 100%;
-  padding-top: 0.25rem;
+	padding-top: 0.5rem;
+	padding-left: 0.5rem;
 }
 
 .tags-container {
@@ -4452,10 +4464,12 @@ div.cloudzoom-black:nth-child(3) {
 }
 
 .flex-start {
+	align-items: center;
   justify-content: start;
 }
 
 .flex-end {
+	align-items: center;
   align-items: flex-end;
 }
 

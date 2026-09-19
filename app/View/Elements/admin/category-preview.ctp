@@ -8,10 +8,11 @@
   		</span>
   	</div>
     <div class="shop-preview-tb d-flex flex-column flex-center">
-      <label class="control-label" for="show_text"><span class="text-white text-stroke text-selected"><?php echo __('Activar Texto')?></span></label>
       <div class="form-group">
         <input type="checkbox" name="data[show_text]" value="1" id="show_text" class="toggle-checkbox toggle-block" data-block=".catalog-block" data-class="d-none"<?=$category['Category']['show_text'] == '1' ? ' checked' : '' ?>>
-        <label for="show_text" class="toggle-label"></label>
+        <label for="show_text" class="toggle-label">
+        	<span class="toggle-text"><?php echo __('Activo'); ?></span>
+        </label>
       </div>
     </div>
   </div>

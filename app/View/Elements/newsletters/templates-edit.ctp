@@ -21,9 +21,10 @@
       <p><i class="fa fa-magic"></i> <?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
-          <label class="control-label" for="toggle">Activo</label>
           <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
-          <label for="toggle" class="toggle-label"></label>
+          <label for="toggle" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Activo'); ?></span>
+          </label>
         </div>
 <?php if(!empty($newsletter_products)): ?>
         <a href="javascript:void(0)" onclick="$('.table-products').toggle()"><span class="badge badge-<?=  count($newsletter_products) ? 'success' : 'danger' ?> is-rounded is-large"><?php echo count($newsletter_products) ?></span></a>
@@ -85,16 +86,20 @@
       <div class="form-box bg-info-outline">
         <h4 class="sub-header">Método de envío</h4>
         <p>Selecciona el canal por donde notificar a las clientas</p>
-        <div class="form-group flex-start gap-05">
+        <div class="form-group flex-start flex-column gap-05">
           <div class="controls flex-1">
-            <label class="control-label" for="toggle-email">Email</label>
             <input type="checkbox" name="data[send_email]" value="1" id="toggle-email" class="toggle-checkbox toggle-block" data-block=".email-block" data-class="d-none"<?=@$newsletter['Newsletter']['send_email'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
-            <label for="toggle-email" class="toggle-label"></label>
+            <label for="toggle-email" class="toggle-label">
+            	<span class="toggle-text"><?php echo __('Email'); ?></span>
+            </label>
+	          <small class="text-muted">Enviará un correo electrónico a la clienta</small>
           </div>
           <div class="controls flex-1">
-            <label class="control-label" for="toggle-push">Push</label>
             <input type="checkbox" name="data[send_push]" value="1" id="toggle-push" class="toggle-checkbox toggle-block" data-block=".push-block" data-class="d-none"<?=@$newsletter['Newsletter']['send_push'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
-            <label for="toggle-push" class="toggle-label"></label>
+            <label for="toggle-push" class="toggle-label">
+            	<span class="toggle-text"><?php echo __('Push'); ?></span>
+            </label>
+						<small class="text-muted">Enviará una notificación push al navegador de la clienta</small>
           </div>
         </div>
       </div> 
@@ -130,15 +135,17 @@
   <?php else: ?>
         <p>Puedes agregar productos a la plantilla, se mostrarán en un catálogo de lista con sus respectivos enlaces y precios.</p>
         <div class="control-group">
-          <label class="control-label" for="toggle-price"><?php echo __('Precio'); ?></label>
           <input type="checkbox" name="data[show_price]" value="1" id="toggle-price" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_price'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
-          <label for="toggle-price" class="toggle-label"></label>
+          <label for="toggle-price" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Precio'); ?></span>
+          </label>
           <small class="text-muted">Indica si debe mostrarse el precio del producto en el catálogo.</small>
         </div>
         <div class="control-group">
-          <label class="control-label" for="toggle-price"><?php echo __('Descripción'); ?></label>
           <input type="checkbox" name="data[show_text]" value="1" id="toggle-text" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_text'] == '1' ? ' data-change="1" checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' checked')?>>
-          <label for="toggle-text" class="toggle-label"></label>
+          <label for="toggle-text" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Texto'); ?></span>
+          </label>
           <small class="text-muted">Indica si debe mostrarse la descripción del producto en el catálogo.</small>
         </div>
         <div class="controls d-flex flex-column gap-05">
@@ -173,15 +180,17 @@
         <h4 class="sub-header">Configuración extra</h4>
         <p>Establece la configuración adicional de esta Plantilla</p>
         <div class="control-group<?=@$settings['newsletter_show_header'] == '1' ? '' : ' d-disable' ?>">
-          <label class="control-label" for="toggle-follow"><?php echo __('Logo de encabezado'); ?></label>
           <input type="checkbox" name="data[show_header]" value="1" id="toggle-header" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_header'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
-          <label for="toggle-header" class="toggle-label"></label>
+          <label for="toggle-header" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Logo encabezado'); ?></span>
+          </label>
           <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
         </div>
         <div class="control-group<?=@$settings['newsletter_show_social'] == '1' ? '' : ' d-disable' ?>">
-          <label class="control-label" for="toggle-follow"><?php echo __('Redes sociales'); ?></label>
           <input type="checkbox" name="data[show_social]" value="1" id="toggle-follow" class="toggle-checkbox"<?=@$newsletter['Newsletter']['show_social'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
-          <label for="toggle-follow" class="toggle-label"></label>
+          <label for="toggle-follow" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Redes'); ?></span>
+          </label>
           <small class="text-muted">Indica si debe mostrarse, en caso que hubieran el enlace a las redes sociales al pie del email</small>
         </div>
       </div>
@@ -189,9 +198,10 @@
         <h4 class="sub-header">Llamada a la Acción</h4>      
         <p>Puedes agregar un botón a la plantilla y esrablecer su comportamiento</p>
         <div class="control-group">
-          <label class="control-label" for="toggle-cta"><?php echo __('Llamada a la Acción'); ?></label>
           <input type="checkbox" name="data[show_cta]" value="1" id="toggle-cta" class="toggle-checkbox toggle-block" data-block=".show-cta"<?=@$newsletter['Newsletter']['show_cta'] == '1' ? ' checked' : '' ?>>
-          <label for="toggle-cta" class="toggle-label"></label>
+          <label for="toggle-cta" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Llamado a Acción'); ?></span>
+          </label>
           <small class="text-muted">Indica si debe mostrarse el logo de encabezado en el email</small>
         </div>
         <div class="control-group show-cta">

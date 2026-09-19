@@ -19,14 +19,12 @@
           <div class="col-md-6">
             <h4 class="sub-header">Información Principal</h4>
             <div class="controls">
-              <label class="control-label text-left" for="toggle_mayor"><?php echo __('¿Por mayor?'); ?></label>
               <input type="checkbox" name="data[por_mayor]" value="1" id="toggle_mayor" class="toggle-checkbox"<?= @$store['Store']['por_mayor'] == '1' ? ' checked' : '' ?>>
-              <label for="toggle_mayor" class="toggle-label"></label>
+              <label for="toggle_mayor" class="toggle-label"><span class="toggle-text"><?php echo __('¿Por mayor?'); ?></span></label>
             </div>        
             <div class="controls">
-              <label class="control-label text-left" for="toggle_takeaway"><?php echo __('¿Takeaway?'); ?></label>
               <input type="checkbox" name="data[takeaway]" value="1" id="toggle_takeaway" class="toggle-checkbox"<?= @$store['Store']['takeaway'] == '1' ? ' checked' : '' ?>>
-              <label for="toggle_takeaway" class="toggle-label"></label>
+              <label for="toggle_takeaway" class="toggle-label"><span class="toggle-text"><?php echo __('¿¿Takeaway?'); ?></span></label>
             </div>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Nombre'); ?></label>

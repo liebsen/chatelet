@@ -21,9 +21,10 @@
       <p>Indica si se debe agregar a la tarea programada y ejecturase</p>
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
-          <label class="control-label" for="toggle">Activo</label>
           <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['enabled'] == '1' ? ' checked' : (!empty($schedule['NewsletterSchedule']['id']) ? '' : ' data-change="1" checked')?>>
-          <label for="toggle" class="toggle-label"></label>
+          <label for="toggle" class="toggle-label">
+          	<span class="toggle-text"><?php echo __('Activo'); ?></span>
+          </label>
         </div>
       </div>
       <div class="form-box bg-success-outline">
@@ -111,9 +112,10 @@
 
 <div id="reset_content" class="d-none">
   <div class="controls flex-1">
-    <label class="control-label" for="">Enviar a todos</label>
     <input type="checkbox" name="toggle_reset" value="1" id="toggle_reset" class="toggle-checkbox">
-    <label for="toggle_reset" class="toggle-label toggle-force"></label>
+    <label for="toggle_reset" class="toggle-label toggle-force">
+    	<span class="toggle-text"><?php echo __('A todos'); ?></span>
+    </label>
     <small class="text-muted">Si desactivas esta opción solo se reenviará a los que fallaron el anterior intento.</small>
   </div>
   <div class="controls">
