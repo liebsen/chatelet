@@ -238,7 +238,6 @@ $(function () {
   $(document).on('click','.toggle-click', function(e){
     const func = $(this).data('func')
     if(window[func]) {
-    	console.log('func',func)
       window[func]()
     } else {
       console.log('Error: Could not find any function: ' + func)

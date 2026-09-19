@@ -4,14 +4,12 @@
 	    <p>Incluye la URL entera correspondiente a cada red social</p>
 	  <?php foreach(\get_socials() as $item): ?>
 	    <div class="control-group">
-	      <label class="control-label gap-05" for="<?php echo $item ?>_on">
-	      	<i class="fa fa-lg fa-<?php echo $item ?>"></i>
-	      	<?php echo __(ucfirst($item)); ?>
-	      </label>
-	      <div class="d-flex flex-center gap-05 w-100">
+	      <div class="d-flex flex-center flex-column gap-05 w-100">
 					<div class="controls flex-1 mt-1">
 						<input type="checkbox" id="toggle_<?php echo $item ?>" name="data[<?php echo $item ?>_on]" value="1" id="toggle" class="toggle-checkbox toggle-block" data-block=".input-<?php echo $item ?>" <?=$settings[$item.'_on'] == '1' ? ' checked' : '' ?>>
-						<label for="toggle_<?php echo $item ?>" class="toggle-label"></label>
+						<label for="toggle_<?php echo $item ?>" class="toggle-label">
+							<span class="toggle-text"><i class="fa fa-lg fa-<?php echo $item ?>"></i> <?php echo __(ucfirst($item)); ?></span>
+						</label>
 					</div>
 	        <div class="controls">
 	          <input type="text" maxlength="100" name="data[<?php echo $item ?>_url]" class="form-control input-<?php echo $item ?>" value="<?php echo @$settings[$item.'_url'] ?>" placeholder="Ingresa URL de <?php echo __($item); ?>"/>

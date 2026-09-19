@@ -40,7 +40,28 @@ $(document).ready(function() {
   })
 })
 
-function setRelation(action, data, target, type, cb) {
+var relClock = 0
+function setRelation(action, data, target, type, cb) {	
+	clearTimeout(relClock)
+	relClock = setTimeout(function(){
+		if($(target).data('process')) {
+			return relation_send(action, data, target, type, cb)
+		}
+		const tData = $(target).data()
+		swal({   
+			title: `${action == 'add' ? 'Agregar a' : 'Quitar de'} la lista`,
+			text: `Por favor confirma para ${action == 'add' ? 'agregar' : 'eliminar'}`,
+			type: "warning",
+			showCancelButton: true,
+			closeOnConfirm: true,
+			showLoaderOnConfirm: true
+		}, function() {
+			relation_send(action, data, target, type, cb)
+		})
+	}, 500)
+}
+
+function relation_send(action, data, target, type, cb){
 	var formData = {}
 	data.forEach(function(item,i) {
 		if(!formData.length) {
@@ -56,49 +77,40 @@ function setRelation(action, data, target, type, cb) {
 		formData.userIds.push(item.id)
 	})
 
-	swal({   
-		title: "Agregar a la lista",   
-		text: `Por favor confirma para ${action == 'add' ? 'agregar' : 'eliminar'} ${formData.key == 'all' ? 'todos los registros' : formData.userIds.length + ' registro' + (formData.userIds.length > 1 ? 's' : '')}`,   
-		type: "warning",
-		showCancelButton: true,   
-		closeOnConfirm: true,   
-		showLoaderOnConfirm: true,
-	}, function() {
-    $.post('/admin/relation_' + action, {
-      data: formData
-    }).success(function(res) {
-      if (res.success) {
-        $.growl.notice({
-          title: action=='add' ? 'Agregado' : 'Eliminado',
-          message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
-        });
-        if(action=='add'){
-          $(target && $(target).hasClass('relation-item') ? 
-            target : 
-            '.' + type + '-container .label:not(.is-enabled)'
-          ).addClass('is-enabled')
-          $('.relations-add:not(.btn-persist)').addClass('d-none')
-          $('.relations-remove:not(.btn-persist)').removeClass('d-none')
-        } else {
-          $(target && $(target).hasClass('relation-item') ? 
-            target : 
-            '.' + type + '-container .label'
-          ).removeClass('is-enabled')
-          $('.relations-remove:not(.btn-persist)').addClass('d-none')
-          $('.relations-add:not(.btn-persist)').removeClass('d-none')
-        }
-        if(typeof cb == 'function') {
-          cb(type, target)
-        }
-      }
-    }).fail(function() {
-      $.growl.error({
-        title: 'Error',
-        message: `Ocurrió un error al establecer la relación en ${type}. Por favor, intente nuevamente`,
-        queue: false,
+  $.post('/admin/relation_' + action, {
+    data: formData
+  }).success(function(res) {
+    if (res.success) {
+      $.growl.notice({
+        title: action=='add' ? 'Agregado' : 'Eliminado',
+        message: `Se ${action=='add' ? 'agregó' : 'eliminó'} la relación exitosamente`,
       });
+      if(action=='add'){
+        $(target && $(target).hasClass('relation-item') ? 
+          target : 
+          '.' + type + '-container .label:not(.is-enabled)'
+        ).addClass('is-enabled')
+        $('.relations-add:not(.btn-persist)').addClass('d-none')
+        $('.relations-remove:not(.btn-persist)').removeClass('d-none')
+      } else {
+        $(target && $(target).hasClass('relation-item') ? 
+          target : 
+          '.' + type + '-container .label'
+        ).removeClass('is-enabled')
+        $('.relations-remove:not(.btn-persist)').addClass('d-none')
+        $('.relations-add:not(.btn-persist)').removeClass('d-none')
+      }
+      if(typeof cb == 'function') {
+        cb(type, target)
+      }
+    }
+  }).fail(function() {
+    $.growl.error({
+      title: 'Error',
+      message: `Ocurrió un error al establecer la relación en ${type}. Por favor, intente nuevamente`,
+      queue: false,
     });
-	})
+  });
 }
 
 function updateRelationCount(type, target, count){
@@ -175,11 +187,17 @@ function searchRelations(data) {
 $(document).on('click', '.relations-add-dialog', function(e){
   e.preventDefault()
   if(!$('#growls > div').length) {
-	  $.growl.notice({
-	    title: 'Agregar a todos. ¿Deseas segmentar en muestras?',
-	    message: $('#relations-add-dialog').html(),
-	    duration: 5000000
-	  });
+		swal({   
+			title: "Agregar todos a la lista",
+			text: $('#relations-add-dialog').html(),
+			html: true,
+			type: "warning",
+			showCancelButton: true,   
+			closeOnConfirm: true,   
+			showLoaderOnConfirm: true,
+		}, function(){
+			$('.relations-add-dialog-all').trigger('click')
+		})
 	}
 })
 
@@ -195,6 +213,7 @@ $(document).on('keyup', '.relation-audience-max', function(e){
 $(document).on('click', '.relations-add', function(e){
   const tData = $(e.target).is('a') || $(e.target).is('button') ? $(e.target).data() : $(e.target).parents('a').data()  
   if(!tData?.type) return
+
   var data = []
   var target = null
   if(tData.key=='all'){
@@ -202,7 +221,6 @@ $(document).on('click', '.relations-add', function(e){
     target = e.target
     data.push(tData)
   } else {
-  	console.log('a(1)',$(`.${tData.type}-container > .label:not(.is-enabled)`).length)
     $(`.${tData.type}-container > .label:not(.is-enabled)`).each(function(i,e){
       data.push($(e).data())
     })
