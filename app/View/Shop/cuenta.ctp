@@ -32,7 +32,7 @@ echo $this->Session->flash();
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Actualizar mi cuenta</a>
 				<a href="/users/logout" class="btn btn-chatelet btn-logout light w-100">Cerrar sesión</a>
 			<?php else:?>
-				<a href="/shop/login" class="btn btn-chatelet w-100">Iniciar sesión</a>
+				<a href="/shop/login" class="btn btn-chatelet dark w-100">Iniciar sesión</a>
 				<a href="/shop/registro" class="btn btn-chatelet w-100">Crear mi cuenta</a>
 			<?php endif ?>
 				<a href="/shop" class="btn btn-chatelet light btn-continue-shopping w-100">Seguir comprando</a>
