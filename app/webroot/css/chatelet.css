@@ -58,6 +58,8 @@ body > section {
 
 .carousel-indicators li {
 	margin: 4px;
+	width: 5px;
+	height: 4px;
 	border: none;
 	background-color: #ffffff60;
 	transition: all 0.5s ease-in;
@@ -71,7 +73,7 @@ body > section {
 
 .carousel-indicators .active {
   width: 10px;
-  height: 10px;	
+  height: 4px;
 	margin: 4px;
 	background-color: #ffffff;
 }
@@ -80,7 +82,7 @@ body > section {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 10px;
+  bottom: 15px;
 	display: flex;
 	background-color: #00000040;
 	border-radius: 1rem;
