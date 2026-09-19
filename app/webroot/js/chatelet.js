@@ -430,11 +430,11 @@ $(document).ready(function() {
     }
   }
   
-  /*$('body').click((e) => {
-    if(!$(e.target).hasClass('action-search') && !$(e.target).parents('.burst').length) {
-      $('.burst').hide()
+  $('body').click((e) => {
+    if(!$(e.target).parents('.shop-options').length && !$(e.target).hasClass('shop-options')) {
+      $('.shop-options').removeClass('animation-pullDown')
     }
-  })*/ 
+  })
 
   /* scroll progress */
   const progressPages = [
