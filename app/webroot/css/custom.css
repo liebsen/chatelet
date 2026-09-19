@@ -2667,7 +2667,7 @@ span.count.is-empty {
 
 @media screen and (min-width:769px), print {
   #maincarousel .carousel-inner .item, .slider-full, .carousel-video {
-    height: calc(100vh - 130px);
+    height: calc(100vh - 136px);
   }
   .w-mobile {
     max-width: 25rem;
