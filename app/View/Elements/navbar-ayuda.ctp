@@ -1,18 +1,18 @@
 
-  <section id="optionsHelp" class="desktop animation-fadeIn animation-both delay">
-      <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
-      <a href="/ayuda/envios">Envíos</a>
-      <a href="/ayuda/metodos_de_pago">Formas de pago</a>
-      <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-      <a href="/ayuda/faq">Preguntas frecuentes</a>
-  </section>            
-  <section id="optionsHelp" class="mobile">
-      <a href="/ayuda/como_comprar" class="active">¿Cómo comprar?</a>
-      <a href="/ayuda/envios">Envíos</a>
-      <a href="/ayuda/metodos_de_pago">Formas de pago</a>
-      <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
-      <a href="/ayuda/faq">Preguntas frecuentes</a>
-  </section>
+  <div id="optionsHelp" class="desktop animation-slideDown animation-both">
+    <a href="/ayuda/como_comprar">¿Cómo comprar?</a>
+    <a href="/ayuda/envios">Envíos</a>
+    <a href="/ayuda/metodos_de_pago">Formas de pago</a>
+    <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
+    <a href="/ayuda/faq">Preguntas frecuentes</a>
+  </div>            
+  <div id="optionsHelp" class="mobile">
+    <a href="/ayuda/como_comprar" class="active">¿Cómo comprar?</a>
+    <a href="/ayuda/envios">Envíos</a>
+    <a href="/ayuda/metodos_de_pago">Formas de pago</a>
+    <a href="/ayuda/politicas_de_cambio">Cambios y devoluciones</a>
+    <a href="/ayuda/faq">Preguntas frecuentes</a>
+  </div>
 
   <style type="text/css">
 
@@ -70,7 +70,9 @@
       left:0; 
       right: 0; 
       top: 8.5rem;
-      padding: 1.5rem;
+      padding: 1rem;
+      min-height: 75px;
+      padding-top: 1.5rem;
       z-index: 9;
       background-color: #f4f4f6;
     }

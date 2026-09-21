@@ -160,7 +160,9 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .card-body,
   .wizard-node,
   .btn-chatelet,
-  #optionsHelp.mobile,
+  #optionsHelp,
+  #headhelp,
+  #desarrollo .boxes .boxes-reframe, 
   nav.sidebar,
   blockquote,
   .bg-light,
@@ -180,9 +182,6 @@ a, a:hover, a:active, a:focus, a:visited { cursor: pointer; text-decoration: non
   .form-control:focus {
   	background: #333!important;	
   }
-	.bg-salmon {
-    background: #444!important;
-	}
   .navbar-brand {
     background-image: url(/images/logo-w.png)!important; 
   }
