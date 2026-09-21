@@ -1,9 +1,9 @@
 $(document).ready(function() {
   const map = new mapboxgl.Map({
     accessToken: 'pk.eyJ1IjoiY29zbWljYmVhbXMiLCJhIjoiY211NWtqaWV1MDE5ZDJ3cThlZGduNjVjOCJ9.sNvuP7Uo6PIWpQrmKx2mcA',
-    container: 'map-canvas', // container ID
-    center: [-58.5297722, -34.6121795], // starting position [lng, lat]. Note that lat must be set between -90 and 90
-    zoom: 9 // starting zoom
+    container: 'map-canvas',
+    center: [-58.5297722, -34.6121795],
+    zoom: 9
   });
 
 	function initialize() {
@@ -12,12 +12,12 @@ $(document).ready(function() {
 			method: 'GET',
 			error: function(xhr, status, error) {
 				console.error(xhr,status,error);
-			},		
+			},
 			success: function(response){
 				if ($.isArray(response)) {
 					$.each(response, function(i, data){
 						const sucursal = data.Store
-					  const marker = new mapboxgl.Marker({color: "deeppink"})
+					  const marker = new mapboxgl.Marker({color: sucursal.takeaway == '1' ? 'deeppink' : 'red' })
 					    .setLngLat([sucursal.lng, sucursal.lat])
 					    .addTo(map);
 						const popup = new mapboxgl.Popup()

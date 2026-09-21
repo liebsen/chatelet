@@ -19,7 +19,7 @@ class ApiController extends AppController {
 	public function sucursales() {
     $this->RequestHandler->respondAs('application/json');
 		$this->loadModel('Store');
-		$stores = $this->Store->find('all',array('order'=>array('Store.name ASC')));
+		$stores = $this->Store->find('all',array('order'=>array('Store.name DESC')));
 		return json_encode($stores);
 	}
 
@@ -30,8 +30,8 @@ class ApiController extends AppController {
     $this->loadModel('Webpush'); 
 
     if($this->Auth->user('id') && $this->request->is('post')){
-      CakeLog::write('debug', 'webpush(user_id):'.json_encode($this->Auth->user('id')));
-      CakeLog::write('debug', 'webpush(data):'.json_encode($this->request->data));
+      #CakeLog::write('debug', 'webpush(user_id):'.json_encode($this->Auth->user('id')));
+      #CakeLog::write('debug', 'webpush(data):'.json_encode($this->request->data));
       $this->Webpush->save(
         array(
           'user_id' => $this->Auth->user('id'),
