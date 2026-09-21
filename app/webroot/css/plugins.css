@@ -3441,8 +3441,8 @@ slideDown
 .animation-slideDown {
     animation-name: slideDown;
     -webkit-animation-name: slideDown;
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
     animation-timing-function: ease;
     -webkit-animation-timing-function: ease;
     visibility: visible !important;
@@ -3477,7 +3477,7 @@ slideUp
 
 .animation-slideUp {
     animation-name: slideUp;
-    animation-duration: 1s;
+    animation-duration: 3s;
     animation-timing-function: ease;
     visibility: visible !important;
 }
