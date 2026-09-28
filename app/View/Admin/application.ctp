@@ -19,5 +19,8 @@
 	     	</div>
 		  </div>		  
 		</div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario" disabled><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+    </div>
 	</div>
 <?php echo $this->Form->end(); ?>
