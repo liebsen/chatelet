@@ -1,6 +1,8 @@
-<?php $this->Html->script('admin-delete', array('block' => 'script')); ?>
-<?php $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));?>
-<?php $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));?>
+<?php 
+$this->Html->script('admin-delete', array('block' => 'script'));
+$this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
+$this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
+?>
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php if(empty($newsletters)):?>
@@ -167,7 +169,7 @@
 						</span>
 					</td>
 					<td>
-						<div class="d-flex flex-center flex-nowrap gap-25">   
+						<div class="btn-group d-flex flex-nowrap">   
 							<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><i class="gi gi-shirt"></i> <?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
 							<?php if(!empty($newsletter['Coupon']['code'])):?>
 								<a 
@@ -181,7 +183,7 @@
 						<span class="badge" title="<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
 					</td>
 					<td>
-						<div class="d-flex flex-center flex-nowrap gap-25">   
+						<div class="btn-group d-flex flex-nowrap">   
 							<a 
 								href="<?=$this->Html->url(
 									array(

@@ -21,7 +21,7 @@
       <p>Indica si se debe agregar a la tarea programada y ejecturase</p>
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
-          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$schedule['NewsletterSchedule']['enabled'] == '1' ? ' checked' : (!empty($schedule['NewsletterSchedule']['id']) ? '' : ' data-change="1" checked')?>>
+          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=!isset($schedule['NewsletterSchedule']['enabled']) || $schedule['NewsletterSchedule']['enabled'] == '1' ? ' checked' : (!empty($schedule['NewsletterSchedule']['id']) ? '' : ' data-change="1" checked')?>>
           <label for="toggle" class="toggle-label">
           	<span class="toggle-text"><?php echo __('Activo'); ?></span>
           </label>

@@ -15,10 +15,10 @@ echo $this->element('admin/menu');
           <div class="col-md-6">
             <h4 class="sub-header">Estado</h4>
             <div class="form-group">
-              <label class="control-label" for="columns-text"><?php echo __('Activo'); ?></label>
-              <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Legend']['enabled'] == '1' ? ' checked' : '' ?>>
-              <label for="toggle" class="toggle-label"></label>
-            </div>          
+              <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= !isset($item['Legend']['enabled']) || $item['Legend']['enabled'] == '1' ? ' checked' : '' ?>>
+              <label for="toggle" class="toggle-label"><span class="toggle-text"><?php echo __('Activo'); ?></span></label>
+            </div>
+            <hr>  
             <h4 class="sub-header">Información Principal</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Título'); ?></label>

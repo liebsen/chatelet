@@ -2181,7 +2181,7 @@ pre, code {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 36px;
+  min-height: 40px;
   color: #ffffff;
   border-bottom: 3px solid transparent;
   &:hover {
@@ -2282,17 +2282,24 @@ pre, code {
   border: none;
   margin: 0;
   padding: 1rem;
-  min-height: calc(100dvh - 125px);
+}
+
+.list-group-hero.main {
+	grid-gap: 2rem;
+	min-height: calc(100dvh - 125px);
+}
+
+.list-group-hero.main > a > li {
+	min-width: 12rem;
+	padding: 1.5rem;
 }
 
 .list-group-hero > a > li {
-  font-size: 3rem;
   border-radius: 2rem!important;
-  padding: 1.5rem;
+  padding: 1rem;
   position: relative;
   transition: all 0.5s ease-in-out;
   box-shadow: 0 0 2px var(--theme-color);
-  width: 12rem;
 }
 
 .list-group-hero > a > li:hover {
@@ -2316,6 +2323,11 @@ pre, code {
   border-radius: 100%;
   font-size: 1.5rem;
   color: var(--theme-color);
+}
+
+
+.list-group-hero > a > li > i {
+	line-height: 1.75;
 }
 
 .list-unstyled {
@@ -2469,13 +2481,13 @@ small, .small {
 .badge.is-large {
   min-width: 3rem;
   height: 3rem;
-  line-height: 1.75;
+  line-height: 1.5;
   font-size: 1.5rem;
 }
 
 .indicator {
 	font-size: 18px;
-  line-height: 1.75;
+  line-height: 1;
   font-weight: 800;
 }
 
@@ -3155,6 +3167,10 @@ background-color: #fff;
 }
 
 /* Forms */
+
+.form-group {
+	margin-bottom: 1rem!important;
+}
 
 .form-control {
 	flex: 1;

@@ -17,22 +17,22 @@
         }
       ?>
       <div class="custom-tabs block-tabs">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="active text-center">
-            <a href="#main">
+        <ul class="list-group list-group-hero">
+        	<a href="#main">
+          	<li class="active list-group-item text-center">
               <i class="fa fa-edit rounded-icon"></i> <span class="ml-2">Datos básicos</span>
             </a>
           </li>
-          <li class="text-center">
-            <a href="#condiciones">
+          <a href="#condiciones">
+          	<li class="list-group-item text-center">
               <i class="fa fa-calendar-o rounded-icon"></i> <span class="ml-2">Condiciones</span>
-            </a>
-          </li>
-          <li class="text-center">
-            <a href="#avanzado">
+          	</li>
+          </a>
+          <a href="#avanzado">
+          	<li class="list-group-item text-center">
               <i class="fa fa-cog rounded-icon"></i> <span class="ml-2">Configuración</span>
-            </a>
-          </li>
+          	</li>
+          </a>
         </ul>
         <div class="tab-content">
           <div class="tab-pane pane-main active">
@@ -41,10 +41,9 @@
                 <h4 class="sub-header">Información Principal</h4>
                 <div class="form-group">
                   <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
-                  <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= $coupon['Coupon']['enabled'] == '1' ? ' checked' : '' ?>>
+                  <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= !isset($coupon['Coupon']['enabled']) || $coupon['Coupon']['enabled'] == '1' ? ' checked' : '' ?>>
                   <label for="toggle" class="toggle-label"></label>
                 </div>
-                <hr>
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
                   <div class="controls">

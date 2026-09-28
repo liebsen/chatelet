@@ -3532,7 +3532,6 @@ ORDER BY u.id DESC;';
 		$this->set('h1', $h1);
     $this->loadModel('Banner');
     switch ($action) {
-
     	case 'config': 
 
     		if ($this->request->is('POST')){
