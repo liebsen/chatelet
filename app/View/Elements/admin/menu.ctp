@@ -1,4 +1,4 @@
-<?php if(!empty($navs)): ?>
+<?php if(!empty($navs) && count($navs) > 1): ?>
 <div class="block">
   <div class="block-content">  
     <div class="block-tabs">

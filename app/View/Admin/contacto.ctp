@@ -1,5 +1,5 @@
 <?php 
-	echo $this->element('admin/menu');
+	//echo $this->element('admin/menu');
 	$this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
 	$this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
 	$this->Html->script('admin-delete', array('block' => 'script'));
