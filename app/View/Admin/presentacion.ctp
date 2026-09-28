@@ -26,7 +26,7 @@
 	        </a>
 	      </ul>
 	      <div class="tab-content">
-	        <div class="tab-pane pane-splash">
+	        <div class="tab-pane pane-splash active">
 		        <!--h4 class="sub-header">Pantalla inicial <span class="counter_newsletter hide"></span></h4-->
 		        <p>Una pantalla forzada al inicio. Splash es la primera imagen que se verá en la pantalla mientras esté cargando la home.</p>
 						<div class="control-group w-100 bg-theme" style="min-height: 260px;">
