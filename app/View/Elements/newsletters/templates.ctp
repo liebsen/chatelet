@@ -169,7 +169,7 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
 						</span>
 					</td>
 					<td>
-						<div class="d-flex flex-center flex-nowrap gap-25">   
+						<div class="btn-group d-flex flex-nowrap">   
 							<span class="badge badge-<?=count($newsletter['NewsletterProduct']) ? 'success' : 'light'?> is-rounded"><i class="gi gi-shirt"></i> <?=count($newsletter['NewsletterProduct']) ? count($newsletter['NewsletterProduct']) : 'Estático'?></span>
 							<?php if(!empty($newsletter['Coupon']['code'])):?>
 								<a 
@@ -183,7 +183,7 @@ $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'sc
 						<span class="badge" title="<?=$this->Time->format($newsletter['Newsletter']['modified'], '%d/%m/%Y %H:%M')?>"><?=\readable_time_ago($newsletter['Newsletter']['modified']) ?></span>
 					</td>
 					<td>
-						<div class="d-flex flex-center flex-nowrap gap-25">   
+						<div class="btn-group d-flex flex-nowrap">   
 							<a 
 								href="<?=$this->Html->url(
 									array(

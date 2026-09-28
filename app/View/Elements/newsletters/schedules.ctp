@@ -91,7 +91,7 @@
 				      target="_blank">
 				      <i class="fa fa-eye"></i> 
 				    </a>
-				    <a class="btn btn-sm btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+				    <a class="btn btn-sm btn-primary" title="Clonar" href="<?=$this->Html->url(
 				      array(
 				        'action'=>'newsletters', 
 				        'schedules',
@@ -256,7 +256,7 @@
 						<span class="badge badge-<?=strtotime($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00') > time() ? 'warning' : 'success'?> text-capitalize" title="<?=$this->Time->format($schedule['NewsletterSchedule']['schedule_date'] . ' ' . $schedule['NewsletterSchedule']['schedule_hour'] . ':00', '%d/%m/%Y %H:00')?>"><?=\readable_time_ago($schedule['NewsletterSchedule']['modified'])?> </span>
 					</td>
 					<td> 
-						<div class="d-flex flex-center flex-nowrap gap-25">
+						<div class="btn-group d-flex flex-nowrap">
 					    <a class="btn btn-sm btn-<?=$schedule['NewsletterSchedule']['enabled'] == '1' ? 'danger' : 'success'?> btn-play-pause" data-id="<?=$schedule['NewsletterSchedule']['id']?>" title="Pausar/reaundar" href="javascript:void(0)">
 					      <i class="fa fa-<?=$schedule['NewsletterSchedule']['enabled'] == '1' ? 'pause' : 'play'?>"></i> 
 					    </a>							
@@ -272,7 +272,7 @@
 					      target="_blank">
 					      <i class="fa fa-eye"></i> 
 					    </a>
-					    <a class="btn btn-sm btn-primary dropdown-toggle" title="Clonar" href="<?=$this->Html->url(
+					    <a class="btn btn-sm btn-primary" title="Clonar" href="<?=$this->Html->url(
 					      array(
 					        'action'=>'newsletters', 
 					        'schedules', 

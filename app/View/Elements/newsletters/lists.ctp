@@ -121,7 +121,7 @@
 						<?=\readable_time_ago($list['NewsletterList']['modified'])?> </span>
 					</td>
 					<td> 
-						<div class="d-flex flex-center flex-nowrap gap-25">          
+						<div class="btn-group d-flex flex-nowrap">          
 							<a 
 								href="<?=$this->Html->url(
 									array(
