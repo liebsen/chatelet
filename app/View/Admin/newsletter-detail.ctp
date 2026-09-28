@@ -24,22 +24,22 @@
         }
       ?>
       <div class="custom-tabs block-tabs">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="active text-center">
-            <a href="#main">
+      	<ul class="list-group list-group-hero">
+          <a href="#main">
+          	<li class="active list-group-item text-center">
               Datos básicos
-            </a>
-          </li>
-          <li class="text-center">
-            <a href="#condiciones">
+          	</li>
+          </a>
+          <a href="#condiciones">
+          	<li class="list-group-item text-center">
               Condiciones
-            </a>
-          </li>
-          <li class="text-center">
-            <a href="#avanzado">
+          	</li>
+          </a>
+          <a href="#avanzado">
+          	<li class="list-group-item text-center">
               Avanzado
-            </a>
-          </li>
+          	</li>
+          </a>
         </ul>
         <div class="tab-content">
           <div class="tab-pane pane-main active">

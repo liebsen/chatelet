@@ -9,13 +9,13 @@
 		<div class="block-content">
 			<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
 		    <div class="custom-tabs block-tabs">
-		      <ul class="nav nav-tabs" id="myTab" role="tablist">
-		        <li class="active text-center">
+		      <ul class="list-group list-group-hero">
+		        <li class="active list-group-item text-center">
 		          <a href="#keys">
 		            APP Keys
 		          </a>
 		        </li>
-		        <li class="text-center">
+		        <li class="list-group-item text-center">
 		          <a href="#lists">
 		            Listas
 		          </a>

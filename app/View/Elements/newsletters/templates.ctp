@@ -1,6 +1,8 @@
-<?php $this->Html->script('admin-delete', array('block' => 'script')); ?>
-<?php $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));?>
-<?php $this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));?>
+<?php 
+$this->Html->script('admin-delete', array('block' => 'script'));
+$this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));
+$this->Html->script('/Vendor/DataTables/datatables.min.js', array('block' => 'script'));
+?>
 	<div class="mobile">
 		<div class="d-flex flex-wrap justify-content-center align-items-left gap-05">
 <?php if(empty($newsletters)):?>

@@ -8,12 +8,12 @@
 		<div class="block-content">
 			<form action="" id="form_app" method="post" class="form-inline" enctype="multipart/form-data">
 		    <div class="custom-tabs block-tabs">
-		      <ul class="nav nav-tabs" id="myTab" role="tablist">
-		        <li class="active text-center">
-		          <a href="#keys">
+		      <ul class="list-group list-group-hero">
+		      	<a href="#keys">
+		        	<li class="active list-group-item text-center">
 		            Configuración
-		          </a>
-		        </li>
+		        	</li>
+		        </a>
 		      </ul>
 		      <div class="tab-content">
 		        <div class="tab-pane pane-keys active">

@@ -8,25 +8,25 @@
 		<form action="" id="display_form" method="post" class="form-inline" enctype="multipart/form-data">
 			<input type="hidden" name="data[id]" value="1" />
 	    <div class="custom-tabs block-tabs">
-	      <ul class="nav nav-tabs" id="myTab" role="tablist">
-	        <li class="active text-center">
-	          <a href="#splash">
-	            <i class="gi gi-picture"></i> <span class="ml-2">Primera pantalla</span>
-	          </a>
-	        </li>
-	        <li class="text-center">
-	          <a href="#slider">
-	            <i class="gi gi-sampler"></i> <span class="ml-2">Carrusel</span>
-	          </a>
-	        </li>
-	        <li class="text-center">
-	          <a href="#config">
-	            <i class="gi gi-cogwheel"></i> <span class="ml-2">Configuración</span>
-	          </a>
-	        </li>
+	    	<ul class="list-group list-group-hero animation-fadeIn animation-both delay">
+	        <a href="#splash">
+		        <li class="list-group-item text-center active">
+		          <i class="gi gi-picture"></i> <span class="ml-2">Splash</span>
+		        </li>
+	        </a>
+	        <a href="#slider">
+		        <li class="list-group-item text-center">
+		          <i class="gi gi-sampler"></i> <span class="ml-2">Carrusel</span>
+		        </li>
+          </a>
+          <a href="#config">
+		        <li class="list-group-item text-center">
+		          <i class="gi gi-cogwheel"></i> <span class="ml-2">Configuración</span>
+		        </li>
+	        </a>
 	      </ul>
 	      <div class="tab-content">
-	        <div class="tab-pane pane-splash active">
+	        <div class="tab-pane pane-splash">
 		        <!--h4 class="sub-header">Pantalla inicial <span class="counter_newsletter hide"></span></h4-->
 		        <p>Una pantalla forzada al inicio. Splash es la primera imagen que se verá en la pantalla mientras esté cargando la home.</p>
 						<div class="control-group w-100 bg-theme" style="min-height: 260px;">

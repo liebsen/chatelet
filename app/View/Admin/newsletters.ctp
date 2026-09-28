@@ -6,11 +6,11 @@
 		<div class="block-content">
 	    <div class="block-tabs">
 <?php if($viewComponent != 'index'):?>
-<?php echo $this->element('admin/menu'); ?>
+<?=$this->element('admin/menu'); ?>
 <?php endif ?>
 	      <div class="tab-content<?=$viewComponent == 'index' ? ' bg-ocean' : ''?>">
 					<div class="tab-pane pane-<?= $pane ?> active">
-<?php echo $this->element('newsletters/' . $viewComponent) ?>
+<?=$this->element('newsletters/' . $viewComponent) ?>
 					</div>
 	     	</div>
 		  </div>

@@ -46,7 +46,7 @@
             <tr>
 <?php foreach($socials as $social => $url) : ?>
               <td align="center" valign="center">
-                <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #888888; font-weight: 300; font-size: 14px" target="_blank">
+                <a href="<?php echo $url ?>" style="margin-right: 15px; text-decoration: none; color: #1e3050; font-weight: 600; font-size: 12px" target="_blank">
                   <img src="<?=$site_url?>/img/share/<?php echo $social ?>-brands-solid.png" style="transform: translateY(7px);" width="24" height="24">
                   <span><?php echo ucfirst($social) ?></span></a>
               </td>
