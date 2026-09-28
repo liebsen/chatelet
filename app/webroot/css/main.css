@@ -2181,7 +2181,7 @@ pre, code {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 36px;
+  min-height: 40px;
   color: #ffffff;
   border-bottom: 3px solid transparent;
   &:hover {
@@ -3167,6 +3167,10 @@ background-color: #fff;
 }
 
 /* Forms */
+
+.form-group {
+	margin-bottom: 1rem!important;
+}
 
 .form-control {
 	flex: 1;

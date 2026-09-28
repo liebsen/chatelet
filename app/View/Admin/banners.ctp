@@ -1,6 +1,6 @@
 <?php 
+echo $this->element('admin/menu');
 $this->Html->script('admin-delete', array('block' => 'script'));
-$this->element('admin/menu');
 $this->Html->css('draggable-table', array('block' => 'css'));
 $this->Html->script('draggable-table', array('block' => 'script'));
 $this->Html->css('/Vendor/DataTables/datatables.min.css', array('block' => 'css'));

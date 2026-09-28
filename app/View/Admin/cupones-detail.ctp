@@ -44,7 +44,6 @@
                   <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= !isset($coupon['Coupon']['enabled']) || $coupon['Coupon']['enabled'] == '1' ? ' checked' : '' ?>>
                   <label for="toggle" class="toggle-label"></label>
                 </div>
-                <hr>
                 <div class="control-group">
                   <label class="control-label" for="columns-text"><?php echo __('Código'); ?></label>
                   <div class="controls">
