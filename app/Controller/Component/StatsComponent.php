@@ -186,7 +186,8 @@ class StatsComponent extends Component {
         )
       ),
       'conditions' => array(
-        'tag LIKE ' => 'session-%'
+      	'User.id IS NOT NULL',
+        'Stat.tag LIKE ' => 'session-%'
       ),
       'fields' => array('Stat.id, Stat.tag, Stat.created, User.id, User.name, User.surname, User.email, User.role, User.birthday'),
       'group' => array('Stat.id'),
