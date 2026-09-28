@@ -25,7 +25,7 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
               <div class="form-group">
-                <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Menu']['enabled'] == '1' ? ' checked' : '' ?>>
+                <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= !isset($item['Menu']['enabled']) || $item['Menu']['enabled'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle" class="toggle-label"></label>
               </div>
               <!--small class="text-muted">Estado principal de este Menu</small-->

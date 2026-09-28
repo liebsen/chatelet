@@ -18,7 +18,7 @@ echo $this->element('admin/menu');
           <div class="form-group flex-end flex-between gap-05">
             <div class="controls flex-1">
               <label class="control-label" for="columns-text"><?php echo __('Activo'); ?></label>
-              <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= @$item['Banner']['enabled'] == '1' ? ' checked' : '' ?>>
+              <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= !isset($item['Banner']['enabled']) || $item['Banner']['enabled'] == '1' ? ' checked' : '' ?>>
               <label for="toggle" class="toggle-label"></label>
             </div>
           </div>

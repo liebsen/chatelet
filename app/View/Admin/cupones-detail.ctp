@@ -41,7 +41,7 @@
                 <h4 class="sub-header">Información Principal</h4>
                 <div class="form-group">
                   <label class="control-label" for="columns-text"><?php echo __('Visible'); ?></label>
-                  <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= $coupon['Coupon']['enabled'] == '1' ? ' checked' : '' ?>>
+                  <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?= !isset($coupon['Coupon']['enabled']) || $coupon['Coupon']['enabled'] == '1' ? ' checked' : '' ?>>
                   <label for="toggle" class="toggle-label"></label>
                 </div>
                 <hr>

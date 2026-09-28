@@ -21,7 +21,7 @@ echo $this->Form->create(null, array(
       <p>Configura el alcance para esta Lista</p>
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
-          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$list['NewsletterList']['enabled'] == '1' ? ' checked' : (!empty($list['NewsletterList']['id']) ? '' : ' data-change="1" checked')?>>
+          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=!isset($list['NewsletterList']['enabled']) || $list['NewsletterList']['enabled'] == '1' ? ' checked' : (!empty($list['NewsletterList']['id']) ? '' : ' data-change="1" checked')?>>
           <label for="toggle" class="toggle-label">
           	<span class="toggle-text"><?php echo __('Activo'); ?></span>
           </label>

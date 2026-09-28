@@ -19,7 +19,7 @@
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
               <div class="form-group">
-                <input type="checkbox" name="data[enabled]" value="1" id="toggle2" class="toggle-checkbox"<?=@$logistic['Logistic']['enabled'] == '1' ? ' checked' : '' ?>>
+                <input type="checkbox" name="data[enabled]" value="1" id="toggle2" class="toggle-checkbox"<?=!isset($logistic['Logistic']['enabled']) || $logistic['Logistic']['enabled'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle2" class="toggle-label"></label>
               </div>   
               <small class="text-muted">Indica el estado de esta logística. En caso de inactivo el cliente no podrá utilizar esta opción.</small>

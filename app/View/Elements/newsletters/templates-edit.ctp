@@ -21,7 +21,7 @@
       <p><i class="fa fa-magic"></i> <?=$newsletter['Newsletter']['title'] ? 'Modifica' : 'Crea'?> tu plantilla. Puedes asociarle productos si lo deseas.</p>
       <div class="form-group flex-end flex-between gap-05">
         <div class="controls flex-1">
-          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=@$newsletter['Newsletter']['enabled'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
+          <input type="checkbox" name="data[enabled]" value="1" id="toggle" class="toggle-checkbox"<?=!isset($newsletter['Newsletter']['enabled']) || $newsletter['Newsletter']['enabled'] == '1' ? ' checked' : (!empty($newsletter['Newsletter']['id']) ? '' : ' data-change="1" checked')?>>
           <label for="toggle" class="toggle-label">
           	<span class="toggle-text"><?php echo __('Activo'); ?></span>
           </label>
