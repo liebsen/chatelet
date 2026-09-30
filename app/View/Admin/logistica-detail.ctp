@@ -2,8 +2,8 @@
   $this->Html->script('logistica-detail', array('block' => 'script'));
   $this->Html->css('logistica-detail', array('block' => 'css'));
   $this->Html->script('form_app.js?v=' . $version['ver'], array('block' => 'script')); 
+  echo $this->element('admin/menu');
 ?>
-<?php echo $this->element('admin/menu');?>
 <div class="block-section">
   <div class="block-tabs">
     <div class="tab-content">
@@ -18,7 +18,7 @@
             <h4 class="sub-header">Información Principal</h4>
             <div class="control-group">
               <label class="control-label" for="columns-text"><?php echo __('Estado'); ?></label>
-              <div class="form-group">
+              <div class="form-group flex-column">
                 <input type="checkbox" name="data[enabled]" value="1" id="toggle2" class="toggle-checkbox"<?=!isset($logistic['Logistic']['enabled']) || $logistic['Logistic']['enabled'] == '1' ? ' checked' : '' ?>>
                 <label for="toggle2" class="toggle-label"></label>
               </div>   
@@ -69,7 +69,7 @@
             <div class="alert alert-primary">
               <div class="control-group">
                 <label class="control-label" for="columns-text"><?php echo __('Envío gratuito'); ?></label>
-                <div class="form-group">
+                <div class="form-group flex-column">
                   <input type="checkbox" name="data[free_shipping]" value="1" id="toggle3" class="toggle-checkbox"<?=@$logistic['Logistic']['free_shipping'] == '1' ? ' checked' : '' ?>>
                   <label for="toggle3" class="toggle-label"></label>
                 </div>        
@@ -199,40 +199,40 @@
         <form id="add_logistic_price" onsubmit="return save_logistic_price()">
           <input type="hidden" name="id" id="id" value="">
           <input type="hidden" name="logistic_id" value="<?= $logistic['Logistic']['id'] ?>">
-          <div class="form-group">
+          <div class="form-group flex-column">
             <label class="control-label" for="enabled"><?php echo __('Activo'); ?></label>
             <input type="checkbox" name="enabled" value="1" id="enabled" class="toggle-checkbox">
             <label for="enabled" class="toggle-label"></label>
           </div>   
-          <div class="form-group">
+          <div class="form-group flex-column">
             <label class="control-label" for="info"><?php echo __('Zona'); ?></label>
             <div class="controls">
               <input type="text" class="form-control" id="title" max-length="100" name="title" value="" placeholder="Zona Norte GBA" required>
             </div>
             <small class="text-muted">Nombre para denominar esta zona de logística.</small>
           </div>        
-          <div class="form-group">
+          <div class="form-group flex-column">
             <label class="control-label" for="info"><?php echo __('Códigos postales'); ?></label>
             <div class="controls">
               <textarea id="zips" class="form-control" name="zips" rows="5" placeholder="Indique códigos postales válidos" required></textarea>
             </div>
             <small class="text-muted">Indica los códigos postales <strong>separados por coma o espacio</strong> que abarca la zona de cobertura de esta logística.</small>
           </div>
-          <div class="form-group">
+          <div class="form-group flex-column">
             <label class="control-label" for="info"><?php echo __('Tarifa'); ?></label>
             <div class="controls">
               <input type="number" class="form-control" id="price" step="1" name="price" value="" placeholder="500" required>
             </div>
             <small class="text-muted">En caso de logística de alcance local indica la tarifa por envío expresada en peso argentino ARS.</small>
           </div>
-          <div class="form-group">
+          <div class="form-group flex-column">
             <label class="control-label" for="info"><?php echo __('Información adicional'); ?></label>
             <div class="controls">
               <textarea id="info" class="form-control" name="info" rows="5" placeholder="Indique información adicional"></textarea>
             </div>
             <small class="text-muted">Indique información adicional, tiempos de entrega, condiciones especiales, etc.</small>            
           </div>
-          <div class="form-group">
+          <div class="form-group gap-05">
             <button class="btn btn-info" type="button" onclick="$('.logistic-price-form').addClass('hide')">Cancelar</button>
             <button class="btn btn-success btn-save-logistic-prices" data-loading-text="<i class='gi gi-clock'></i>" type="submit">Guardar</button>
           </div>
