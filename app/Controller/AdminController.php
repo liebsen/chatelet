@@ -2315,7 +2315,6 @@ Te confirmamos el pago por tu compra en Châtelet.</p>
 		$id = $this->params['pass'][2] ?? 0;
 		$viewComponent = implode('-', array_values(array_filter(array($pane,$action))));
 		$controlComponent = implode('_', array_values(array_filter(array($pane,$action))));
-
 		$templateVars = array(
 			'name' => "Nombre del usuario",
 			'surname' => "Apellido del usuario",

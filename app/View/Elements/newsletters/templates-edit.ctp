@@ -248,18 +248,18 @@
       <span class="ml-1">Previsualizar</span>
     </a>
 <?php endif ?>
-    <button type="submit" class="btn btn-success track-coords" title="Pulsa aquí para actualizar este formulario">
+    <button type="submit" class="btn btn-success track-coords fs-show" title="Pulsa aquí para actualizar este formulario">
       <i class="fa fa-check"></i> 
       <span class="ml-1">Guardar</span>
     </button>
-    <span class="btn btn-info btn-templates-editor">
+    <span class="btn btn-info btn-templates-editor fs-show">
       <i class="gi gi-font"></i> 
       <span class="ml-1">Diseñar</span>
     </span>    
   </div>
 
   <style type="text/css">
-  	.form-actions.fullscreen > .btn:not(.btn-templates-editor) {
+  	.form-actions.fullscreen > .btn:not(.fs-show) {
   		display: none;
   	}
   </style>

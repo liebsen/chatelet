@@ -88,7 +88,7 @@ echo $this->Html->script('bootstrapValidator', array('inline' => false));
 		<div class="col-md-6">
 			<label for="Depto">Código postal</label>
 			<div class="form-group">
-				<input title="Código postal" maxlength="10" class="form-control" id="postal_address" placeholder="1430" name="customer[postal_address]" type="text" value="<?= $userData['User']['postal_address'] ?? '' ?>" readonly />
+				<input title="Código postal" maxlength="10" class="form-control" id="postal_address" placeholder="1430" name="customer[postal_address]" type="number" value="<?= $userData['User']['postal_address'] ?? '' ?>" readonly />
 			</div>
 		</div>
 		<div class="col-md-6">
