@@ -273,7 +273,6 @@ class NewsletterShell extends AppShell {
         );
       }
 
-      var_dump($parsed_body);
       $schedule['Newsletter']['parsed_body'] = $parsed_body;
       $schedule['NewsletterList']['filter_type'] = $filter_type;
 

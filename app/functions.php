@@ -500,7 +500,6 @@ function email_fix_style_links($html, $click_id = 0, $click_origin = '', $site_u
     $existingHref = $a->getAttribute('href');
     $parsedUrl = parse_url($existingHref);
     $settingsUrl = parse_url($click_url);
-    \d("parsedUrl",$parsedUrl);
     $newHref = $existingHref . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin;
     if(strstr($parsedUrl->host, $settingsUrl->host) === false) {
     	$newHref = $site_url . '?schedule_item=' . $click_id . '&click_origin=' . $click_origin . '&redirect=' . $existingHref;
