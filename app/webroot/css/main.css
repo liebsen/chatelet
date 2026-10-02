@@ -2296,7 +2296,7 @@ pre, code {
 
 .list-group-hero > a > li {
   border-radius: 2rem!important;
-  padding: 1rem;
+  padding: 0.5rem 1.25rem 0.5rem 0.75rem;
   position: relative;
   transition: all 0.5s ease-in-out;
   box-shadow: 0 0 2px var(--theme-color);
