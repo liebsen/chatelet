@@ -147,10 +147,9 @@ $userData = array(
 							<label class="text-muted" for="codigo-postal">Código Postal</label>
 							<div class="form-group">
 								<?php
-									echo '<input type="text" id="codigo-postal" placeholder="1430" class="form-control" name="data[User][postal_address]" value="'. $userData['postal_address'] .'" />';
+									echo '<input type="number" id="codigo-postal" placeholder="1430" class="form-control" name="data[User][postal_address]" value="'. $userData['postal_address'] .'" />';
 								?>
 							</div>
-
 						</div>
 						<div class="col-md-6">
 							<label class="text-muted" for="TelefonoAlt">Teléfono Alt.</label>

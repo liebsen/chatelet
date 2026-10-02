@@ -157,7 +157,7 @@ class ShopController extends AppController {
 		);
 		/* https://apis.andreani.com/v1/tarifas?cpDestino=1400&contrato=300006611&cliente=CL0003750&sucursalOrigen=BAR&bultos[0][valorDeclarado]=1200&bultos[0][volumen]=200&bultos[0][kilos]=1.3&bultos[0][altoCm]=1&bultos[0][largoCm]=1.5&bultos[0][anchoCm]=2 */ 
 		// $response = $ws->cotizarEnvio($_GET['cp'], '300006611', $bultos, 'CL0003750');
-  	$response = $ws->cotizarEnvio(intval($_GET['cp']), getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
+  	$response = $ws->cotizarEnvio($_GET['cp'], getenv('ANDREANI_CONTRATO'), $bultos, getenv('ANDREANI_CLIENTE'));
     echo '<pre>';
     echo "cp " . $_GET['cp'] . "\n";
 		var_dump($response);
