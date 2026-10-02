@@ -39,6 +39,6 @@
 
 	<div class="form-box bg-info-outline cloud-tag-group p-4 min-10">
 		<?php foreach($words as $word):?>
-			<span class="badge cloud-tag"><?=$word[0]['query']?>(<span><?=$word[0]['count']?></span>)</span>
+			<span class="badge cloud-tag mb-2 mr-1"><?=$word[0]['query']?>(<span><?=$word[0]['count']?></span>)</span>
 		<?php endforeach ?>
 	</div>
