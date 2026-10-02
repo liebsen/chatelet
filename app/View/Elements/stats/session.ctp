@@ -46,10 +46,12 @@
 					</span>
 				</td>
 				<td>
-					<span class="badge badge-light" title="Fecha / Hora">
-					<?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y %H:%M') ?> </span> 
-					<span class="badge text-capitalize" title="Fecha / Hora de ejecución">
-					<?=\readable_time_ago($item['Stat']['created'])?> </span>
+					<div class="d-flex flex-start flex-nowrap gap-25">
+						<span class="badge badge-light" title="Fecha / Hora">
+						<?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y %H:%M') ?> </span> 
+						<span class="badge text-capitalize" title="Fecha / Hora de ejecución">
+						<?=\readable_time_ago($item['Stat']['created'])?> </span>
+					</div>
 				</td>
 				<td> 
 					<!--div class="btn-group">           

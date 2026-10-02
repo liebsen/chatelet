@@ -55,6 +55,7 @@ class StatsComponent extends Component {
       'conditions' => array(
         'tag' => 'page-search',
         'JSON_EXTRACT(Stat.context, "$.query") IS NOT NULL',
+        'LENGTH(JSON_EXTRACT(Stat.context, "$.query")) < 10',
       ),
       'fields' => array('COUNT(JSON_EXTRACT(LOWER(Stat.context), "$.query")) AS count, JSON_UNQUOTE(JSON_EXTRACT(LOWER(Stat.context), "$.query")) AS query'),
       'group' => array('JSON_EXTRACT(LOWER(Stat.context), "$.query")'),

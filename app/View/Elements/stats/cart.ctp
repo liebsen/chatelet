@@ -21,10 +21,10 @@
 						<span class="badge badge-lg badge-info text-lowercase"><?=$context['page']?></span>
 					</td>
 					<td>
-						<strong class="d-flex flex-column toggle-display is-clickable" data-target=".cart-details">
+						<div class="d-flex flex-nowrap gap-25 toggle-display is-clickable" data-target=".cart-details">
 							<span class="badge badge-info text-left"><i class="gi gi-shopping_cart"></i> <?=count($context['cart'])?></span>
 							<span class="badge badge-info text-left"><i class="gi gi-money"></i> <?=price_format($context['cart_totals']['grand_total'])?></span>
-						</strong>
+						</div>
 						<div class="cart-details d-none">
 							<ul class="list-group">
 							<?php foreach($context['cart'] as $item2):?>
@@ -34,20 +34,24 @@
 						</div>
 					</td>
 					<td>
-					<?php if(!empty($item['User']['id']) && $item['User']['id'] > 1): ?>
-						<?php if(strlen($item['User']['name'])):?>
-						<span class="badge badge-success" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
-							<?=$item['User']['name']?> <?=$item['User']['surname']?>
-						</span>
+						<div class="d-flex flex-start flex-nowrap gap-25">
+						<?php if(!empty($item['User']['id']) && $item['User']['id'] > 1): ?>
+							<?php if(strlen($item['User']['name'])):?>
+							<span class="badge badge-success" title="<?=$item['User']['name']?> <?=$item['User']['surname']?>">
+								<?=$item['User']['name']?> <?=$item['User']['surname']?>
+							</span>
+							<?php endif ?>
+							<span class="badge text-lowercase"><?=$item['User']['email']?></span>
+							<span class="badge"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
+						<?php else: ?>
+							<span class="badge badge-danger">Anónimo</span>
 						<?php endif ?>
-						<span class="badge text-lowercase"><?=$item['User']['email']?></span>
-						<span class="badge"><?=date('Y', strtotime('last year'))-date('Y',strtotime($item['User']['birthday']))?> años</span>
-					<?php else: ?>
-						<span class="badge badge-danger">Anónimo</span>
-					<?php endif ?>
+						</div>
 					</td> 
-					<td> 
-						<span class="badge text-capitalize"><?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y %H:%M')?></span><span class="badge text-lowercase"><?=\readable_time_ago($item['Stat']['created']) ?></span>
+					<td>
+						<div class="d-flex flex-start flex-nowrap gap-25">
+							<span class="badge text-capitalize"><?=$this->Time->format($item['Stat']['created'], '%d/%m/%Y %H:%M')?></span><span class="badge text-lowercase"><?=\readable_time_ago($item['Stat']['created']) ?></span>
+						</div>
 					</td> 
 				</tr>
 			<?php endforeach ?>
