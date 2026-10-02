@@ -11,7 +11,7 @@
 	, $parents);
 ?>
 <style type="text/css">
-	.form-actions.fullscreen > .btn:not(.btn-preview) {
+	.form-actions.fullscreen > .btn:not(.fs-show) {
 		display: none;
 	}
 </style>
@@ -164,8 +164,8 @@
         <div class="form-actions">
           <a href="/admin/categorias" class="btn btn-info"><i class="fa fa-chevron-left mr-1"></i> <span class="ml-1">Atrás</span></a>
           <button type="reset" class="btn btn-danger" title="Limpia el formulario actual y deshace cualquier cambio hecho previamente"><i class="fa fa-close"></i> <span class="ml-1">Restaurar</span></button>
-          <button type="submit" class="btn btn-success" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
-          <button type="button" class="btn btn-info btn-preview<?=empty($category['Category']['id'])?'  d-none':''?>" title="Previsualizar categoría"><i class="gi gi-font"></i> <span class="ml-1">Diseñar</span></button>
+          <button type="submit" class="btn btn-success fs-show" title="Pulsa aquí para actualizar este formulario"><i class="fa fa-check"></i> <span class="ml-1">Guardar</span></button>
+          <button type="button" class="btn btn-info fs-show btn-preview<?=empty($category['Category']['id'])?'  d-none':''?>" title="Previsualizar categoría"><i class="gi gi-font"></i> <span class="ml-1">Diseñar</span></button>
         </div>
       </form>
     </div>
