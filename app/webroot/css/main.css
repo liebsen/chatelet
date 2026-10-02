@@ -3588,7 +3588,7 @@ background-color: #45a049; /* Darker green on hover */
 .shop-preview-tb {
 	position: absolute;
 	bottom: 1rem;
-	right: 1rem;
+	left: 1rem;
 }
 
 .name-catalog {
