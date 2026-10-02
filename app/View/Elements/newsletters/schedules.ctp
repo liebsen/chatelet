@@ -56,7 +56,7 @@
 						>						
 							<span class="badge badge-info"><i class="fa fa-list mr-1"></i> <?=$schedule['NewsletterList']['name']?> <?=!empty($schedule['list_total']) ? '('.$schedule['list_total'].')' : ''?></span>
 						</a>
-						<div class="d-flex flex-start flex-wrap gap-25">
+						<div class="d-flex flex-start flex-nowrap gap-25">
 							<?php if($schedule['Newsletter']['send_email'] == '1'):?>
 							<span class="badge badge-success is-rounded" title="Emails enviados">
 								<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
@@ -119,7 +119,7 @@
 							data-url-back="<?=$this->Html->url(array('action'=>'newsletters', 'schedules'))?>" 
 							data-delurl="<?=$this->Html->url(array('action'=>'newsletters', 'schedules', 'delete'))?>" 
 							data-msg="<?=__('¿Eliminar Campaña?')?>"                   
-							>
+						>
 							<i class="fa fa-trash-o"></i>
 						</a>
 <?php endif ?>
@@ -175,7 +175,7 @@
 <?php endif ?>
 					</td>
 					<td>
-						<div class="d-flex flex-start flex-wrap gap-25">
+						<div class="d-flex flex-start flex-nowrap gap-25">
 							<a 
 								href="<?=$this->Html->url(
 									array(
@@ -214,7 +214,7 @@
 						</div>
 					</td>
 					<td>
-						<div class="d-flex flex-start flex-wrap gap-25">
+						<div class="d-flex flex-start flex-nowrap gap-25">
 							<a 
 								href="<?=$this->Html->url(array('action'=>'newsletters', 'lists', 'edit', $schedule['NewsletterList']['id']))?>" 
 								data-toggle="tooltip" 
@@ -230,7 +230,7 @@
 						</div>
 					</td>
 					<td>
-						<div class="d-flex flex-start flex-wrap gap-25">
+						<div class="d-flex flex-start flex-nowrap gap-25">
 							<?php if($schedule['Newsletter']['send_email'] == '1'):?>
 							<span class="badge badge-success is-rounded" title="Emails enviados">
 								<i class="gi gi-envelope"></i> <span class="email_sent"><?=$schedule['stats']['email_sent']?></span> / <span class="email_total"><?=$schedule['stats']['email_total']?></span>
