@@ -10,6 +10,10 @@
 	font-family: 'BauerBodni Blk BT Black', 'Times New Roman', 'Verdana';*/
 }
 
+.promo-code  {
+	font-weight: 1000;
+}
+
 .is-capitalize {
   text-transform: capitalize !important;
 }

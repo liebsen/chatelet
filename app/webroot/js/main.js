@@ -218,10 +218,17 @@ $(function () {
   $('.logout-btn').click(function(e){ 
     e.preventDefault()
     e.stopPropagation()
-    const prompt = confirm('¿Deseas abandonar la sesión?')
-    if(prompt) {
-      location.href = '/admin/logout'
-    }
+
+		swal({   
+			title: 'Abandonar sesión',
+			text: '¿Deseas abandonar la sesión?',   
+			type: "warning",
+			showCancelButton: true,   
+			closeOnConfirm: true,   
+			showLoaderOnConfirm: true,
+		}, function() {
+			location.href = '/admin/logout'
+		})
     return false
   })
 

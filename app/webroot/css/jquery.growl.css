@@ -12,6 +12,8 @@
   left: 0;
   right: 0;
   min-width: calc(100vw - 2rem); 
+	display: inline-table;
+	margin: auto;  
 }
 #growls.tl {
   top: 0.75rem;

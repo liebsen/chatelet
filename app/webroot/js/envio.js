@@ -65,6 +65,7 @@ selectStore = function(e) {
   const total_products = cart_totals.total_products 
   const coupon_benefits = cart_totals.coupon_benefits || 0 
   format_total = formatNumber(total_products - coupon_benefits)
+	$('.takeaway-address').text(store_address + ', ' +store)
 
   const storeProps = [
   	'store', 
@@ -95,7 +96,7 @@ selectStore = function(e) {
   handleTotals(format_total)
   handleSubtotal(format_total)
   manageHiddenFields()
-  initMap(e)  
+  initMapbox(e)  
 }
 
 manageHiddenFields = function() {
@@ -108,6 +109,38 @@ manageHiddenFields = function() {
 			}
 		})
 	}, 500)
+}
+
+var map, marker;
+
+function initMapbox(option) {
+	const store = $(option).attr('store')
+	const store_lng = $(option).attr('store-lng')
+	const store_lat = $(option).attr('store-lat')
+	const store_address = $(option).attr('store-address')
+
+	$('.store').text(store)
+	$('.store-address').text(store_address)
+	if(marker) {
+		marker.remove()
+	}
+
+	if(!map) {
+		map = new mapboxgl.Map({
+		  accessToken: 'pk.eyJ1IjoiY29zbWljYmVhbXMiLCJhIjoiY211NWtqaWV1MDE5ZDJ3cThlZGduNjVjOCJ9.sNvuP7Uo6PIWpQrmKx2mcA',
+		  container: 'map-canvas',
+		  center: [store_lng,store_lat],
+		  zoom: 14
+		})
+	} else {
+		map.setCenter([store_lng, store_lat]);
+	}	
+
+	setTimeout(function(){
+		marker = new mapboxgl.Marker({color: 'deeppink'})
+		  .setLngLat([store_lng, store_lat])
+		  .addTo(map);		
+	}, 1000)
 }
 
 initMap = function(option) {

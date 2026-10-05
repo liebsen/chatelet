@@ -23,6 +23,7 @@
     echo $this->Html->script('bootstrapValidator.min');
     echo $this->Html->script('plugins');
     echo $this->Html->script('chatelet');
+    echo $this->Html->script('vendor/sweetalert.min');
 
     if(!empty($user['id']) && $_SERVER['REQUEST_SCHEME'] === 'https' ) { 
       echo $this->Html->script('webpush.js?v='.$version['ver'], array('inline' => false));
