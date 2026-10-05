@@ -54,7 +54,7 @@ function submitCoupon() {
       let discounted = 0
       let total = 0
 
-      discounted_formatted = formatNumber(res.data.coupon_benefits)
+      discounted_formatted = formatNumber(res.data.bonus)
 
       $('.coupon_bonus').text( "$ " + discounted_formatted )
       $('.input-coupon-status').removeClass('wrong');

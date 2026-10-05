@@ -1016,10 +1016,11 @@ select.form-control{
 	height: 46px;
 	border-radius: 30px;
 	background-color: deeppink;
+	border-width: 2px;
 	input {
 		border: none;
 		box-shadow: none;
-		background-color: #e7e7e7;
+		background-color: #f8f8f8;
 		color: deeppink;
 		font-weight: 1000;
 		height: 100%;

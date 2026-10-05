@@ -542,7 +542,7 @@ body.top-fixed .shop-options {
   color: #363633;
   text-transform: uppercase;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 2;
 }
 .shop-options ul li a.active {
   border-bottom: 4px solid deeppink;

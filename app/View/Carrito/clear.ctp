@@ -40,7 +40,7 @@
 			<p>Tu n&uacute;mero de pedido es: <span class="pink"><?php echo $sale_data['sale_id'] ?></span></p>
 			<p>Se te ha enviado un email con este n&uacute;mero a <span class="pink"><?php echo $sale_data['user']['email'] ?></span></p>
 			<br />
-			<a href="<?php echo $this->Html->url(array('controller'=>'shop','action'=>'index')) ?>" class="link">Continuar</a><br /><br /><br />
+			<a href="<?php echo $this->Html->url(array('controller'=>'shop','action'=>'index')) ?>" class="btn link">Continuar</a><br /><br /><br />
 		</div>
 	</div>
 </div>

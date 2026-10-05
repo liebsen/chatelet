@@ -378,7 +378,7 @@ class CarritoController extends AppController
 		CakeLog::write('debug', 'total(1):'.$total);
 		CakeLog::write('debug', 'discount(1):'.$discount);
 
-		if($total && $discount){
+		/*if($total && $discount){
 			if($coupon_parsed->data['coupon_type'] === 'percentage') {
 				$total = round($total * (1 - $discount / 100), 2);
 			}
@@ -390,7 +390,7 @@ class CarritoController extends AppController
 				$total = 0;
 			}
 			$total = round($total,2);
-		}
+		}*/
 
 		CakeLog::write('debug', 'total(2):'.$total);
 
@@ -404,7 +404,7 @@ class CarritoController extends AppController
 
 		if($coupon_code) {
 			$cart_totals['coupon'] = $coupon_code;
-			$cart_totals['coupon_benefits'] = $coupon_bonus;
+			$cart_totals['coupon_benefits'] = $discount;
 		}
 
 		$cart_totals['grand_total'] = $total;
