@@ -120,9 +120,18 @@ function getTicket() {
       row.prop("onclick", null)
       row.className = ''
       row.addClass(`text-${data.status}`)
-      if (data.url && confirm('¿Querés ver el ticket?')) {
-        window.open(data.url, data.shipping + sale_id, `height=${data.height},width=${data.width}`)
-      }
+      if (data.url) {
+				swal({   
+					title: 'Ticket generado exitosamente',
+					text: '¿Querés ver el ticket ahora?',   
+					type: "warning",
+					showCancelButton: true,   
+					closeOnConfirm: true,   
+					showLoaderOnConfirm: true,
+				}, function() {
+        	window.open(data.url, data.shipping + sale_id, `height=${data.height},width=${data.width}`)
+        })
+			}
       button.after(`<span>${data.message}</span>`)
       setTimeout(() => {
         layerClose()

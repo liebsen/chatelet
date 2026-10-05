@@ -35,7 +35,14 @@ $(document).ready(function() {
         const tempUrl = URL.createObjectURL(elem.files[0])
         $(`#${matches[1]}`).attr('src', tempUrl);
       }
-      if (confirm("¿Deseas cargar este archivo ahora?")) {
+			swal({   
+				title: 'Cargar archivo',
+				text: "¿Deseas cargar este archivo ahora?",   
+				type: "warning",
+				showCancelButton: true,   
+				closeOnConfirm: true,   
+				showLoaderOnConfirm: true,
+			}, function() {
         setTimeout(function(){
           const data = getFormData(document.getElementById("form_app"))
           if(!data) return false
@@ -61,7 +68,7 @@ $(document).ready(function() {
             }
           });
         }, 10)
-      }
+			})
     }
   })
 

@@ -74,8 +74,15 @@ function addToCart(data, redirect) {
 
 function askremoveCart(e) {
   const item = $(e).parents('.carrito-data').data('json')
-  let userInput = confirm(`¿Querés borrar el producto ${item.name} del carrito?`);
-  if(userInput){
+
+	swal({   
+		title: 'Eliminar producto',
+		text: `¿Querés borrar el producto ${item.name} del carrito?`,   
+		type: "warning",
+		showCancelButton: true,   
+		closeOnConfirm: true,   
+		showLoaderOnConfirm: true,
+	}, function() {
     $.post(`/carrito/remove/${item.uid}`, {}).then((res) => {
       fbq('trackCustom', 'RemoveFromCart', {
         content_ids: [item.id],
@@ -101,7 +108,7 @@ function askremoveCart(e) {
       })
       window.location.href = window.location.href
     })
-  }
+	})
 }
 
 function sendBeacon(tag) {
@@ -737,10 +744,17 @@ $(document).ready(function() {
 	$('.btn-logout').click(function(e) {
 		e.preventDefault()
     if(localStorage.getItem('cart') && localStorage.getItem('cart') != 'undefined') {}
-    const agree = confirm('Tenes un carrito activo con productos. ¿Estas segura de cerrar la sesión? ')
-    if (agree) {
-      return location.href = '/users/logout'
-    } 
+
+		swal({   
+			title: 'Abandonar sesión',
+			text: 'Tenes un carrito activo con productos. ¿Estas segura de cerrar la sesión? ',   
+			type: "warning",
+			showCancelButton: true,   
+			closeOnConfirm: true,   
+			showLoaderOnConfirm: true,
+		}, function() {
+			return location.href = '/users/logout'
+		})
     return false
   })
 

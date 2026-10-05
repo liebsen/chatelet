@@ -48,6 +48,8 @@
       echo $this->Html->css('custom.css?v=' . $version['ver']);
       // echo $this->Html->css('animate.css?v=' . $version['ver']);
       echo $this->Html->css('plugins.css?v=' . $version['ver']);
+		  echo $this->Html->css('sweetalert');
+
       echo $this->fetch('meta');
       echo $this->fetch('css');
     ?>
