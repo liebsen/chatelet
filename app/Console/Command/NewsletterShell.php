@@ -155,7 +155,7 @@ class NewsletterShell extends AppShell {
       )
     );
 
-    #echo "\n[tasks] " . count($schedules);
+    echo "\n[schedules] " . count($schedules);
 
     foreach($schedules as $schedule) {
     	if(
@@ -296,7 +296,7 @@ class NewsletterShell extends AppShell {
         if(!empty($showmail)){
         	var_dump(array('email(1)' => $email));
         }
-
+        var_dump($email['sent']);
         if($email['sent']) {
           $this->NewsletterScheduleItem->save(
             array(

@@ -81,10 +81,9 @@ class CartComponent extends Component {
           continue;
         }
 
-
         $cat = $prod['Category'];
         $prod = $prod['Product'];
-        $price = $prod['price'];
+        $price = $prod['discount'] ?? $prod['price'];
         $mp_discount = 0;
         $bank_discount = 0;
         $prod['old_price'] = $price;

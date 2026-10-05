@@ -309,7 +309,6 @@ class CarritoController extends AppController
 			$partial_bonus = $discount;
 			foreach($cart as $item) {
 				$price = (float) $item["old_price"];
-				CakeLog::write('debug', 'carrito(price):'.$price);
 
 				if(
 					$payment_method === 'mercadopago' && 
@@ -322,8 +321,10 @@ class CarritoController extends AppController
 
 				if($payment_method === 'bank' && !empty($item['bank_discount']) && !empty((float)(@$item['bank_discount']))) {
 	        $price = @ceil(round($price * (1 - (float) $item['bank_discount'] / 100)));
-	        CakeLog::write('debug', 'price(3):'.$price);
 	      }
+	       
+
+	      CakeLog::write('debug', 'price(3):'.$price);
 
 	      $products_total+= $price;
 
@@ -375,19 +376,21 @@ class CarritoController extends AppController
 		}
 
 		CakeLog::write('debug', 'total(1):'.$total);
+		CakeLog::write('debug', 'discount(1):'.$discount);
 
-		/*if($total && $discount){
+		if($total && $discount){
 			if($coupon_parsed->data['coupon_type'] === 'percentage') {
 				$total = round($total * (1 - $discount / 100), 2);
 			}
 			if($coupon_parsed->data['coupon_type'] === 'nominal') {
 				$total-= $discount;
 			}
+
 			if($total < 0) {
 				$total = 0;
 			}
 			$total = round($total,2);
-		}*/
+		}
 
 		CakeLog::write('debug', 'total(2):'.$total);
 
@@ -476,11 +479,7 @@ class CarritoController extends AppController
 
 		$this->autoRender = false;
 		echo '<pre>';
-		echo "cart_totals:\n----------------------\n";
-		var_dump($this->Session->read('cart_totals'));
-		echo "cart:\n-------------\n";
-		var_dump($this->Session->read('cart'));
-		echo '</pre>';
+		var_dump($this->Session->read());
 	}
 
 	public function show_settings($row = null) {
