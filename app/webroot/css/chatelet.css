@@ -57,6 +57,19 @@ body > section {
 	height: 100%;
 }
 
+.carousel-indicators {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+	display: flex;
+	background-color: #00000040;
+	border-radius: 1rem;
+	padding: 0 4px;
+  margin: auto;
+  width: fit-content;
+}
+
 .carousel-indicators li {
 	margin: 4px 2px;
 	width: 6px;
@@ -77,19 +90,6 @@ body > section {
   height: 6px;
 	margin: 4px 2px;
 	background-color: #ffffff;
-}
-
-.carousel-indicators {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 10px;
-	display: flex;
-	background-color: #00000040;
-	border-radius: 1rem;
-	padding: 0 2px;
-  margin: auto;
-  width: fit-content;
 }
 
 .carousel-video {
