@@ -6,10 +6,13 @@ $this->set('short_header', 'Checkout');
 $this->set('short_header_text', '<i class="gi gi-shopping_cart mr-1"></i> Volver al carrito'); 
 $this->set('short_header_link', '/carrito');
 
+$this->Html->css('https://api.mapbox.com/mapbox-gl-js/v3.30.0/mapbox-gl.css', array('block' => 'css'));
 $this->Html->css('checkout.css?v=' . $version['ver'], array('block' => 'css'));
 $this->Html->script('bootstrap-datepicker', array('block' => 'script'));
 $this->Html->script('cart.js?v=' . $version['ver'], array('block' => 'script'));	
 $this->Html->script('envio.js?v=' . $version['ver'], array('block' => 'script'));
+$this->Html->script('https://api.mapbox.com/mapbox-gl-js/v3.30.0/mapbox-gl.js', array('block' => 'script'));
+
 // $this->Html->script('shipping-validation.js?v=' . $version['ver'], array('block' => 'script'));
 echo $this->element('checkout-params');
 ?>
@@ -76,7 +79,7 @@ echo $this->element('checkout-params');
 									<?php endforeach;?>
 								</ul>
 							</div>
-							<div class="map-block d-flex flex-column justify-content-center align-items-start gap-05 hidden">
+							<div id="map-canvas" class="map-block d-flex flex-column justify-content-center align-items-start gap-05 hidden">
 								<div id="map_canvas"></div>
 								<span class="text-muted">
 									<span><?php echo $settings['carrito_takeaway_text'] ?></span><br>
@@ -110,5 +113,4 @@ echo $this->element('checkout-params');
 
 <?php echo $this->element('checkout-footer') ?>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script>
+<!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA80jEAk4PzzCEBDXc8prj7LCB1Q3U3g_o&v=3.exp&language=es"></script-->
