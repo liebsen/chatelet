@@ -65,6 +65,7 @@ selectStore = function(e) {
   const total_products = cart_totals.total_products 
   const coupon_benefits = cart_totals.coupon_benefits || 0 
   format_total = formatNumber(total_products - coupon_benefits)
+	$('.takeaway-address').text(store_address + ', ' +store)
 
   const storeProps = [
   	'store', 
