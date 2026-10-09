@@ -182,7 +182,7 @@
               </div>
             </td>
             <td class="col-xs-1 text-center">
-                <strong>$<?= @$sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value'] ?> </strong><br>
+                <strong><?=\price_format($sale['collection']['transaction_amount'] ?: @$sale['local_sale']['value']) ?> </strong><br>
                 <small>(<?= count(@$sale['collection']['sale_products']) ?> items)</small>
             </td>
             <td class="col-xs-1 text-center<?= @$sale['local_sale']['cargo'] !== 'takeaway' ? (empty(@$sale['local_sale']['def_orden_retiro']) ? ' bg-dangerflash slow infinite' : ' bg-success') : '' ?>">
@@ -192,7 +192,7 @@
                 <strong>Takeaway</strong>
             <?php else: ?>
                 <?= !empty(@$sale['collection']['free_shipping']) ? '<i class="gi gi-gift text-success"' : '' ?>
-                <strong>$<?= !empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost ?></strong>
+                <strong><?= \price_format(!empty(@$sale['collection']['deliver_cost']) ? $sale['collection']['deliver_cost'] : $defaultCost) ?></strong>
                 <?php
                 if (!empty(@$sale['local_sale']['id']) && !empty(@$sale['local_sale']['apellido']) && !empty(@$sale['local_sale']['cargo']) && @$sale['local_sale']['cargo'] == 'shipment'): ?>
                     <!--span class="btn btn-info" onclick="getTicket('<?php echo $sale['local_sale']['id'];?>', this)">TICKET</span-->
