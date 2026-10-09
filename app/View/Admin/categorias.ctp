@@ -77,12 +77,12 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 					<tr data-id="<?= $category['Category']['id'] ?>" data-order="<?= $category['Category']['ordernum'] ?>"  class="<?= $category['Category']['visible'] == '1' ? '' : 'bg-danger'?>">
 						<td align="center">
 							<input type="checkbox" name="checks" value="<?= $category['Category']['id']?>" />
+							<!--span class="badge"><?=$category['Category']['id']?></span-->
 						</td>
-
 						<td>
 							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id'],'#' => 'preview'))?>">
 	              <div class="category-content posnum-<?=$category['Category']['posnum'] ?? 'auto' ?>" style="background-image: url('<?php echo $settings['upload_url'].$category['Category']['img_url']?>')">
-	                <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" class="pd1 text-center">
+	                <a href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>" target="_blank" class="pd1 text-center">
 	                  <div class="category-image alignnum-<?=$category['Category']['alignnum'] ?? '0' ?>">  
 	                  	<?php if($category['Category']['show_text'] == '1'):?>
 	                    <span style="color: <?=$category['Category']['text_style']->color ?? 'white'?>">
@@ -91,34 +91,17 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 	                      <?php endif ?>
 	                      <span class="p-catalog text-stroke" style="font-family: <?=$category['Category']['text_style']->font_family ?? 'inherit'?>;font-size: <?=$category['Category']['text_style']->font_size ?? '12'?>px; font-weight: <?=$category['Category']['text_style']->font_weight ?? '300'?>; line-height: 0.5;letter-spacing: <?=$category['Category']['text_style']->letter_spacing ?? 'normal'?>;word-spacing: <?=$category['Category']['text_style']->word_spacing ?? 'normal'?>;-webkit-text-stroke: <?=$category['Category']['text_style']->shadow_width ?? '0'?>px <?=$category['Category']['text_style']->shadow_color ?? 'transparent'?>;"><span class="font-preview"><?=\word_limit($category['Category']['text'], 10)?></span></span>
 	                    </span>
-											<span class="badge"><?=$category['Category']['id']?></span>	                    
 	                  	<?php endif ?>
 	                  </div>
 	                </a>
 	              </div>
 							</a>
 						</td>
-
 						<td>
 							<a href="<?=$this->Html->url(array('action'=>'categorias','edit',$category['Category']['id']))?>">
 								<span><?=$category['Category']['name']?></span>
 							</a>
 						</td>
-
-						<!--td>          
-							<?php
-								if(!empty($category['Category']['img_url'])){
-									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['img_url'] ."''>LINK</a>";
-								}
-							?>     
-						</td> 
-						<td>          
-							<?php
-								if(!empty($category['Category']['size'])){
-									echo "<a target='_new' class='badge badge-inverse' href='". $settings['upload_url'] . $category['Category']['size'] ."''>LINK</a>";
-								}
-							?>     
-						</td-->
 						<td>
 							<?php
 								if(
@@ -143,15 +126,6 @@ $this->Html->script('admin-checklist.js?v=' . $version['ver'], array('block' => 
 						</td> 
 						<td>
 							<div class="btn-group d-flex flex-nowrap">
-								<!--a 
-									href="<?php echo $this->Html->url(array('controller' => 'tienda', 'action' => 'productos', str_replace(array('ñ',' '),array('n','-'),strtolower($category['Category']['name'])))); ?>"
-									data-toggle="tooltip" 
-									title="Ver en la tienda (Nuevo tab)" 
-									target="_blank"
-									class="btn btn-info" 
-									data-original-title="Editar">
-									<i class="fa fa-eye"></i>
-								</a--> 
 								<a 
 									href="<?=$this->Html->url(
 										array(

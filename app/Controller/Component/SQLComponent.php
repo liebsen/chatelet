@@ -4,7 +4,8 @@ class SQLComponent extends Component {
 	private $conn;
 	public function __construct() {
 		//$myServer = "181.164.35.14";
-		$myServer = "181.98.11.110";
+		//$myServer = "181.98.11.110";
+		$myServer = "152.170.40.65";
 		
 		/*$myUser = "UsuarioWebChâtelet";
 		$myPass = "UsuWEBChâtelet1973!!";
