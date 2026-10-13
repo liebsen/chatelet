@@ -456,12 +456,6 @@ body.top-fixed .navbar-chatelet:not(.short) .navbar-brand img {
   }  
 }
 
-@media(min-width: 1400px){
-	.add-no-stock {
-    min-height: 40rem!important;
-  }
-}
-
 .burst {
   position: absolute;
   z-index: 12;
